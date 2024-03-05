@@ -1,5 +1,8 @@
 # Design UML, spiegazione
 
+Il diagramma è realizzato con [PlantUML](https://plantuml.com). C'è anche un editor online
+sulla pagina del progetto.
+
 ## Caveat
 
 - Vengono prese come riferimento per le strutture dati le Collections di Java.
@@ -42,7 +45,7 @@ La loro posizione è opzionale, in quanto potrebbero comparire dopo sulla mappa
    che indica lo stato e la posizione di un'entità in un dato istante di tempo; 
    le Action non agirebbero mutando le singole entità, bensì producendo un nuovo EntityState. 
    Si tratta di un approccio più funzionale. EntityState potrebbe anche implementare
-   le singole azioni
+   le singole azioni, si potrebbe usare lo State design pattern.
    Inoltre, la posizione opzionale sarebbe necessaria solo in fase di simulazione,
    potrebbe non essere necessario definire tutte le entità prima del test.
 

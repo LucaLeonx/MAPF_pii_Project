@@ -1,6 +1,9 @@
 
 @startuml
-    skinparam dpi 300
+    'Lines to set apperence, not useful uncomment if necessary
+    'skinparam dpi 300
+    'scale 600*600
+    '!pragma ratio
     class Node {
         -position: int
         ' -adjacentNodes: Set<int>
@@ -21,11 +24,10 @@
         +createUndirectedGraph(nodeSet: Set<Node): Graph
         +createGridGraph(int rows, int columns): Graph
     }
-    
-    
+     
     
     class EntityList {
-        -entities: List<Entity>
+        '-entities: List<Entity>
         
         +getEntityByLabel(String label) : Entity
         +getAgentsList() : List<Agents>
@@ -36,19 +38,19 @@
     abstract class Entity {
         -label: String
         -description: String
-        -position: Option<Node>
+        -position: Option<int>
 
         +Entity(label: String, description: String, startNode: node);
         +getLabel(): String
         +getDescription(): String
-        +getPosition(): Node
+        +getPosition(): Option<int>
         +setPosition(newPosition: node)
         +clone(): Entity
         +isColliding(Entity other)
     }
 
     class Agent {
-        -objective: Objective
+        '-objective: Objective
         -hasReachedObjective: bool
     
         +Agent(label: String, description: String, objective: Objective) 
@@ -61,8 +63,8 @@
     'class Objective { }
     
     class Test {
-        -map: Graph
-        -entitiesInfo: List<Entity> Fare una classe apposita per cercare nelle liste di entità e di azioni
+        '-map: Graph
+        '-entitiesInfo: List<Entity> Fare una classe apposita per cercare nelle liste di entità e di azioni
         +Test(map: Graph, entities: List<EntityInfo>)
     }
 
@@ -107,11 +109,12 @@
 
     class TestRun {
         -id: int
-        -referenceTest: Test
+        '-referenceTest: Test
         -timestamp: TimeStamp
-        -entities: EntityList
-        -metrics: List<Metric>
-        -algorithm: AlgorithmPathToExecutable 
+        '-entities: EntityList
+        '-metrics: List<Metric>
+        -algorithm: AlgorithmPathToExecutable
+        '-actionList: List<Action>
         
         +TestRun(referenceTest: Test, algorithm: AlgorithmPathToExecutable)
         +run()
@@ -137,17 +140,29 @@
         +getResult() : double
     }
 
+    Graph "0..n" *-- Node
+    Entity "1..n" o-- EntityList : -entities
+    Entity <|-- Agent
+    Entity <|-- Obstacle
+    Entity <|-- Objective
+    Agent -- Objective : -objective
 
+    Test -- Graph : map
+    Test -- EntityList : -entitiesInfo
+    Benchmark "1..n" *-- Test
 
+    TestRun -- Test : -testReference
+    TestRun "1..n" o-- Entity : -entities
+    TestRun "1..n" *-- Metric: -metrics
+    TestRun "0..n" *-- Action: -actionList
+    BenchmarkRun "1..n" o-- TestRun
 
+    Action <|-- MoveAction
+    Action <|-- AppearAction
+    Action <|-- DisappearAction
 
-
-
-
-
-    
-    
-
-
+    Metric <|-- BooleanMetric
+    Metric <|-- IntegerMetric
+    Metric <|-- RealMetric
 
 @enduml
