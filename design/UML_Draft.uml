@@ -12,24 +12,48 @@
     class Graph {
         +Graph(nodeSet: Set<Node>)
         +isNodePresent(position: int): bool
-        +getNodeIfPresent(position: int): Option<Node>
+        +getNode(position: int): Option<Node>
         +isEdgePresent(startNodePosition int, endNode int): bool
     }
+
+    class GraphFactory {
+        +createDirectedGraph(nodeSet: Set<Node>): Graph
+        +createUndirectedGraph(nodeSet: Set<Node): Graph
+        +createGridGraph(int rows, int columns): Graph
+    }
     
-    class Entity {
+    
+    
+    class EntityList {
+        -entities: List<Entity>
+        
+        +getEntityByLabel(String label) : Entity
+        +getAgentsList() : List<Agents>
+        +getObstaclesList() : List<Obstacle>
+        +getObjectiveList() : List<Objective>
+    }
+       
+    abstract class Entity {
         -label: String
         -description: String
-    
-        +Entity(label: String, description: String)
+        -position: Option<Node>
+
+        +Entity(label: String, description: String, startNode: node);
         +getLabel(): String
         +getDescription(): String
+        +getPosition(): Node
+        +setPosition(newPosition: node)
+        +clone(): Entity
+        +isColliding(Entity other)
     }
 
     class Agent {
         -objective: Objective
+        -hasReachedObjective: bool
     
-    Agent(label: String, description: String, objective: Objective) : Agent
-    getObjective(): Objective
+        +Agent(label: String, description: String, objective: Objective) 
+        +getObjective(): Objective
+        +hasReachedObjective(): bool
     }
 
     'class Obstacle { }
@@ -37,22 +61,80 @@
     'class Objective { }
     
     class Test {
-        '-map: Graph
-        '-entities: List<Entity> Fare una classe apposita per cercare nelle liste di entità e di azioni
-        +Test(map: Graph, entities: List<Entity>)
+        -map: Graph
+        -entitiesInfo: List<Entity> Fare una classe apposita per cercare nelle liste di entità e di azioni
+        +Test(map: Graph, entities: List<EntityInfo>)
     }
 
+    abstract class Action {
+        
+        -executorEntity: Entity
+        -timestep: int
+
+        +Action(executorEntity: Entity, timestep: int)
+        +getExecutorEntity() : Entity
+        +getTimeStep() : int
+        +execute()  
+    }
+
+    class MoveAction {
+        
+        -startPosition: int
+        -endPosition: int
+        
+        +MoveAction(executorEntity: Entity, timestep: int, startPosition: int, endPosition: int)
+        +execute()
+    }
+
+    class AppearAction {
+       -startPosition: int
+
+       +AppearAction(executorEntity: Entity, timestep: int, startPosition: int)
+       +execute()
+    }
+
+    class DisappearAction {
+        +DisappearAction(executorEntity: Entity, timestep: int)
+        +execute()
+    }
+    
     class Benchmark {
          -name: String
          -description: String
          -tests: List<Test>
-         -algorithm
-         Benchmark(name: String, description: String: tests: List<Tests>)
-         'run()
+         -Benchmark(name: String, description: String: tests: List<Tests>)
     }
 
-    class Testrun {
-    
+    class TestRun {
+        -id: int
+        -referenceTest: Test
+        -timestamp: TimeStamp
+        -entities: EntityList
+        -metrics: List<Metric>
+        -algorithm: AlgorithmPathToExecutable 
+        
+        +TestRun(referenceTest: Test, algorithm: AlgorithmPathToExecutable)
+        +run()
+        +getActionList() : List<Action>
+        +getMetrics() : List<Metric>
+        +getMetricByName(String name) : Metric
+    }
+
+    interface Metric {
+        +calculate()
+        +getResultAsString() : String
+    }
+
+    interface IntegerMetric {
+        +getResult() : int
+    }
+
+    interface BooleanMetric {
+        +getResult() : bool 
+    }
+
+    interface RealMetric {
+        +getResult() : double
     }
 
 
