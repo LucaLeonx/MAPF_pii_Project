@@ -1,0 +1,71 @@
+
+@startuml
+    skinparam dpi 300
+    class Node {
+        -position: int
+        ' -adjacentNodes: Set<int>
+        +Node(position: int, adjacentNodes: int)
+        +getAdjacentNodes(): Set<int>
+        +isConnected(node: int): bool
+    }
+
+    class Graph {
+        +Graph(nodeSet: Set<Node>)
+        +isNodePresent(position: int): bool
+        +getNodeIfPresent(position: int): Option<Node>
+        +isEdgePresent(startNodePosition int, endNode int): bool
+    }
+    
+    class Entity {
+        -label: String
+        -description: String
+    
+        +Entity(label: String, description: String)
+        +getLabel(): String
+        +getDescription(): String
+    }
+
+    class Agent {
+        -objective: Objective
+    
+    Agent(label: String, description: String, objective: Objective) : Agent
+    getObjective(): Objective
+    }
+
+    'class Obstacle { }
+
+    'class Objective { }
+    
+    class Test {
+        '-map: Graph
+        '-entities: List<Entity> Fare una classe apposita per cercare nelle liste di entità e di azioni
+        +Test(map: Graph, entities: List<Entity>)
+    }
+
+    class Benchmark {
+         -name: String
+         -description: String
+         -tests: List<Test>
+         -algorithm
+         Benchmark(name: String, description: String: tests: List<Tests>)
+         'run()
+    }
+
+    class Testrun {
+    
+    }
+
+
+
+
+
+
+
+
+
+    
+    
+
+
+
+@enduml
