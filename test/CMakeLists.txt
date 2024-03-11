@@ -10,7 +10,11 @@ FetchContent_MakeAvailable(Catch2)
 
 find_package(Catch2 3 REQUIRED)
 
-add_executable(testing answer.cpp)
+add_executable(testing answer.cpp
+        ../source/Graph.cpp
+        ../source/Graph.h
+        ../source/Node.cpp
+        ../source/Node.h)
 target_link_libraries(testing PRIVATE Catch2::Catch2WithMain)
 
 include(Catch)

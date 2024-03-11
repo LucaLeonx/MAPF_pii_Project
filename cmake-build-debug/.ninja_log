@@ -1,12 +1,12 @@
 # ninja log v5
 4626	6263	7318640879302460	_deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/catch2/internal/catch_main.cpp.obj	d3fee8b37d5d1448
 9063	10443	7318640921181068	_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/catch_test_case_info.cpp.obj	ef0c577e8b45fdfc
-1	13329	7318644410634333	build.ninja	7a25643d79e9fb09
-0	597	7318586669536942	CMakeFiles/mapfBench.dir/source/main.cpp.obj	381b864ea9454ce
+1	13329	7318654842510673	build.ninja	7a25643d79e9fb09
+3	467	7318646850221170	CMakeFiles/mapfBench.dir/source/main.cpp.obj	381b864ea9454ce
 1800	2290	7318640839656953	_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_polyfills.cpp.obj	445b07ff5cb610a7
-600	955	7318586673056819	mapfBench.exe	bfd84a03f9176e5e
+467	595	7318646851404577	mapfBench.exe	f10dff140828251d
 30	256	7318640819352768	_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_errno_guard.cpp.obj	d28324db865afa4f
-7	653	7318641384491448	test/CMakeFiles/testing.dir/answer.cpp.obj	49e73d8916a6aed6
+9	691	7318646759594740	test/CMakeFiles/testing.dir/answer.cpp.obj	49e73d8916a6aed6
 6	72	7318630875905503	test/CMakeFiles/testing.dir/__/source/Answer.cpp.obj	fdb77e3314392eec
 55	983	7318640826613638	_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_leak_detector.cpp.obj	527ce4d5cc7bb982
 25	341	7318640820172044	_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_debugger.cpp.obj	6634a9ff50fdf410
@@ -36,6 +36,7 @@
 388	2018	7318640836767565	_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_reusable_string_stream.cpp.obj	c23e797267a06453
 36	2026	7318640836983212	_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_istream.cpp.obj	2a7de28563c1ba0e
 1381	2106	7318640837800668	_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_message_info.cpp.obj	d8007858e85c7144
+692	3973	7318646792377596	test/testing.exe	cc859ca06727bde1
 1491	2484	7318640841610111	_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_output_redirect.cpp.obj	3402494fec6b1b1c
 2106	2941	7318640846163857	_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_test_case_info_hasher.cpp.obj	2956919438b754f
 2599	3122	7318640847979823	_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_startup_exception_registry.cpp.obj	a078d2743401972c
@@ -110,15 +111,8 @@
 7682	12096	7318640937665621	_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/catch_session.cpp.obj	b08abc05ca4585c8
 8917	12173	7318640938418355	_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_commandline.cpp.obj	aa5b9aedb33553c
 15485	15581	7318640972597925	_deps/catch2-build/src/libCatch2Maind.a	f6b94f2565199c87
-8	653	7318644829225573	test/CMakeFiles/testing.dir/answer.cpp.obj	49e73d8916a6aed6
-8	659	7318646048364765	test/CMakeFiles/testing.dir/answer.cpp.obj	49e73d8916a6aed6
-660	4444	7318646086156715	test/testing.exe	cc859ca06727bde1
-660	4444	7318646086156715	test/testing_tests-b12d07c.cmake	cc859ca06727bde1
-660	4444	7318646086156715	C:/Users/steve/CLionProjects/MAPF_pii_Project/cmake-build-debug/test/testing_tests-b12d07c.cmake	cc859ca06727bde1
-9	691	7318646759594740	test/CMakeFiles/testing.dir/answer.cpp.obj	49e73d8916a6aed6
-692	3973	7318646792377596	test/testing.exe	cc859ca06727bde1
 692	3973	7318646792377596	test/testing_tests-b12d07c.cmake	cc859ca06727bde1
 692	3973	7318646792377596	C:/Users/steve/CLionProjects/MAPF_pii_Project/cmake-build-debug/test/testing_tests-b12d07c.cmake	cc859ca06727bde1
 9	84	7318646846385515	CMakeFiles/mapfBench.dir/source/Answer.cpp.obj	58da5422b03bf5e5
-3	467	7318646850221170	CMakeFiles/mapfBench.dir/source/main.cpp.obj	381b864ea9454ce
-467	595	7318646851404577	mapfBench.exe	f10dff140828251d
+21	106	7318655029145924	test/CMakeFiles/testing.dir/__/source/Node.cpp.obj	9602d8747414c6f3
+9	687	7318655034967367	test/CMakeFiles/testing.dir/answer.cpp.obj	49e73d8916a6aed6

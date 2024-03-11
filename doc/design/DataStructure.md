@@ -4,7 +4,7 @@ L'uso delle strutture dati avverrà tramite la Standard Template Library che int
 i Containers che sono quanto di più vicino ai Generics&Collection di Java.
 Si possono trovare informazioni qui: https://github.com/qqqil/ebooks/blob/master/c%2B%2B/the_c_standard_library_2nd_edition.pdf
 
-<img title="Containers" alt="" src="Cpp Containers.jpg">
+<img title="Containers" alt="" src="Cpp%20Containers.jpg">
 Notare che a differenza dalle Collection di java è che qui i diversi oggetti non sono sottoclasse l'uno dell'altra, ma sono oggetti 
 profondamente diversi, questo non preclude l'esistenza di un iteratore generale capace di lavorare con tutti.
 

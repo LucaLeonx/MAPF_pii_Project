@@ -4,6 +4,11 @@ project(MAPF_Bench)
 add_executable(mapfBench
         source/main.cpp
         source/Answer.cpp
-        source/Answer.h)
+        source/Answer.h
+        #source/Graph.cpp
+        #source/Graph.h
+        #source/Node.cpp
+        #source/Node.h
+)
 
 add_subdirectory(test)

@@ -61,6 +61,18 @@ build CMakeFiles/mapfBench.dir/source/Answer.cpp.obj: CXX_COMPILER__mapfBench_un
   OBJECT_DIR = CMakeFiles\mapfBench.dir
   OBJECT_FILE_DIR = CMakeFiles\mapfBench.dir\source
 
+build CMakeFiles/mapfBench.dir/source/Graph.cpp.obj: CXX_COMPILER__mapfBench_unscanned_Debug C$:/Users/steve/CLionProjects/MAPF_pii_Project/source/Graph.cpp || cmake_object_order_depends_target_mapfBench
+  DEP_FILE = CMakeFiles\mapfBench.dir\source\Graph.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\mapfBench.dir
+  OBJECT_FILE_DIR = CMakeFiles\mapfBench.dir\source
+
+build CMakeFiles/mapfBench.dir/source/Node.cpp.obj: CXX_COMPILER__mapfBench_unscanned_Debug C$:/Users/steve/CLionProjects/MAPF_pii_Project/source/Node.cpp || cmake_object_order_depends_target_mapfBench
+  DEP_FILE = CMakeFiles\mapfBench.dir\source\Node.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\mapfBench.dir
+  OBJECT_FILE_DIR = CMakeFiles\mapfBench.dir\source
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target mapfBench
@@ -69,7 +81,7 @@ build CMakeFiles/mapfBench.dir/source/Answer.cpp.obj: CXX_COMPILER__mapfBench_un
 #############################################
 # Link the executable mapfBench.exe
 
-build mapfBench.exe: CXX_EXECUTABLE_LINKER__mapfBench_Debug CMakeFiles/mapfBench.dir/source/main.cpp.obj CMakeFiles/mapfBench.dir/source/Answer.cpp.obj
+build mapfBench.exe: CXX_EXECUTABLE_LINKER__mapfBench_Debug CMakeFiles/mapfBench.dir/source/main.cpp.obj CMakeFiles/mapfBench.dir/source/Answer.cpp.obj CMakeFiles/mapfBench.dir/source/Graph.cpp.obj CMakeFiles/mapfBench.dir/source/Node.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\mapfBench.dir
@@ -123,6 +135,20 @@ build test/CMakeFiles/testing.dir/answer.cpp.obj: CXX_COMPILER__testing_unscanne
   OBJECT_DIR = test\CMakeFiles\testing.dir
   OBJECT_FILE_DIR = test\CMakeFiles\testing.dir
 
+build test/CMakeFiles/testing.dir/__/source/Graph.cpp.obj: CXX_COMPILER__testing_unscanned_Debug C$:/Users/steve/CLionProjects/MAPF_pii_Project/source/Graph.cpp || cmake_object_order_depends_target_testing
+  DEP_FILE = test\CMakeFiles\testing.dir\__\source\Graph.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/steve/CLionProjects/MAPF_pii_Project/cmake-build-debug/_deps/catch2-src/src/catch2/.. -IC:/Users/steve/CLionProjects/MAPF_pii_Project/cmake-build-debug/_deps/catch2-build/generated-includes
+  OBJECT_DIR = test\CMakeFiles\testing.dir
+  OBJECT_FILE_DIR = test\CMakeFiles\testing.dir\__\source
+
+build test/CMakeFiles/testing.dir/__/source/Node.cpp.obj: CXX_COMPILER__testing_unscanned_Debug C$:/Users/steve/CLionProjects/MAPF_pii_Project/source/Node.cpp || cmake_object_order_depends_target_testing
+  DEP_FILE = test\CMakeFiles\testing.dir\__\source\Node.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/steve/CLionProjects/MAPF_pii_Project/cmake-build-debug/_deps/catch2-src/src/catch2/.. -IC:/Users/steve/CLionProjects/MAPF_pii_Project/cmake-build-debug/_deps/catch2-build/generated-includes
+  OBJECT_DIR = test\CMakeFiles\testing.dir
+  OBJECT_FILE_DIR = test\CMakeFiles\testing.dir\__\source
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target testing
@@ -131,7 +157,7 @@ build test/CMakeFiles/testing.dir/answer.cpp.obj: CXX_COMPILER__testing_unscanne
 #############################################
 # Link the executable test\testing.exe
 
-build test/testing.exe test/testing_tests-b12d07c.cmake | ${cmake_ninja_workdir}test/testing_tests-b12d07c.cmake: CXX_EXECUTABLE_LINKER__testing_Debug test/CMakeFiles/testing.dir/answer.cpp.obj | _deps/catch2-build/src/libCatch2Maind.a _deps/catch2-build/src/libCatch2d.a || _deps/catch2-build/src/libCatch2Maind.a _deps/catch2-build/src/libCatch2d.a
+build test/testing.exe test/testing_tests-b12d07c.cmake | ${cmake_ninja_workdir}test/testing_tests-b12d07c.cmake: CXX_EXECUTABLE_LINKER__testing_Debug test/CMakeFiles/testing.dir/answer.cpp.obj test/CMakeFiles/testing.dir/__/source/Graph.cpp.obj test/CMakeFiles/testing.dir/__/source/Node.cpp.obj | _deps/catch2-build/src/libCatch2Maind.a _deps/catch2-build/src/libCatch2d.a || _deps/catch2-build/src/libCatch2Maind.a _deps/catch2-build/src/libCatch2d.a
   FLAGS = -g
   LINK_LIBRARIES = _deps/catch2-build/src/libCatch2Maind.a  _deps/catch2-build/src/libCatch2d.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = test\CMakeFiles\testing.dir
