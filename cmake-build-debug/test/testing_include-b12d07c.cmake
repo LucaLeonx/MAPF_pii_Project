@@ -1,0 +1,5 @@
+if(EXISTS "C:/Users/steve/CLionProjects/MAPF_pii_Project/cmake-build-debug/test/testing_tests-b12d07c.cmake")
+  include("C:/Users/steve/CLionProjects/MAPF_pii_Project/cmake-build-debug/test/testing_tests-b12d07c.cmake")
+else()
+  add_test(testing_NOT_BUILT-b12d07c testing_NOT_BUILT-b12d07c)
+endif()
