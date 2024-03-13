@@ -11,8 +11,9 @@ class DirectedGraph():
 
     def is_edge_present(self, start_node, end_node):
         return self.is_node_present(start_node) and self.is_node_present(end_node) and self._graph.are_connected(start_node, end_node)           
-
-    
-    #def get_adjacent_nodes(self, node): 
-    #   return self._graph.successors(node)
+    def get_adjacent_nodes(self, node):
+        if self.is_node_present(node):
+            return self._graph.successors(node)
+        else:
+            return []
 

@@ -44,6 +44,16 @@ class TestDirectedGraph(unittest.TestCase):
             with self.subTest(source=source, target=target):
                 self.assertFalse(self.empty_graph.is_edge_present(source,target))
 
+    def test_check_adjacent(self):
+        self.assertEqual(self.graph1.get_adjacent_nodes(0), [1])
+        self.assertEqual(self.graph1.get_adjacent_nodes(1), [2,3])
+        self.assertEqual(self.graph1.get_adjacent_nodes(2), [])
+        self.assertEqual(self.graph1.get_adjacent_nodes(3), [2,4])
+        self.assertEqual(self.graph1.get_adjacent_nodes(4), [3])
+        self.assertEqual(self.graph1.get_adjacent_nodes(5), [])
+
+        self.assertEqual(self.empty_graph.get_adjacent_nodes(2), [])
+
 
 if __name__ == '__main__':
     unittest.main()
