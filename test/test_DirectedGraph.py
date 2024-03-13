@@ -1,8 +1,5 @@
-#import sys
-#sys.path.append('X:\MAPF_pii_Project')
-
 import unittest
-from graph import DirectedGraph as dg
+from graph import directedgraph as dg
 
 class TestDirectedGraph(unittest.TestCase):
 
