@@ -2,3 +2,6 @@ mapf/
 __pycache__/
 target/
 .pybuilder/
+pyproject.toml
+setup.py
+build.py
