@@ -1,0 +1,77 @@
+@startyaml
+benchmark: "Name of the benchmark"
+description: "Description of the benchmark"
+executable: "cbs_solver"
+tests:
+    -
+    name: "Test1"
+    description: "The description of Test1"
+    number_of_runs: 4
+    map:
+        type: directedGraph
+        is_weighted: true
+        adjacency_list:
+            - 0: [[1,3], [2,1], [3,2], [4,3]]
+            - 1: [[1,1], [2,2], [3,2], [4,1]]
+            - 2: [3,2]
+            - 3: [4,6]
+            - 4: [0,1], [1,12]]
+    entities:
+        agents:
+            -
+            name: "A0",
+            start_position: 1
+            objective: "T1"
+            -
+            name: "A1"
+            start_position: 3
+            objective: "T2"
+        objectives:
+            -
+            name: "T1"
+            start_position: 2
+            -
+            name: "T2"
+            start_position: 1
+        obstacles:
+            -
+            name: "O1"
+            start_position: 2
+    metrics:
+        - make_span
+        - sum_of_costs
+        - running_time
+
+    -
+    name: "Test2"
+    description: "Another test, but less verbose"
+    map:
+        type: grid
+            rows: 5
+            columns: 5
+    entities:
+        agents:
+            random:
+                number: 10
+                label_prefix: "Agent"
+        obstacles: [[0,1],[1,2]]
+        objectives:
+    metrics:
+        - make_span
+
+    -
+    name: "Test3"
+    description: "Test with files import"
+    map:
+       import: "./maps/map1"
+    entities:
+       import: "./entities/entities1"
+    metrics:
+        import: "./metrics/metricsList"
+
+aggregate_metrics:
+    - success_number
+    - success_percentage
+    - average_running_time
+
+@endyaml
