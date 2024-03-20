@@ -1,0 +1,15 @@
+@startuml
+
+class ImportManager {
+    // Will substitute imports with corresponding files
+
+}
+class FileHandler {
+
+}
+
+class FunctionDispatcher {
+
+}
+
+@enduml

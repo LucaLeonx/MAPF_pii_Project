@@ -1,0 +1,28 @@
+@startuml
+
+skinparam linetype polyline
+skinparam nodesep 100
+skinparam ranksep 150
+!startsub ENTITY_DESCRIPTION
+abstract class EntityDescription {
+    - name : str
+    - start_position : Position
+    + __init__(name : str, start_position : Position) throws InvalidNameException
+    + get_name() : str
+    + get_start_position() : Position
+}
+
+class AgentDescription {
+    '- objective : Objective
+    + get_objective() : ObjectiveDescription
+}
+
+class ObstacleDescription
+class ObjectiveDescription
+
+EntityDescription  <|-- AgentDescription
+EntityDescription  <|-- ObstacleDescription
+EntityDescription  <|-- ObjectiveDescription
+AgentDescription -r-> ObjectiveDescription : - objective
+!endsub
+@enduml
