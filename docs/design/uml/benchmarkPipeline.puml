@@ -1,0 +1,36 @@
+@startuml
+skinparam line ortho
+skinparam nodesep 100
+() "Input benchmark \ninformation" as BenchInput
+[Translator] as BenchGenerator
+() "Internal benchmark\nrepresentation" as BenchDescription
+[Runner] as BenchRunner
+() "Run information" as BenchRun
+[Metrics Calculator] as BenchCalculator
+() "Benchmark results" as BenchMetrics
+[Collector and Formatter] as BenchCollector
+() "Formatted results" as BenchResult
+
+/'
+() "Test information" as TestInput
+[Test Generator] as TestGenerator
+() "Internal Test description" as TestDescription
+[Test Runner] as TestRunner
+() "Test Run" as TestRun
+[Test Results calculator] as TestCalculator
+() "Test calculated metrics" as TestMetrics
+[Test results collector] as TestCollector
+() "Test output" as TestResult
+'/
+
+BenchInput -r-> BenchGenerator
+BenchGenerator -r-> BenchDescription
+BenchDescription -r-> BenchRunner
+BenchRunner -r-> BenchRun
+BenchRun -r-> BenchCalculator
+BenchCalculator -r-> BenchMetrics
+BenchMetrics -r-> BenchCollector
+BenchCollector -r-> BenchResult
+
+
+@enduml
