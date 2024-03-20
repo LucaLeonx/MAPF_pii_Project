@@ -25,4 +25,5 @@ EntityDescription  <|-- ObstacleDescription
 EntityDescription  <|-- ObjectiveDescription
 AgentDescription -r-> ObjectiveDescription : - objective
 !endsub
+
 @enduml
