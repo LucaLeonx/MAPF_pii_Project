@@ -3,6 +3,7 @@ skinparam linetype ortho
 skinparam nodesep 120
 skinparam ranksep 100
 
+!startsub TESTDESCRIPTION
 !includesub entity_description.puml!ENTITY_DESCRIPTION
 !includesub map.puml!MAP
 
@@ -19,7 +20,7 @@ class TestDescription {
     + get_agents_description() : (AgentDescription[])
     + get_objectives_description() : (ObjectiveDescription[])
     + get_obstacles_description() : (ObstacleDescription[])
-    + get_metrics : (Metric[])
+    + get_metrics() : (Metric[])
 }
 
 TestDescription -r-> "*" Metric
@@ -27,8 +28,6 @@ TestDescription --o Graph
 TestDescription -u-* "1..*" AgentDescription : - agents_description
 TestDescription -u-* "1..*" ObjectiveDescription : - objectives_description
 TestDescription -u-* "*" ObstacleDescription : - obstacles_description
-
-
-
+!endsub
 
 @enduml
