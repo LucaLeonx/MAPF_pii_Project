@@ -1,0 +1,14 @@
+@startuml
+
+class TestRunner {
+
+}
+
+enum ConnectionProtocol {
+    INPROC,
+    TCP,
+    IPC,
+    UDP
+}
+
+@enduml
