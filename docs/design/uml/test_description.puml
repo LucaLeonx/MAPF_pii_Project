@@ -7,13 +7,22 @@ skinparam ranksep 100
 !includesub entity_description.puml!ENTITY_DESCRIPTION
 !includesub map.puml!MAP
 
+class BenchmarkDescription {
+    - name : str
+    - description : str
+    + BenchmarkDescription(name : str, description : str, testlist : TestDescription[])
+    + get_name() : name
+    + get_description() : description
+    + get_tests() : (TestDescription[])
+    + get_metrics() : (Metric[])
+}
+
 class TestDescription {
     'map : Graph
     'agents_description: AgentDescription[]
     'objectives_description : ObjectiveDescription[]
     'obstacles_description : ObstacleDescription[]
     '- metrics : Metric[]
-    - executable : Executable
     + __init__(self, map : Graph, agents : AgentDescription[], agents : AgentDescription[], objectives : ObjectiveDescription[])
     + get_map() : Graph
     + get_entities_description() : (EntityDescription[])
@@ -22,6 +31,9 @@ class TestDescription {
     + get_obstacles_description() : (ObstacleDescription[])
     + get_metrics() : (Metric[])
 }
+
+BenchmarkDescription -l-* "1..*" TestDescription : - tests
+BenchmarkDescription --> "*" Metric : - aggregate_metrics
 
 TestDescription -r-> "*" Metric
 TestDescription --o Graph

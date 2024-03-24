@@ -1,14 +1,31 @@
 @startuml
 
-class TestRunner {
+skinparam linetype ortho
 
+class BenchmarkRunner {
+    + BenchmarkRunner((benchmark : BenchmarkDescription, config : ConnectionConfig)
+    + run_benchmark() : dict(str, TestRun[])
 }
 
-enum ConnectionProtocol {
-    INPROC,
-    TCP,
-    IPC,
-    UDP
+interface ConnectionConfig {
+    + get_socket_address() : str
 }
+
+class InProcessConfig {
+    - name : str
+    + IPCConfig(name : str)
+}
+
+class TCPConfig {
+    - host : str
+    - port : int
+    + TCPConfig(host : str, port : str)
+}
+note bottom of TCPConfig : this is the default choice: tcp:\\\\*:9361
+
+ConnectionConfig -u.. BenchmarkRunner : <<uses>>
+InProcessConfig -u-|> ConnectionConfig
+TCPConfig -u-|> ConnectionConfig
+
 
 @enduml

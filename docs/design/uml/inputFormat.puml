@@ -1,7 +1,6 @@
 @startyaml
-benchmark: "Name of the benchmark"
+benchmark: "Benchmark1"
 description: "Description of the benchmark"
-executable: "cbs_solver"
 tests:
     -
     name: "Test1"
