@@ -13,8 +13,8 @@ class TestRun {
 abstract class Action {
     - timestep : int
     - entity : Entity
-    - start_position : Position
-    - end_position : Position
+    - start_position : Optional<Position>
+    - end_position : Optional<Position>
     - description : str
 
     + Action(timestep: int, entity : Entity, startPosition : Position,

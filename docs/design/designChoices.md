@@ -12,7 +12,6 @@ TestRun characterized by:
 - id, given by the server
 - algorithm, given by the runner
 
-
 Benchmarks are aggregated by algorithms
 The server provides one or more tests according to
 the preferences of the client (even all of them).

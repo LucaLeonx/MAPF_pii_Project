@@ -37,9 +37,10 @@ class Edge {
 }
 
 class Position {
-    - index : int
-    + __init__(self, index : int, x : int, y : int)
-    + get_index() : int
+    - x : int
+    - y : int
+
+    + __init__(self, x : int, y : int)
     + get_coordinates() : (int, int)
     + __str__() : str
 }

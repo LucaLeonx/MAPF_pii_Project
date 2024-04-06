@@ -6,10 +6,10 @@ skinparam ranksep 150
 !startsub ENTITY_DESCRIPTION
 abstract class EntityDescription {
     - name : str
-    - start_position : Position
+    - start_position : Optional<Position>
     + __init__(name : str, start_position : Position) throws InvalidNameException
     + get_name() : str
-    + get_start_position() : Position
+    + get_start_position() : Optional<Position>
 }
 
 class AgentDescription {

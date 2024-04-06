@@ -7,6 +7,8 @@ class BenchmarkRunner {
     + run_benchmark() : dict(str, TestRun[])
 }
 
+class TestServer {}
+
 interface ConnectionConfig {
     + get_socket_address() : str
 }
