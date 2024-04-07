@@ -37,7 +37,7 @@ class TestBenchmarkDescription:
 
     @pytest.fixture
     def test_description(self, graph, entity_list):
-        return TestDescription(graph, entity_list)
+        return TestDescription("Test1", graph, entity_list)
 
     # Useful if more than one test must be generated
     @pytest.fixture

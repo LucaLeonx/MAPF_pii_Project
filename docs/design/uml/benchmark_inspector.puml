@@ -1,0 +1,27 @@
+@startuml
+
+class BenchmarkInspector {
+    + __init__(connection : ConnectionConfig)
+    + request_test(name : str) : TestRecorder
+    + register_test(name : str)
+    + get_test_description(name : str) : TestDescription
+    + send_test_results(recorder : TestRecorder)
+    + close()
+}
+
+class TestRecorder {
+    - action_list : ActionList[]
+    + __init__(test_description : TestDescription)
+    + register_action(action : Action)
+    + register_wait(entity : str)
+    + register_move(entity : str, position : Node)
+    + register_move_left(entity : str)
+    + register_move_right(entity : str)
+    + register_move_up(entity : str)
+    + register_move_down(entity : str)
+    + register_appearance(entity : str, position : Node)
+    + register_disappearance(entity : str)
+    + get_action_list() : Action[]
+}
+
+@enduml

@@ -8,10 +8,26 @@ class BenchmarkRunner {
 }
 
 class TestManager {
-
+    - test_records : TestRecord[]
+    + assign_test(test_name : str)
+    + get_test_description(test_name : str)
+    + all_tests_done() : bool
 }
 
-class Ts
+class TestRecord {
+    - assigned : bool
+    - done : bool
+    - test_description : TestDescription
+    - test_result : TestRun
+
+    + __init__(test_description : TestDescription)
+    + is_assigned() : bool
+    + is_done() : bool
+    + set_assigned()
+    + set_done()
+    + get_test_description() : TestDescription
+    + get_test_result() : TestRun
+}
 
 interface ConnectionConfig {
     + get_socket_address() : str

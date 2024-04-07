@@ -23,7 +23,8 @@ class TestDescription {
     'objectives_description : ObjectiveDescription[]
     'obstacles_description : ObstacleDescription[]
     '- metrics : Metric[]
-    + __init__(self, map : Graph, agents : AgentDescription[], agents : AgentDescription[], objectives : ObjectiveDescription[])
+    + __init__(self, name : str, map : Graph, agents : AgentDescription[], agents : AgentDescription[], objectives : ObjectiveDescription[])
+    + get_name() : str
     + get_map() : Graph
     + get_entities_description() : (EntityDescription[])
     + get_agents_description() : (AgentDescription[])

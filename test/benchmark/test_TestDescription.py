@@ -36,7 +36,15 @@ class TestTestDescription:
 
     @pytest.fixture
     def test_description(self, graph, entity_list):
-        return TestDescription(graph, entity_list)
+        return TestDescription("Test1", graph, entity_list)
+
+    def test__init__guard(self, graph, entity_list):
+        with pytest.raises(ValueError) as excinfo:
+            test = TestDescription("", graph, entity_list)
+        assert "Name cannot be empty" in str(excinfo.value)
+
+    def test_get_name(self, test_description):
+        assert test_description.get_name() == "Test1"
 
     def test_get_map(self, test_description, graph):
         assert test_description.get_map() == graph
@@ -54,5 +62,5 @@ class TestTestDescription:
         assert test_description.get_objectives() == entity_list[:3]
 
     def test_empty_test(self):
-        test = TestDescription(Graph(edge_list=[]), [])
+        test = TestDescription("Empty", Graph(edge_list=[]), [])
         assert test.get_agents() == []
