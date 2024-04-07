@@ -3,11 +3,15 @@
 skinparam linetype ortho
 
 class BenchmarkRunner {
-    + BenchmarkRunner((benchmark : BenchmarkDescription, config : ConnectionConfig)
+    + BenchmarkRunner(benchmark : BenchmarkDescription, config : ConnectionConfig)
     + run_benchmark() : dict(str, TestRun[])
 }
 
-class TestServer {}
+class TestManager {
+
+}
+
+class Ts
 
 interface ConnectionConfig {
     + get_socket_address() : str

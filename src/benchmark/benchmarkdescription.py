@@ -1,10 +1,12 @@
-from benchmark.test import Test
 
+class BenchmarkDescription:
 
-class Benchmark():
+    def __init__(self, name, description="", tests=[]):
+        if name != "":
+            self._name = name
+        else:
+            raise ValueError("Benchmark name cannot be empty")
 
-    def __init__(self, name="", description="", tests=[]):
-        self._name = name
         self._description = description
         self._tests = tests
 

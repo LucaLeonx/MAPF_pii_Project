@@ -6,7 +6,7 @@ class EntityDescription:
         if name != "":
             self._name = name
         else:
-            raise ValueError("Name cannot be empty")
+            raise ValueError("Entity Name cannot be empty")
 
         self._start_position = Optional.of(start_position)
 
