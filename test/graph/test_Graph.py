@@ -1,8 +1,8 @@
 import pytest
 
-from graph.Node import Node
-from graph.Edge import Edge
-from graph.Graph import Graph
+from graph.node import Node
+from graph.edge import Edge
+from graph.graph import Graph
 
 
 class TestGraph:

@@ -1,6 +1,6 @@
 import pytest
 from _pytest import unittest
-from graph.Node import Node
+from graph.node import Node
 
 
 class TestNode:

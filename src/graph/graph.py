@@ -1,6 +1,6 @@
 from optional import Optional
-from graph.Node import Node
-from graph.Edge import Edge
+from graph.node import Node
+from graph.edge import Edge
 
 
 class Graph:

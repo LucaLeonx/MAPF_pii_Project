@@ -1,6 +1,6 @@
 import pytest
-from graph.Edge import Edge
-from graph.Node import Node
+from graph.edge import Edge
+from graph.node import Node
 
 
 class TestEdge:
