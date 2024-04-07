@@ -2,6 +2,7 @@ from optional import Optional
 from graph.Node import Node
 from graph.Edge import Edge
 
+
 class Graph:
     def __init__(self, edge_list):
         self._edge_list = edge_list
@@ -27,16 +28,14 @@ class Graph:
     def get_node(self, index):
         node = [node for node in self._node_list if node.get_index() == index]
         if node:
-            return Optional.of(node[0])
+            return node[0]
         else:
-            return Optional.empty()
+            raise ValueError(f"Node with index ({index}) not found in graph")
 
     def get_edge(self, start_node, end_node):
         edge = [edge for edge in self._edge_list if edge.get_start_node() == Node(start_node) and
                 edge.get_end_node() == Node(end_node)]
         if edge:
-            return Optional.of(edge[0])
+            return edge[0]
         else:
-            return Optional.empty()
-
-    
+            raise ValueError(f"Edge ({start_node}, {end_node}) not found in graph")

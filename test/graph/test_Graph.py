@@ -27,10 +27,16 @@ class TestGraph:
                                      ]
 
     def test_get_node(self, graph):
-        assert graph.get_node(1).get() == Node(1)
-        assert graph.get_node(1).get().get_adjacent_nodes_index() == [2, 3]
-        assert graph.get_node(5).is_empty()
+        assert graph.get_node(1) == Node(1)
+        assert graph.get_node(1).get_adjacent_nodes_index() == [2, 3]
+
+        with pytest.raises(ValueError) as excinfo:
+            non_existent_node = graph.get_node(5)
+        assert "Node with index (5) not found in graph" in str(excinfo.value)
 
     def test_get_edge(self, graph):
-        assert graph.get_edge(2, 3).get() == Edge(Node(2), Node(3))
-        assert graph.get_edge(1, 1).is_empty()
+        assert graph.get_edge(2, 3) == Edge(Node(2), Node(3))
+
+        with pytest.raises(ValueError) as excinfo:
+            non_existent_edge = graph.get_edge(1, 1)
+        assert "Edge (1, 1) not found in graph" in str(excinfo.value)
