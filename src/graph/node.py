@@ -12,9 +12,9 @@ class Node:
     def _cantor_inverse_pairing_function(cls, n):
         w = floor((sqrt(8 * n + 1) - 1) / 2)
         t = (w ** 2 + w) / 2
-        return w - n + t, n - t
+        return int(w - n + t), int(n - t)
 
-    def __init__(self, index=None, coordinates=None, adjacent_nodes_index=[]):
+    def __init__(self, index=None, coordinates=None):
         if index is None and coordinates is None:
             raise ValueError("A Node must be identified by either its index or its coordinates")
         elif index is not None:
@@ -30,24 +30,18 @@ class Node:
                 self._index = self._cantor_pairing_function(coordinates)
                 self._x, self._y = coordinates
 
-        self._adjacent_nodes_index = adjacent_nodes_index
-
     def get_index(self):
         return self._index
 
     def get_coordinates(self):
         return self._x, self._y
 
-    def get_adjacent_nodes_index(self):
-        return self._adjacent_nodes_index
-
-    def __str__(self):
-        return f"Node[{self._index}] ({int(self._x)}, {int(self._y)})"
-
     def __eq__(self, other):
         return (self.__class__ == other.__class__ and
                 self._index == other.get_index())
 
+    def __hash__(self):
+        return hash(self._index)
 
-
-
+    def __str__(self):
+        return f"{self._index} [{self._x}, {self._y}]"

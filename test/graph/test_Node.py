@@ -7,7 +7,7 @@ class TestNode:
 
     @pytest.fixture(autouse=True)
     def node1(self):
-        return Node(index=1, adjacent_nodes_index=[1, 2])
+        return Node(index=1)
 
     @pytest.fixture(autouse=True)
     def node2(self):
@@ -15,7 +15,7 @@ class TestNode:
 
     @pytest.fixture(autouse=True)
     def node3(self):
-        return Node(coordinates=(1, 1), adjacent_nodes_index=[2])
+        return Node(coordinates=(1, 1))
 
     def test_cantor_functions(self):
         assert Node._cantor_pairing_function((1, 1)) == 4
@@ -45,13 +45,8 @@ class TestNode:
         assert node2.get_coordinates() == (0, 1)
         assert node3.get_coordinates() == (1, 1)
 
-    def test_get_adjacent_nodes(self, node1, node2, node3):
-        assert node1.get_adjacent_nodes_index() == [1, 2]
-        assert node2.get_adjacent_nodes_index() == []
-        assert node3.get_adjacent_nodes_index() == [2]
-
     def test_string_representation(self, node1):
-        assert str(node1) == "Node[1] (1, 0)"
+        assert str(node1) == "1 [1, 0]"
 
     def test_equality(self):
         assert Node(1) == Node(coordinates=(1, 0))
