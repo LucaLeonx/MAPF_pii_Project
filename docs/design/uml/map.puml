@@ -5,13 +5,13 @@ skinparam ranksep 100
 
 !startsub MAP
 class Graph {
-    '- edge_list : Edge[]
+    '- edge_list : Edge[ ]
     - node_adjacency_list : dict[Node, Node[*]]
-    + __init__(edge_list : Edge[])
-    + get_nodes() : Node[]
+    + __init__(edge_list : Edge[ ])
+    + get_nodes() : Node[ ]
     + has_node(node : Node)
-    + get_adjacent_nodes(node : Node) : Node[]
-    + get_edges() : Edge[]
+    + get_adjacent_nodes(node : Node) : Node[ ]
+    + get_edges() : Edge[ ]
     + has_edge : (start_node : Node, end_node : Node)
     + get_edge : (start_node : Node, end_node : Node)
     + __str__() : str
@@ -47,7 +47,7 @@ class Node {
 note right : "index and coordinates must be\n non-negative integers"
 
 Graph --* "*" Node
-Graph --* "*" Edge : - edge_list : Edge[]
+Graph --* "*" Edge : - edge_list : Edge[ ]
 Edge --o "2   " Node : - start, end
 
 !endsub

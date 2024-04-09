@@ -3,22 +3,29 @@
 skinparam linetype polyline
 skinparam nodesep 100
 skinparam ranksep 150
+
 !startsub ENTITY_DESCRIPTION
+
 abstract class EntityDescription {
     - name : str
-    - start_position : Optional<Position>
-    + __init__(name : str, start_position : Position) throws InvalidNameException
+    - start_position : Optional<Node>
+    + __init__(name : str, start_position : Node {optional}) throws InvalidNameException
     + get_name() : str
-    + get_start_position() : Optional<Position>
+    + has_start_Position() : bool
+    + get_start_position() : Optional<Node>
 }
 
-class AgentDescription {
-    '- objective : Objective
-    + get_objective() : ObjectiveDescription
+together{
+    class AgentDescription {
+        - objective_name: str
+        + __init__(name : str, objective_name : str, start_position : Node {optional})
+        + get_objective_name() : str
+    }
+    class ObjectiveDescription
 }
 
 class ObstacleDescription
-class ObjectiveDescription
+
 
 EntityDescription  <|-- AgentDescription
 EntityDescription  <|-- ObstacleDescription

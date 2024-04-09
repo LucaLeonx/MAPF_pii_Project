@@ -1,0 +1,39 @@
+@startuml
+skinparam linetype ortho
+skinparam nodesep 120
+skinparam ranksep 100
+
+!startsub TESTDESCRIPTION
+!includesub entity_description.puml!ENTITY_DESCRIPTION
+!includesub map.puml!MAP
+
+class BenchmarkDescription {
+    - name : str
+    - description : str
+    + BenchmarkDescription(name : str, description : str {optional}, testlist : TestDescription[ ] {optional})
+    + get_name() : str
+    + get_description() : str
+    + get_tests() : TestDescription[ ]
+}
+
+class TestDescription {
+    - name : str
+    '- map : Graph
+    '- entities : EntityDescription[ ]
+    + __init__(self, name : str, map : Graph, entities: EntityDescription[ ])
+    + get_name() : str
+    + get_test_map() : Graph
+    + get_entities_description() : EntityDescription[ ]
+    + get_agents_description() : AgentDescription[ ]
+    + get_objectives_description() : ObjectiveDescription[ ]
+    + get_obstacles_description() : ObstacleDescription[ ]
+}
+
+BenchmarkDescription -d-* "1..*" TestDescription : - tests
+
+TestDescription --o Graph : - test_map
+TestDescription -r-* "1..*" EntityDescription : - entities
+
+!endsub
+
+@enduml

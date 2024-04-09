@@ -18,9 +18,9 @@ class TestBenchmarkDescription:
         objective2 = ObjectiveDescription("T2")
         objective3 = ObjectiveDescription("T3")
 
-        agent1 = AgentDescription("A1", start_position=Node(1), objective=objective1)
-        agent2 = AgentDescription("A2", start_position=Node(2), objective=objective2)
-        agent3 = AgentDescription("A3", start_position=Node(3), objective=objective3)
+        agent1 = AgentDescription("A1", "T1", start_position=Node(1))
+        agent2 = AgentDescription("A2", "T2", start_position=Node(2))
+        agent3 = AgentDescription("A3", "T3", start_position=Node(3))
 
         obstacle = ObstacleDescription("O1")
 

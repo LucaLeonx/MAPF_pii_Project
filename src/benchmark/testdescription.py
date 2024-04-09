@@ -11,14 +11,14 @@ class TestDescription:
         else:
             raise ValueError("Name cannot be empty")
 
-        self._map = test_map
+        self._test_map = test_map
         self._entities = entities
 
     def get_name(self):
         return self._name
 
-    def get_map(self):
-        return self._map
+    def get_test_map(self):
+        return self._test_map
 
     def get_entities(self):
         return self._entities
