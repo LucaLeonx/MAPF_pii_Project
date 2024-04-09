@@ -19,9 +19,3 @@ class EntityDescription:
     def has_start_position(self):
         return self._start_position.is_present()
 
-
-# Will be moved later if additional methods will be added
-
-
-
-
