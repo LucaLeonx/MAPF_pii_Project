@@ -26,6 +26,10 @@ class TestEdge:
         assert edge2.get_weight() == 1
 
     def test_equality(self, edge1, edge2):
-        assert edge1 == Edge(Node(1), Node(2), weight=10)
+        assert edge1 != Edge(Node(1), Node(2), weight=10)
+        assert edge1 == Edge(Node(1), Node(2), weight=2)
         assert edge1 != edge2
         assert edge1 != "Ciao"
+
+    def test_str(self, edge1):
+        assert str(edge1) == "(1 [1, 0], 2 [0, 1] | 2)"

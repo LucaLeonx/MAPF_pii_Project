@@ -5,50 +5,50 @@ skinparam ranksep 100
 
 !startsub MAP
 class Graph {
-    - graph : Graph (from python_igraph)
-    + __init__(nodes_number : int, edge_list : Edge[])
-    + get_nodes : (Node[])
-    + get_edges : (Edge[])
-    + get_node(position : Position) : Node
-}
-
-class Node {
-    ' - position : Position
-    ' - adjacent_nodes : Tuple(Node)
-    ' - starting_edges : Tuple(Edge)
-    ' - ending_edges : Tuple(Edge)
-    + get_position() : Position
-    + get_index() : Index
-    + get_adjacent_nodes() : tuple(Node[0..*])
-    + get_starting_edges() : tuple(Edge[0..*])
-    '+ get_ending_edges() : tuple(Edge[0..*])
+    '- edge_list : Edge[]
+    - node_adjacency_list : dict[Node, Node[*]]
+    + __init__(edge_list : Edge[])
+    + get_nodes : Node[]
+    + has_node(node : Node)
+    + get_adjacent_nodes(node : Node) : Node[]
+    + get_edges : Edge[]
+    + has_edge : (start_node : Node, end_node : Node)
+    + get_edge : (start_node : Node, end_node : Node)
+    + __str__() : str
 }
 
 class Edge {
     '- start : Node
     '- end : Node
     - weight: int
-    + __init__(self, start : Node, end : Node, weight : int)
-    + get_nodes() : (Node, Node)
+    + __init__(start : Node, end : Node, weight : int)
     + get_start_node() : Node
     + get_end_node() : Node
-    + get_weight() : Node
-    + get_information() : (Node, Node, int)
-}
-
-class Position {
-    - x : int
-    - y : int
-
-    + __init__(self, x : int, y : int)
-    + get_coordinates() : (int, int)
+    + get_weight() : int
+    + __eq__(other : Object) : bool
+    + __hash__() : int
     + __str__() : str
 }
 
+class Node {
+    - index : int
+    - x : int
+    - y : int
+
+    - cantor_pairing_function(numbers : (int, int)) : int {static}
+    - cantor_inverse_pairing_function(n : int) : (int, int) {static}
+    + __init__(index : int {optional}, coordinates : (int, int) {optional})
+    + get_index() : int
+    + get_coordinates() : (int, int)
+    + __eq__(other : Object) : bool
+    + __hash__() : int
+    + __str__() : str
+}
+note right : "index and coordinates must be\n non-negative integers"
+
 Graph --* "*" Node
-Graph --* "*" Edge
+Graph --* "*" Edge : - edge_list : Edge[]
 Edge --o "2   " Node : - start, end
-Node --> Position : - position
 
 !endsub
 
