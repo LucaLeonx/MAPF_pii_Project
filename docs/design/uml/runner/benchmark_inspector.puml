@@ -1,10 +1,8 @@
 @startuml
 
 class BenchmarkInspector {
-    + __init__(connection : ConnectionConfig)
-    + request_test(name : str) : TestRecorder
-    + register_test(name : str)
-    + get_test_description(name : str) : TestDescription
+    + __init__(distributorAddress : ConnectionConfig, collectorAddress : ConnectionConfig, signalAddress : ConnectionConfig)
+    + request_test() : TestRecorder
     + send_test_results(recorder : TestRecorder)
     + close()
 }

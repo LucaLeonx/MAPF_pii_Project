@@ -1,0 +1,12 @@
+@startuml
+!startsub TEST_DISTRIBUTOR
+
+class TestDistributor {
+    - distributionConnection : ServerConnection
+    '- signalConnection : SubscriberConnection For later
+    - 
+}
+
+
+!endsub
+@enduml

@@ -1,4 +1,33 @@
-# Design choices
+# Client Server Communication - design choices
+
+There are three components:
+- Distributor: It distributes the tests to the clients
+- Client: Get and executes the tests. 
+- Collector : Collects the results of the tests and signals when everything is done
+
+We make the following assumptions:
+
+- The Distributor provides the tests randomly to the clients
+- The Distributor may give each test only once. If it finishes them, it closes.
+- The client execute all the same program (they attach the same identifier).  
+  If someone wants to test different algorithms on the same 
+  tests, it must run a different Distributor and Collector for them.
+- If someone wants to handle the tests in different format and order, or
+  with specific granularity regarding parallelism, it can just dump results
+  in the Collector. If properly configured, it will figure out when all the tests have been run.
+  However, it should be somehow possible to convert the internal test format to the one we provide
+- Because of the design of the ZeroMQ library, each client should use only one BenchmarkInspector.
+  or let each thread inside it create its own.
+- The TestInspector should be able to handle CTRL-C and other closing signals from the application.
+
+- The Collector receives the benchmark to be run, so it knows when all the tests have been run.
+
+- For now, we assume that the Clients and the Distributor close on their own, when they have finished their job
+  (no more tests to be run). In the future, there may be a mechanism to let the Collector signal the other clients that
+  all tests have been done (DONE), or that there was a timeout (TIMEOUT)
+
+
+## Old design choices
 
 Server: provides the tests to the algorithms
 Algorithm: receive the tests and runs them
@@ -7,12 +36,13 @@ Each algorithm program is identified by a string
 identifier. It must be defined within the code of
 the algorithm, in the server
 
-
 TestRun characterized by:
-- id, given by the server
-- algorithm, given by the runner
+- id, given by the Distributor
+- algorithm, given by the Client
 
-Benchmarks are aggregated by algorithms
+Results may be aggregated by algorithm,
+by the filters in the Calculator stage
+
 The server provides one or more tests according to
 the preferences of the client (even all of them).
 The same test cannot be provided to the same

@@ -1,0 +1,79 @@
+@startuml
+
+skinparam linetype ortho
+skinparam nodesep 120
+skinparam ranksep 80
+
+!startsub CONNECTION
+
+abstract class ConnectionManager {
+    '- config : ConnectionConfig
+    - last_message : Message
+    - socket : ZMQ_Socket
+    + __init__(config : ConnectionConfigurator)
+    + start_connection()
+    + send_message(message : Message)
+    + get_last_message() : Message
+    + close_connection()
+    + get_status()
+    'Error handling made by the functions
+    'Possible errors:
+    ' - Cannot create connection (port already bound, other errors)
+    ' - Wrong message sent
+    ' - Unidirectional Sockets will provide a dummy last_message() or send message()
+}
+
+class ClientConnection {
+
+}
+
+class ServerConnection {
+
+}
+
+class ReceiveOnlyConnection {
+
+}
+
+class SendOnlyConnection {
+
+}
+
+class SendAllConnection {
+
+}
+
+class ReceiveAllConnection {
+
+}
+
+class Message {
+    - title : str
+    - payload : str
+    + __init__(title : str, payload : str)
+    + get_title() : str
+    + get_payload() : str
+}
+
+class TransportConfig {
+    + get_address() : str
+}
+
+class TCPConnectionConfig {
+
+}
+
+class InProcessConfig {
+
+}
+
+ConnectionManager "*" -- "1" ConnectionConfigurator : - config
+ConnectionManager .r..> Message : <<use>>
+ConnectionConfig <|-- InProcessConfig
+ConnectionConfig <|-- TCPConfig
+
+!endsub
+note left of ConnectionManager: Depends on ZeroMQ library
+note bottom of TCPConfig : this is the default choice: tcp:\\\\*:9361
+
+@enduml

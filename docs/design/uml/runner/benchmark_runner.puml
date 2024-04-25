@@ -37,6 +37,7 @@ class InProcessConfig {
     - name : str
     + IPCConfig(name : str)
 }
+note bottom of InProcessConfig : before implementing, we should \nfind a way to make actual multithreading in Python
 
 class TCPConfig {
     - host : str
