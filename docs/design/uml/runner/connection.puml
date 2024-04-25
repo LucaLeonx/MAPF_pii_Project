@@ -37,10 +37,10 @@ ServerConnection -[hidden]r-> ClientConnection
 
 class Message {
     - title : str
-    - payload : str
-    + __init__(title : str, payload : str)
+    - content : str
+    + __init__(title : str, content : str)
     + get_title() : str
-    + get_payload() : str
+    + get_content() : str
 }
 
 interface ConnectionConfig {
