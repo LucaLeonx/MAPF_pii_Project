@@ -1,15 +1,20 @@
 @startuml
-
+!startsub BENCHMARK_INSPECTOR
 class BenchmarkInspector {
-    + __init__(distributorAddress : ConnectionConfig, collectorAddress : ConnectionConfig, signalAddress : ConnectionConfig)
-    + request_test() : TestRecorder
+    '- connection : ClientConnection
+    + __init__(runnerAddress : TransportConfig)
+    + request_tests(tests : str[]) : TestRecorder[]
+    + request_random_tests(number : int) : TestRecorder[]
+    + request_all_tests() : TestRecorder
     + send_test_results(recorder : TestRecorder)
     + close()
 }
 
 class TestRecorder {
+    - test_description : TestDescription
     - action_list : ActionList[]
     + __init__(test_description : TestDescription)
+    + get_test_description() : TestDescription
     + register_action(action : Action)
     + register_wait(entity : str)
     + register_move(entity : str, position : Node)
@@ -22,4 +27,7 @@ class TestRecorder {
     + get_action_list() : Action[]
 }
 
+BenchmarkInspector -- TestRecorder : <<generates>>
+BenchmarkInspector -l-> ClientConnection : - connection
+!endsub
 @enduml

@@ -6,11 +6,10 @@ skinparam ranksep 80
 
 !startsub CONNECTION
 
-abstract class ConnectionManager {
-    '- config : ConnectionConfig
+abstract class Connection {
     - last_message : Message
     - socket : ZMQ_Socket
-    + __init__(config : ConnectionConfigurator)
+    + __init__(config : ConnectionConfig)
     + start_connection()
     + send_message(message : Message)
     + get_last_message() : Message
@@ -31,21 +30,10 @@ class ServerConnection {
 
 }
 
-class ReceiveOnlyConnection {
-
-}
-
-class SendOnlyConnection {
-
-}
-
-class SendAllConnection {
-
-}
-
-class ReceiveAllConnection {
-
-}
+Connection <|-- ServerConnection
+Connection <|-- ClientConnection
+ServerConnection -[hidden]r-> ClientConnection
+!endsub
 
 class Message {
     - title : str
@@ -55,25 +43,24 @@ class Message {
     + get_payload() : str
 }
 
-class TransportConfig {
+interface ConnectionConfig {
     + get_address() : str
 }
 
 class TCPConnectionConfig {
-
+    - address : str
+    __init__(host : str, port : str)
 }
 
-class InProcessConfig {
-
+class InProcessConnectionConfig {
+    To be added later...
 }
 
-ConnectionManager "*" -- "1" ConnectionConfigurator : - config
-ConnectionManager .r..> Message : <<use>>
-ConnectionConfig <|-- InProcessConfig
-ConnectionConfig <|-- TCPConfig
-
-!endsub
-note left of ConnectionManager: Depends on ZeroMQ library
-note bottom of TCPConfig : this is the default choice: tcp:\\\\*:9361
+Connection "*" -l-- "1" ConnectionConfig : <<for setup>>
+Connection ..r.> Message : <<send/receives>>
+ConnectionConfig <|-- InProcessConnectionConfig
+ConnectionConfig <|-- TCPConnectionConfig
+note top of Connection: Based on ZeroMQ library
+note bottom of TCPConnectionConfig : this is the default choice: tcp:\\\\*:9361
 
 @enduml

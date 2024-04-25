@@ -1,14 +1,20 @@
 @startuml
 
 skinparam linetype ortho
+skinparam nodesep 100
+skinparam ranksep 100
+
+!startsub BENCHMARK_RUNNER
 
 class BenchmarkRunner {
-    + BenchmarkRunner(benchmark : BenchmarkDescription, config : ConnectionConfig)
-    + run_benchmark() : dict(str, TestRun[])
+    - test_manager : TestManager
+    - connection : ServerConnection
+    + BenchmarkRunner(benchmark : BenchmarkDescription, connectionConfig : ConnectionConfig)
+    + run_benchmark() : TestRun[]
 }
 
 class TestManager {
-    - test_records : TestRecord[]
+    '- test_records : TestRecord[]
     + assign_test(test_name : str)
     + get_test_description(test_name : str)
     + all_tests_done() : bool
@@ -19,7 +25,6 @@ class TestRecord {
     - done : bool
     - test_description : TestDescription
     - test_result : TestRun
-
     + __init__(test_description : TestDescription)
     + is_assigned() : bool
     + is_done() : bool
@@ -29,26 +34,11 @@ class TestRecord {
     + get_test_result() : TestRun
 }
 
-interface ConnectionConfig {
-    + get_socket_address() : str
-}
+BenchmarkRunner --> TestManager : - test_manager
+TestManager --* TestRecord : - test_records : TestRecord[ ]
+BenchmarkRunner -r-> ServerConnection : - connection
+!endsub
 
-class InProcessConfig {
-    - name : str
-    + IPCConfig(name : str)
-}
-note bottom of InProcessConfig : before implementing, we should \nfind a way to make actual multithreading in Python
-
-class TCPConfig {
-    - host : str
-    - port : int
-    + TCPConfig(host : str, port : str)
-}
-note bottom of TCPConfig : this is the default choice: tcp:\\\\*:9361
-
-ConnectionConfig -u.. BenchmarkRunner : <<uses>>
-InProcessConfig -u-|> ConnectionConfig
-TCPConfig -u-|> ConnectionConfig
 
 
 @enduml
