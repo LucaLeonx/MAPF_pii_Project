@@ -35,4 +35,7 @@ class TestDescription:
     def get_objectives(self):
         return self._get_entities_by_class(ObjectiveDescription)
 
-
+    def to_dict(self):
+        return {"name": self._name,
+                "test_map": self._test_map.to_dict(),
+                "entities": [entity.to_dict() for entity in self._entities]}

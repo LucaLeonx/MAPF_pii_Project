@@ -26,5 +26,7 @@ class Edge:
     def __str__(self):
         return f"({self.get_start_node()}, {self.get_end_node()} | {self._weight})"
 
+    def to_dict(self):
+        return {"start_node": self._start_node.to_dict(), "end_node": self._end_node.to_dict(), "weight": self._weight}
 
 

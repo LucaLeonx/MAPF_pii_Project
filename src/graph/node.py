@@ -45,3 +45,6 @@ class Node:
 
     def __str__(self):
         return f"{self._index} [{self._x}, {self._y}]"
+
+    def to_dict(self):
+        return {"index": self._index}

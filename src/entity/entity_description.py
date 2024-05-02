@@ -19,3 +19,10 @@ class EntityDescription:
     def has_start_position(self):
         return self._start_position.is_present()
 
+    def to_dict(self):
+        new_dict = {"__class__": self.__class__.__name__,
+                    "name": self._name}
+        if self.has_start_position():
+            new_dict.update({"start_position": self.get_start_position().get().to_dict()})
+
+        return new_dict

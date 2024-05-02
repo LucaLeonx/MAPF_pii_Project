@@ -50,3 +50,6 @@ class Graph:
 
     def __str__(self):
         return '{\n' + '\n'.join([str(edge) for edge in self._edge_list]) + '\n}'
+
+    def to_dict(self):
+        return {"graph": [edge.to_dict() for edge in self._edge_list]}

@@ -18,3 +18,8 @@ class BenchmarkDescription:
 
     def get_tests(self):
         return self._tests
+
+    def to_dict(self):
+        return {"name": self._name,
+                "description": self._description,
+                "tests": [test.to_dict() for test in self.get_tests()]}

@@ -12,3 +12,8 @@ class AgentDescription(EntityDescription):
     def get_objective_name(self):
         return self._objective_name
 
+    def to_dict(self):
+        new_dict = super(AgentDescription, self).to_dict()
+        new_dict.update({"objective_name": self.get_objective_name()})
+        return new_dict
+

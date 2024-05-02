@@ -19,3 +19,4 @@ The clients are informed of this by their own connection
 - ping() : Ping the server
 - request_test(testName) : Returns the TestDescription with the given name 
 - request_random_Test() : Return one random test not assigned
+- assign_test(testName) : Get one test assigned (don't return the value)

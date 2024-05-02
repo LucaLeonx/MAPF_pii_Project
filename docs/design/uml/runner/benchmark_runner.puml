@@ -9,6 +9,7 @@ skinparam ranksep 100
 class BenchmarkRunner {
     - test_manager : TestManager
     - connection : ServerConnection
+    - request_handler : CommandHandler
     + BenchmarkRunner(benchmark : BenchmarkDescription, connectionConfig : ConnectionConfig)
     + run_benchmark() : TestRun[]
 }
@@ -32,6 +33,12 @@ class TestRecord {
     + set_done()
     + get_test_description() : TestDescription
     + get_test_result() : TestRun
+}
+
+class CommandHandler {
+    - command_name : String
+    - command_function : func()
+    - execute(payload : str) : Message
 }
 
 BenchmarkRunner --> TestManager : - test_manager
