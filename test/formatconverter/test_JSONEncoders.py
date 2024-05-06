@@ -59,5 +59,22 @@ class TestJSONEncoders(object):
                                 weight=31).to_dict()) ==
                 '{"start_node": {"index": 2}, "end_node": {"index": 3}, "weight": 31}')
 
-        print(json.dumps(AgentDescription("A","B", Node(10)).to_dict()))
-        print(json.dumps(benchmark_description.to_dict(), indent=4))
+        jsonstr = json.dumps(Edge(Node(2),
+                                Node(3),
+                                weight=31).to_dict(use_coordinates=True))
+        json_dict = json.loads(jsonstr)
+
+        print(json_dict)
+
+        edge = Edge.from_dict(json_dict, use_coordinates=True)
+        print(edge)
+
+        benchmark_description_json = json.dumps(benchmark_description.to_dict())
+        print(benchmark_description_json)
+        benchmark_description_restored = BenchmarkDescription.from_dict(json.loads(benchmark_description_json))
+        print(benchmark_description_restored)
+
+        #print(json.dumps(AgentDescription("A","B", Node(10)).to_dict()))
+        #print(json.loads(json.dumps(benchmark_description.to_dict())))
+
+

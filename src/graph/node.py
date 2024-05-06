@@ -46,5 +46,15 @@ class Node:
     def __str__(self):
         return f"{self._index} [{self._x}, {self._y}]"
 
-    def to_dict(self):
-        return {"index": self._index}
+    def to_dict(self, use_coordinates=False):
+        if not use_coordinates:
+            return {"index": self._index}
+        else:
+            return {"x": self._x, "y": self._y}
+
+    @staticmethod
+    def from_dict(dictionary, use_coordinates=False):
+        if not use_coordinates:
+            return Node(index=dictionary["index"])
+        else:
+            return Node(coordinates=(dictionary["x"], dictionary["y"]))

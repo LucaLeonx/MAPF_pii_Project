@@ -1,10 +1,12 @@
 from entity.agent_description import AgentDescription
+from entity.entity_description import EntityDescription
 from entity.objective_description import ObjectiveDescription
 from entity.obstacle_description import ObstacleDescription
+from graph.graph import Graph
 
 
 class TestDescription:
-    
+
     def __init__(self, name, test_map, entities):
         if name != "":
             self._name = name
@@ -39,3 +41,22 @@ class TestDescription:
         return {"name": self._name,
                 "test_map": self._test_map.to_dict(),
                 "entities": [entity.to_dict() for entity in self._entities]}
+
+    @staticmethod
+    def from_dict(dictionary, use_coordinates=False):
+
+        entities = []
+        for entity in dictionary["entities"]:
+            match entity["__class__"]:
+                case "AgentDescription":
+                    return AgentDescription.from_dict(dictionary, use_coordinates)
+                case "ObjectiveDescription":
+                    return ObjectiveDescription.from_dict(dictionary, use_coordinates)
+                case "ObstacleDescription":
+                    return ObstacleDescription.from_dict(dictionary, use_coordinates)
+                case _:
+                    raise ValueError("Unknown entity type")
+
+        return TestDescription(dictionary["name"],
+                               Graph.from_dict(dictionary["test_map"], use_coordinates),
+                               entities)

@@ -1,3 +1,5 @@
+from benchmark.testdescription import TestDescription
+
 
 class BenchmarkDescription:
 
@@ -23,3 +25,9 @@ class BenchmarkDescription:
         return {"name": self._name,
                 "description": self._description,
                 "tests": [test.to_dict() for test in self.get_tests()]}
+
+    @staticmethod
+    def from_dict(dictionary, use_coordinates=False):
+        return BenchmarkDescription(dictionary["name"], dictionary["description"],
+                                    [TestDescription.from_dict(test, use_coordinates)
+                                     for test in dictionary["tests"]])

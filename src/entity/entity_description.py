@@ -1,5 +1,7 @@
 from optional import Optional
 
+from graph.node import Node
+
 
 class EntityDescription:
     def __init__(self, name, start_position=None):
@@ -26,3 +28,8 @@ class EntityDescription:
             new_dict.update({"start_position": self.get_start_position().get().to_dict()})
 
         return new_dict
+
+    @staticmethod
+    def from_dict(dictionary, use_coordinates=False):
+        return EntityDescription(dictionary["name"])
+

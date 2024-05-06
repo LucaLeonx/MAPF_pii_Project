@@ -1,4 +1,5 @@
 from entity.entity_description import EntityDescription
+from graph.node import Node
 
 
 class AgentDescription(EntityDescription):
@@ -16,4 +17,13 @@ class AgentDescription(EntityDescription):
         new_dict = super(AgentDescription, self).to_dict()
         new_dict.update({"objective_name": self.get_objective_name()})
         return new_dict
+
+    @staticmethod
+    def from_dict(dictionary, use_coordinates=False):
+        if "start_position" in dictionary:
+            return AgentDescription(dictionary["name"],
+                                    dictionary["objective_name"],
+                                    Node.from_dict(dictionary["start_position"], use_coordinates))
+        else:
+            return AgentDescription(dictionary["name"], dictionary["objective_name"])
 

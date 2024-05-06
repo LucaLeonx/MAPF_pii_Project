@@ -1,3 +1,5 @@
+from graph.node import Node
+
 
 class Edge:
     def __init__(self, start_node, end_node, weight=1):
@@ -26,7 +28,14 @@ class Edge:
     def __str__(self):
         return f"({self.get_start_node()}, {self.get_end_node()} | {self._weight})"
 
-    def to_dict(self):
-        return {"start_node": self._start_node.to_dict(), "end_node": self._end_node.to_dict(), "weight": self._weight}
+    def to_dict(self, use_coordinates=False):
+        return {"start_node": self._start_node.to_dict(use_coordinates),
+                "end_node": self._end_node.to_dict(use_coordinates),
+                "weight": self._weight}
 
+    @staticmethod
+    def from_dict(dictionary, use_coordinates=False):
+        return Edge(Node.from_dict(dictionary["start_node"], use_coordinates),
+                    Node.from_dict(dictionary["end_node"], use_coordinates),
+                    dictionary["weight"])
 
