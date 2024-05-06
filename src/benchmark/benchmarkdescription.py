@@ -21,6 +21,13 @@ class BenchmarkDescription:
     def get_tests(self):
         return self._tests
 
+    def __str__(self):
+        string = self._name + ": " + self._description + "\n"
+        for test in self._tests:
+            string += test.__str__()
+
+        return string
+
     def to_dict(self):
         return {"name": self._name,
                 "description": self._description,

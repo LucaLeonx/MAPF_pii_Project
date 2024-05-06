@@ -37,6 +37,12 @@ class TestDescription:
     def get_objectives(self):
         return self._get_entities_by_class(ObjectiveDescription)
 
+    def __str__(self):
+        string = self._name + ":\n" + "Map: \n" + str(self._test_map) + "\n"
+        for entity in self._entities:
+            string += str(entity) + "\n"
+        return string
+
     def to_dict(self):
         return {"name": self._name,
                 "test_map": self._test_map.to_dict(),
@@ -49,13 +55,13 @@ class TestDescription:
         for entity in dictionary["entities"]:
             match entity["__class__"]:
                 case "AgentDescription":
-                    return AgentDescription.from_dict(dictionary, use_coordinates)
+                    entities.append(AgentDescription.from_dict(entity, use_coordinates))
                 case "ObjectiveDescription":
-                    return ObjectiveDescription.from_dict(dictionary, use_coordinates)
+                    entities.append(ObjectiveDescription.from_dict(entity, use_coordinates))
                 case "ObstacleDescription":
-                    return ObstacleDescription.from_dict(dictionary, use_coordinates)
+                    entities.append(ObstacleDescription.from_dict(entity, use_coordinates))
                 case _:
-                    raise ValueError("Unknown entity type")
+                    raise ValueError("Unknown entity type encountered")
 
         return TestDescription(dictionary["name"],
                                Graph.from_dict(dictionary["test_map"], use_coordinates),

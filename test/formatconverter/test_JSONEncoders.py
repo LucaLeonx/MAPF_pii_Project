@@ -33,7 +33,7 @@ class TestJSONEncoders(object):
     @pytest.fixture
     def graph(self):
         return Graph(edge_list=[Edge(Node(1), Node(2)),
-                                Edge(Node(1), Node(3)),
+                                Edge(Node(1), Node(3), weight=15),
                                 Edge(Node(2), Node(3)),
                                 Edge(Node(3), Node(2)),
                                 Edge(Node(3), Node(4))
@@ -64,15 +64,16 @@ class TestJSONEncoders(object):
                                 weight=31).to_dict(use_coordinates=True))
         json_dict = json.loads(jsonstr)
 
-        print(json_dict)
+        #print(json_dict)
 
         edge = Edge.from_dict(json_dict, use_coordinates=True)
-        print(edge)
+        #print(edge)
 
         benchmark_description_json = json.dumps(benchmark_description.to_dict())
-        print(benchmark_description_json)
+        #print(benchmark_description_json)
         benchmark_description_restored = BenchmarkDescription.from_dict(json.loads(benchmark_description_json))
-        print(benchmark_description_restored)
+        print("\n" + str(benchmark_description_restored))
+
 
         #print(json.dumps(AgentDescription("A","B", Node(10)).to_dict()))
         #print(json.loads(json.dumps(benchmark_description.to_dict())))

@@ -21,6 +21,9 @@ class EntityDescription:
     def has_start_position(self):
         return self._start_position.is_present()
 
+    def __str__(self):
+        return self.__class__.__name__ + " " + self._name + " " + (str(self._start_position.get()) if self.has_start_position() else "")
+
     def to_dict(self):
         new_dict = {"__class__": self.__class__.__name__,
                     "name": self._name}

@@ -18,6 +18,9 @@ class AgentDescription(EntityDescription):
         new_dict.update({"objective_name": self.get_objective_name()})
         return new_dict
 
+    def __str__(self):
+        return super(AgentDescription, self).__str__() + ", objective: " + self.get_objective_name()
+
     @staticmethod
     def from_dict(dictionary, use_coordinates=False):
         if "start_position" in dictionary:

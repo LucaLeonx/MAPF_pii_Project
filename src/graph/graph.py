@@ -56,5 +56,5 @@ class Graph:
 
     @staticmethod
     def from_dict(dictionary, use_coordinates=False):
-        return Graph([edge.from_dict(dictionary, use_coordinates) for edge in dictionary["graph"]])
+        return Graph([Edge.from_dict(edge, use_coordinates) for edge in dictionary["graph"]])
 
