@@ -8,3 +8,10 @@ class Message:
 
     def get_content(self):
         return self._content
+
+    def to_dict(self):
+        return {"title": self._title, "content": self._content}
+
+    @staticmethod
+    def from_dict(dictionary):
+        return Message(dictionary["title"], dictionary["content"])

@@ -1,7 +1,6 @@
 import json
 
 import pytest
-import jsonpickle
 
 from benchmark.benchmarkdescription import BenchmarkDescription
 from benchmark.testdescription import TestDescription
