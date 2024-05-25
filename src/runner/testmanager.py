@@ -22,8 +22,8 @@ class TestManager:
         return self.get_test_record_by_name(test_name).get_test()
 
     def record_test_result(self, result):
-        finished_test = self.get_test_record_by_name(result.get_test_name())
-        finished_test.record_result(result)
+        finished_test = self.get_test_record_by_name(result.test_description.get_name())
+        finished_test.register_result(result)
 
     def get_random_unassigned_test(self):
         unassigned_tests = [test for test in self._test_records if not test.is_assigned()]

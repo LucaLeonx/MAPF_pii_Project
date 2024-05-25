@@ -1,3 +1,4 @@
+from benchmark.testdescription import TestDescription
 from result.action import Action
 
 
@@ -22,12 +23,12 @@ class TestRun(object):
         return self._is_solved
 
     def to_dict(self, use_coordinates=False):
-        return {"test_description": self.test_description.to_dict(use_coordinates),
-                "action_list": [action.to_dict(use_coordinates) for action in self.action_list],
+        return {"test_description": self.test_description.to_dict(use_coordinates=use_coordinates),
+                "action_list": [action.to_dict(use_coordinates=use_coordinates) for action in self.action_list],
                 "is_solved": self.is_solved}
 
     @staticmethod
     def from_dict(dictionary, use_coordinates=False):
-        return TestRun(dictionary["test_description"],
+        return TestRun(TestDescription.from_dict(dictionary["test_description"], use_coordinates),
                        [Action.from_dict(action, use_coordinates) for action in dictionary["action_list"]],
                        dictionary["is_solved"])

@@ -23,8 +23,8 @@ class TestEntityDescription:
         assert entity_description.get_name() == "A1"
 
     def test_get_start_position(self, entity_description, no_position_entity):
-        assert entity_description.get_start_position().get() == Node(1)
-        assert no_position_entity.get_start_position().is_empty()
+        assert entity_description.get_start_position() == Node(1)
+        assert not no_position_entity.has_start_position()
 
     def test_has_start_position(self, entity_description, no_position_entity):
         assert entity_description.has_start_position()

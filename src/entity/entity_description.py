@@ -10,7 +10,7 @@ class EntityDescription:
         else:
             raise ValueError("Entity Name cannot be empty")
 
-        self._start_position = Optional.of(start_position)
+        self._start_position = start_position
 
     def get_name(self):
         return self._name
@@ -19,16 +19,17 @@ class EntityDescription:
         return self._start_position
 
     def has_start_position(self):
-        return self._start_position.is_present()
+        return self._start_position is not None
 
     def __str__(self):
-        return self.__class__.__name__ + " " + self._name + " " + (str(self._start_position.get()) if self.has_start_position() else "")
+        return (self.__class__.__name__ + " " + self._name + " " +
+                (str(self._start_position) if self.has_start_position() else ""))
 
     def to_dict(self):
         new_dict = {"__class__": self.__class__.__name__,
                     "name": self._name}
         if self.has_start_position():
-            new_dict.update({"start_position": self.get_start_position().get().to_dict()})
+            new_dict.update({"start_position": self.get_start_position().to_dict()})
 
         return new_dict
 

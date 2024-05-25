@@ -15,6 +15,9 @@ class BenchmarkInspector(object):
     # "request_random_test": self._test_manager.get_random_unassigned_test,
     # "submit_result"
 
+    def start(self):
+        self._socket.start()
+
     def request_test(self, name):
 
         required_recorder = [recorder for recorder in self._test_recorders if recorder.get_test_description().get_name() == name]
@@ -26,9 +29,10 @@ class BenchmarkInspector(object):
         response = self._socket.receive_message()
 
         if response.get_title() == "Error":
-            raise ElementNotFoundException("The requested test" + name + " is not available")
+            print(response.get_content())
+            raise ElementNotFoundException("The requested test " + name + " is not available")
         else:
-            new_recorder = TestInspector(TestDescription.from_dict(response.get_description()))
+            new_recorder = TestInspector(TestDescription.from_dict(response.get_content()))
             self._test_recorders.append(new_recorder)
             return new_recorder
 
@@ -46,8 +50,8 @@ class BenchmarkInspector(object):
     def get_recorders(self):
         return self._test_recorders
 
-    def send_result(self, recorder):
-        self._socket.send_message(Message("send_result", str(recorder.get_result())))
+    def submit_result(self, recorder):
+        self._socket.send_message(Message("submit_result", recorder.get_result().to_dict()))
         response = self._socket.receive_message()
 
         if response.get_title() == "Error":

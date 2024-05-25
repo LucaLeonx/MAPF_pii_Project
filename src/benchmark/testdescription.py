@@ -43,9 +43,9 @@ class TestDescription:
             string += str(entity) + "\n"
         return string
 
-    def to_dict(self):
+    def to_dict(self, use_coordinates=False):
         return {"name": self._name,
-                "test_map": self._test_map.to_dict(),
+                "test_map": self._test_map.to_dict(use_coordinates),
                 "entities": [entity.to_dict() for entity in self._entities]}
 
     @staticmethod

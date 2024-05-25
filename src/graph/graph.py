@@ -1,6 +1,5 @@
 import ntpath
 
-from optional import Optional
 from graph.node import Node
 from graph.edge import Edge
 

@@ -37,7 +37,7 @@ class Action(object):
                       "subject": self.subject}
 
         if self._position is not None:
-            dictionary.update({"position": self._position.to_dict(use_coordinates=use_coordinates)})
+            dictionary.update({"position": self._position.to_dict(use_coordinates)})
 
         dictionary.update({"description": self._description})
         return dictionary
