@@ -1,7 +1,7 @@
 from benchmark.testdescription import TestDescription
 from connection.clientsocket import ClientSocket
 from connection.message import Message
-from inspector.testrecorder import TestRecorder
+from inspector.testinspector import TestInspector
 from runner.exceptions import ElementNotFoundException, CustomException
 
 
@@ -10,11 +10,10 @@ class BenchmarkInspector(object):
         self._socket = ClientSocket(connection_config)
         self._test_recorders = []
 
-    # ping": self.ping,
-    #              "request_test": self._test_manager.get_test_with_name,
-    #              "assign_test": self._test_manager.assign_test,
-    #              "request_random_test": self._test_manager.get_random_unassigned_test,
-    #              "submit_result"
+    # "ping": self.ping,
+    # "request_test": self._test_manager.get_test_with_name,
+    # "request_random_test": self._test_manager.get_random_unassigned_test,
+    # "submit_result"
 
     def request_test(self, name):
 
@@ -29,7 +28,7 @@ class BenchmarkInspector(object):
         if response.get_title() == "Error":
             raise ElementNotFoundException("The requested test" + name + " is not available")
         else:
-            new_recorder = TestRecorder(TestDescription.from_dict(response.get_description()))
+            new_recorder = TestInspector(TestDescription.from_dict(response.get_description()))
             self._test_recorders.append(new_recorder)
             return new_recorder
 
@@ -40,7 +39,7 @@ class BenchmarkInspector(object):
         if response.get_title() == "Error":
             raise ElementNotFoundException("No test is not available")
         else:
-            new_recorder = TestRecorder(TestDescription.from_dict(response.get_description()))
+            new_recorder = TestInspector(TestDescription.from_dict(response.get_description()))
             self._test_recorders.append(new_recorder)
             return new_recorder
 

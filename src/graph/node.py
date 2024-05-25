@@ -36,6 +36,14 @@ class Node:
     def get_coordinates(self):
         return self._x, self._y
 
+    @property
+    def x(self):
+        return self._x
+
+    @property
+    def y(self):
+        return self._y
+
     def __eq__(self, other):
         return (self.__class__ == other.__class__ and
                 self._index == other.get_index())

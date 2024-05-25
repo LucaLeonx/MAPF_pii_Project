@@ -1,4 +1,4 @@
-from runner.exceptions import OperationAlreadyDoneException
+from runner.exceptions import OperationAlreadyDoneException, ElementNotAvailableException
 
 
 class TestRecord(object):
@@ -18,14 +18,14 @@ class TestRecord(object):
         if not self._assigned:
             self._assigned = True
         else:
-            raise OperationAlreadyDoneException("Cannot assign a test twice")
+            raise OperationAlreadyDoneException("Test already assigned")
 
-    def record_result(self, result):
+    def register_result(self, result):
         if not self._is_done:
             self._is_done = True
             self._result = result
         else:
-            raise OperationAlreadyDoneException("Test was already concluded")
+            raise OperationAlreadyDoneException("Test already done")
 
     def get_test(self):
         return self._test
@@ -37,4 +37,4 @@ class TestRecord(object):
         if self._is_done:
             return self._result
         else:
-            raise OperationAlreadyDoneException("Test has not result yet")
+            raise ElementNotAvailableException("Test has not result yet")
