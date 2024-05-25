@@ -1,4 +1,4 @@
-from benchmark.commanddispatcher import CommandDispatcher
+from runner.commanddispatcher import CommandDispatcher
 from connection.message import Message
 from connection.serversocket import ServerSocket
 from runner.exceptions import CustomException
@@ -13,7 +13,6 @@ class BenchmarkRunner(object):
         self._command_dispatcher = CommandDispatcher(
             {"ping": self.ping,
              "request_test": self._test_manager.get_test_with_name,
-             "assign_test": self._test_manager.assign_test,
              "request_random_test": self._test_manager.get_random_unassigned_test,
              "submit_result": self._test_manager.record_test_result})
 

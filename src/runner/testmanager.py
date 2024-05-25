@@ -21,10 +21,6 @@ class TestManager:
     def get_test_with_name(self, test_name):
         return self.get_test_record_by_name(test_name).get_test()
 
-    def assign_test(self, test_name):
-        requested_test = self.get_test_with_name(test_name)
-        requested_test.assign_test()
-
     def record_test_result(self, result):
         finished_test = self.get_test_record_by_name(result.get_test_name())
         finished_test.record_result(result)
