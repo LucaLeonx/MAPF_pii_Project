@@ -18,7 +18,7 @@ class BenchmarkDescription {
 
 class TestDescription {
     - name : str
-    '- map : Graph
+    '- graph : Graph
     '- entities : EntityDescription[ ]
     + __init__(self, name : str, map : Graph, entities: EntityDescription[ ])
     + get_name() : str

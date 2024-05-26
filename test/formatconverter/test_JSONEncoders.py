@@ -5,7 +5,6 @@ import pytest
 from benchmark.benchmarkdescription import BenchmarkDescription
 from benchmark.testdescription import TestDescription
 from entity.agent_description import AgentDescription
-from entity.entity_description import EntityDescription
 from entity.objective_description import ObjectiveDescription
 from entity.obstacle_description import ObstacleDescription
 from graph.edge import Edge

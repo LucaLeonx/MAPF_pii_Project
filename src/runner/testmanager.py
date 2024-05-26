@@ -1,5 +1,5 @@
 from random import random
-from runner.exceptions import ElementNotFoundException
+from exceptions import ElementNotFoundException
 from runner.testrecord import TestRecord
 
 

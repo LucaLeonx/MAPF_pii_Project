@@ -2,7 +2,7 @@ from result.testrun import TestRun
 from runner.commanddispatcher import CommandDispatcher
 from connection.message import Message
 from connection.serversocket import ServerSocket
-from runner.exceptions import CustomException
+from exceptions import CustomException
 from runner.testmanager import TestManager
 
 

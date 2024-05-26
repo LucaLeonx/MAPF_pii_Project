@@ -30,5 +30,5 @@ class TestRun(object):
     @staticmethod
     def from_dict(dictionary, use_coordinates=False):
         return TestRun(TestDescription.from_dict(dictionary["test_description"], use_coordinates),
-                       [Action.from_dict(action, use_coordinates) for action in dictionary["action_list"]],
+                       [Action.from_dict(action) for action in dictionary["action_list"]],
                        dictionary["is_solved"])

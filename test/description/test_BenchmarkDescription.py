@@ -1,14 +1,9 @@
 import pytest
 
-from benchmark.benchmarkdescription import BenchmarkDescription
-from benchmark.testdescription import TestDescription
-from entity.agent_description import AgentDescription
-from entity.objective_description import ObjectiveDescription
-from entity.obstacle_description import ObstacleDescription
-from graph.edge import Edge
-from graph.graph import Graph
-from graph.node import Node
-from test_TestDescription import TestTestDescription
+from description.benchmarkdescription import BenchmarkDescription, TestDescription
+from description.entity_description import AgentDescription, ObstacleDescription, ObjectiveDescription
+from description.map.graph import Node, Edge, Graph
+from exceptions import EmptyElementException
 
 
 class TestBenchmarkDescription:
@@ -46,24 +41,31 @@ class TestBenchmarkDescription:
 
     @pytest.fixture
     def benchmark_description(self, default_test):
-        return BenchmarkDescription("Benchmark1", "Example benchmark", [default_test])
+        return BenchmarkDescription("Benchmark1", [default_test], "Example benchmark",)
 
     @pytest.fixture
-    def empty_benchmark(self):
-        return BenchmarkDescription("Empty")
+    def empty_benchmark(self, default_test):
+        return BenchmarkDescription("Empty", [default_test])
 
-    def test_init_guards(self):
-        with pytest.raises(ValueError) as excinfo:
-            benchmark = BenchmarkDescription("")
+    def test_init_guards(self, default_test):
+        with pytest.raises(EmptyElementException) as excinfo:
+            benchmark = BenchmarkDescription("No-tests", [])
+        assert "Benchmark must have at least one test" in str(excinfo)
+
+        with pytest.raises(EmptyElementException) as excinfo:
+            benchmark = BenchmarkDescription("", [default_test])
+        assert "Benchmark name cannot be empty" in str(excinfo)
+
+        with pytest.raises(EmptyElementException) as excinfo:
+            benchmark = BenchmarkDescription("   ", [default_test])
         assert "Benchmark name cannot be empty" in str(excinfo)
 
     def test_get_name(self, benchmark_description):
-        assert benchmark_description.get_name() == "Benchmark1"
+        assert benchmark_description.name == "Benchmark1"
 
     def test_get_description(self, benchmark_description, empty_benchmark):
-        assert benchmark_description.get_description() == "Example benchmark"
-        assert empty_benchmark.get_description() == ""
+        assert benchmark_description.description == "Example benchmark"
+        assert empty_benchmark.description == ""
 
     def test_get_tests(self, benchmark_description, empty_benchmark, default_test):
-        assert benchmark_description.get_tests() == [default_test]
-        assert empty_benchmark.get_tests() == []
+        assert benchmark_description.tests == [default_test]

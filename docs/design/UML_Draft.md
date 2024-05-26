@@ -52,7 +52,7 @@ La loro posizione è opzionale, in quanto potrebbero comparire dopo sulla mappa
 ### Test e Benchmark
 
 La classe Test rappresenta un singolo caso di Test. Esso risulta caratterizzato da:
-- map, il grafo della mappa del test
+- graph, il grafo della mappa del test
 - entitiesInfo, una lista delle entità da definire
 
 Un Benchmark non è altro che una collezione di Test

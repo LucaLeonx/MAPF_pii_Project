@@ -2,7 +2,7 @@ from benchmark.testdescription import TestDescription
 from connection.clientsocket import ClientSocket
 from connection.message import Message
 from inspector.testinspector import TestInspector
-from runner.exceptions import ElementNotFoundException, CustomException
+from exceptions import ElementNotFoundException, CustomException
 
 
 class BenchmarkInspector(object):

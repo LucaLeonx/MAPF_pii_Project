@@ -2,7 +2,7 @@ import pytest
 
 from graph.node import Node
 from result.action import Action, MoveAction, AppearAction, DisappearAction, WaitAction
-from runner.exceptions import ElementNotAvailableException
+from exceptions import ElementNotAvailableException
 
 action = Action(3, "A1", Node(coordinates=(1, 0)))
 move = MoveAction(1, "A2", Node(coordinates=(10, 0)))

@@ -1,4 +1,4 @@
-from runner.exceptions import OperationAlreadyDoneException, ElementNotAvailableException
+from exceptions import OperationAlreadyDoneException, ElementNotAvailableException
 
 
 class TestRecord(object):
@@ -27,11 +27,13 @@ class TestRecord(object):
         else:
             raise OperationAlreadyDoneException("Test already done")
 
-    def get_test(self):
+    @property
+    def test(self):
         return self._test
 
-    def get_test_name(self):
-        return self._test.get_name()
+    @property
+    def test_name(self):
+        return self._test.name
 
     def get_result(self):
         if self._is_done:

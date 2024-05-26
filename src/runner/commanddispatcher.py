@@ -1,4 +1,4 @@
-from runner.exceptions import ElementNotFoundException
+from exceptions import ElementNotFoundException
 
 
 class CommandDispatcher(object):

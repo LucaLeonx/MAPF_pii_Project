@@ -3,10 +3,12 @@ class Message:
         self._title = title
         self._content = content
 
-    def get_title(self):
+    @property
+    def title(self):
         return self._title
 
-    def get_content(self):
+    @property
+    def content(self):
         return self._content
 
     def to_dict(self):

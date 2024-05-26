@@ -1,5 +1,5 @@
-from graph.node import Node
-from runner.exceptions import ElementNotAvailableException
+from graph.graph import Node
+from exceptions import ElementNotAvailableException
 
 import importlib
 
@@ -43,14 +43,11 @@ class Action(object):
         return dictionary
 
     @staticmethod
-    def from_dict(dictionary, use_coordinates=False):
+    def from_dict(dictionary):
         module = importlib.import_module(__name__)
         action_class = getattr(module, dictionary["type"])
 
-        if dictionary["position"]:
-            position = Node.from_dict(dictionary.get("position", None), use_coordinates)
-        else:
-            position = None
+        position = Node.from_dict(dictionary.get("position", None))
 
         return action_class(dictionary["timestep"],
                             dictionary["subject"],

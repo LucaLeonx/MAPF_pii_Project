@@ -62,7 +62,7 @@
     'class Objective { }
     
     class Test {
-        '-map: Graph
+        '-graph: Graph
         '-entitiesInfo: List<Entity> Fare una classe apposita per cercare nelle liste di entità e di azioni
         +Test(map: Graph, entities: List<EntityInfo>)
     }

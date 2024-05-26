@@ -1,6 +1,6 @@
 import pytest
-from graph.edge import Edge
-from graph.node import Node
+
+from description.map.graph import Node, Edge
 
 
 class TestEdge:
@@ -13,17 +13,17 @@ class TestEdge:
     def edge2(self):
         return Edge(Node(5), Node(5))
 
-    def test_get_start_node(self, edge1, edge2):
-        assert edge1.get_start_node() == Node(1)
-        assert edge2.get_start_node() == Node(5)
+    def test_start_node(self, edge1, edge2):
+        assert edge1.start_node == Node(1)
+        assert edge2.start_node == Node(5)
 
-    def test_get_end_node(self, edge1, edge2):
-        assert edge1.get_end_node() == Node(2)
-        assert edge2.get_end_node() == Node(5)
+    def test_end_node(self, edge1, edge2):
+        assert edge1.end_node == Node(2)
+        assert edge2.end_node == Node(5)
 
-    def test_get_weight(self, edge1, edge2):
-        assert edge1.get_weight() == 2
-        assert edge2.get_weight() == 1
+    def test_weight(self, edge1, edge2):
+        assert edge1.weight == 2
+        assert edge2.weight == 1
 
     def test_equality(self, edge1, edge2):
         assert edge1 != Edge(Node(1), Node(2), weight=10)

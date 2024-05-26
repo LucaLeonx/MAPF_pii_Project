@@ -1,8 +1,7 @@
 import pytest
 
-from graph.node import Node
-from graph.edge import Edge
-from graph.graph import Graph
+from description.map.graph import *
+from exceptions import ElementNotFoundException
 
 
 class TestGraph:
@@ -13,12 +12,11 @@ class TestGraph:
                       Edge(Node(1), Node(3)),
                       Edge(Node(2), Node(3)),
                       Edge(Node(3), Node(2), weight=7),
-                      Edge(Node(3), Node(4), weight=-10)
-                      ])
+                      Edge(Node(3), Node(4), weight=-10)])
 
     def test_get_nodes(self, graph):
-        assert graph.get_nodes() == [Node(1), Node(2), Node(3), Node(4)]
-        assert Node(1) in graph.get_nodes()
+        assert graph.nodes == [Node(1), Node(2), Node(3), Node(4)]
+        assert Node(1) in graph.nodes
 
     def test_has_node(self, graph):
         assert graph.has_node(Node(1))
@@ -26,19 +24,18 @@ class TestGraph:
         assert not graph.has_node(Node(5))
 
     def test_get_edges(self, graph):
-        assert graph.get_edges() == [Edge(Node(1), Node(2)),
-                                     Edge(Node(1), Node(3)),
-                                     Edge(Node(2), Node(3)),
-                                     Edge(Node(3), Node(2), weight=7),
-                                     Edge(Node(3), Node(4), weight=-10)
-                                     ]
+        assert graph.edges == [Edge(Node(1), Node(2)),
+                               Edge(Node(1), Node(3)),
+                               Edge(Node(2), Node(3)),
+                               Edge(Node(3), Node(2), weight=7),
+                               Edge(Node(3), Node(4), weight=-10)]
 
     def test_get_adjacent_nodes(self, graph):
         assert graph.get_adjacent_nodes(Node(1)) == [Node(2), Node(3)]
         assert graph.get_adjacent_nodes(Node(2)) == [Node(3)]
         assert graph.get_adjacent_nodes(Node(4)) == []
 
-        with pytest.raises(ValueError) as excinfo:
+        with pytest.raises(ElementNotFoundException) as excinfo:
             non_existent_node = graph.get_adjacent_nodes(Node(5))
         assert "Node 5 [0, 2] not found in graph" in str(excinfo.value)
 
@@ -46,7 +43,7 @@ class TestGraph:
         assert graph.get_edge(Node(2), Node(3)) == Edge(Node(2), Node(3), weight=1)
         assert graph.get_edge(Node(3), Node(2)) == Edge(Node(3), Node(2), weight=7)
 
-        with pytest.raises(ValueError) as excinfo:
+        with pytest.raises(ElementNotFoundException) as excinfo:
             non_existent_edge = graph.get_edge(Node(1), Node(1))
         assert "Edge (1 [1, 0], 1 [1, 0]) not found in graph" in str(excinfo.value)
 
