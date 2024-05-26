@@ -1,7 +1,7 @@
 from result.testrun import TestRun
 from runner.commanddispatcher import CommandDispatcher
 from connection.message import Message
-from connection.serversocket import ServerSocket
+from connection.socket import ServerSocket
 from exceptions import CustomException
 from runner.testmanager import TestManager
 
@@ -10,7 +10,7 @@ class BenchmarkRunner(object):
     def __init__(self, benchmark, connection_config):
         self._benchmark = benchmark
         self._socket = ServerSocket(connection_config)
-        self._test_manager = TestManager(benchmark.get_tests())
+        self._test_manager = TestManager(benchmark.tests)
         self._command_dispatcher = CommandDispatcher(
             {"ping": self.ping,
              "request_test": self.request_test,
@@ -26,7 +26,7 @@ class BenchmarkRunner(object):
             request = self._socket.receive_message()
             print("In the loop")
             try:
-                result = self._command_dispatcher.execute(request.get_title(), request.get_content())
+                result = self._command_dispatcher.execute(request.title, request.content)
                 response = Message("OK", result)
             except (AttributeError, CustomException) as e:
                 print("Exception returned: " + str(e))

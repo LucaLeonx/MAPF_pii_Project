@@ -1,4 +1,4 @@
-from connection.tcpconnectionconfig import TCPConnectionConfig
+from connection.connectionconfig import TCPConnectionConfig
 from inspector.benchmarkinspector import BenchmarkInspector
 
 if __name__ == "__main__":

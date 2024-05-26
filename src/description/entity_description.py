@@ -40,9 +40,13 @@ class EntityDescription(ABC):
     def from_dict(dictionary):
         module = importlib.import_module(__name__)
         entity_class = getattr(module, dictionary["type"])
-        start_position = Node.from_dict(dictionary.get("start_position", None))
 
-        if dictionary["objective"]:
+        if "start_position" in dictionary:
+            start_position = Node.from_dict(dictionary.get("start_position"))
+        else:
+            start_position = None
+
+        if "objective" in dictionary:
             return AgentDescription(dictionary["name"], dictionary["objective"], start_position)
         else:
             return entity_class(dictionary["name"], start_position)

@@ -1,6 +1,6 @@
-from benchmark.testdescription import TestDescription
-from connection.clientsocket import ClientSocket
 from connection.message import Message
+from connection.socket import ClientSocket
+from description.benchmarkdescription import TestDescription
 from inspector.testinspector import TestInspector
 from exceptions import ElementNotFoundException, CustomException
 
@@ -28,11 +28,11 @@ class BenchmarkInspector(object):
         self._socket.send_message(Message("request_test", name))
         response = self._socket.receive_message()
 
-        if response.get_title() == "Error":
-            print(response.get_content())
+        if response.title == "Error":
+            print(response.content)
             raise ElementNotFoundException("The requested test " + name + " is not available")
         else:
-            new_recorder = TestInspector(TestDescription.from_dict(response.get_content()))
+            new_recorder = TestInspector(TestDescription.from_dict(response.content))
             self._test_recorders.append(new_recorder)
             return new_recorder
 
@@ -40,10 +40,10 @@ class BenchmarkInspector(object):
         self._socket.send_message(Message("request_random_test", ""))
         response = self._socket.receive_message()
 
-        if response.get_title() == "Error":
+        if response.title == "Error":
             raise ElementNotFoundException("No test is not available")
         else:
-            new_recorder = TestInspector(TestDescription.from_dict(response.get_description()))
+            new_recorder = TestInspector(TestDescription.from_dict(response.content))
             self._test_recorders.append(new_recorder)
             return new_recorder
 
@@ -54,8 +54,8 @@ class BenchmarkInspector(object):
         self._socket.send_message(Message("submit_result", recorder.get_result().to_dict()))
         response = self._socket.receive_message()
 
-        if response.get_title() == "Error":
-            raise CustomException(response.get_content())
+        if response.title == "Error":
+            raise CustomException(response.content)
 
 
 

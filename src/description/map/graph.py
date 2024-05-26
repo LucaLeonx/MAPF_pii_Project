@@ -51,8 +51,8 @@ class Graph:
     def __str__(self):
         return '{\n' + '\n'.join([str(edge) for edge in self._edge_list]) + '\n}'
 
-    def to_dict(self):
-        return {"graph": [edge.to_dict() for edge in self.edges]}
+    def to_dict(self, use_coords=False):
+        return {"graph": [edge.to_dict(use_coords) for edge in self.edges]}
 
     @staticmethod
     def from_dict(dictionary):

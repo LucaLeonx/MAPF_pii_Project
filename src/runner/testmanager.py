@@ -11,7 +11,7 @@ class TestManager:
         return self._test_records
 
     def get_test_record_by_name(self, test_name):
-        requested_test = [record for record in self._test_records if record.get_test_name() == test_name]
+        requested_test = [record for record in self._test_records if record.test_name == test_name]
 
         if not requested_test:
             raise ElementNotFoundException("No test with name " + test_name + "is available")
@@ -19,10 +19,10 @@ class TestManager:
         return requested_test[0]
 
     def get_test_with_name(self, test_name):
-        return self.get_test_record_by_name(test_name).get_test()
+        return self.get_test_record_by_name(test_name).test
 
     def record_test_result(self, result):
-        finished_test = self.get_test_record_by_name(result.test_description.get_name())
+        finished_test = self.get_test_record_by_name(result.test_description.name)
         finished_test.register_result(result)
 
     def get_random_unassigned_test(self):

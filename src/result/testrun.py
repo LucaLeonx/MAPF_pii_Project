@@ -22,13 +22,13 @@ class TestRun(object):
     def is_solved(self):
         return self._is_solved
 
-    def to_dict(self, use_coordinates=False):
-        return {"test_description": self.test_description.to_dict(use_coordinates=use_coordinates),
-                "action_list": [action.to_dict(use_coordinates=use_coordinates) for action in self.action_list],
+    def to_dict(self, use_coords=False):
+        return {"test_description": self.test_description.to_dict(use_coords=use_coords),
+                "action_list": [action.to_dict(use_coords=use_coords) for action in self.action_list],
                 "is_solved": self.is_solved}
 
     @staticmethod
-    def from_dict(dictionary, use_coordinates=False):
-        return TestRun(TestDescription.from_dict(dictionary["test_description"], use_coordinates),
+    def from_dict(dictionary):
+        return TestRun(TestDescription.from_dict(dictionary["test_description"]),
                        [Action.from_dict(action) for action in dictionary["action_list"]],
                        dictionary["is_solved"])

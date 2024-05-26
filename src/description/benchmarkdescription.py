@@ -97,15 +97,15 @@ class TestDescription:
         return hash(self.name)
 
     def __str__(self):
-        string = self._name + ":\n" + "Map: \n" + str(self._map) + "\n"
+        string = self.name + ":\n" + "Map: \n" + str(self.graph) + "\n"
         for entity in self._entities:
             string += str(entity) + "\n"
         return string
 
-    def to_dict(self, use_coordinates=False):
+    def to_dict(self, use_coords=False):
         return {"name": self.name,
-                "graph": self.graph.to_dict(use_coordinates),
-                "entities": [entity.to_dict() for entity in self.entities]}
+                "graph": self.graph.to_dict(use_coords),
+                "entities": [entity.to_dict(use_coords) for entity in self.entities]}
 
     @staticmethod
     def from_dict(dictionary):

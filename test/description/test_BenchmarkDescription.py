@@ -8,7 +8,6 @@ from exceptions import EmptyElementException
 
 class TestBenchmarkDescription:
 
-
     def test_init_guards(self, default_test):
         with pytest.raises(EmptyElementException) as excinfo:
             benchmark = BenchmarkDescription("No-tests", [])
