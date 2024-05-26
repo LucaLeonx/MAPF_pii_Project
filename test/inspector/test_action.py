@@ -1,15 +1,15 @@
 import pytest
 
-from graph.node import Node
-from result.action import Action, MoveAction, AppearAction, DisappearAction, WaitAction
+from description.map.graph import Node
 from exceptions import ElementNotAvailableException
+from result.action import Action, MoveAction, WaitAction, AppearAction, DisappearAction
 
-action = Action(3, "A1", Node(coordinates=(1, 0)))
-move = MoveAction(1, "A2", Node(coordinates=(10, 0)))
+action = Action(3, "A1", Node(coords=(1, 0)))
+move = MoveAction(1, "A2", Node(coords=(10, 0)))
 wait = WaitAction(1, "A2")
-appear = AppearAction(0, "A2", Node(coordinates=(0, 0)))
+appear = AppearAction(0, "A2", Node(coords=(0, 0)))
 disappear = DisappearAction(5, "A2")
-custom_action = Action(10, "A5", Node(coordinates=(10, 10)), description="AstralTeleport")
+custom_action = Action(10, "A5", Node(coords=(10, 10)), description="AstralTeleport")
 
 
 class TestAction:
@@ -18,7 +18,7 @@ class TestAction:
 
         assert action.timestep == 3
         assert move.subject == "A2"
-        assert appear.position == Node(coordinates=(0, 0))
+        assert appear.position == Node(coords=(0, 0))
 
         assert action.description == ""
         assert move.description == "Move"
@@ -33,7 +33,7 @@ class TestAction:
 
     def test_to_dict(self):
 
-        assert action.to_dict(use_coordinates=True) == {
+        assert action.to_dict(use_coords=True) == {
             "type": "Action",
             "timestep": 3,
             "subject": "A1",
@@ -57,8 +57,8 @@ class TestAction:
         }
 
     def test_from_dict(self):
-        assert Action.from_dict(action.to_dict()).position == Node(coordinates=(1, 0))
-        assert (Action.from_dict(move.to_dict(use_coordinates=True), use_coordinates=True).__class__.__name__
+        assert Action.from_dict(action.to_dict()).position == Node(coords=(1, 0))
+        assert (Action.from_dict(move.to_dict(use_coords=True)).__class__.__name__
                 == "MoveAction")
 
         appear_duplicate = Action.from_dict({

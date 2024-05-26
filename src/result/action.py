@@ -1,4 +1,4 @@
-from graph.graph import Node
+from description.map.graph import Node
 from exceptions import ElementNotAvailableException
 
 import importlib
@@ -31,13 +31,13 @@ class Action(object):
     def description(self):
         return self._description
 
-    def to_dict(self, use_coordinates=False):
+    def to_dict(self, use_coords=False):
         dictionary = {"type": self.__class__.__name__,
                       "timestep": self.timestep,
                       "subject": self.subject}
 
         if self._position is not None:
-            dictionary.update({"position": self._position.to_dict(use_coordinates)})
+            dictionary.update({"position": self._position.to_dict(use_coords)})
 
         dictionary.update({"description": self._description})
         return dictionary

@@ -1,4 +1,4 @@
-from graph.node import Node
+from description.map.graph import Node
 from result.action import WaitAction, MoveAction, AppearAction, DisappearAction
 from result.testrun import TestRun
 
@@ -7,12 +7,12 @@ class TestInspector(object):
     def __init__(self, test_description):
         self._test_description = test_description
         self._action_list = []
-        self._current_position = {entity.get_name(): None for entity in self._test_description.get_entities()}
+        self._current_position = {entity.name: None for entity in self._test_description.entities}
         self._test_solved = False
 
-        for entity in self._test_description.get_entities():
+        for entity in self._test_description.entities:
             if entity.has_start_position():
-                self.register_appearance(0, entity.get_name(), entity.get_start_position())
+                self.register_appearance(0, entity.name, entity.start_position)
 
     @property
     def test_description(self):
@@ -34,22 +34,22 @@ class TestInspector(object):
 
     def register_move_left(self, timestep, entity_name):
         current_position = self._current_position[entity_name]
-        end_position = Node(coordinates=(current_position.x - 1, current_position.y))
+        end_position = Node(coords=(current_position.x - 1, current_position.y))
         self._register_move_with_description(timestep, entity_name, end_position, description="MoveLeft")
 
     def register_move_right(self, timestep, entity_name):
         current_position = self._current_position[entity_name]
-        end_position = Node(coordinates=(current_position.x + 1, current_position.y))
+        end_position = Node(coords=(current_position.x + 1, current_position.y))
         self._register_move_with_description(timestep, entity_name, end_position, description="MoveRight")
 
     def register_move_up(self, timestep, entity_name):
         current_position = self._current_position[entity_name]
-        end_position = Node(coordinates=(current_position.x, current_position.y + 1))
+        end_position = Node(coords=(current_position.x, current_position.y + 1))
         self._register_move_with_description(timestep, entity_name, end_position, description="MoveUp")
 
     def register_move_down(self, timestep, entity_name):
         current_position = self._current_position[entity_name]
-        end_position = Node(coordinates=(current_position.x, current_position.y - 1))
+        end_position = Node(coords=(current_position.x, current_position.y - 1))
         self._register_move_with_description(timestep, entity_name, end_position, description="MoveDown")
 
     def register_wait(self, timestep, entity_name):

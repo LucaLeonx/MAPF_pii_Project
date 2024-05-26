@@ -164,7 +164,7 @@ class Node:
 
     @staticmethod
     def from_dict(dictionary):
-        if dictionary["index"] is not None:
+        if "index" in dictionary:
             return Node(index=dictionary["index"])
         else:
             return Node(coords=(dictionary["x"], dictionary["y"]))

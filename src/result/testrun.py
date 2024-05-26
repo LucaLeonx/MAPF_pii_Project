@@ -1,4 +1,4 @@
-from benchmark.testdescription import TestDescription
+from description.benchmarkdescription import TestDescription
 from result.action import Action
 
 
