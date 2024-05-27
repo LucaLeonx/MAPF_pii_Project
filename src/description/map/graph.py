@@ -5,7 +5,7 @@ from exceptions import EmptyElementException, InvalidElementException, ElementNo
 
 class Graph:
     def __init__(self, edges):
-        self._edges = list(set(edges)) # Remove duplicates
+        self._edges = list(set(edges))  # Remove duplicates
         self._node_adjacency_list = dict()
 
         for edge in edges:
@@ -49,7 +49,8 @@ class Graph:
 
     @staticmethod
     def from_dict(dictionary):
-        return Graph([Edge.from_dict(edge) for edge in dictionary["graph"]]) 
+        return Graph([Edge.from_dict(edge) for edge in dictionary["graph"]])
+
 
 class UndirectedGraph(Graph):
 
@@ -96,12 +97,13 @@ class GridGraph(UndirectedGraph):
     def cols(self):
         return self._cols
 
-    def to_rdict(self, use_coords=False):
+    def to_dict(self, use_coords=False):
         return {"type": "grid", "rows": self.rows, "cols": self.cols}
 
     @staticmethod
     def from_dict(dictionary):
         return GridGraph(dictionary["rows"], dictionary["cols"])
+
 
 class Edge:
     def __init__(self, start_node, end_node, weight=1):

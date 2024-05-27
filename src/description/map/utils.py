@@ -1,12 +1,14 @@
 from nis import match
+from xml.dom.minidom import Entity
 
 from description.benchmarkdescription import TestDescription
-from description.entity_description import ObstacleDescription, AgentDescription, ObjectiveDescription
-from description.map.graph import Graph, Edge, Node, GridGraph
+from description.entity_description import ObstacleDescription, AgentDescription, ObjectiveDescription, \
+    EntityDescription
+from description.map.graph import Graph, Edge, Node, GridGraph, UndirectedGraph
 from exceptions import InvalidElementException
 
 
-def generate_grid_test(test_name, map_representation):
+def extract_grid_information(map_representation):
     rows = len(map_representation)
     cols = len(map_representation[0])
     graph = GridGraph(rows, cols)
@@ -27,7 +29,7 @@ def generate_grid_test(test_name, map_representation):
                 case 'T':
                     objectives.append(ObjectiveDescription(cell, Node(coords=(x, y))))
 
-    return TestDescription(test_name, graph, agents + obstacles + objectives)
+    return graph, agents + obstacles + objectives
 
 
 def validate_map_representation(map_representation):
@@ -44,10 +46,8 @@ def validate_map_representation(map_representation):
         for y in range(rows):
             cell = map_representation[x][y].strip()
             match cell[0]:
-                case "":
-                    break
-                case "O":
-                    break
+                case "" | "O":
+                    pass
                 case "A":
                     _register_id(agents, cell, x, y, "agent")
                 case "T":
@@ -78,7 +78,7 @@ def _register_id(id_group, cell, x, y, label):
         raise InvalidElementException(f"Unrecognized cell content: {cell} at ({x}, {y})")
 
 
-def generate_grid_representation(rows, cols, entities):
+def _generate_grid_representation(rows, cols, entities):
     map_representation = [[" " for _ in range(cols)] for _ in range(rows)]
 
     for entity in entities:
@@ -97,4 +97,51 @@ def generate_grid_representation(rows, cols, entities):
             raise InvalidElementException(f"Invalid entity found")
 
 
+def to_human_readable_dict(test):
+    dictionary = test.to_dict()
+    match test.__class__.__name__:
+        case "Graph":
+            pass
+        case "GridGraph":
+            dictionary["graph"].update({"rows": test.graph.rows,
+                                        "cols": test.graph.cols})
+            try:
 
+                dictionary["graph"].update({"map": _generate_grid_representation(test.graph.rows,
+                                                                                 test.graph.cols,
+                                                                                 test.entities)})
+                dictionary["graph"].pop("edges")
+                dictionary.pop("entities")
+            except InvalidElementException:
+                dictionary["entities"] = test.to_dict(use_coords=True).get["entities"]
+        case "UndirectedGraph":
+            dictionary["graph"]["edges"] = [Edge.to_dict(edge)
+                                            for edge in test.graph.undirected_edges]
+        case _:
+            raise InvalidElementException(f"Unsupported graph format for test: {test.name}")
+
+    return dictionary
+
+
+def from_human_readable_dict(dictionary):
+
+    test_name = dictionary["name"]
+    entities = []
+
+    match dictionary["graph"]["type"]:
+        case "directed":
+            graph = Graph.from_dict(dictionary["graph"])
+        case "undirected":
+            graph = UndirectedGraph(dictionary["graph"]["edges"])
+        case "grid":
+            if dictionary["graph"]["map"]:
+                graph, entities = _generate_grid_representation(dictionary["graph"]["map"])
+            else:
+                graph = GridGraph(dictionary["graph"]["rows"], dictionary["graph"]["cols"])
+        case _:
+            raise InvalidElementException(f"Error in graph representation in dictionary")
+
+    if dictionary["graph"]["type"] != "grid" and not dictionary["graph"]["map"]:
+        entities = [EntityDescription.from_dict(entity) for entity in dictionary["entities"]]
+
+    return TestDescription(test_name, graph, entities)
