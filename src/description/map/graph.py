@@ -1,4 +1,6 @@
+import importlib
 from math import floor, sqrt
+from typing import Any
 
 from exceptions import EmptyElementException, InvalidElementException, ElementNotFoundException
 
@@ -44,12 +46,19 @@ class Graph:
     def __str__(self):
         return '{\n' + '\n'.join([str(edge) for edge in self._edges]) + '\n}'
 
-    def to_dict(self, use_coords=False):
-        return {"graph": [edge.to_dict(use_coords) for edge in self.edges]}
+    def to_dict(self):
+        return {"type": self.__class__.__name__, "edges": [edge.to_dict() for edge in self.edges]}
+
+    @classmethod
+    def _from_dict(cls, dictionary):
+        return Graph(dictionary["edges"])
 
     @staticmethod
     def from_dict(dictionary):
-        return Graph([Edge.from_dict(edge) for edge in dictionary["graph"]])
+        module = importlib.import_module(__name__)
+        graph_class = getattr(module, dictionary["type"])
+
+        return graph_class._from_dict(dictionary)
 
 
 class UndirectedGraph(Graph):
@@ -66,8 +75,9 @@ class UndirectedGraph(Graph):
     def undirected_edges(self):
         return self._undirected_edges
 
-    def to_rdict(self, use_coords=False):
-        return {"type": "undirected", "edges": [edge.to_dict(use_coords) for edge in self.edges]}
+    @classmethod
+    def _from_dict(cls, dictionary):
+        return UndirectedGraph(dictionary["edges"])
 
 
 class GridGraph(UndirectedGraph):
@@ -97,11 +107,11 @@ class GridGraph(UndirectedGraph):
     def cols(self):
         return self._cols
 
-    def to_dict(self, use_coords=False):
-        return {"type": "grid", "rows": self.rows, "cols": self.cols}
+    def to_dict(self):
+        return {"type": self.__class__.__name__, "rows": self.rows, "cols": self.cols}
 
-    @staticmethod
-    def from_dict(dictionary):
+    @classmethod
+    def _from_dict(cls, dictionary):
         return GridGraph(dictionary["rows"], dictionary["cols"])
 
 
@@ -120,7 +130,7 @@ class Edge:
         return self._end_node
 
     @property
-    def weight(self):
+    def weight(self) -> int:
         return self._weight
 
     def __eq__(self, other):
@@ -134,9 +144,9 @@ class Edge:
     def __str__(self):
         return f"({self.start_node}, {self.end_node} | {self.weight})"
 
-    def to_dict(self, use_coords=False):
-        return {"start_node": self.start_node.to_dict(use_coords),
-                "end_node": self._end_node.to_dict(use_coords),
+    def to_dict(self) -> dict[str, Any]:
+        return {"start_node": self.start_node.to_dict(),
+                "end_node": self._end_node.to_dict(),
                 "weight": self._weight}
 
     @staticmethod
@@ -149,12 +159,12 @@ class Edge:
 class Node:
 
     @classmethod
-    def _cantor_pairing_function(cls, numbers):
+    def _cantor_pairing_function(cls, numbers) -> int:
         a, b = numbers
         return (a + b) * (a + b + 1) // 2 + b
 
     @classmethod
-    def _cantor_inverse_pairing_function(cls, n):
+    def _cantor_inverse_pairing_function(cls, n) -> (int, int):
         w = floor((sqrt(8 * n + 1) - 1) / 2)
         t = (w ** 2 + w) / 2
         return int(w - n + t), int(n - t)
@@ -176,19 +186,19 @@ class Node:
                 self._x, self._y = coords
 
     @property
-    def index(self):
+    def index(self) -> int:
         return self._index
 
     @property
-    def coords(self):
+    def coords(self) -> (int, int):
         return self._x, self._y
 
     @property
-    def x(self):
+    def x(self) -> int:
         return self._x
 
     @property
-    def y(self):
+    def y(self) -> int:
         return self._y
 
     def __eq__(self, other):
@@ -201,7 +211,7 @@ class Node:
     def __str__(self):
         return f"{self.index} [{self.x}, {self.y}]"
 
-    def to_dict(self, use_coords=False):
+    def to_dict(self, use_coords=False) -> dict[str, Any]:
         if not use_coords:
             return {"index": self._index}
         else:

@@ -1,53 +1,8 @@
 from description.entity_description import *
 from description.map.graph import Graph
-from exceptions import DuplicateElementException, EmptyElementException
+from exceptions import DuplicateElementException, EmptyElementException, InvalidElementException
 
-
-class BenchmarkDescription:
-
-    def __init__(self, name, tests, description=""):
-        if tests is None or len(tests) == 0:
-            raise EmptyElementException("Benchmark must have at least one test")
-        if name.strip() == "":
-            raise EmptyElementException("Benchmark name cannot be empty")
-
-        # Check if all tests have distinct names
-        if len(set(tests)) != len(tests):
-            raise DuplicateElementException("Added the same test twice")
-
-        self._name = name
-        self._description = description
-        self._tests = tests
-
-    @property
-    def name(self):
-        return self._name
-
-    @property
-    def description(self):
-        return self._description
-
-    @property
-    def tests(self):
-        return self._tests
-
-    def __str__(self):
-        string = self._name + ": " + self._description + "\n"
-        for test in self._tests:
-            string += test.__str__()
-
-        return string
-
-    def to_dict(self):
-        return {"name": self._name,
-                "description": self._description,
-                "tests": [test.to_dict() for test in self.tests]}
-
-    @staticmethod
-    def from_dict(dictionary):
-        return BenchmarkDescription(dictionary["name"],
-                                    [TestDescription.from_dict(test) for test in dictionary["tests"]],
-                                    dictionary["description"])
+from typing import Any
 
 
 class TestDescription:
@@ -102,13 +57,68 @@ class TestDescription:
             string += str(entity) + "\n"
         return string
 
-    def to_dict(self, use_coords=False):
+    def to_dict(self):
         return {"name": self.name,
-                "graph": self.graph.to_dict(use_coords),
-                "entities": [entity.to_dict(use_coords) for entity in self.entities]}
+                "graph": self.graph.to_dict(),
+                "entities": [entity.to_dict() for entity in self.entities]}
 
     @staticmethod
     def from_dict(dictionary):
         return TestDescription(dictionary["name"],
                                Graph.from_dict(dictionary["graph"]),
                                [EntityDescription.from_dict(entity_dict) for entity_dict in dictionary["entities"]])
+
+
+class BenchmarkDescription:
+
+    def __init__(self, name: str, tests: dict[TestDescription, int]):
+        if tests is None or len(tests) == 0:
+            raise EmptyElementException("Benchmark must have at least one test")
+        if any([occurrences <= 0 for occurrences in tests.values()]):
+            raise InvalidElementException("Number of occurrences for each test must be positive")
+        if name.strip() == "":
+            raise EmptyElementException("Benchmark name cannot be empty")
+
+        self._name = name
+        self._tests = tests
+
+    @property
+    def name(self) -> str:
+        return self._name
+
+    @property
+    def tests(self) -> set[TestDescription]:
+        return set(self._tests.keys())
+
+    @property
+    def test_occurrences(self) -> dict[TestDescription, int]:
+        return self._tests
+
+    def get_test_by_name(self, test_name) -> TestDescription:
+        return next(test for test in self.tests if test.name == test_name)
+
+    def get_test_occurrences(self, test_name) -> int:
+        return self.test_occurrences[self.get_test_by_name(test_name)]
+
+    def __str__(self):
+        string = self.name + "\n"
+        for test in self.tests:
+            string += str(test)
+
+        return string
+
+    def to_dict(self) -> dict[str, Any]:
+        return {"name": self._name,
+                "test_occurrences": dict(map(lambda item: item[0].item[1].name, self.test_occurrences.items())),
+                "tests": [test.to_dict() for test in self.tests]}
+
+    @staticmethod
+    def from_dict(dictionary: dict[str, Any]):
+        tests = [TestDescription.from_dict(test) for test in dictionary["tests"]],
+
+        test_occurrences = dict()
+
+        for test in tests:
+            test_occurrences.update({test: dictionary["test_occurrences"][test.name]})
+
+        return BenchmarkDescription(dictionary["name"], test_occurrences)

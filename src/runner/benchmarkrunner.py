@@ -1,5 +1,7 @@
+from connection.connectionconfig import ConnectionConfig
+from description.benchmarkdescription import BenchmarkDescription
 from result.testrun import TestRun
-from runner.commanddispatcher import CommandDispatcher
+from commanddispatcher import CommandDispatcher
 from connection.message import Message
 from connection.socket import ServerSocket
 from exceptions import CustomException
@@ -7,20 +9,20 @@ from runner.testmanager import TestManager
 
 
 class BenchmarkRunner(object):
-    def __init__(self, benchmark, connection_config):
+    def __init__(self, benchmark: BenchmarkDescription, connection_config: ConnectionConfig):
         self._benchmark = benchmark
         self._socket = ServerSocket(connection_config)
-        self._test_manager = TestManager(benchmark.tests)
+        self._test_manager = TestManager(benchmark.test_occurrences)
         self._command_dispatcher = CommandDispatcher(
             {"ping": self.ping,
              "request_test": self.request_test,
              "request_random_test": self.request_random_test,
              "submit_result": self.submit_result})
 
-    def get_benchmark(self):
+    def get_benchmark(self) -> BenchmarkDescription:
         return self._benchmark
 
-    def run_benchmark(self):
+    def run_benchmark(self) -> list[list[TestRun]]:
         self._socket.start()
         while not self._test_manager.all_tests_done():
             request = self._socket.receive_message()
@@ -35,7 +37,7 @@ class BenchmarkRunner(object):
 
         return self.get_results()
 
-    def get_results(self):
+    def get_results(self) -> list[list[TestRun]]:
         return self._test_manager.get_results()
 
     @staticmethod
