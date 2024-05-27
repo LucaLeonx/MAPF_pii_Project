@@ -24,7 +24,6 @@ class BenchmarkRunner(object):
         self._socket.start()
         while not self._test_manager.all_tests_done():
             request = self._socket.receive_message()
-            print("In the loop")
             try:
                 result = self._command_dispatcher.execute(request.title, request.content)
                 response = Message("OK", result)

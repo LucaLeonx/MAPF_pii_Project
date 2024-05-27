@@ -7,8 +7,7 @@ from exceptions import ElementNotFoundException
 class TestGraph:
     @pytest.fixture
     def graph(self):
-        return Graph(edge_list=
-                     [Edge(Node(1), Node(2)),
+        return Graph([Edge(Node(1), Node(2)),
                       Edge(Node(1), Node(3)),
                       Edge(Node(2), Node(3)),
                       Edge(Node(3), Node(2), weight=7),

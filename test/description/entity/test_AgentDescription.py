@@ -1,8 +1,7 @@
 import pytest
 
-from entity.agent_description import AgentDescription
-from entity.objective_description import ObjectiveDescription
-from graph.node import Node
+from description.entity_description import AgentDescription
+from description.map.graph import Node
 
 
 class TestAgentDescription:
@@ -17,5 +16,5 @@ class TestAgentDescription:
         assert "Agent's objective name cannot be empty" in str(excinfo)
 
     def test_get_objective(self, agent_description):
-        assert agent_description.get_objective_name() == "O1"
+        assert agent_description.objective_name == "O1"
 
