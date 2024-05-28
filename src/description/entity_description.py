@@ -24,6 +24,12 @@ class EntityDescription(ABC):
     def has_start_position(self):
         return self._start_position is not None
 
+    def __eq__(self, other):
+        if isinstance(other, EntityDescription):
+            return self.name == other.name
+
+        return False
+
     def __str__(self):
         return (self.__class__.__name__ + " " + self._name + " " +
                 (str(self._start_position) if self.has_start_position() else ""))
