@@ -32,7 +32,7 @@ class TestTestInspector:
             appearance = [action for action in result.action_list if action.subject == entity.name]
             assert len(appearance) == 1
             assert appearance[0].timestep == 0
-            assert appearance[0].position == entity.start_position
+            assert appearance[0].end_position == entity.start_position
 
         not_appeared_names = [entity.name for entity in
                               test_description.obstacles + test_description.objectives]
@@ -53,10 +53,10 @@ class TestTestInspector:
         assert len(action_list) == 11  # plus agents appearances (3 actions)
         assert action_list[4].subject == "A2"
         assert action_list[4].description == "Move"
-        assert action_list[4].position == Node(3)
+        assert action_list[4].end_position == Node(3)
         assert action_list[4].__class__.__name__ == "MoveAction"
         assert action_list[6].description == "Wait"
-        assert action_list[9].position == Node(coords=(1, 2))
+        assert action_list[9].end_position == Node(coords=(1, 2))
         assert action_list[9].description == "MoveLeft"
-        assert action_list[10].position == Node(coords=(1, 3))
+        assert action_list[10].end_position == Node(coords=(1, 3))
         assert action_list[10].description == "MoveUp"

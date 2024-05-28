@@ -26,8 +26,8 @@ class TestInspector(object):
         self._action_list.append(action)
 
     def _register_move_with_description(self, timestep, entity_name, end_position, description="Move"):
+        self.register_action(MoveAction(timestep, entity_name, self._current_position[entity_name], end_position, description))
         self._current_position.update({entity_name: end_position})
-        self.register_action(MoveAction(timestep, entity_name, end_position, description))
 
     def register_move(self, timestep, entity_name, end_position):
         self._register_move_with_description(timestep, entity_name, end_position)
@@ -53,15 +53,17 @@ class TestInspector(object):
         self._register_move_with_description(timestep, entity_name, end_position, description="MoveDown")
 
     def register_wait(self, timestep, entity_name):
-        self._action_list.append(WaitAction(timestep, entity_name))
+        self._action_list.append(WaitAction(timestep, self._current_position[entity_name], entity_name))
 
     def register_appearance(self, timestep, entity_name, start_position):
         self._current_position.update({entity_name: start_position})
         self._action_list.append(AppearAction(timestep, entity_name, start_position))
 
     def register_disappearance(self, timestep, entity_name):
+        self._action_list.append(DisappearAction(timestep,
+                                                 entity_name,
+                                                 start_position=self._current_position[entity_name]))
         self._current_position.update({entity_name: None})
-        self._action_list.append(DisappearAction(timestep, entity_name))
 
     def mark_as_solved(self):
         self._test_solved = True
@@ -71,4 +73,8 @@ class TestInspector(object):
 
     def get_result(self):
         return TestRun(self._test_description, self._action_list, self._test_solved)
+
+
+
+
 
