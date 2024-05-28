@@ -6,10 +6,11 @@ import importlib
 
 class Action(object):
 
-    def __init__(self, timestep, subject, position=None, description=""):
+    def __init__(self, timestep, subject, start_position=None, end_position=None, description=""):
         self._timestep = timestep
         self._subject = subject
-        self._position = position
+        self._start_position = start_position
+        self._end_position = end_position
         self._description = description
 
     @property
@@ -21,11 +22,18 @@ class Action(object):
         return self._subject
 
     @property
-    def position(self):
-        if self._position is None:
+    def start_position(self):
+        if self._start_position is None:
             raise ElementNotAvailableException("This action doesn't have a final position")
 
-        return self._position
+        return self._start_position
+
+    @property
+    def end_position(self):
+        if self._end_position is None:
+            raise ElementNotAvailableException("This action doesn't have a final position")
+
+        return self._end_position
 
     @property
     def description(self):
@@ -36,8 +44,10 @@ class Action(object):
                       "timestep": self.timestep,
                       "subject": self.subject}
 
-        if self._position is not None:
-            dictionary.update({"position": self._position.to_dict()})
+        if self._start_position is not None:
+            dictionary.update({"start_position": self._start_position.to_dict()})
+        if self._end_position is not None:
+            dictionary.update({"end_position": self._end_position.to_dict()})
 
         dictionary.update({"description": self._description})
         return dictionary
@@ -46,33 +56,36 @@ class Action(object):
     def from_dict(dictionary):
         module = importlib.import_module(__name__)
         action_class = getattr(module, dictionary["type"])
+        start_position = None
+        end_position = None
 
-        if "position" in dictionary:
-            position = Node.from_dict(dictionary.get("position"))
-        else:
-            position = None
+        if "start_position" in dictionary:
+            start_position = Node.from_dict(dictionary.get("start_position"))
+        if "end_position" in dictionary:
+            end_position = Node.from_dict(dictionary.get("end_position"))
 
         return action_class(dictionary["timestep"],
                             dictionary["subject"],
-                            position,
+                            start_position,
+                            end_position,
                             dictionary["description"])
 
 
 class MoveAction(Action):
-    def __init__(self, timestep, subject, position, description="Move"):
-        Action.__init__(self, timestep, subject, position, description)
+    def __init__(self, timestep, subject, start_position, end_position, description="Move"):
+        Action.__init__(self, timestep, subject, start_position, end_position, description)
 
 
 class WaitAction(Action):
-    def __init__(self, timestep, subject, position=None, description="Wait"):
-        Action.__init__(self, timestep, subject, position, description)
+    def __init__(self, timestep, subject, start_position, end_position=None, description="Wait"):
+        Action.__init__(self, timestep, subject, start_position, end_position, description)
 
 
 class AppearAction(Action):
-    def __init__(self, timestep, subject, position, description="Appear"):
-        Action.__init__(self, timestep, subject, position, description)
+    def __init__(self, timestep, subject, end_position, start_position=None,  description="Appear"):
+        Action.__init__(self, timestep, subject, None, end_position, description)
 
 
 class DisappearAction(Action):
-    def __init__(self, timestep, subject, description="Disappear"):
-        Action.__init__(self, timestep, subject, None, description)
+    def __init__(self, timestep, subject, start_position=None, end_position=None, description="Disappear"):
+        Action.__init__(self, timestep, subject, None, None, description)
