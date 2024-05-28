@@ -40,8 +40,8 @@ class TestManager:
         return all(test.is_done() for test in self._test_records)
 
     # TODO: add integer index to iterations of same test
-    def get_results(self) -> list[list[TestRun]]:
-        return [test.get_results() for test in self._test_records]
+    def get_results(self) -> dict[str, list[TestRun]]:
+        return dict([(record.test_name, record.get_results()) for record in self._test_records])
 
 
 
