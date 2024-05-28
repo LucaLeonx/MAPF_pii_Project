@@ -1,6 +1,6 @@
 import pytest
 
-from description.entity_description import EntityDescription
+from description.entity_description import EntityDescription, ObstacleDescription, ObjectiveDescription
 from description.map.graph import Node
 from exceptions import EmptyElementException
 
@@ -34,3 +34,32 @@ class TestEntityDescription:
     def test_has_start_position(self, entity_description, no_position_entity):
         assert entity_description.has_start_position()
         assert not no_position_entity.has_start_position()
+
+    def test_to_dict(self):
+        entity = EntityDescription("Entity")
+        obstacle = ObstacleDescription("Obstacle", start_position=Node(2))
+        objective = ObjectiveDescription("Objective", start_position=Node(3))
+        assert entity.to_dict() == {"type": "EntityDescription", "name": "Entity"}
+        assert obstacle.to_dict() == {"type": "ObstacleDescription", "name": "Obstacle", "start_position": {"index": 2}}
+        assert objective.to_dict() == {"type": "ObjectiveDescription", "name": "Objective", "start_position": {"index": 3}}
+
+    def test_from_dict(self):
+        dictionary_entity = {"type": "EntityDescription", "name": "Good", "start_position": {"index": 10}}
+        entity = EntityDescription.from_dict(dictionary_entity)
+
+        assert entity.name == "Good"
+        assert entity.start_position == Node(10)
+        assert entity.has_start_position()
+
+        dictionary_obstacle = {"type": "ObstacleDescription", "name": "Bad"}
+        obstacle = EntityDescription.from_dict(dictionary_obstacle)
+        assert isinstance(obstacle, ObstacleDescription)
+        assert obstacle.name == "Bad"
+        assert obstacle.start_position is None
+        assert not obstacle.has_start_position()
+
+        dictionary_objective = {"type": "ObjectiveDescription", "name": "Nice", "start_position": {"index": 7}}
+        objective = EntityDescription.from_dict(dictionary_objective)
+        assert isinstance(objective, ObjectiveDescription)
+        assert objective.name == "Nice"
+        assert objective.start_position == Node(7)

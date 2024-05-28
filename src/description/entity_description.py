@@ -28,7 +28,7 @@ class EntityDescription(ABC):
         return (self.__class__.__name__ + " " + self._name + " " +
                 (str(self._start_position) if self.has_start_position() else ""))
 
-    def to_dict(self, use_coords=False):
+    def to_dict(self):
         new_dict = {"type": self.__class__.__name__,
                     "name": self._name}
         if self.has_start_position():
@@ -54,7 +54,7 @@ class EntityDescription(ABC):
 
 class AgentDescription(EntityDescription):
     def __init__(self, name, objective_name, start_position=None):
-        if objective_name == "":
+        if objective_name.strip() == "":
             raise ValueError("Agent's objective name cannot be empty")
 
         EntityDescription.__init__(self, name, start_position)
@@ -64,7 +64,7 @@ class AgentDescription(EntityDescription):
     def objective_name(self):
         return self._objective_name
 
-    def to_dict(self, use_coords=False):
+    def to_dict(self):
         new_dict = super(AgentDescription, self).to_dict()
         new_dict.update({"objective": self.objective_name})
         return new_dict
