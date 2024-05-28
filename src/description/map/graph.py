@@ -65,11 +65,14 @@ class UndirectedGraph(Graph):
 
     def __init__(self, edges):
         self._undirected_edges = []
+        self._edges = []
         for edge in edges:
-            self._undirected_edges.append(edge)
-            self._undirected_edges.append(Edge(edge.ending_node, edge.starting_node, weight=edge.weight))
+            if edge.reversed() not in self._edges:
+                self._undirected_edges.append(edge)
+                self._edges.append(edge)
+                self._edges.append(edge.reversed())
 
-        super().__init__(self._undirected_edges)
+        super().__init__(self._edges)
 
     @property
     def undirected_edges(self):
@@ -92,10 +95,17 @@ class GridGraph(UndirectedGraph):
         edges = []
 
         for y in range(rows):
-            for x in range(cols - 1):
-                edges.append(Edge(Node(coords=(x, y)), Node(coords=(x + 1, y))))
-                if y != rows - 1:
+            for x in range(cols):
+                # length of rows = number of cols
+                # length of cols = number of rows
+                if x + 1 < cols:
+                    edges.append(Edge(Node(coords=(x, y)), Node(coords=(x + 1, y))))
+                if x - 1 >= 0:
+                    edges.append(Edge(Node(coords=(x, y)), Node(coords=(x - 1, y))))
+                if y + 1 < rows:
                     edges.append(Edge(Node(coords=(x, y)), Node(coords=(x, y + 1))))
+                if y - 1 >= 0:
+                    edges.append(Edge(Node(coords=(x, y)), Node(coords=(x, y - 1))))
 
         super().__init__(edges)
 
@@ -132,6 +142,9 @@ class Edge:
     @property
     def weight(self) -> int:
         return self._weight
+
+    def reversed(self):
+        return Edge(self.end_node, self.start_node, self.weight)
 
     def __eq__(self, other):
         return (self.__class__ == other.__class__ and

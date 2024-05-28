@@ -1,6 +1,3 @@
-from nis import match
-from xml.dom.minidom import Entity
-
 from description.benchmarkdescription import TestDescription
 from description.entity_description import ObstacleDescription, AgentDescription, ObjectiveDescription, \
     EntityDescription
@@ -17,10 +14,13 @@ def extract_grid_information(map_representation):
     obstacles = []
     objectives = []
 
-    for x in range(cols):
-        for y in range(rows):
+    for x in range(rows):
+        for y in range(cols):
 
             cell = map_representation[x][y].strip()
+            if len(cell) == 0:
+                continue
+
             match cell[0]:
                 case 'O':
                     obstacles.append(ObstacleDescription("O" + str(len(obstacles)), Node(coords=(x, y))))
@@ -78,7 +78,7 @@ def _register_id(id_group, cell, x, y, label):
         raise InvalidElementException(f"Unrecognized cell content: {cell} at ({x}, {y})")
 
 
-def _generate_grid_representation(rows, cols, entities):
+def _generate_grid_representation(rows: int, cols: int, entities: list[EntityDescription]) -> list[list[str]]:
     map_representation = [[" " for _ in range(cols)] for _ in range(rows)]
 
     for entity in entities:
@@ -96,8 +96,10 @@ def _generate_grid_representation(rows, cols, entities):
         else:
             raise InvalidElementException(f"Invalid entity found")
 
+    return map_representation
 
-def to_human_readable_dict(test):
+
+def to_human_readable_dict(test: TestDescription):
     dictionary = test.to_dict()
     match test.__class__.__name__:
         case "Graph":
@@ -114,6 +116,14 @@ def to_human_readable_dict(test):
                 dictionary.pop("entities")
             except InvalidElementException:
                 dictionary["entities"] = test.to_dict().get["entities"]
+
+            for entity_dict in dictionary["entities"].items():
+                position = entity_dict.get("start_position", None)
+
+                if position is not None:
+                    node = Node(position["index"])
+                    entity_dict.update({"start_position": {"x": node.x, "y": node.y}})
+
         case "UndirectedGraph":
             dictionary["graph"]["edges"] = [Edge.to_dict(edge)
                                             for edge in test.graph.undirected_edges]
@@ -123,7 +133,7 @@ def to_human_readable_dict(test):
     return dictionary
 
 
-def from_human_readable_dict(dictionary):
+def from_human_readable_dict(dictionary) -> TestDescription:
 
     test_name = dictionary["name"]
     entities = []
@@ -141,7 +151,7 @@ def from_human_readable_dict(dictionary):
         case _:
             raise InvalidElementException(f"Error in graph representation in dictionary")
 
-    if dictionary["graph"]["type"] != "grid" and not dictionary["graph"]["map"]:
+    if dictionary["graph"]["type"] != "grid" and "map" not in dictionary["graph"]:
         entities = [EntityDescription.from_dict(entity) for entity in dictionary["entities"]]
 
     return TestDescription(test_name, graph, entities)
