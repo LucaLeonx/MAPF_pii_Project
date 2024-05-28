@@ -113,7 +113,7 @@ def to_human_readable_dict(test):
                 dictionary["graph"].pop("edges")
                 dictionary.pop("entities")
             except InvalidElementException:
-                dictionary["entities"] = test.to_dict(use_coords=True).get["entities"]
+                dictionary["entities"] = test.to_dict().get["entities"]
         case "UndirectedGraph":
             dictionary["graph"]["edges"] = [Edge.to_dict(edge)
                                             for edge in test.graph.undirected_edges]

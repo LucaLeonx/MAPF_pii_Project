@@ -33,11 +33,11 @@ class TestAction:
 
     def test_to_dict(self):
 
-        assert action.to_dict(use_coords=True) == {
+        assert action.to_dict() == {
             "type": "Action",
             "timestep": 3,
             "subject": "A1",
-            "position": {"x": 1, "y": 0},
+            "position": {"index": 1},
             "description": ""
         }
 
@@ -58,7 +58,7 @@ class TestAction:
 
     def test_from_dict(self):
         assert Action.from_dict(action.to_dict()).position == Node(coords=(1, 0))
-        assert (Action.from_dict(move.to_dict(use_coords=True)).__class__.__name__
+        assert (Action.from_dict(move.to_dict()).__class__.__name__
                 == "MoveAction")
 
         appear_duplicate = Action.from_dict({

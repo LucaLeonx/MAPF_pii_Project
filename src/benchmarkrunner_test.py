@@ -2,9 +2,9 @@ from description.benchmarkdescription import BenchmarkDescription
 from runner.benchmarkrunner import BenchmarkRunner
 from connection.connectionconfig import TCPConnectionConfig
 import json
-#import globals
+# import globals
 
-#benchmark_description = globals.benchmark_description()
+# benchmark_description = globals.benchmark_description()
 
 from description.benchmarkdescription import TestDescription, BenchmarkDescription
 from description.entity_description import ObstacleDescription, AgentDescription, ObjectiveDescription
@@ -34,17 +34,16 @@ def graph():
                   ])
 
 
-def test_description():
+def description():
     return TestDescription("Test1", graph(), entity_list())
 
 
 def benchmark_description():
-    return BenchmarkDescription("Benchmark1", {test_description(): 1})
+    return BenchmarkDescription("Benchmark1", {description(): 1})
 
 
 def empty_benchmark():
-    return BenchmarkDescription("Empty", {test_description(): 1})
-
+    return BenchmarkDescription("Empty", {description(): 1})
 
 
 if __name__ == '__main__':
@@ -56,4 +55,4 @@ if __name__ == '__main__':
 
     for result_list in results:
         for result in result_list:
-            print(json.dumps(result.to_dict(),indent=4))
+            print(json.dumps(result.to_dict(), indent=4))

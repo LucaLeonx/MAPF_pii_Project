@@ -31,13 +31,13 @@ class Action(object):
     def description(self):
         return self._description
 
-    def to_dict(self, use_coords=False):
+    def to_dict(self):
         dictionary = {"type": self.__class__.__name__,
                       "timestep": self.timestep,
                       "subject": self.subject}
 
         if self._position is not None:
-            dictionary.update({"position": self._position.to_dict(use_coords)})
+            dictionary.update({"position": self._position.to_dict()})
 
         dictionary.update({"description": self._description})
         return dictionary
@@ -47,7 +47,10 @@ class Action(object):
         module = importlib.import_module(__name__)
         action_class = getattr(module, dictionary["type"])
 
-        position = Node.from_dict(dictionary.get("position", None))
+        if "position" in dictionary:
+            position = Node.from_dict(dictionary.get("position"))
+        else:
+            position = None
 
         return action_class(dictionary["timestep"],
                             dictionary["subject"],
@@ -61,8 +64,8 @@ class MoveAction(Action):
 
 
 class WaitAction(Action):
-    def __init__(self, timestep, subject, description="Wait"):
-        Action.__init__(self, timestep, subject, None, description)
+    def __init__(self, timestep, subject, position=None, description="Wait"):
+        Action.__init__(self, timestep, subject, position, description)
 
 
 class AppearAction(Action):
