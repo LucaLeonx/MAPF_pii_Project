@@ -18,12 +18,12 @@ def entity_list():
 
 
 def graph():
-    return Graph(edge_list=[Edge(Node(1), Node(2)),
-                            Edge(Node(1), Node(3)),
-                            Edge(Node(2), Node(3)),
-                            Edge(Node(3), Node(2)),
-                            Edge(Node(3), Node(4))
-                            ])
+    return Graph([Edge(Node(1), Node(2)),
+                  Edge(Node(1), Node(3)),
+                  Edge(Node(2), Node(3)),
+                  Edge(Node(3), Node(2)),
+                  Edge(Node(3), Node(4))
+                  ])
 
 
 def test_description():
@@ -31,8 +31,8 @@ def test_description():
 
 
 def benchmark_description():
-    return BenchmarkDescription("Benchmark1", [test_description()], "Example benchmark", )
+    return BenchmarkDescription("Benchmark1", {test_description(): 1})
 
 
 def empty_benchmark():
-    return BenchmarkDescription("Empty", [test_description()])
+    return BenchmarkDescription("Empty", {test_description(): 1})

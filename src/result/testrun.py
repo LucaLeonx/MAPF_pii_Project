@@ -27,13 +27,11 @@ class TestRun(TestDescription):
 
     def to_dict(self) -> dict[str, Any]:
         return {"test_description": self.test_description.to_dict(),
-                "number": self._number,
                 "action_list": [action.to_dict() for action in self.action_list],
                 "is_solved": self.is_solved}
 
     @staticmethod
     def from_dict(dictionary):
         return TestRun(TestDescription.from_dict(dictionary["test_description"]),
-                       dictionary["number"],
                        [Action.from_dict(action) for action in dictionary["action_list"]],
                        dictionary["is_solved"])
