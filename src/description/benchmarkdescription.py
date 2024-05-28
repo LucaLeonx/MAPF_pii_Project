@@ -2,7 +2,7 @@ from description.entity_description import *
 from description.map.graph import Graph
 from exceptions import DuplicateElementException, EmptyElementException, InvalidElementException
 
-from typing import Any
+from typing import Any, List
 
 
 class TestDescription:
@@ -87,8 +87,8 @@ class BenchmarkDescription:
         return self._name
 
     @property
-    def tests(self) -> set[TestDescription]:
-        return set(self._tests.keys())
+    def tests(self) -> list[TestDescription]:
+        return list(self._tests.keys())
 
     @property
     def test_occurrences(self) -> dict[TestDescription, int]:
@@ -109,13 +109,12 @@ class BenchmarkDescription:
 
     def to_dict(self) -> dict[str, Any]:
         return {"name": self._name,
-                "test_occurrences": dict(map(lambda item: item[0].item[1].name, self.test_occurrences.items())),
+                "test_occurrences": dict(map(lambda item: (item[0].name, item[1]), self.test_occurrences.items())),
                 "tests": [test.to_dict() for test in self.tests]}
 
     @staticmethod
     def from_dict(dictionary: dict[str, Any]):
-        tests = [TestDescription.from_dict(test) for test in dictionary["tests"]],
-
+        tests = [TestDescription.from_dict(test) for test in dictionary["tests"]]
         test_occurrences = dict()
 
         for test in tests:

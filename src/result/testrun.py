@@ -35,3 +35,4 @@ class TestRun(TestDescription):
         return TestRun(TestDescription.from_dict(dictionary["test_description"]),
                        [Action.from_dict(action) for action in dictionary["action_list"]],
                        dictionary["is_solved"])
+

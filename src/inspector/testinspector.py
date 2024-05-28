@@ -53,7 +53,7 @@ class TestInspector(object):
         self._register_move_with_description(timestep, entity_name, end_position, description="MoveDown")
 
     def register_wait(self, timestep, entity_name):
-        self._action_list.append(WaitAction(timestep, self._current_position[entity_name], entity_name))
+        self._action_list.append(WaitAction(timestep, entity_name, self._current_position[entity_name]))
 
     def register_appearance(self, timestep, entity_name, start_position):
         self._current_position.update({entity_name: start_position})

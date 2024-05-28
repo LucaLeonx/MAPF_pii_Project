@@ -49,6 +49,7 @@ class TestTestInspector:
         test_inspector.register_move_up(5, "T3")  # 10
 
         action_list = test_inspector.get_result().action_list
+        print(test_inspector.get_result().to_dict())
 
         assert len(action_list) == 11  # plus agents appearances (3 actions)
         assert action_list[4].subject == "A2"

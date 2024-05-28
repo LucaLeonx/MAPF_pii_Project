@@ -6,7 +6,7 @@ import importlib
 
 class Action(object):
 
-    def __init__(self, timestep, subject, start_position=None, end_position=None, description=""):
+    def __init__(self, timestep: int, subject: str, start_position: Node = None, end_position: Node = None, description: str = ""):
         self._timestep = timestep
         self._subject = subject
         self._start_position = start_position

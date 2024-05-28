@@ -23,11 +23,11 @@ class TestTestDescription:
 
     @pytest.fixture
     def graph(self):
-        return Graph(edge_list=[Edge(Node(1), Node(2)),
-                                Edge(Node(1), Node(3)),
-                                Edge(Node(2), Node(3)),
-                                Edge(Node(3), Node(2)),
-                                Edge(Node(3), Node(4))])
+        return Graph([Edge(Node(1), Node(2)),
+                      Edge(Node(1), Node(3)),
+                      Edge(Node(2), Node(3)),
+                      Edge(Node(3), Node(2), weight=7),
+                      Edge(Node(3), Node(4))])
 
     @pytest.fixture
     def test_description(self, graph, entity_list):
@@ -61,5 +61,64 @@ class TestTestDescription:
         assert test_description.objectives == entity_list[:3]
 
     def test_empty_test(self):
-        test = TestDescription("Empty", Graph(edge_list=[]), [])
+        test = TestDescription("Empty", Graph([]), [])
         assert test.agents == []
+
+    def test_to_dict(self, test_description):
+        assert test_description.to_dict() == {'name': 'Test1',
+                                              'graph':
+                                                  {'type': 'Graph',
+                                                   'edges': [
+                                                       {'start_node': {'index': 1}, 'end_node': {'index': 2},
+                                                        'weight': 1},
+                                                       {'start_node': {'index': 3}, 'end_node': {'index': 4},
+                                                        'weight': 1},
+                                                       {'start_node': {'index': 2}, 'end_node': {'index': 3},
+                                                        'weight': 1},
+                                                       {'start_node': {'index': 3}, 'end_node': {'index': 2},
+                                                        'weight': 7},
+                                                       {'start_node': {'index': 1}, 'end_node': {'index': 3},
+                                                        'weight': 1}]
+                                                   },
+                                              'entities': [
+                                                  {'type': 'ObjectiveDescription', 'name': 'T1'},
+                                                  {'type': 'ObjectiveDescription', 'name': 'T2'},
+                                                  {'type': 'ObjectiveDescription', 'name': 'T3'},
+                                                  {'type': 'AgentDescription', 'name': 'A1',
+                                                   'start_position': {'index': 1}, 'objective': 'T1'},
+                                                  {'type': 'AgentDescription', 'name': 'A2',
+                                                   'start_position': {'index': 2}, 'objective': 'T2'},
+                                                  {'type': 'AgentDescription', 'name': 'A3',
+                                                   'start_position': {'index': 3}, 'objective': 'T3'},
+                                                  {'type': 'ObstacleDescription', 'name': 'O1'}]
+                                              }
+
+    def test_from_dict(self, test_description):
+        assert test_description == TestDescription.from_dict({'name': 'Test1',
+                                                              'graph': {
+                                                                  'type': 'Graph',
+                                                                  'edges': [
+                                                                      {'start_node': {'index': 1},
+                                                                       'end_node': {'index': 2}, 'weight': 1},
+                                                                      {'start_node': {'index': 3},
+                                                                       'end_node': {'index': 4}, 'weight': 1},
+                                                                      {'start_node': {'index': 2},
+                                                                       'end_node': {'index': 3}, 'weight': 1},
+                                                                      {'start_node': {'index': 3},
+                                                                       'end_node': {'index': 2}, 'weight': 1},
+                                                                      {'start_node': {'index': 1},
+                                                                       'end_node': {'index': 3}, 'weight': 1}]},
+                                                              'entities': [
+                                                                  {'type': 'ObjectiveDescription', 'name': 'T1'},
+                                                                  {'type': 'ObjectiveDescription', 'name': 'T2'},
+                                                                  {'type': 'ObjectiveDescription', 'name': 'T3'},
+                                                                  {'type': 'AgentDescription', 'name': 'A1',
+                                                                   'start_position': {'index': 1},
+                                                                   'objective': 'T1'},
+                                                                  {'type': 'AgentDescription', 'name': 'A2',
+                                                                   'start_position': {'index': 2},
+                                                                   'objective': 'T2'},
+                                                                  {'type': 'AgentDescription', 'name': 'A3',
+                                                                   'start_position': {'index': 3},
+                                                                   'objective': 'T3'},
+                                                                  {'type': 'ObstacleDescription', 'name': 'O1'}]})
