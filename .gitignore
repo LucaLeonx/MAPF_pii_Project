@@ -5,3 +5,4 @@ target/
 pyproject.toml
 setup.py
 build.py
+.idea
