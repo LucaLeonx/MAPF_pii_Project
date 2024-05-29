@@ -31,15 +31,15 @@ class TestDescription:
         return [entity for entity in self._entities if isinstance(entity, selected_class)]
 
     @property
-    def agents(self):
+    def agents(self) -> AgentDescription:
         return self._get_entities_by_class(AgentDescription)
 
     @property
-    def obstacles(self):
+    def obstacles(self) -> ObstacleDescription:
         return self._get_entities_by_class(ObstacleDescription)
 
     @property
-    def objectives(self):
+    def objectives(self) -> ObjectiveDescription:
         return self._get_entities_by_class(ObjectiveDescription)
 
     def __eq__(self, other):
