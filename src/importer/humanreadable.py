@@ -101,28 +101,25 @@ def _generate_grid_representation(rows: int, cols: int, entities: list[EntityDes
 
 def to_human_readable_dict(test: TestDescription):
     dictionary = test.to_dict()
-    match test.__class__.__name__:
+    match test.graph.__class__.__name__:
         case "Graph":
             pass
         case "GridGraph":
             dictionary["graph"].update({"rows": test.graph.rows,
                                         "cols": test.graph.cols})
             try:
-
-                dictionary["graph"].update({"map": _generate_grid_representation(test.graph.rows,
-                                                                                 test.graph.cols,
-                                                                                 test.entities)})
-                dictionary["graph"].pop("edges")
+                grid = _generate_grid_representation(test.graph.rows, test.graph.cols, test.entities)
+                grid_list = [str(line) for line in grid]
+                dictionary["graph"].update({"map": grid_list})
                 dictionary.pop("entities")
             except InvalidElementException:
                 dictionary["entities"] = test.to_dict().get["entities"]
+                for entity_dict in dictionary["entities"].items():
+                    position = entity_dict.get("start_position", None)
 
-            for entity_dict in dictionary["entities"].items():
-                position = entity_dict.get("start_position", None)
-
-                if position is not None:
-                    node = Node(position["index"])
-                    entity_dict.update({"start_position": {"x": node.x, "y": node.y}})
+                    if position is not None:
+                        node = Node(position["index"])
+                        entity_dict.update({"start_position": {"x": node.x, "y": node.y}})
 
         case "UndirectedGraph":
             dictionary["graph"]["edges"] = [Edge.to_dict(edge)
@@ -134,7 +131,6 @@ def to_human_readable_dict(test: TestDescription):
 
 
 def from_human_readable_dict(dictionary) -> TestDescription:
-
     test_name = dictionary["name"]
     entities = []
 
@@ -145,7 +141,9 @@ def from_human_readable_dict(dictionary) -> TestDescription:
             graph = UndirectedGraph(dictionary["graph"]["edges"])
         case "grid":
             if dictionary["graph"]["map"]:
-                graph, entities = _generate_grid_representation(dictionary["graph"]["map"])
+                graph, entities = _generate_grid_representation(dictionary["graph"]["rows"],
+                                                                dictionary["graph"]["cols"],
+                                                                dictionary["graph"]["map"])
             else:
                 graph = GridGraph(dictionary["graph"]["rows"], dictionary["graph"]["cols"])
         case _:
