@@ -2,6 +2,7 @@ import yaml
 import pytest
 
 from description.benchmarkdescription import TestDescription
+from description.map.graph import GridGraph
 from importer import humanreadable
 from importer.humanreadable import MapRepresentation
 
@@ -17,7 +18,7 @@ class TestHumanReadable:
                                   ["  ", "A1", " ", " ", "  ", " "]])
 
     def test_extract_grid_representation(self, map_representation):
-        (graph, entities) = humanreadable.extract_grid_information(map_representation)
+        (graph, entities) = humanreadable.extract_grid_information(map_representation.representation)
         edges = graph.edges
 
         for entity in entities:
@@ -32,22 +33,22 @@ class TestHumanReadable:
 
         for x in range(len(new_representation)):
             for y in range(len(new_representation[0])):
-                assert new_representation[x][y].strip() == map_representation[x][y].strip()
+                assert new_representation[x][y].strip() == map_representation.representation[x][y].strip()
 
     def test_convert_to_humanreadable_dict(self, map_representation):
 
         yaml.SafeDumper.add_representer(MapRepresentation, MapRepresentation.representer)
         yaml.SafeLoader.add_constructor("!Map", MapRepresentation.constructor)
 
-        (graph, entities) = humanreadable.extract_grid_information(map_representation.representation)
-        test_description = TestDescription("GridTest", graph, entities)
-        print()
+        test_description = TestDescription("GridTest", GridGraph(map_representation.rows,
+                                                                 map_representation.cols),
+                                           map_representation.entities)
         print(pretty_dump_yaml(test_description))
         test = pretty_dump_yaml(test_description)
         dictionary = yaml.safe_load(test)
         test_again = humanreadable.from_human_readable_dict(dictionary)
         print(test_again.name, test_again.graph.rows, test_again.graph.cols)
-        print(dictionary)
+        print(test_again.to_dict())
 
 
 def pretty_dump_yaml(test):

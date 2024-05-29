@@ -7,7 +7,7 @@ from typing import Any, List
 
 class TestDescription:
 
-    def __init__(self, name, graph, entities):
+    def __init__(self, name: str, graph: Graph, entities: list[EntityDescription]):
         if name.strip() == "":
             raise EmptyElementException("Test name cannot be empty")
 
@@ -16,30 +16,30 @@ class TestDescription:
         self._entities = entities
 
     @property
-    def name(self):
+    def name(self) -> str:
         return self._name
 
     @property
-    def graph(self):
+    def graph(self) -> Graph:
         return self._graph
 
     @property
-    def entities(self):
+    def entities(self) -> list[EntityDescription]:
         return self._entities
 
     def _get_entities_by_class(self, selected_class):
         return [entity for entity in self._entities if isinstance(entity, selected_class)]
 
     @property
-    def agents(self):
+    def agents(self) -> list[AgentDescription]:
         return self._get_entities_by_class(AgentDescription)
 
     @property
-    def obstacles(self):
+    def obstacles(self) -> list[ObstacleDescription]:
         return self._get_entities_by_class(ObstacleDescription)
 
     @property
-    def objectives(self):
+    def objectives(self) -> list[ObjectiveDescription]:
         return self._get_entities_by_class(ObjectiveDescription)
 
     def __eq__(self, other):

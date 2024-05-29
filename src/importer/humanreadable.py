@@ -7,99 +7,6 @@ from description.map.graph import Graph, Edge, Node, GridGraph, UndirectedGraph
 from exceptions import InvalidElementException
 
 
-def extract_grid_information(map_representation):
-    rows = len(map_representation)
-    cols = len(map_representation[0])
-    graph = GridGraph(rows, cols)
-
-    agents = []
-    obstacles = []
-    objectives = []
-
-    for x in range(rows):
-        for y in range(cols):
-            cell = map_representation[x][y].strip()
-            if len(cell) == 0:
-                continue
-
-            match cell[0]:
-                case 'O':
-                    obstacles.append(ObstacleDescription("O" + str(len(obstacles)), Node(coords=(x, y))))
-                case 'A':
-                    agents.append(AgentDescription(cell, "T" + cell[1:], Node(coords=(x, y))))
-                case 'T':
-                    objectives.append(ObjectiveDescription(cell, Node(coords=(x, y))))
-
-    return graph, agents + obstacles + objectives
-
-
-def validate_map_representation(map_representation):
-    rows = len(map_representation)
-    cols = len(map_representation[0])
-    agents = set()
-    objectives = set()
-
-    for i in range(rows):
-        if len(map_representation[i]) != cols:
-            raise InvalidElementException("Mismatch between rows lengths")
-
-    for x in range(cols):
-        for y in range(rows):
-            cell = map_representation[x][y].strip()
-            match cell[0]:
-                case "" | "O":
-                    pass
-                case "A":
-                    _register_id(agents, cell, x, y, "agent")
-                case "T":
-                    _register_id(objectives, cell, x, y, "objective")
-                case _:
-                    raise InvalidElementException(f"Unrecognized cell content: {cell} at ({x}, {y})")
-
-    if agents != objectives:
-        if len(agents) > len(objectives):
-            raise InvalidElementException(f"Missing objective for the agents with IDs: "
-                                          f"{list(agents.difference(objectives))}")
-        else:
-            if len(agents) > len(objectives):
-                raise InvalidElementException(f"Missing agent for the objectives with IDs: "
-                                              f"{list(objectives.difference(agents))}")
-
-
-def _register_id(id_group, cell, x, y, label):
-    try:
-        entity_id = int(cell[1:])
-        if entity_id < 0:
-            raise InvalidElementException(f"Invalid negative ID: {entity_id} at ({x}, {y})")
-        if entity_id in id_group:
-            raise InvalidElementException(f"Duplicate {label} {id} inserted at ({x}, {y})")
-
-        id_group.add(entity_id)
-    except ValueError:
-        raise InvalidElementException(f"Unrecognized cell content: {cell} at ({x}, {y})")
-
-
-def _generate_grid_representation(rows: int, cols: int, entities: list[EntityDescription]) -> list[list[str]]:
-    map_representation = [[" " for _ in range(cols)] for _ in range(rows)]
-
-    for entity in entities:
-        if not entity.has_start_position():
-            raise InvalidElementException(f"Entity {entity} has no start position")
-        if entity.__class__.__name__ == "AgentDescription":
-            position = entity.start_position
-            map_representation[position.x][position.y] = "A" + entity.name[1:].strip()
-        elif entity.__class__.__name__ == "ObjectiveDescription":
-            position = entity.start_position
-            map_representation[position.x][position.y] = "T" + entity.name[1:].strip()
-        elif entity.__class__.__name__ == "ObstacleDescription":
-            position = entity.start_position
-            map_representation[position.x][position.y] = "O"
-        else:
-            raise InvalidElementException(f"Invalid entity found")
-
-    return map_representation
-
-
 def to_human_readable_dict(test: TestDescription):
     dictionary = test.to_dict()
     match test.graph.__class__.__name__:
@@ -109,8 +16,8 @@ def to_human_readable_dict(test: TestDescription):
             dictionary["graph"].update({"rows": test.graph.rows,
                                         "cols": test.graph.cols})
             try:
-                grid = MapRepresentation(_generate_grid_representation(test.graph.rows, test.graph.cols, test.entities))
-                dictionary["graph"].update({"map": grid})
+                map_conversion = MapRepresentation.from_entities(test.graph.rows, test.graph.cols, test.entities)
+                dictionary["graph"].update({"map": map_conversion})
                 dictionary.pop("entities")
             except InvalidElementException:
                 dictionary["entities"] = test.to_dict().get["entities"]
@@ -140,61 +47,150 @@ def from_human_readable_dict(dictionary) -> TestDescription:
         case "UndirectedGraph":
             graph = UndirectedGraph(dictionary["graph"]["edges"])
         case "GridGraph":
-            if dictionary["graph"]["map"]:
-                graph, entities = extract_grid_information(dictionary["graph"]["map"].representation)
-            else:
-                graph = GridGraph(dictionary["graph"]["rows"], dictionary["graph"]["cols"])
+            graph = GridGraph(dictionary["graph"]["rows"], dictionary["graph"]["cols"])
+            entities += dictionary["graph"]["map"].entities
         case _:
             raise InvalidElementException(f"Error in graph representation in dictionary")
 
-    if dictionary["graph"]["type"] != "grid" and "map" not in dictionary["graph"]:
+    if "entities" in dictionary:
         entities = [EntityDescription.from_dict(entity) for entity in dictionary["entities"]]
 
     return TestDescription(test_name, graph, entities)
 
 
 class MapRepresentation:
-    def __init__(self, representation):
+    def __init__(self, representation : list[list[str]]):
+        MapRepresentation.validate_map_representation(representation)
         self._representation = representation
+        self._entities = self._extract_entities(representation)
 
     @property
-    def representation(self):
+    def representation(self) -> list[list[str]]:
         return self._representation
 
     @property
-    def rows(self):
+    def rows(self) -> int:
         return len(self._representation)
 
     @property
-    def cols(self):
+    def cols(self) -> int:
         return len(self._representation[0])
 
-    def pretty_print(self):
-        print()
-        print('{0: <3}|'.format(" "), end="")
-        for i in range(self.cols):
-            print('{0: <3}|'.format(i), end="")
-        print()
+    @property
+    def entities(self) -> list[EntityDescription]:
+        return self._entities
 
-        for i, line in enumerate(self.representation):
-            print('{0: <3}|'.format(i), end="")
+    @staticmethod
+    def validate_map_representation(representation):
+        rows = len(representation)
+        cols = len(representation[0])
+        agents = set()
+        objectives = set()
+
+        for i in range(rows):
+            if len(representation[i]) != cols:
+                raise InvalidElementException("Mismatch between rows lengths")
+
+        for x in range(rows):
+            for y in range(cols):
+                cell = representation[x][y].strip()
+
+                if cell == "":
+                    continue
+                match cell[0]:
+                    case "O":
+                        pass
+                    case "A":
+                        MapRepresentation._register_id(agents, cell, x, y, "agent")
+                    case "T":
+                        MapRepresentation._register_id(objectives, cell, x, y, "objective")
+                    case _:
+                        raise InvalidElementException(f"Unrecognized cell content: {cell} at ({x}, {y})")
+
+        if agents != objectives:
+            if len(agents) > len(objectives):
+                raise InvalidElementException(f"Missing objective for the agents with IDs: "
+                                              f"{list(agents.difference(objectives))}")
+            else:
+                if len(agents) > len(objectives):
+                    raise InvalidElementException(f"Missing agent for the objectives with IDs: "
+                                                  f"{list(objectives.difference(agents))}")
+
+    @staticmethod
+    def _register_id(id_group: set[int], cell_content: str, x: int, y: int, label: str) -> None:
+        try:
+            entity_id = int(cell_content[1:])
+            if entity_id < 0:
+                raise InvalidElementException(f"Invalid negative ID: {entity_id} at ({x}, {y})")
+            if entity_id in id_group:
+                raise InvalidElementException(f"Duplicate {label} {id} inserted at ({x}, {y})")
+
+            id_group.add(entity_id)
+        except ValueError:
+            raise InvalidElementException(f"Unrecognized cell content: {cell_content} at ({x}, {y})")
+
+    @staticmethod
+    def from_entities(rows: int, cols: int, entities: list[EntityDescription]):
+        map_representation = [[" " for _ in range(cols)] for _ in range(rows)]
+
+        for entity in entities:
+            if not entity.has_start_position():
+                raise InvalidElementException(f"Entity {entity} has no start position")
+            if entity.__class__.__name__ == "AgentDescription":
+                position = entity.start_position
+                map_representation[position.x][position.y] = "A" + entity.name[1:].strip()
+            elif entity.__class__.__name__ == "ObjectiveDescription":
+                position = entity.start_position
+                map_representation[position.x][position.y] = "T" + entity.name[1:].strip()
+            elif entity.__class__.__name__ == "ObstacleDescription":
+                position = entity.start_position
+                map_representation[position.x][position.y] = "O"
+            else:
+                raise InvalidElementException(f"Invalid entity found")
+
+        MapRepresentation.validate_map_representation(map_representation)
+        return MapRepresentation(map_representation)
+
+    def __str__(self):
+        string = ""
+
+        for line in self.representation:
+            string += "|"
             for cell in line:
-                print('{0: <3}|'.format(cell.strip()), end="")
-            print()
+                string += cell.strip().center(5, " ") + "|"
+
+            string += "|\n"
+
+        return string
+
+    @staticmethod
+    def _extract_entities(representation) -> list[EntityDescription]:
+        rows = len(representation)
+        cols = len(representation[0])
+
+        agents = []
+        obstacles = []
+        objectives = []
+
+        for x in range(rows):
+            for y in range(cols):
+                cell = representation[x][y].strip()
+                if len(cell) == 0:
+                    continue
+
+                match cell[0]:
+                    case 'O':
+                        obstacles.append(ObstacleDescription("O" + str(len(obstacles)), Node(coords=(x, y))))
+                    case 'A':
+                        agents.append(AgentDescription(cell, "T" + cell[1:], Node(coords=(x, y))))
+                    case 'T':
+                        objectives.append(ObjectiveDescription(cell, Node(coords=(x, y))))
+
+        return agents + obstacles + objectives
 
     @staticmethod
     def representer(dumper, data):
-        serialized = ""
-        representation = data.representation
-
-        for line in representation:
-            serialized += "|"
-            for cell in line:
-                serialized += cell.strip().center(5, " ") + "|"
-
-            serialized += "|\n"
-
-        return dumper.represent_scalar("!Map", serialized, style="|")
+        return dumper.represent_scalar("!Map", str(data), style="|")
 
     @staticmethod
     def constructor(loader, node):
