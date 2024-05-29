@@ -13,6 +13,9 @@ class Action(object):
         self._end_position = end_position
         self._description = description
 
+    def __str__(self) -> str:
+        return "timestep: " + str(self.timestep) + " | Entity: " + self.subject + " | Position: " + str(self.start_position) + " | target:  " + str(self.end_position)  
+
     @property
     def timestep(self):
         return self._timestep
@@ -38,7 +41,7 @@ class Action(object):
     @property
     def description(self):
         return self._description
-
+    
     def to_dict(self):
         dictionary = {"type": self.__class__.__name__,
                       "timestep": self.timestep,
