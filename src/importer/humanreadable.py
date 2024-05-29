@@ -1,3 +1,5 @@
+import yaml
+
 from description.benchmarkdescription import TestDescription
 from description.entity_description import ObstacleDescription, AgentDescription, ObjectiveDescription, \
     EntityDescription
@@ -16,7 +18,6 @@ def extract_grid_information(map_representation):
 
     for x in range(rows):
         for y in range(cols):
-
             cell = map_representation[x][y].strip()
             if len(cell) == 0:
                 continue
@@ -108,9 +109,8 @@ def to_human_readable_dict(test: TestDescription):
             dictionary["graph"].update({"rows": test.graph.rows,
                                         "cols": test.graph.cols})
             try:
-                grid = _generate_grid_representation(test.graph.rows, test.graph.cols, test.entities)
-                grid_list = [str(line) for line in grid]
-                dictionary["graph"].update({"map": grid_list})
+                grid = MapRepresentation(_generate_grid_representation(test.graph.rows, test.graph.cols, test.entities))
+                dictionary["graph"].update({"map": grid})
                 dictionary.pop("entities")
             except InvalidElementException:
                 dictionary["entities"] = test.to_dict().get["entities"]
@@ -135,15 +135,13 @@ def from_human_readable_dict(dictionary) -> TestDescription:
     entities = []
 
     match dictionary["graph"]["type"]:
-        case "directed":
+        case "DirectedGraph":
             graph = Graph.from_dict(dictionary["graph"])
-        case "undirected":
+        case "UndirectedGraph":
             graph = UndirectedGraph(dictionary["graph"]["edges"])
-        case "grid":
+        case "GridGraph":
             if dictionary["graph"]["map"]:
-                graph, entities = _generate_grid_representation(dictionary["graph"]["rows"],
-                                                                dictionary["graph"]["cols"],
-                                                                dictionary["graph"]["map"])
+                graph, entities = extract_grid_information(dictionary["graph"]["map"].representation)
             else:
                 graph = GridGraph(dictionary["graph"]["rows"], dictionary["graph"]["cols"])
         case _:
@@ -153,3 +151,63 @@ def from_human_readable_dict(dictionary) -> TestDescription:
         entities = [EntityDescription.from_dict(entity) for entity in dictionary["entities"]]
 
     return TestDescription(test_name, graph, entities)
+
+
+class MapRepresentation:
+    def __init__(self, representation):
+        self._representation = representation
+
+    @property
+    def representation(self):
+        return self._representation
+
+    @property
+    def rows(self):
+        return len(self._representation)
+
+    @property
+    def cols(self):
+        return len(self._representation[0])
+
+    def pretty_print(self):
+        print()
+        print('{0: <3}|'.format(" "), end="")
+        for i in range(self.cols):
+            print('{0: <3}|'.format(i), end="")
+        print()
+
+        for i, line in enumerate(self.representation):
+            print('{0: <3}|'.format(i), end="")
+            for cell in line:
+                print('{0: <3}|'.format(cell.strip()), end="")
+            print()
+
+    @staticmethod
+    def representer(dumper, data):
+        serialized = ""
+        representation = data.representation
+
+        for line in representation:
+            serialized += "|"
+            for cell in line:
+                serialized += cell.strip().center(5, " ") + "|"
+
+            serialized += "|\n"
+
+        return dumper.represent_scalar("!Map", serialized, style="|")
+
+    @staticmethod
+    def constructor(loader, node):
+        map_str = loader.construct_scalar(node)
+        lines = map_str.strip().split("||")
+
+        map_representation = []
+
+        # Remove empty list produced by splitting
+        del lines[-1]
+
+        for line in lines:
+            # [1::] to remove newline at the beginning
+            map_representation.append(line.split("|")[1::])
+
+        return MapRepresentation(map_representation)
