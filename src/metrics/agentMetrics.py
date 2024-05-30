@@ -24,3 +24,11 @@ class AgentMetrics():
     @property
     def numberOfMove(self):
         return self.numOfMove
+    
+    def to_dict(self):
+        return  {
+            "agentName" : self.agent,
+            "timeToReachTarget" : self.timeToReachTarget,
+            "numberOfWait" : self.numberOfWait,
+            "numberOfMove" : self.numberOfMove,
+        }
