@@ -27,11 +27,15 @@ def graph():
                   ])
 
 
-def test_description():
-    return TestDescription("Test1", graph(), entity_list())
+def generate_default_test(test_name: str) -> TestDescription:
+    return TestDescription(test_name, graph(), entity_list())
 
 
-def test_run():
+def test_description() -> TestDescription:
+    return generate_default_test("Test1")
+
+
+def test_run() -> TestRun:
     return TestRun.from_dict({'test_description':
                                   {'name': 'Test1',
                                    'graph': {'type': 'Graph',

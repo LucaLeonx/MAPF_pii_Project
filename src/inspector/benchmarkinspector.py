@@ -1,3 +1,4 @@
+from connection.connectionconfig import TCPConnectionConfig, ConnectionConfig
 from connection.message import Message
 from connection.socket import ClientSocket
 from description.benchmarkdescription import TestDescription
@@ -6,7 +7,7 @@ from exceptions import ElementNotFoundException, CustomException
 
 
 class BenchmarkInspector(object):
-    def __init__(self, connection_config):
+    def __init__(self, connection_config: ConnectionConfig = TCPConnectionConfig(host='localhost', port=9361)):
         self._socket = ClientSocket(connection_config)
         self._test_recorders = []
 
@@ -16,7 +17,10 @@ class BenchmarkInspector(object):
     # "submit_result"
 
     def start(self):
-        self._socket.start()
+        self._socket.open()
+
+    def stop(self):
+        self._socket.close()
 
     def request_test(self, name):
 

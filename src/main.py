@@ -1,6 +1,9 @@
 #!/usr/bin/python3
+import globals
+from cli import commands
 from result.testrun import TestRun
 from metrics.testMetrics import TestMetrics
+
 
 # Main file of MAPF Benchmark
 
@@ -8,6 +11,7 @@ def main():
     print("Hello, MAPF Benchmark!")
     metrics = TestMetrics(test_run())
     metrics.bruteForce()
+
 
 def test_run():
     return TestRun.from_dict({'test_description':
@@ -34,11 +38,16 @@ def test_run():
                                    'description': 'Appear'},
                                   {'type': 'AppearAction', 'timestep': 0, 'subject': 'A2', 'end_position': {'index': 2},
                                    'description': 'Appear'},
-                                  {'type': 'AppearAction', 'timestep': 0, 'subject': 'A3', 'end_position': {'index': 3},'description': 'Appear'},
-                                  {'type': 'MoveAction', 'timestep': 1, 'subject': 'A1', 'start_position': {'index': 1},'end_position': {'index': 2}, 'description': 'Move'},
-                                  {'type': 'MoveAction', 'timestep': 1, 'subject': 'A2', 'start_position': {'index': 2},'end_position': {'index': 1}, 'description': 'Move'},
-                                  {'type': 'MoveAction', 'timestep': 1, 'subject': 'A3', 'start_position': {'index': 3},'end_position': {'index': 4}, 'description': 'Move'},
-                                  {'type': 'WaitAction', 'timestep': 2, 'subject': 'A2', 'start_position': {'index': 3},'description': 'Wait'},
+                                  {'type': 'AppearAction', 'timestep': 0, 'subject': 'A3', 'end_position': {'index': 3},
+                                   'description': 'Appear'},
+                                  {'type': 'MoveAction', 'timestep': 1, 'subject': 'A1', 'start_position': {'index': 1},
+                                   'end_position': {'index': 2}, 'description': 'Move'},
+                                  {'type': 'MoveAction', 'timestep': 1, 'subject': 'A2', 'start_position': {'index': 2},
+                                   'end_position': {'index': 1}, 'description': 'Move'},
+                                  {'type': 'MoveAction', 'timestep': 1, 'subject': 'A3', 'start_position': {'index': 3},
+                                   'end_position': {'index': 4}, 'description': 'Move'},
+                                  {'type': 'WaitAction', 'timestep': 2, 'subject': 'A2', 'start_position': {'index': 3},
+                                   'description': 'Wait'},
                                   {'type': 'DisappearAction', 'timestep': 2, 'subject': 'A1',
                                    'description': 'Disappear'},
                                   {'type': 'AppearAction', 'timestep': 3, 'subject': 'T3',
@@ -50,9 +59,6 @@ def test_run():
                                    'end_position': {'index': 13}, 'description': 'MoveUp'}],
                               'is_solved': False})
 
+
 if __name__ == "__main__":
     main()
-    
-
-
-    

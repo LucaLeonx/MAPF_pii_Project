@@ -32,7 +32,4 @@ class TestRecord(object):
             raise OperationAlreadyDoneException("Test already done")
 
     def get_results(self) -> list[TestRun]:
-        if self.is_done():
-            return self._results
-        else:
-            raise ElementNotAvailableException("Test has not result yet")
+        return self._results

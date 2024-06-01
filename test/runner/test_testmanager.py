@@ -36,10 +36,8 @@ class TestTestManager:
         assert not test_manager.all_tests_done()
 
     # TODO: Problem: if 3 instances of a test are needed, but 3 are assigned,
-    # I can still assign it, even if not done
-    # Problem with parallel execution.
-    # Solution: keep track of the number of times a test has been assigned, rank entries based on the difference
-    # between assignments and missing results (use negatives only if a result doesn't arrive yet)
+    # the random tester won't assign any test. However, if results don't arrive,
+    # the runner may wait indefinitely. Solution, ask the users to rerun the missed tests.
 
     def test_getters_of_description(self, test_manager):
         record = test_manager.get_test_record_by_name("Test3")
