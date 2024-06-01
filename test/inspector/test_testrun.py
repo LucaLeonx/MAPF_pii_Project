@@ -1,5 +1,3 @@
-import pytest
-
 import globals
 from description.entity_description import AgentDescription
 from description.map.graph import Node

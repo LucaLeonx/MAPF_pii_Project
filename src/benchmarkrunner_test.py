@@ -20,7 +20,7 @@ from description.map.graph import Node, Edge, Graph
 
 if __name__ == '__main__':
     benchmark_description = BenchmarkDescription("Benchmark", {globals.generate_default_test("Test1"): 2})
-    results = commands.run_benchmark(benchmark_description)
+    results = commands.execute_benchmark(benchmark_description)
 
     for result_list in results.values():
         for result in result_list:

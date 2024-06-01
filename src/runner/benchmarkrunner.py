@@ -5,7 +5,7 @@ from description.benchmarkdescription import BenchmarkDescription
 from result.testrun import TestRun
 from commanddispatcher import CommandDispatcher
 from connection.message import Message
-from connection.socket import ServerSocket
+from connection.c_socket import ServerSocket
 from exceptions import CustomException
 from runner.testmanager import TestManager
 
@@ -27,34 +27,27 @@ class BenchmarkRunner(object):
         return self._benchmark
 
     def start_benchmark(self):
-        # Initialization
         self._socket.open()
-        # request = None
-        # self._stop_event = False
+        print("Benchmark started")
 
         while not self._test_manager.all_tests_done():
-            # Wait for message, or stop if received stop_benchmark()
-            #while not self._socket.poll(timeout=1000):
-            #    if self._stop_event:
-            #        self._socket.close()
-            #        return
-
             request = self._socket.receive_message()
-
-        # Try to execute command and determine response
+            response = None
             try:
                 result = self._command_dispatcher.execute(request.title, request.content)
                 response = Message("OK", result)
             except (AttributeError, CustomException) as e:
                 print("Exception returned: " + str(e))
                 response = Message("Error", str(e))
-            # Send response
-            self._socket.send_message(response)
+            finally:
+                self._socket.send_message(response)
+                print("response sent")
 
         # End communication
         self._socket.close()
 
     def stop_benchmark(self):
+        self._socket.close()
         self._stop_event = True
 
     def get_results(self) -> dict[str, list[TestRun]]:

@@ -1,14 +1,22 @@
+from connection.connectionconfig import TCPConnectionConfig
 from connection.message import Message
-from connection.serversocket import ServerSocket
-from connection.tcpconnectionconfig import TCPConnectionConfig
+from connection.c_socket import ServerSocket
 
 if __name__ == '__main__':
     print('Server started', flush=True)
 
     server_socket = ServerSocket(TCPConnectionConfig("localhost", 11115))
-    server_socket.start()
+    server_socket.open()
 
     while True:
-        request = server_socket.receive_message()
-        response = Message("Reversed message", str(request.get_content())[::-1])
-        server_socket.send_message(response)
+        try:
+            request = server_socket.receive_message()
+            response = Message("Reversed message", str(request.content)[::-1])
+            server_socket.send_message(response)
+        except KeyboardInterrupt:
+            print("Ctrl+C pressed")
+            server_socket.close()
+            break
+
+    print("Finished")
+

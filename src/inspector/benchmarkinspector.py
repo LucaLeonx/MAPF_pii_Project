@@ -1,6 +1,6 @@
 from connection.connectionconfig import TCPConnectionConfig, ConnectionConfig
 from connection.message import Message
-from connection.socket import ClientSocket
+from connection.c_socket import ClientSocket
 from description.benchmarkdescription import TestDescription
 from inspector.testinspector import TestInspector
 from exceptions import ElementNotFoundException, CustomException

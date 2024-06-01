@@ -1,28 +1,22 @@
-from asyncio import Event
+import asyncio
+from asyncio import Event, CancelledError
 from concurrent.futures import ThreadPoolExecutor
 
 from description.benchmarkdescription import BenchmarkDescription
 from runner.benchmarkrunner import BenchmarkRunner
 
 
-def run_benchmark(benchmark: BenchmarkDescription):
-    runner = BenchmarkRunner(benchmark)
-    executor = ThreadPoolExecutor(max_workers=1)
-    stop_event = Event()
-    print("Server started")
+async def run_benchmark(runner: BenchmarkRunner):
+    runner.start_benchmark()
 
-    result = executor.submit(runner.run_benchmark)
+
+def execute_benchmark(benchmark: BenchmarkDescription):
+    benchmark_runner = BenchmarkRunner(benchmark)
 
     try:
-        while not result.done():
-            print("Waiting for results from inspectors...")
+        benchmark_runner.start_benchmark()
     except KeyboardInterrupt:
-        print("Server interrupted by user")
-        # stop_event.set()
-        runner.stop_benchmark()
-        executor.shutdown(wait=False, cancel_futures=True)
+        print("Benchmark Interrupted by user")
+        benchmark_runner.stop_benchmark()
     finally:
-        print("Finishing...")
-        runner.stop_benchmark()
-        return runner.get_results()
-
+        return benchmark_runner.get_results()
