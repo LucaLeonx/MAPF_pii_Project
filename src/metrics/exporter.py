@@ -6,6 +6,6 @@ class Exporter():
 
     def export_to_CSV(self, dictionary : dict):
         with open('out.csv','w',newline='') as csvFile:
-            writer = csv.DictWriter(csvFile,dictionary.keys())
+            writer = csv.DictWriter(csvFile, dictionary.keys())
             writer.writeheader()
             writer.writerow()

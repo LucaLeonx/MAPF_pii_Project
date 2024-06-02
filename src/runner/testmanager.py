@@ -1,4 +1,4 @@
-from random import random
+import random
 
 from description.benchmarkdescription import TestDescription
 from exceptions import ElementNotFoundException
@@ -29,12 +29,15 @@ class TestManager:
         finished_test.register_result(result)
 
     def get_random_unassigned_test(self) -> TestDescription:
-        unassigned_tests = [test for test in self._test_records if not test.is_done()]
+        available_tests = [test for test in self._test_records if not test.all_iterations_assigned()]
 
-        if not unassigned_tests:
+        # if not available_tests:
+        #    available_tests = [test for test in self._test_records if not test.is_done()]
+
+        if not available_tests:
             raise ElementNotFoundException("All tests have been assigned")
 
-        return random.choice(unassigned_tests)
+        return random.choice(available_tests)
 
     def all_tests_done(self) -> bool:
         return all(test.is_done() for test in self._test_records)

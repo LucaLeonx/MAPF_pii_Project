@@ -8,6 +8,7 @@ class TestRecord(object):
         self._results = []
         self._test = test
         self._remaining_occurrences = occurrences
+        self._assigned_times = 0
 
     @property
     def test(self) -> TestDescription:
@@ -21,8 +22,18 @@ class TestRecord(object):
     def remaining_occurrences(self) -> int:
         return self._remaining_occurrences
 
+    @property
+    def assigned_times(self) -> int:
+        return self._assigned_times
+
     def is_done(self) -> bool:
         return self._remaining_occurrences == 0
+
+    def all_iterations_assigned(self) -> bool:
+        return self._assigned_times >= self._remaining_occurrences
+
+    def increment_assignment_count(self) -> None:
+        self._assigned_times += 1
 
     def register_result(self, result) -> None:
         if not self.is_done():
