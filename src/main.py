@@ -5,6 +5,7 @@ import globals
 from cli import commands
 from importer import humanreadable
 from importer.humanreadable import MapRepresentation
+from metrics.exporter import Exporter
 from result.testrun import TestRun
 from metrics.testMetrics import TestMetrics
 
@@ -27,11 +28,18 @@ def main():
         for test_result in result:
             result_list.append(test_result.to_dict())
 
-    # metrics = TestMetrics(results["GridTest"][0])
-    # metrics.run()
+    result_for_metrics = results["GridTest"][0]
+    print(yaml.dump(result_for_metrics.to_dict(), default_flow_style=False))
+    metrics = TestMetrics(result_for_metrics)
+    metrics.run()
+    print(metrics.to_dict())
 
     with open("results.yaml", "w") as results_file:
         results_file.write(yaml.dump(result_list, indent=4, sort_keys=False))
+
+    Exporter.export_to_csv(metrics.to_dict())
+
+    print("Benchmark Complete!")
 
 
 def test_run():

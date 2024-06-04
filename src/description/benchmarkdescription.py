@@ -2,12 +2,12 @@ from description.entity_description import *
 from description.map.graph import Graph
 from exceptions import DuplicateElementException, EmptyElementException, InvalidElementException
 
-from typing import Any, List
+from typing import Any, List, Dict
 
 
 class TestDescription:
 
-    def __init__(self, name: str, graph: Graph, entities: list[EntityDescription]):
+    def __init__(self, name: str, graph: Graph, entities: List[EntityDescription]):
         if name.strip() == "":
             raise EmptyElementException("Test name cannot be empty")
 
@@ -24,22 +24,22 @@ class TestDescription:
         return self._graph
 
     @property
-    def entities(self) -> list[EntityDescription]:
+    def entities(self) -> List[EntityDescription]:
         return self._entities
 
     def _get_entities_by_class(self, selected_class):
         return [entity for entity in self._entities if isinstance(entity, selected_class)]
 
     @property
-    def agents(self) -> list[AgentDescription]:
+    def agents(self) -> List[AgentDescription]:
         return self._get_entities_by_class(AgentDescription)
 
     @property
-    def obstacles(self) -> list[ObstacleDescription]:
+    def obstacles(self) -> List[ObstacleDescription]:
         return self._get_entities_by_class(ObstacleDescription)
 
     @property
-    def objectives(self) -> list[ObjectiveDescription]:
+    def objectives(self) -> List[ObjectiveDescription]:
         return self._get_entities_by_class(ObjectiveDescription)
 
     def __eq__(self, other):
@@ -87,11 +87,11 @@ class BenchmarkDescription:
         return self._name
 
     @property
-    def tests(self) -> list[TestDescription]:
+    def tests(self) -> List[TestDescription]:
         return list(self._tests.keys())
 
     @property
-    def test_occurrences(self) -> dict[TestDescription, int]:
+    def test_occurrences(self) -> Dict[TestDescription, int]:
         return self._tests
 
     def get_test_by_name(self, test_name) -> TestDescription:
@@ -107,13 +107,13 @@ class BenchmarkDescription:
 
         return string
 
-    def to_dict(self) -> dict[str, Any]:
+    def to_dict(self) -> Dict[str, Any]:
         return {"name": self._name,
                 "test_occurrences": dict(map(lambda item: (item[0].name, item[1]), self.test_occurrences.items())),
                 "tests": [test.to_dict() for test in self.tests]}
 
     @staticmethod
-    def from_dict(dictionary: dict[str, Any]):
+    def from_dict(dictionary: Dict[str, Any]):
         tests = [TestDescription.from_dict(test) for test in dictionary["tests"]]
         test_occurrences = dict()
 

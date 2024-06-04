@@ -1,6 +1,6 @@
 import importlib
 from math import floor, sqrt
-from typing import Any
+from typing import Any, Dict
 
 from exceptions import EmptyElementException, InvalidElementException, ElementNotFoundException
 
@@ -157,7 +157,7 @@ class Edge:
     def __str__(self):
         return f"({self.start_node}, {self.end_node} | {self.weight})"
 
-    def to_dict(self) -> dict[str, Any]:
+    def to_dict(self) -> Dict[str, Any]:
         return {"start_node": self.start_node.to_dict(),
                 "end_node": self._end_node.to_dict(),
                 "weight": self._weight}
@@ -224,7 +224,7 @@ class Node:
     def __str__(self):
         return f"{self.index} [{self.x}, {self.y}]"
 
-    def to_dict(self, use_coords=True) -> dict[str, Any]:
+    def to_dict(self, use_coords=True) -> Dict[str, Any]:
         if not use_coords:
             return {"index": self._index}
         else:
