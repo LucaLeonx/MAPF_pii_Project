@@ -1,6 +1,6 @@
-import yaml
+from typing import Any
 
-from description.benchmarkdescription import TestDescription
+from description.benchmarkdescription import TestDescription, BenchmarkDescription
 from description.entity_description import ObstacleDescription, AgentDescription, ObjectiveDescription, \
     EntityDescription
 from description.map.graph import Graph, Edge, Node, GridGraph, UndirectedGraph
@@ -37,7 +37,7 @@ def to_human_readable_dict(test: TestDescription):
     return dictionary
 
 
-def from_human_readable_dict(dictionary) -> TestDescription:
+def from_human_readable_dict(dictionary: dict) -> TestDescription:
     test_name = dictionary["name"]
     entities = []
 
@@ -58,8 +58,28 @@ def from_human_readable_dict(dictionary) -> TestDescription:
     return TestDescription(test_name, graph, entities)
 
 
+def convert_to_human_readable_dict(benchmark: BenchmarkDescription) -> dict[str, Any]:
+    dictionary = benchmark.to_dict()
+    converted_tests = []
+    for test in benchmark.tests:
+        converted_tests.append(to_human_readable_dict(test))
+
+    dictionary["tests"] = converted_tests
+
+    return dictionary
+
+
+def convert_from_human_readable_dict(dictionary: dict[str, Any]) -> BenchmarkDescription:
+    test_occurrences = {}
+    for test_dict in dictionary["tests"]:
+        converted_test = from_human_readable_dict(test_dict)
+        test_occurrences.update({converted_test: dictionary["test_occurrences"][converted_test.name]})
+
+    return BenchmarkDescription(dictionary["name"], test_occurrences)
+
+
 class MapRepresentation:
-    def __init__(self, representation : list[list[str]]):
+    def __init__(self, representation: list[list[str]]):
         MapRepresentation.validate_map_representation(representation)
         self._representation = representation
         self._entities = self._extract_entities(representation)

@@ -1,4 +1,4 @@
-from typing import Dict, List
+from typing import Dict, List, Any
 
 from connection.connectionconfig import ConnectionConfig, TCPConnectionConfig
 from description.benchmarkdescription import BenchmarkDescription
@@ -61,11 +61,11 @@ class BenchmarkRunner(object):
         test_description = self._test_manager.get_test_with_name(test_name)
         return test_description.to_dict()
 
-    def request_random_test(self):
+    def request_random_test(self, content=None):
         test_description = self._test_manager.get_random_unassigned_test()
         return test_description.to_dict()
 
-    def submit_result(self, result_dict):
+    def submit_result(self, result_dict: dict[str, Any]):
         result = TestRun.from_dict(result_dict)
         self._test_manager.record_test_result(result)
         return ""

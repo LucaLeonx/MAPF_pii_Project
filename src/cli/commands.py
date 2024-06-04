@@ -18,5 +18,9 @@ def execute_benchmark(benchmark: BenchmarkDescription):
     except KeyboardInterrupt:
         print("Benchmark Interrupted by user")
         benchmark_runner.stop_benchmark()
+    except Exception as e:
+        print(e)
     finally:
         return benchmark_runner.get_results()
+
+

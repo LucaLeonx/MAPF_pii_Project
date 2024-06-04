@@ -37,7 +37,8 @@ class TestManager:
         if not available_tests:
             raise ElementNotFoundException("All tests have been assigned")
 
-        return random.choice(available_tests)
+        chosen_test = random.choice(available_tests)
+        return chosen_test.test
 
     def all_tests_done(self) -> bool:
         return all(test.is_done() for test in self._test_records)

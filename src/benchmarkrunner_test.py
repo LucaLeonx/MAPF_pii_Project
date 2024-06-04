@@ -19,13 +19,19 @@ from description.entity_description import ObstacleDescription, AgentDescription
 from description.map.graph import Node, Edge, Graph
 
 if __name__ == '__main__':
-    benchmark_description = BenchmarkDescription("Benchmark", {globals.generate_default_test("Test1"): 2})
-    results = commands.execute_benchmark(benchmark_description)
+    benchmark_description = BenchmarkDescription("Benchmark", {globals.generate_default_test("Test1"): 2,
+                                                               globals.generate_default_test("Test2"): 1})
+    runner = BenchmarkRunner(benchmark_description)
+    runner.start_benchmark()
 
+    results = runner.get_results()
+
+    print(results)
     for result_list in results.values():
         for result in result_list:
-            print(yaml.dump(result.to_dict(), indent=4, sort_keys=False))
+            string = yaml.dump(result.to_dict(), indent=4, sort_keys=False)
 
-    print("Printing results done")
+    print("Saving results done")
+
     sys.exit()
 

@@ -224,7 +224,7 @@ class Node:
     def __str__(self):
         return f"{self.index} [{self.x}, {self.y}]"
 
-    def to_dict(self, use_coords=False) -> dict[str, Any]:
+    def to_dict(self, use_coords=True) -> dict[str, Any]:
         if not use_coords:
             return {"index": self._index}
         else:

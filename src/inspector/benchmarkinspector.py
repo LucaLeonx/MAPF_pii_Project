@@ -43,7 +43,7 @@ class BenchmarkInspector(object):
     def request_random_test(self):
         self._socket.send_message(Message("request_random_test", ""))
         response = self._socket.receive_message()
-
+        print(response)
         if response.title == "Error":
             raise ElementNotFoundException("No test is not available")
         else:

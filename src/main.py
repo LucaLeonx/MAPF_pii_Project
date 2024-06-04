@@ -1,6 +1,10 @@
 #!/usr/bin/python3
+import yaml
+
 import globals
 from cli import commands
+from importer import humanreadable
+from importer.humanreadable import MapRepresentation
 from result.testrun import TestRun
 from metrics.testMetrics import TestMetrics
 
@@ -8,9 +12,26 @@ from metrics.testMetrics import TestMetrics
 # Main file of MAPF Benchmark
 
 def main():
+    yaml.SafeDumper.add_representer(MapRepresentation, MapRepresentation.representer)
+    yaml.SafeLoader.add_constructor("!Map", MapRepresentation.constructor)
     print("Hello, MAPF Benchmark!")
-    metrics = TestMetrics(test_run())
-    metrics.bruteForce()
+    benchmark_description = None
+    with open("sample_benchmark.yaml", "r") as bench_file:
+        bench_dict = yaml.safe_load(bench_file)
+        benchmark_description = humanreadable.convert_from_human_readable_dict(bench_dict)
+
+    results = commands.execute_benchmark(benchmark_description)
+    print(results)
+    result_list = []
+    for result in results.values():
+        for test_result in result:
+            result_list.append(test_result.to_dict())
+
+    # metrics = TestMetrics(results["GridTest"][0])
+    # metrics.run()
+
+    with open("results.yaml", "w") as results_file:
+        results_file.write(yaml.dump(result_list, indent=4, sort_keys=False))
 
 
 def test_run():

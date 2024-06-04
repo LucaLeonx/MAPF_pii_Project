@@ -1,7 +1,7 @@
 import yaml
 import pytest
 
-from description.benchmarkdescription import TestDescription
+from description.benchmarkdescription import TestDescription, BenchmarkDescription
 from description.map.graph import GridGraph
 from importer import humanreadable
 from importer.humanreadable import MapRepresentation
@@ -49,6 +49,10 @@ class TestHumanReadable:
         test_again = humanreadable.from_human_readable_dict(dictionary)
         print(test_again.name, test_again.graph.rows, test_again.graph.cols)
         print(test_again.to_dict())
+        benchmark = BenchmarkDescription("Benchmark_Example", {test_again: 2})
+        with open("benchmark.yaml", "w") as file:
+            file.write(yaml.safe_dump(humanreadable.convert_to_human_readable_dict(benchmark), indent=4,
+                                      sort_keys=False))
 
 
 def pretty_dump_yaml(test):
