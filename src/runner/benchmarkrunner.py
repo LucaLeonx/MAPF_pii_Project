@@ -2,7 +2,7 @@ from typing import Dict, List, Any
 
 from connection.connectionconfig import ConnectionConfig, TCPConnectionConfig
 from description.benchmarkdescription import BenchmarkDescription
-from result.testrun import TestRun
+from result.testrun import TestRun, BenchmarkRun
 from commanddispatcher import CommandDispatcher
 from connection.message import Message
 from connection.c_socket import ServerSocket
@@ -41,7 +41,6 @@ class BenchmarkRunner(object):
                 response = Message("Error", str(e))
             finally:
                 self._socket.send_message(response)
-                print("response sent")
 
         # End communication
         self._socket.close()
@@ -50,8 +49,8 @@ class BenchmarkRunner(object):
         self._socket.close()
         self._stop_event = True
 
-    def get_results(self) -> dict[str, list[TestRun]]:
-        return self._test_manager.get_results()
+    def get_results(self) -> BenchmarkRun:
+        return BenchmarkRun(self.get_benchmark(), self._test_manager.get_results())
 
     @staticmethod
     def ping():

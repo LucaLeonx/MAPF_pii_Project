@@ -93,9 +93,11 @@ class TestMetrics:
 
     def to_dict(self):
         return {
-            "TestRun": self.testReference.to_dict(),
-            "Collision Detected": [collision.to_dict() for collision in self.collisions],
+            "TestName": self.testReference.name,
+            "Number of collisions": len(self.collisions),
             "Makespan": self.makeSpan,
             "Sum of Costs": self.sumOfCosts,
             "Medium cost": self.mediumCost,
+            "Collisions": [collision.to_dict() for collision in self.collisions],
+            "TestRun": self.testReference.to_dict()
         }

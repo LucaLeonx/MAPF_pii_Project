@@ -3,8 +3,8 @@ import pytest
 
 from description.benchmarkdescription import TestDescription, BenchmarkDescription
 from description.map.graph import GridGraph
-from importer import humanreadable
-from importer.humanreadable import MapRepresentation
+from cli import humanreadable
+from cli.humanreadable import MapRepresentation
 
 
 class TestHumanReadable:

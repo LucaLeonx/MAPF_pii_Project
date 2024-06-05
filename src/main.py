@@ -1,10 +1,8 @@
 #!/usr/bin/python3
 import yaml
 
-import globals
-from cli import commands
-from importer import humanreadable
-from importer.humanreadable import MapRepresentation
+from cli import cli_commands, humanreadable, cli_interface
+from cli.humanreadable import MapRepresentation
 from metrics.exporter import Exporter
 from result.testrun import TestRun
 from metrics.testMetrics import TestMetrics
@@ -12,7 +10,7 @@ from metrics.testMetrics import TestMetrics
 
 # Main file of MAPF Benchmark
 
-def main():
+def _main():
     yaml.SafeDumper.add_representer(MapRepresentation, MapRepresentation.representer)
     yaml.SafeLoader.add_constructor("!Map", MapRepresentation.constructor)
     print("Hello, MAPF Benchmark!")
@@ -42,7 +40,7 @@ def main():
     print("Benchmark Complete!")
 
 
-def test_run():
+def _test_run():
     return TestRun.from_dict({'test_description':
                                   {'name': 'Test1',
                                    'graph': {'type': 'Graph',
@@ -88,6 +86,5 @@ def test_run():
                                    'end_position': {'index': 13}, 'description': 'MoveUp'}],
                               'is_solved': False})
 
-
 if __name__ == "__main__":
-    main()
+    cli_interface.mapfbench()

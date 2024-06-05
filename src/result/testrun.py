@@ -1,6 +1,6 @@
-from typing import Any
+from typing import Any, Dict
 
-from description.benchmarkdescription import TestDescription
+from description.benchmarkdescription import TestDescription, BenchmarkDescription
 from result.action import Action
 
 
@@ -36,3 +36,34 @@ class TestRun(TestDescription):
                        [Action.from_dict(action) for action in dictionary["action_list"]],
                        dictionary["is_solved"])
 
+
+class BenchmarkRun(BenchmarkDescription):
+    def __init__(self, benchmark_description, results: dict[str, list[TestRun]]):
+        super().__init__(benchmark_description.name, benchmark_description.test_occurrences)
+        self._results = results
+
+    @property
+    def results(self):
+        return self._results
+
+    @property
+    def result_list(self):
+        return sum(self.results.values(), [])
+
+    def to_dict(self) -> dict[str, Any]:
+        dictionary = super().to_dict()
+        test_results = {}
+        for test_name, test_iterations in self.results.items():
+            test_results.update({test_name: [test_run.to_dict() for test_run in test_iterations]})
+
+        dictionary["results"] = test_results
+        return dictionary
+
+    @staticmethod
+    def from_dict(dictionary: Dict[str, Any]):
+        benchmark_description = BenchmarkDescription.from_dict(dictionary)
+        results = {}
+        for test_name, test_run_list in dictionary["results"].items():
+            results.update({test_name: [TestRun.from_dict(test_run) for test_run in test_run_list]})
+
+        return BenchmarkRun(benchmark_description, results)

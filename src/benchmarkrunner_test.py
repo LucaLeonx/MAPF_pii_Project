@@ -3,7 +3,7 @@ import sys
 import yaml
 
 import globals
-from cli import commands
+from cli import cli_commands
 from description.benchmarkdescription import BenchmarkDescription
 from runner.benchmarkrunner import BenchmarkRunner
 from connection.connectionconfig import TCPConnectionConfig
