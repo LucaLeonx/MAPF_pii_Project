@@ -13,6 +13,7 @@
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Installation" href="installation.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -77,7 +78,7 @@ must instrument it.</p>
 (or, at least, with python bindings)</p>
 </div>
 <p>In the next section, we will try to make a program run a simple benchmark,
-available at [/examples/simple_benchmark.txt]</p>
+available in the <code class="docutils literal notranslate"><span class="pre">/examples/simple_benchmark.txt</span></code> folder</p>
 <p>where the agent A1 needs to reach the objective T1</p>
 <p>First of all, we need to create a BenchmarkInspector.
 Inside the main code of the program:</p>
@@ -87,8 +88,7 @@ Inside the main code of the program:</p>
 </pre></div>
 </div>
 <p>Then, we need to request a test from the BenchmarkRunner.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="n">test</span> <span class="o">=</span> <span class="n">benchmark_inspector</span><span class="o">.</span><span class="n">request_random_test</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">test</span> <span class="o">=</span> <span class="n">benchmark_inspector</span><span class="o">.</span><span class="n">request_random_test</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Now we can access the information about the test.
@@ -122,7 +122,22 @@ the inspector takes already care of that</p>
 </section>
 <section id="running-the-benchmark">
 <h2>Running the benchmark<a class="headerlink" href="#running-the-benchmark" title="Link to this heading">¶</a></h2>
-<p>Now we need to run the benchmark.</p>
+<p>Now we need to run the benchmark. In order to do this,
+we use the library command line utility.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mapfbench<span class="w"> </span>run<span class="w"> </span>simple_benchmark.yaml
+</pre></div>
+</div>
+<p>This command will start a BenchmarkRunner which will serve the tests
+in the simple_benchmark.yaml file. By default, the BenchmarkRunner
+communicates with the BenchmarkInspectors on localhost, port 9361.</p>
+<p>Now we can run or MAPF program and wait for the results.
+As soon as the results are received, in the same folder there will be
+two new files:</p>
+<ul class="simple">
+<li><p>[timestamp]_SampleBenchmark_results.yaml, containing the plans computed by the program</p></li>
+<li><p>[timestamp]_SampleBenchmark_metrics.csv, containing the metrics associated with the plan</p></li>
+</ul>
+<p>The benchmark run is now complete</p>
 </section>
 </section>
 
@@ -143,14 +158,21 @@ the inspector takes already care of that</p>
 
 
 <h3>Navigation</h3>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="INSTALL.html">Installation</a></li>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Your first benchmark</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-benchmarking-workflow">The benchmarking workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#instrumenting-a-program">Instrumenting a program</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-the-benchmark">Running the benchmark</a></li>
+</ul>
+</li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="installation.html" title="previous chapter">Installation</a></li>
   </ul></li>
 </ul>
 </div>

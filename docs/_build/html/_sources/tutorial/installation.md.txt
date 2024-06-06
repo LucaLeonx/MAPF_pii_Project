@@ -34,8 +34,8 @@ Install the package from the corresponding wheel using `pip`
 :::{error}
 The following command works only if the repository is public.
 Since it isn't the case, it is recommended to manually
-download the wheel from
-https://github.com/LucaLeonx/MAPF_pii_Project/blob/main/dist/mapfbench-1.0-py3-none-any.whl
+download [the wheel from
+the repository](https://github.com/LucaLeonx/MAPF_pii_Project/blob/main/dist/mapfbench-1.0-py3-none-any.whl)
 and install with:
 ```shell
 pip install -U /path/to/downloaded/file
