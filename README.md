@@ -1,6 +1,6 @@
 # MAPFbench
 
-MAPFBench is a simple tool that simplifies the benchmarking of 
+MAPFbench is a simple tool that simplifies the benchmarking of 
 algorithms' implementations for the [Multi Agent Path Finding (MAPF) 
 problem](https://en.wikipedia.org/wiki/Multi-agent_pathfinding).
 
