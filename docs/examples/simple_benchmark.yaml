@@ -1,0 +1,13 @@
+name: SimpleBenchmark
+test_occurrences:
+    SimpleTest: 1
+tests:
+-   name: SimpleTest
+    graph:
+        type: GridGraph
+        rows: 3
+        cols: 3
+        map: !Map |
+            |     |     |     ||
+            |  A1 |     | T1  ||
+            |     |     |     ||

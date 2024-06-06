@@ -15,7 +15,7 @@ def _main():
     yaml.SafeLoader.add_constructor("!Map", MapRepresentation.constructor)
     print("Hello, MAPF Benchmark!")
     benchmark_description = None
-    with open("sample_benchmark.yaml", "r") as bench_file:
+    with open("../docs/examples/multi_iteration_benchmark.yaml", "r") as bench_file:
         bench_dict = yaml.safe_load(bench_file)
         benchmark_description = humanreadable.convert_from_human_readable_dict(bench_dict)
 
