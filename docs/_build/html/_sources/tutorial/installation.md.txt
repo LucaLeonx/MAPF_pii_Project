@@ -22,7 +22,7 @@ On Linux and MacOS
 $ source .venv/bin/activate
 ```
 
-:::{}
+:::{seealso}
 *venv* https://docs.python.org/3/library/venv.html
 :::
 
