@@ -54,7 +54,7 @@ class BenchmarkRun(BenchmarkDescription):
         dictionary = super().to_dict()
         test_results = {}
         for test_name, test_iterations in self.results.items():
-            test_results.update({test_name: [test_run.to_dict() for test_run in test_iterations]})
+            test_results.update({test_name: [test_run.to_dict()["action_list"] for test_run in test_iterations]})
 
         dictionary["results"] = test_results
         return dictionary
