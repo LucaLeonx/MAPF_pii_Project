@@ -30,7 +30,7 @@ iterations of the same test
 
 ## License
 This project is published under GPLv3 License.
-See [LICENSE.md](LICENSE.md)
+See [LICENSE.md](LICENSE.txt)
 
 ## Authors
 - Stefano Lanza
