@@ -47,7 +47,7 @@ At the moment, it is possible to instruments scripts in Python only
 :::
 
 In the next section, we will try to make a program run a simple benchmark,
-available at [/examples/simple_benchmark.txt]
+available in the `/examples/simple_benchmark.txt` folder
 
 
 
@@ -65,7 +65,6 @@ benchmark_inspector = mapfbench.BenchmarkInspector()
 Then, we need to request a test from the BenchmarkRunner.
 
 ```python
-
 test = benchmark_inspector.request_random_test()
 ```
 
@@ -104,7 +103,24 @@ benchmark_inspector.submit_result(test)
 
 ## Running the benchmark
 
-Now we need to run the benchmark. 
+Now we need to run the benchmark. In order to do this,
+we use the library command line utility.
+
+```shell
+mapfbench run simple_benchmark.yaml
+```
+
+This command will start a BenchmarkRunner which will serve the tests
+in the simple_benchmark.yaml file. By default, the BenchmarkRunner 
+communicates with the BenchmarkInspectors on localhost, port 9361.
+
+Now we can run or MAPF program and wait for the results.
+As soon as the results are received, in the same folder there will be
+two new files:
+- [timestamp]_SampleBenchmark_results.yaml, containing the plans computed by the program
+- [timestamp]_SampleBenchmark_metrics.csv, containing the metrics associated with the plan
+
+The benchmark run is now complete
 
 
 

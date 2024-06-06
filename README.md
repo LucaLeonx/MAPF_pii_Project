@@ -22,11 +22,11 @@ iterations of the same test
 - Currently, the tool supports Python programs only
 
 ## Documentation
-- [Installation](docs/tutorial/INSTALL.md)
+- [Installation](docs/tutorial/installation.md)
 - [Quickstart](docs/tutorial/introduction.md)
-- [Example benchmarks] TBD
-- [Project report]  TBD
-- [Full documentation] TBD
+- [Example benchmarks](docs/examples)
+- [Full documentation](docs/_build/html/index.html)
+- Project report: available soon
 
 ## License
 This project is published under GPLv3 License.
