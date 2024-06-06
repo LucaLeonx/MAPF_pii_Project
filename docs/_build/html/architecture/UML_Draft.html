@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Design UML, spiegazione &#8212; MAPFbench documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
+    <script src="../_static/documentation_options.js?v=2709fde1"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="design-uml-spiegazione">
+<h1>Design UML, spiegazione<a class="headerlink" href="#design-uml-spiegazione" title="Link to this heading">¶</a></h1>
+<p>Il diagramma è realizzato con <a class="reference external" href="https://plantuml.com">PlantUML</a>. C’è anche un editor online
+sulla pagina del progetto.</p>
+<section id="caveat">
+<h2>Caveat<a class="headerlink" href="#caveat" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Vengono prese come riferimento per le strutture dati le Collections di Java.
+Dovranno essere sostituite con i loro equivalenti in C++</p></li>
+</ul>
+</section>
+<section id="spiegazioni-classi">
+<h2>Spiegazioni classi<a class="headerlink" href="#spiegazioni-classi" title="Link to this heading">¶</a></h2>
+<section id="graph-e-node-graphfactory">
+<h3>Graph e Node, GraphFactory<a class="headerlink" href="#graph-e-node-graphfactory" title="Link to this heading">¶</a></h3>
+<p>Rappresenta la mappa come grafo diretto, costituito da Node. Ogni Node è identificato
+univocamente in una mappa dalla sua posizione (un intero), ed ha una lista di adiacenza.
+Nodi in mappe diverse possono presentare la stessa posizione.
+Si assume che la mappa e i nodi siano immutabili (per modificare una mappa esistente,
+bisogna ricrearla da zero).
+La classe GraphFactory semplifica la creazione di grafi di tipo diverso (es. griglie)</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>_Possibili miglioramenti_: in questa classe e in quelle esterne, per identificare 
+un nodo si fa riferimento direttamente alla sua posizione. Potrebbero esserci
+strategie migliori (usare i puntatori all&#39;oggetto, forse). Inoltre, potrebbe essere utile
+un&#39;implementazione da libreria esterna (es. [Boost Library](https://www.boost.org/doc/libs/1_84_0/libs/graph/doc/adjacency_list.html) )
+</pre></div>
+</div>
+</section>
+<section id="separazione-tra-definizione-ed-esecuzione">
+<h3>Separazione tra definizione ed esecuzione<a class="headerlink" href="#separazione-tra-definizione-ed-esecuzione" title="Link to this heading">¶</a></h3>
+<p>L’idea alla base di questa architettura è la separazione tra:</p>
+<ul class="simple">
+<li><p>I test case su cui provare gli algoritmi, definiti in maniera generale. Essi risultano sostanzialmente immutabili</p></li>
+<li><p>Le classi che restituiscono i risultati dei test. Questi si occuperanno di eseguire
+effettivamente l’algoritmo e analizzarne i risultati.</p></li>
+</ul>
+</section>
+<section id="entity">
+<h3>Entity<a class="headerlink" href="#entity" title="Link to this heading">¶</a></h3>
+<p>Rappresenta un’entità fisica presente sul grafo. È mutabile.
+La loro posizione è opzionale, in quanto potrebbero comparire dopo sulla mappa
+(se si utilizzano azioni AppearAction o DisappearAction)</p>
+<p><em>Possibili miglioramenti</em>: Creare due classi separate EntityInfo ed Entity, di cui
+una rappresenta solo le informazioni su un’entità, l’altra serve per simulare
+le sue posizioni dopo le varie azioni. In tale ottica, si potrebbe
+addirittura sostituire la classe Entity con la classe immutabile EntityState,
+che indica lo stato e la posizione di un’entità in un dato istante di tempo;
+le Action non agirebbero mutando le singole entità, bensì producendo un nuovo EntityState.
+Si tratta di un approccio più funzionale. EntityState potrebbe anche implementare
+le singole azioni, si potrebbe usare lo State design pattern.
+Inoltre, la posizione opzionale sarebbe necessaria solo in fase di simulazione,
+potrebbe non essere necessario definire tutte le entità prima del test.</p>
+</section>
+<section id="test-e-benchmark">
+<h3>Test e Benchmark<a class="headerlink" href="#test-e-benchmark" title="Link to this heading">¶</a></h3>
+<p>La classe Test rappresenta un singolo caso di Test. Esso risulta caratterizzato da:</p>
+<ul class="simple">
+<li><p>graph, il grafo della mappa del test</p></li>
+<li><p>entitiesInfo, una lista delle entità da definire</p></li>
+</ul>
+<p>Un Benchmark non è altro che una collezione di Test</p>
+</section>
+<section id="testrun">
+<h3>TestRun<a class="headerlink" href="#testrun" title="Link to this heading">¶</a></h3>
+<p>Una TestRun rappresenta l’esecuzione di un caso di Test ed il suo risultato.
+Quest’ultimo è rappresentato da una lista di Action, intraprese dai singoli agenti.
+Inoltre, al termine di quest’ultimo, vengono calcolate le metriche definite
+dalla classe Metric.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>_Possibili Miglioramenti_: 
+- Potrebbe essere necessario ritoccare l&#39;interfaccia nel caso si vogliano eseguire più test
+in parallelo.
+- Fare il profiling dell&#39;esecuzione del codice potrebbe richiedere modificare la 
+classe (forse solo all&#39;interno). Ad ogni modo, fare profiling dei programmi
+dall&#39;esterno è molto complicato, quindi le informazioni che si otterrebbero 
+sarebbero generiche. Librerie utili in tal senso: [EasyProfiler](https://github.com/yse/easy_profiler)
+e [gperftools](https://github.com/gperftools/gperftools)
+</pre></div>
+</div>
+</section>
+<section id="action">
+<h3>Action<a class="headerlink" href="#action" title="Link to this heading">¶</a></h3>
+<p>Rappresenta una possibile azione eseguita da un’entità. È caratterizzata dal timestep
+in cui avviene e dall’entità cui viene applicata. L’implementazione come classe
+astratta è per motivi di riuso, andrebbe bene anche un’interfaccia.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>_Possibili miglioramenti_: implementare una classe ActionList che permetta
+di filtrare le azioni per Entity che le esegue e timestep.
+</pre></div>
+</div>
+</section>
+<section id="metric">
+<h3>Metric<a class="headerlink" href="#metric" title="Link to this heading">¶</a></h3>
+<p>Interfaccia astratta che calcola una metrica. Riceve in ingresso da TestRun o BenchmarkRun
+tutte le informazioni necessarie e restituisce il risultato aggregato. La scelta
+dell’interfaccia è per offrire maggiore libertà nell’implementazione</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>_Possibili miglioramenti_: vedere se si può applicare in maniera più ragionata 
+il pattern Observer
+</pre></div>
+</div>
+</section>
+<section id="benchmarkrun">
+<h3>BenchmarkRun<a class="headerlink" href="#benchmarkrun" title="Link to this heading">¶</a></h3>
+<p>Raccoglie insieme più TestRun, su cui poter calcolare Metrics aggregate.</p>
+</section>
+<section id="cosa-manca-e-possibili-miglioramenti">
+<h3>Cosa manca e possibili miglioramenti<a class="headerlink" href="#cosa-manca-e-possibili-miglioramenti" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Potrebbe essere necessario riorganizzare i metodi presenti nelle classi
+per rendere l’invocazione più logica (es. la classe Test ha il metodo run()
+per eseguire un dato test e produrre una TestRun. Uno dei parametri del
+metodo potrebbe essere l’algoritmo).</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">MAPFbench</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/INSTALL.html">Installation</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Stefano Lanza, Luca Leonzio.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="../_sources/architecture/UML_Draft.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

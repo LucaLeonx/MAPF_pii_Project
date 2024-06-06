@@ -1,6 +1,6 @@
 # MAPFbench
 
-MAPFbench is a simple tool that simplifies the benchmarking of 
+MAPFBench is a simple tool that simplifies the benchmarking of 
 algorithms' implementations for the [Multi Agent Path Finding (MAPF) 
 problem](https://en.wikipedia.org/wiki/Multi-agent_pathfinding).
 
@@ -22,15 +22,15 @@ iterations of the same test
 - Currently, the tool supports Python programs only
 
 ## Documentation
-- [Installation](docs/tutorial/installation.md)
-- [Quickstart](docs/tutorial/introduction.md)
-- [Example benchmarks](docs/examples)
-- [Full documentation](docs/_build/html/index.html)
-- Project report: available soon
+- [Installation](tutorial/INSTALL.md)
+- [Quickstart](tutorial/QUICKSTART.md)
+- [Example benchmarks](docs
+- [Project report](docs
+- [Full documentation](docs
 
 ## License
 This project is published under GPLv3 License.
-See [LICENSE.txt](LICENSE.txt)
+See [LICENSE.md](LICENSE.md)
 
 ## Authors
 - Stefano Lanza

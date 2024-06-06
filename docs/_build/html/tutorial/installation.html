@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Installation &#8212; MAPFbench documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
+    <script src="../_static/documentation_options.js?v=2709fde1"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Your first benchmark" href="introduction.html" />
+    <link rel="prev" title="MAPFbench" href="../index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h1>
+<p>It is assumed that <a class="reference external" href="https://www.python.org/">Python 3.8 or above</a> has been installed
+on the system.</p>
+<section id="create-a-virtual-environment">
+<h2>Create a virtual environment<a class="headerlink" href="#create-a-virtual-environment" title="Link to this heading">¶</a></h2>
+<p>Before proceeding with installation,
+it is recommended to create a virtual environment
+where to install this and other packages:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+</pre></div>
+</div>
+<p>Then activate it. In Windows Powershell:</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">PS </span><span class="n">C</span><span class="p">:\&gt;</span> <span class="p">.</span><span class="n">venv</span><span class="p">/</span><span class="n">bin</span><span class="p">/</span><span class="n">Activate</span><span class="p">.</span><span class="n">ps1</span>
+</pre></div>
+</div>
+<p>On Linux and MacOS</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+</pre></div>
+</div>
+</section>
+<section id="install-the-package">
+<h2>Install the package<a class="headerlink" href="#install-the-package" title="Link to this heading">¶</a></h2>
+<p>Install the package from the corresponding wheel using <code class="docutils literal notranslate"><span class="pre">pip</span></code></p>
+<p>{manual-installation}</p>
+<div class="admonition error">
+<p class="admonition-title">Error</p>
+<p>The following command works only if the repository is public.
+Since it isn’t the case, it is recommended to manually
+download the wheel from
+https://github.com/LucaLeonx/MAPF_pii_Project/blob/main/dist/mapfbench-1.0-py3-none-any.whl
+and install with:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>/path/to/downloaded/file
+</pre></div>
+</div>
+</div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>mapfbench<span class="w"> </span>@<span class="w"> </span>git+https://github.com/LucaLeonx/MAPF_pii_Project#subdirectory<span class="o">=</span>dist
+</pre></div>
+</div>
+<p>Check that the command line tools are correctly installing by running:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>mapfbench<span class="w"> </span>--help
+</pre></div>
+</div>
+<p>to show the default help message</p>
+</section>
+<section id="build-from-source">
+<h2>Build from source<a class="headerlink" href="#build-from-source" title="Link to this heading">¶</a></h2>
+<p>Clone the project repository</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/LucaLeonx/MAPF_pii_Project.git
+</pre></div>
+</div>
+<p>Install dependencies, including optional ones</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>Mapf_pii_Project
+<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>.<span class="o">[</span>build,<span class="w"> </span>test,<span class="w"> </span>docs<span class="o">]</span>
+</pre></div>
+</div>
+<p>This project is packaged using <a class="reference external" href="https://pypi.org/project/setuptools/">setuptools</a>
+To generate the packages, from outside the project directory</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>build<span class="w"> </span>./MAPF_pii_Project
+</pre></div>
+</div>
+<p>Now the packaged wheel is available under MAPF_pii_Project/dist and can be
+manually installed</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>./MAPF_pii_Project/dist/mapfbench-1.0-py3-none-any.whl
+</pre></div>
+</div>
+<p>To build the HTML version of the documentation using <a class="reference external" href="https://www.sphinx-doc.org/en/master/index.html">Sphinx</a> run</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sphinx-build<span class="w"> </span>-M<span class="w"> </span>html<span class="w"> </span>./MAPF_pii_Project/docs<span class="w"> </span>./MAPF_pii_Project/docs/_build
+</pre></div>
+</div>
+<p>The documentation will be available under ./MAPF_pii_Project/docs/_build
+and is written using <a class="reference external" href="https://myst-parser.readthedocs.io/en/latest/">MyST Markdown dialect</a></p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">MAPFbench</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#create-a-virtual-environment">Create a virtual environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-the-package">Install the package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build-from-source">Build from source</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Your first benchmark</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../index.html" title="previous chapter">MAPFbench</a></li>
+      <li>Next: <a href="introduction.html" title="next chapter">Your first benchmark</a></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Stefano Lanza, Luca Leonzio.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="../_sources/tutorial/installation.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

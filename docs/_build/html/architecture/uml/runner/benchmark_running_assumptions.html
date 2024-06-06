@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Client Server Communication - design choices &#8212; MAPFbench documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/alabaster.css?v=12dfc556" />
+    <script src="../../../_static/documentation_options.js?v=2709fde1"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="client-server-communication-design-choices">
+<h1>Client Server Communication - design choices<a class="headerlink" href="#client-server-communication-design-choices" title="Link to this heading">¶</a></h1>
+<p>Two components are required to run the tests</p>
+<ul class="simple">
+<li><p>Runner (Server): Provides the tests to the executors</p></li>
+<li><p>Inspector (Client) : Requests the tests to the Runner and records the result provided by the executor</p></li>
+</ul>
+<p>We assume that each executor uses the same program (algorithm).
+Different algorithms should be analyzed in different benchmark runs
+One component should be in charge of appending the algorithm label to each TestResult,
+if comparing data from different benchmarks</p>
+<p>The server provides one or more tests according to
+the preferences of the client (even all of them).
+The same test must be provided only once.</p>
+<p>After having issued all the tests, the server closes.
+The clients are informed of this by their own connection</p>
+<section id="server-commands">
+<h2>Server Commands<a class="headerlink" href="#server-commands" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>ping() : Ping the server</p></li>
+<li><p>request_test(testName) : Returns the TestDescription with the given name</p></li>
+<li><p>request_random_test() : Return one random test not assigned</p></li>
+<li><p>assign_test(testName) : Get one test assigned (don’t return the value)</p></li>
+<li><p>submit_result(testName) : Submit the result of the given test. A test must be assigned before submitting
+its result.</p></li>
+</ul>
+<p>Requests are sent by inserting in the title the command to run, and the corresponding parameters in the content
+of the message. Any misuse of the server commands will produce an error message (title: “Error”, content: “Error description)
+Correct response will return messages titled “OK”, with the content containing the requested payload</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">MAPFbench</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/INSTALL.html">Installation</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Stefano Lanza, Luca Leonzio.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="../../../_sources/architecture/uml/runner/benchmark_running_assumptions.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
