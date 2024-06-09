@@ -3,7 +3,6 @@ import yaml
 
 from cli import cli_commands, humanreadable, cli_interface
 from cli.humanreadable import MapRepresentation
-from metrics.exporter import Exporter
 from result.testrun import TestRun
 from metrics.testMetrics import TestMetrics
 

@@ -1,12 +1,11 @@
 {% import 'node.jinja' as node_formatter %}
-
-{%- macro format(action, use_coords=False) -%}
-    action: {{action.type}}
+{% macro format(action, use_coords=False) %}
+  action: {{action.type}}
     subject: {{ action.subject }}
     timestep: {{ action.timestep }}
     start_position: {{ node_formatter.format(action.start_position, use_coords) }}
     end_position: {{ node_formatter.format(action.end_position, use_coords) }}
-    {%- if action.description -%}
+    {% if action.description %}
     description: {{ action.description }}
-    {%- endif -%}
-{%- endmacro -%}
+    {% endif %}
+{% endmacro %}

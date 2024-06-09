@@ -38,7 +38,8 @@ def execute_benchmark(benchmark_description):
 def export_benchmark_results(benchmark_results, output):
     _setup_yaml()
     with open(output + '.yaml', 'w') as output_file:
-        output_file.write(yaml.dump(benchmark_results.to_dict(), indent=4, sort_keys=False))
+        # output_file.write(yaml.dump(benchmark_results.to_dict(), indent=4, sort_keys=False))
+        output_file.write(formatter.export_benchmark_run_to_yaml(benchmark_results))
 
 
 def import_benchmark_results(path):

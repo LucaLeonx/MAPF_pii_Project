@@ -1,7 +1,7 @@
 {%- macro format(node, use_coords=False) -%}
-    {%- if use_coords -%}
-        ({{ node.x }}, {{ node.y }})
-    {%- else -%}
-        {{ node.index }}
-    {%- endif -%}
+{%- if use_coords -%}
+({{ node.x }}, {{ node.y }})
+{%- else -%}
+{{ node.index }}
+{%- endif -%}
 {%- endmacro -%}}

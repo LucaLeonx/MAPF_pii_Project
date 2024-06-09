@@ -1,7 +1,7 @@
 from description.benchmarkdescription import TestDescription, BenchmarkDescription
 from description.entity_description import ObstacleDescription, AgentDescription, ObjectiveDescription
 from description.map.graph import Node, Edge, Graph
-from result.testrun import TestRun
+from result.testrun import TestRun, BenchmarkRun
 
 
 def entity_list():
@@ -88,3 +88,7 @@ def benchmark_description():
 
 def empty_benchmark():
     return BenchmarkDescription("Empty", {test_description(): 1})
+
+
+def benchmark_run():
+    return BenchmarkRun(benchmark_description(), {"Test1": [test_run()]})

@@ -42,7 +42,7 @@ class TestMetrics:
         for agent in self.testReference.agents:
             agentMetric = AgentMetrics(agent, self.take_actions_by_agent(agent.name))
             self.agentMetricsList.append(agentMetric)
-        self.run()
+        self.evaluate()
 
     def take_actions_by_agent(self, agentName) -> list[Action]:
         return [action for action in self.actionsWithoutAgent if action.subject == agentName]
@@ -94,6 +94,7 @@ class TestMetrics:
     def to_dict(self):
         return {
             "TestName": self.testReference.name,
+            "Solved": self.testReference.is_solved,
             "Number of collisions": len(self.collisions),
             "Makespan": self.makeSpan,
             "Sum of Costs": self.sumOfCosts,

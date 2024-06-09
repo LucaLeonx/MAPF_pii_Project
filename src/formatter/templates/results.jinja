@@ -1,16 +1,20 @@
-{%- extends 'benchmark.jinja' -%}
+{% extends 'benchmark.jinja' %}
 {% import 'action.jinja' as action_formatter %}
-{{ super(benchmark_run) }}
-{%- for test_name, test_iterations in benchmark_run.results.items() -%}
-    {%- for iteration in test_iterations -%}
-        test: {{ test_name }}
-        iteration: {{ loop.index }}
-        action_list: {%- for action in iteration.action_list -%}
-            {%- if(iteration.test_description.graph.rows is defined -%}
-                {{ action_formatter.format(action, use_coords=True) }}
-            {%- else -%}
-                {{ action_formatter.format(action) }}
-        {%- endfor -%}
-        {%- block conflicts -%}{%- endblock -%}
-    {%- endfor -%}
-{%- endfor -%}
+{% block results %}
+results:
+{% for test_name, test_iterations in benchmark.results.items() %}
+    {% for iteration in test_iterations %}
+    test: {{ test_name }}
+    iteration: {{ loop.index }}
+    action_list:
+        {% for action in iteration.action_list %}
+            {% if iteration.test_description.graph.rows is defined %}
+            - {{ action_formatter.format(action, use_coords=True) }}
+            {% else %}
+            - {{ action_formatter.format(action) }}
+            {% endif %}
+        {% endfor %}
+        {% block conflicts %}{% endblock %}
+    {% endfor %}
+{% endfor %}
+{% endblock %}

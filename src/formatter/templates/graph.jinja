@@ -1,21 +1,20 @@
 {% import 'edge.jinja' as edge_formatter %}
-{%- macro format(graph, use_coords=False) -%}
-    {% if graph.rows is defined -%}
+{% macro format(graph, use_coords=False) %}
+    {%- if graph.rows is defined -%}
         type: GridGraph
         rows: {{ graph.rows }}
         cols: {{ graph.cols }}
     {%- elif graph.undirected_edges is defined -%}
         type: "UndirectedGraph"
         edges:
-        {# Keep this formatting (e.g. use of -%) for other lists as well #}
-        {% for edge in graph.undirected_edges -%}
+        {% for edge in graph.undirected_edges %}
             - {{edge_formatter.format(edge, use_coords)}}
         {% endfor %}
     {%- else -%}
         type: "DirectedGraph"
         edges:
-        {% for edge in graph.edges -%}
+        {% for edge in graph.edges %}
             - {{edge_formatter.format(edge, use_coords)}}
-        {% endfor %}
+        {%- endfor -%}
     {%- endif -%}
-{%- endmacro -%}}
+{% endmacro %}}

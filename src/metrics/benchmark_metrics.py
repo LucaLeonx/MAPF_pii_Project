@@ -7,7 +7,7 @@ class BenchmarkMetrics(BenchmarkRun):
     def __init__(self, benchmark_run):
         super().__init__(benchmark_run.benchmark_description, benchmark_run.results)
         self._aggregate_metrics = []
-        for test_name, test_iterations in benchmark_run.results:
+        for test_name, test_iterations in benchmark_run.results.items():
             self._aggregate_metrics.append(AggregateMetrics(test_name, test_iterations))
 
     @property
@@ -32,7 +32,7 @@ class AggregateMetrics:
         self._iterations_metrics = []
         self._aggregate_metrics = {}
         self._calculating_functions = CommandDispatcher(
-            {"Iterations number": self.iterations_num,
+            {"Iterations number": self._get_iterations_num,
              "Average MakeSpan": self._avg_makespan,
              "Average Sum of Costs": self._avg_sum_of_costs,
              "Number of successes": self._success_num,
@@ -61,9 +61,8 @@ class AggregateMetrics:
     def to_dict(self):
         if not self._aggregate_metrics:
             self.evaluate()
-
-        dictionary = self._aggregate_metrics
-        dictionary.update({"Test name": self._test_name})
+        dictionary = {"Test name": self._test_name}
+        dictionary.update(self._aggregate_metrics)
         return dictionary
 
     def _generate_test_metrics(self):
@@ -74,8 +73,11 @@ class AggregateMetrics:
 
     def evaluate(self):
         for function in self._calculating_functions.function_names:
-            result = self._calculating_functions.execute(function, self)
+            result = self._calculating_functions.execute(function)
             self._aggregate_metrics.update({function: result})
+
+    def _get_iterations_num(self):
+        return self.iterations_num
 
     def _avg_makespan(self):
         return sum([metric.to_dict()["Makespan"] for metric in self.iterations_metrics]) / self.iterations_num
@@ -84,8 +86,9 @@ class AggregateMetrics:
         return sum([metric.to_dict()["Sum of Costs"] for metric in self.iterations_metrics]) / self.iterations_num
 
     def _success_num(self):
-        return sum([metric.to_dict()["Number of collisions"] for metric in self.iterations_metrics
-                    if metric.to_dict()["Number of collisions"] == 0])
+        return sum([1 for metric in self.iterations_metrics
+                    if metric.to_dict()["Solved"] and
+                    metric.to_dict()["Number of collisions"] == 0])
 
     def _success_rate(self):
         return self._success_num() / self.iterations_num

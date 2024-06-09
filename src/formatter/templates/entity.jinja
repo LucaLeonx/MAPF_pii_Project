@@ -2,31 +2,32 @@
 
 {%- macro _entity_format(entity, use_coords=False) -%}
     name: {{ entity.name }}
-{%- if entity.has_start_position() %}
+{% if entity.has_start_position() %}
           start_position: {{ node_formatter.format(entity.start_position, use_coords) }}
-{%- endif %}
+{% endif %}
+{% if entity.objective_name is defined %}
           objective_name: {{ entity.objective_name }}
-
+{% endif -%} {# add extra - on the left to remove space between agents #}
 {%- endmacro -%}
 
 
 {%- macro format(test, use_coords=False, map_size=None) -%}
     {%- if map_size -%}
-        disposition: !Map |
-        {% for line in MapRepresentation.from_entities(test.graph.rows, test.graph.cols, test.entities).to_lines() -%}
+        placement: !Map |
+        {%- for line in MapRepresentation.from_entities(test.graph.rows, test.graph.cols, test.entities).to_lines() -%}
             {{ line }}
-        {% endfor %}
-    {%- else -%}
+        {%- endfor -%}
+    {%- else %}
         agents:
-        {% for agent in test.agents -%}
+        {% for agent in test.agents %}
         - {{ _entity_format(agent, use_coords) }}
-        {% endfor -%}
+        {% endfor %}
         objectives:
-        {% for objective in test.objectives -%}
+        {% for objective in test.objectives %}
         - {{ _entity_format(objective, use_coords) }}
-        {% endfor -%}
+        {% endfor %}
         obstacles:
-        {% for obstacle in test.obstacles -%}
+        {% for obstacle in test.obstacles %}
         - {{ _entity_format(obstacle, use_coords) }}
         {% endfor -%}
     {%- endif -%}
