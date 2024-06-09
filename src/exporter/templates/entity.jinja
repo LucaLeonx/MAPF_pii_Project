@@ -1,0 +1,31 @@
+{% import 'node.jinja' as node_formatter %}
+
+{%- macro _entity_format(entity, use_coords=False) -%}
+    name: {{ entity.name }}
+{%- if entity.has_start_position() %}
+          start_position: {{ node_formatter.format(entity.start_position, use_coords) }}
+{%- endif -%}
+{%- if entity.objective_name is defined %}
+          objective_name: {{ entity.objective_name }}
+{%- endif -%}
+{%- endmacro -%}
+
+{%- macro format(agents, objectives, obstacles, use_coords=False, map_size=None) -%}
+    {%- if disposition -%}
+        {{ str(MapRepresentation.from_entities(map_size[0], map_size[1], agents + objectives + obstacles )) }}
+    {%- else -%}
+        agents:
+        {% for agent in agents -%}
+        - {{ _entity_format(agent, use_coords) }}
+        {% endfor -%}
+        objectives:
+        {% for objective in objectives -%}
+        - {{ _entity_format(objective, use_coords) }}
+        {% endfor -%}
+        obstacles:
+        {% for obstacle in obstacles -%}
+        - {{ _entity_format(obstacle, use_coords) }}
+        {% endfor -%}
+    {%- endif -%}
+{%- endmacro -%}
+

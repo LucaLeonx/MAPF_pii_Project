@@ -117,6 +117,10 @@ class GridGraph(UndirectedGraph):
     def cols(self):
         return self._cols
 
+    @property
+    def dimensions(self):
+        return self.rows, self.cols
+
     def to_dict(self):
         return {"type": self.__class__.__name__, "rows": self.rows, "cols": self.cols}
 

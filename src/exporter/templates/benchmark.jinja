@@ -1,0 +1,10 @@
+{% import 'test.jinja' as test_formatter %}
+name: {{benchmark.name}}
+test_occurrences:
+    {% for test, iterations in benchmark.test_occurrences.items() -%}
+    {{test.name}}: {{iterations}}
+    {% endfor %}
+tests:
+    {% for test in benchmark.test_occurrences.keys() -%}
+    {{test_formatter.format(test)}}
+    {% endfor %}

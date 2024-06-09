@@ -1,0 +1,12 @@
+{% import 'graph.jinja' as graph_formatter %}
+{% import 'entity.jinja' as entity_formatter %}
+{%- macro format(test) -%}
+    graph:
+        {{graph_formatter.format(test.graph)}}
+    entities:
+        {% if test.graph.rows is defined -%}
+        {{ entity_formatter.format(test.agents, test.objectives, test.obstacles, use_coords=True, grid_size=(test.graph.dimensions))}}
+        {%- else -%}
+        {{ entity_formatter.format(test.agents, test.objectives, test.obstacles)}}
+        {%- endif -%}
+{%- endmacro -%}}
