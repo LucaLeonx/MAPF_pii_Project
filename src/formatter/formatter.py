@@ -5,7 +5,7 @@ from cli import humanreadable
 from cli.humanreadable import MapRepresentation
 
 
-def export_benchmark(benchmark):
+def export_benchmark_to_yaml(benchmark):
     env = Environment(
         loader=PackageLoader("exporter"),
         autoescape=select_autoescape()
@@ -17,6 +17,28 @@ def export_benchmark(benchmark):
     return template.render(benchmark=benchmark)
 
 
+def export_test_iterations_metrics(benchmark_metrics):
+    lines = []
+    for aggregate_metric in benchmark_metrics.aggregate_metrics:
+        for index, test_metric in enumerate(aggregate_metric.iterations_metrics):
+            line = test_metric.to_dict()
+            line.update({"Test name": aggregate_metric.test_name,
+                         "Iteration": index + 1})
+            del line["Conflicts"]
+            del line["TestRun"]
+            lines.append(line)
+
+    return lines
+
+
+def export_aggregate_metrics(benchmark_metrics):
+    lines = []
+    for aggregate_metric in benchmark_metrics.aggregate_metrics:
+        lines.append(aggregate_metric.to_dict())
+
+    return lines
+
+
 def main():
     yaml.SafeDumper.add_representer(MapRepresentation, MapRepresentation.representer)
     yaml.SafeLoader.add_constructor("!Map", MapRepresentation.constructor)
@@ -24,7 +46,7 @@ def main():
     with open("../../docs/examples/multi_iteration_benchmark.yaml", "r") as bench_file:
         bench_dict = yaml.safe_load(bench_file)
         benchmark_description = humanreadable.convert_from_human_readable_dict(bench_dict)
-        print(export_benchmark(benchmark_description))
+        print(export_benchmark_to_yaml(benchmark_description))
 
 
 if __name__ == "__main__":

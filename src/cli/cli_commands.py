@@ -4,7 +4,8 @@ import datetime
 
 from cli import humanreadable
 from cli.humanreadable import MapRepresentation
-from metrics.testMetrics import TestMetrics
+from formatter import formatter
+from metrics.benchmark_metrics import BenchmarkMetrics
 from result.testrun import BenchmarkRun
 from runner.benchmarkrunner import BenchmarkRunner
 
@@ -36,7 +37,7 @@ def execute_benchmark(benchmark_description):
 
 def export_benchmark_results(benchmark_results, output):
     _setup_yaml()
-    with open(output, 'w') as output_file:
+    with open(output + '.yaml', 'w') as output_file:
         output_file.write(yaml.dump(benchmark_results.to_dict(), indent=4, sort_keys=False))
 
 
@@ -49,27 +50,25 @@ def import_benchmark_results(path):
 
 
 def calculate_metrics(benchmark_run: BenchmarkRun):
-    metrics = []
-    for test_run in benchmark_run.result_list:
-        metric = TestMetrics(test_run)
-        metric.run()
-        metrics.append(metric)
-
-    return metrics
+    elaborated_metrics = BenchmarkMetrics(benchmark_run)
+    elaborated_metrics.evaluate()
+    return elaborated_metrics
 
 
-def export_metrics_to_csv(metrics, output):
+def export_metrics_to_csv(benchmark_metrics, output):
+    with open(output + '.csv', 'w', newline='') as csvFile:
+        csv_entries = formatter.export_test_iterations_metrics(benchmark_metrics)
+        writer = csv.DictWriter(csvFile, csv_entries[0].keys())
+        writer.writeheader()
+        for entry in csv_entries:
+            writer.writerow(entry)
 
-    # Taken from Exporter class code
-
-    csv_entries = [metric.to_dict() for metric in metrics]
-
-    if csv_entries:
-        with open(output, 'w', newline='') as csvFile:
-            writer = csv.DictWriter(csvFile, csv_entries[0].keys())
-            writer.writeheader()
-            for entry in csv_entries:
-                writer.writerow(entry)
+    with open(output + '_aggregate.csv', 'w', newline='') as csvFile:
+        csv_entries = formatter.export_aggregate_metrics(benchmark_metrics)
+        writer = csv.DictWriter(csvFile, csv_entries[0].keys())
+        writer.writeheader()
+        for entry in csv_entries:
+            writer.writerow(entry)
 
 
 def prepend_timestamp(string: str):

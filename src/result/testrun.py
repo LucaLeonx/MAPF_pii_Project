@@ -40,7 +40,12 @@ class TestRun(TestDescription):
 class BenchmarkRun(BenchmarkDescription):
     def __init__(self, benchmark_description, results: dict[str, list[TestRun]]):
         super().__init__(benchmark_description.name, benchmark_description.test_occurrences)
+        self._benchmark_description = benchmark_description
         self._results = results
+
+    @property
+    def benchmark_description(self):
+        return self._benchmark_description
 
     @property
     def results(self):

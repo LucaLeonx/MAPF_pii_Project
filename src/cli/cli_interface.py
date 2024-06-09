@@ -34,13 +34,13 @@ def collect_data(path, output_iterations="", output_metrics=""):
 
     click.echo("Benchmark finished, writing results to file")
     if not output_iterations:
-        output_iterations = prepend_timestamp(benchmark_description.name.replace(" ", "_")) + ".yaml"
+        output_iterations = prepend_timestamp(benchmark_description.name.replace(" ", "_"))
 
     export_benchmark_results(benchmark_result, output_iterations)
     click.echo(f"Results written to: {output_iterations}")
 
     if not output_metrics:
-        output_metrics = prepend_timestamp(benchmark_result.name.replace(" ", "_")) + ".csv"
+        output_metrics = prepend_timestamp(benchmark_result.name.replace(" ", "_"))
 
     click.echo("Calculating metrics...")
     metrics = calculate_metrics(benchmark_result)
@@ -72,7 +72,7 @@ def collect_data(path, output=""):
 
     click.echo("Benchmark finished, writing results to file")
     if not output:
-        output = prepend_timestamp(benchmark_description.name.replace(" ", "_")) + ".yaml"
+        output = prepend_timestamp(benchmark_description.name.replace(" ", "_"))
 
     export_benchmark_results(benchmark_result, output)
     click.echo(f"Results written to: {output}")
@@ -89,7 +89,7 @@ def measure_metrics(path: str, output=None):
         click.echo(e)
 
     if not output:
-        output = prepend_timestamp(benchmark_results.name.replace(" ", "_")) + ".csv"
+        output = prepend_timestamp(benchmark_results.name.replace(" ", "_"))
 
     click.echo("Calculating metrics...")
     metrics = calculate_metrics(benchmark_results)

@@ -85,7 +85,7 @@ class TestMetrics:
             # print("\tEdge conflict: " + str(conflict))
             self.collisions.append(conflict)
 
-    def run(self):
+    def evaluate(self):
         self.catch_conflicts()
         self.evaluate_make_span()
         self.evaluate_medium_costs()
