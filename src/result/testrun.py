@@ -53,7 +53,7 @@ class TestRun(TestDescription):
         if "time_elapsed" in dictionary:
             time_elapsed = dictionary["time_elapsed"]
         if "memory_usage" in dictionary:
-            time_elapsed = dictionary["memory_usage"]
+            memory_usage = dictionary["memory_usage"]
 
         return TestRun(TestDescription.from_dict(dictionary["test_description"]),
                        [Action.from_dict(action) for action in dictionary["action_list"]],

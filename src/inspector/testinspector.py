@@ -76,18 +76,18 @@ class TestInspector(object):
 
     def start_profiling(self):
         self._process_reference = psutil.Process()
-        self._start_time = time.process_time_ns()
+        self._start_time = time.perf_counter_ns()
 
     def end_profiling(self):
         if self._process_reference:
             self._memory_used = self._process_reference.memory_info().rss
-            self._end_time = time.process_time_ns()
+            self._end_time = time.perf_counter_ns()
 
     def get_result(self):
         if self._end_time:
-            time_elapsed = (self._end_time - self._start_time) / 1000
+            time_elapsed = (self._end_time - self._start_time)
         else:
             time_elapsed = None
         return TestRun(self._test_description, self._action_list, self._test_solved,
                        time_elapsed,
-                       self._memory_used / 1024)
+                       self._memory_used)
