@@ -1,4 +1,4 @@
-{% import 'node.jinja' as node_formatter %}
-{% macro format(edge, use_coords=False) %}
+{%- import 'node.jinja' as node_formatter -%}
+{%+ macro format(edge, use_coords=False) -%}
 [{{ node_formatter.format(edge.start_node, use_coords) }}, {{ node_formatter.format(edge.end_node, use_coords)}} | {{ edge.weight }}]
-{% endmacro %}
+{%- endmacro -%}

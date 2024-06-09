@@ -11,7 +11,7 @@ def export_benchmark_to_yaml(benchmark):
         loader=PackageLoader("formatter"),
         autoescape=select_autoescape(),
         trim_blocks=True,
-        lstrip_blocks=True
+        lstrip_blocks=False
     )
 
     env.globals["MapRepresentation"] = MapRepresentation
@@ -25,7 +25,7 @@ def export_benchmark_run_to_yaml(benchmark_run):
         loader=PackageLoader("formatter"),
         autoescape=select_autoescape(),
         trim_blocks=True,
-        lstrip_blocks=True
+        lstrip_blocks=False,
     )
 
     env.globals["MapRepresentation"] = MapRepresentation
@@ -60,10 +60,10 @@ def main():
     yaml.SafeDumper.add_representer(MapRepresentation, MapRepresentation.representer)
     yaml.SafeLoader.add_constructor("!Map", MapRepresentation.constructor)
 
-    # with open("../../docs/examples/multi_iteration_benchmark.yaml", "r") as bench_file:
-    #    bench_dict = yaml.safe_load(bench_file)
-    #    benchmark_description = humanreadable.convert_from_human_readable_dict(bench_dict)
-    #    print(export_benchmark_to_yaml(benchmark_description))
+    with open("../../docs/examples/multi_iteration_benchmark.yaml", "r") as bench_file:
+        bench_dict = yaml.safe_load(bench_file)
+        benchmark_description = humanreadable.convert_from_human_readable_dict(bench_dict)
+        print(export_benchmark_to_yaml(benchmark_description))
 
     print(export_benchmark_run_to_yaml(globals.benchmark_run()))
 

@@ -1,35 +1,48 @@
 {% import 'node.jinja' as node_formatter %}
 
-{%- macro _entity_format(entity, use_coords=False) -%}
-    name: {{ entity.name }}
+{% macro _entity_format(entity, use_coords=False) %}
+name: {{ entity.name }}
 {% if entity.has_start_position() %}
-          start_position: {{ node_formatter.format(entity.start_position, use_coords) }}
+start_position: {{ node_formatter.format(entity.start_position, use_coords) }}
 {% endif %}
 {% if entity.objective_name is defined %}
-          objective_name: {{ entity.objective_name }}
-{% endif -%} {# add extra - on the left to remove space between agents #}
-{%- endmacro -%}
+objective_name: {{ entity.objective_name }}
+{% endif %} {# add extra - on the left to remove space between agents #}
+{% endmacro %}
 
-
-{%- macro format(test, use_coords=False, map_size=None) -%}
-    {%- if map_size -%}
-        placement: !Map |
-        {%- for line in MapRepresentation.from_entities(test.graph.rows, test.graph.cols, test.entities).to_lines() -%}
-            {{ line }}
-        {%- endfor -%}
-    {%- else %}
-        agents:
-        {% for agent in test.agents %}
-        - {{ _entity_format(agent, use_coords) }}
-        {% endfor %}
-        objectives:
-        {% for objective in test.objectives %}
-        - {{ _entity_format(objective, use_coords) }}
-        {% endfor %}
-        obstacles:
-        {% for obstacle in test.obstacles %}
-        - {{ _entity_format(obstacle, use_coords) }}
-        {% endfor -%}
-    {%- endif -%}
-{%- endmacro -%}
+{% macro format(test, use_coords=False, map_size=None) %}
+{% if map_size %}
+{% filter indent %}
+    placement: !Map |
+{% for line in MapRepresentation.from_entities(test.graph.rows, test.graph.cols, test.entities).to_lines() %}
+      {{ line }}
+{% endfor %}
+{% endfilter %}
+{% else %}
+{% filter indent %}
+    agents:
+{% endfilter %}
+{% for agent in test.agents %}
+- {% filter indent %}
+  {{ _entity_format(agent, use_coords) }}
+{% endfilter %}
+{% endfor %}
+{% filter indent %}
+objectives:
+{% endfilter %}
+{% for objective in test.objectives %}
+- {% filter indent%}
+  {{ _entity_format(objective, use_coords) }}
+{% endfilter %}
+{% endfor %}
+{% filter indent %}
+obstacles:
+{% endfilter %}
+{% for obstacle in test.obstacles %}
+- {% filter indent%}
+  {{ _entity_format(obstacle, use_coords) }}
+{% endfilter %}
+{% endfor %}
+{% endif %}
+{% endmacro %}
 

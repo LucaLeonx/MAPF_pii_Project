@@ -1,13 +1,19 @@
 {% import 'graph.jinja' as graph_formatter %}
 {% import 'entity.jinja' as entity_formatter %}
-{%- macro format(test) -%}
-    name: {{ test.name }}
-    graph:
-        {{graph_formatter.format(test.graph)}}
-    entities:
-        {% if test.graph.rows is defined -%}
-            {{ entity_formatter.format(test, use_coords=True, map_size=(test.graph.dimensions))}}
-        {%- else -%}
-            {{ entity_formatter.format(test)}}
-        {%- endif -%}
-{%- endmacro -%}}
+{% macro format(test) %}
+name: {{test.name}}
+graph:
+{% filter indent %}
+    {{graph_formatter.format(test.graph)}}
+{% endfilter %}
+entities:
+{% if test.graph.rows is defined %}
+{% filter indent %}
+{{ entity_formatter.format(test, use_coords=True, map_size=(test.graph.dimensions))}}
+{% endfilter %}
+{% else %}
+{% filter indent %}
+{{ entity_formatter.format(test)}}
+{% endfilter %}
+{% endif %}
+{% endmacro %}}
