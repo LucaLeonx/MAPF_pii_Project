@@ -99,6 +99,8 @@ class TestMetrics:
             "Makespan": self.makeSpan,
             "Sum of Costs": self.sumOfCosts,
             "Medium cost": self.mediumCost,
+            "Time elapsed": self.testReference.time_elapsed,
+            "Memory usage": self.testReference.memory_usage,
             "Collisions": [collision.to_dict() for collision in self.collisions],
             "TestRun": self.testReference.to_dict()
         }

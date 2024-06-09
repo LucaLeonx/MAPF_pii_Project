@@ -6,12 +6,13 @@ from result.action import Action
 
 class TestRun(TestDescription):
 
-    # TODO add Runtime information
-    def __init__(self, test_description, action_list, is_solved):
+    def __init__(self, test_description, action_list, is_solved, time_elapsed=None, memory_usage=None):
         super().__init__(test_description.name, test_description.graph, test_description.entities)
         self._test_description = test_description
         self._action_list = action_list
         self._is_solved = is_solved
+        self._time_elapsed = time_elapsed  # In ms
+        self._memory_usage = memory_usage  # In Kb
 
     @property
     def test_description(self) -> TestDescription:
@@ -22,19 +23,43 @@ class TestRun(TestDescription):
         return self._action_list
 
     @property
+    def time_elapsed(self):
+        return self._time_elapsed
+
+    @property
+    def memory_usage(self):
+        return self._memory_usage
+
+    @property
     def is_solved(self) -> bool:
         return self._is_solved
 
     def to_dict(self) -> dict[str, Any]:
-        return {"test_description": self.test_description.to_dict(),
+        dictionary = {"test_description": self.test_description.to_dict(),
                 "action_list": [action.to_dict() for action in self.action_list],
                 "is_solved": self.is_solved}
 
+        if self.time_elapsed is not None:
+            dictionary.update({"time_elapsed": self.time_elapsed})
+        if self.memory_usage is not None:
+            dictionary.update({"memory_usage": self.memory_usage})
+
+        return dictionary
+
     @staticmethod
     def from_dict(dictionary):
+        time_elapsed = None
+        memory_usage = None
+        if "time_elapsed" in dictionary:
+            time_elapsed = dictionary["time_elapsed"]
+        if "memory_usage" in dictionary:
+            time_elapsed = dictionary["memory_usage"]
+
         return TestRun(TestDescription.from_dict(dictionary["test_description"]),
                        [Action.from_dict(action) for action in dictionary["action_list"]],
-                       dictionary["is_solved"])
+                       dictionary["is_solved"],
+                       time_elapsed=time_elapsed,
+                       memory_usage=memory_usage)
 
 
 class BenchmarkRun(BenchmarkDescription):

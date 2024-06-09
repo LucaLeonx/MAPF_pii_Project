@@ -36,7 +36,9 @@ class AggregateMetrics:
              "Average MakeSpan": self._avg_makespan,
              "Average Sum of Costs": self._avg_sum_of_costs,
              "Number of successes": self._success_num,
-             "Success rate": self._success_rate}
+             "Success rate": self._success_rate,
+             "Average running time": self._avg_time_elapsed,
+             "Average memory usage": self._avg_mem_usage}
         )
 
     @property
@@ -76,6 +78,10 @@ class AggregateMetrics:
             result = self._calculating_functions.execute(function)
             self._aggregate_metrics.update({function: result})
 
+    @staticmethod
+    def avg(seq):
+        return sum(seq) / len(seq)
+
     def _get_iterations_num(self):
         return self.iterations_num
 
@@ -92,3 +98,11 @@ class AggregateMetrics:
 
     def _success_rate(self):
         return self._success_num() / self.iterations_num
+
+    def _avg_time_elapsed(self):
+        return self.avg([metric.to_dict()["Time elapsed"] for metric in self.iterations_metrics
+                         if metric.to_dict()["Time elapsed"] is not None])
+
+    def _avg_mem_usage(self):
+        return self.avg([metric.to_dict()["Memory usage"] for metric in self.iterations_metrics
+                         if metric.to_dict()["Memory usage"] is not None])

@@ -1,6 +1,8 @@
 from description.map.graph import Node
 from result.action import WaitAction, MoveAction, AppearAction, DisappearAction
 from result.testrun import TestRun
+import psutil
+import time
 
 
 class TestInspector(object):
@@ -9,6 +11,9 @@ class TestInspector(object):
         self._action_list = []
         self._current_position = {entity.name: None for entity in self._test_description.entities}
         self._test_solved = False
+        self._memory_used = None
+        self._start_time = None
+        self._end_time = None
 
         for entity in self._test_description.entities:
             if entity.has_start_position():
@@ -26,7 +31,8 @@ class TestInspector(object):
         self._action_list.append(action)
 
     def _register_move_with_description(self, timestep, entity_name, end_position, description="Move"):
-        self.register_action(MoveAction(timestep, entity_name, self._current_position[entity_name], end_position, description))
+        self.register_action(
+            MoveAction(timestep, entity_name, self._current_position[entity_name], end_position, description))
         self._current_position.update({entity_name: end_position})
 
     def register_move(self, timestep, entity_name, end_position):
@@ -68,13 +74,20 @@ class TestInspector(object):
     def mark_as_solved(self):
         self._test_solved = True
 
-    # def start_profiling()
-    # def end_profiling()
+    def start_profiling(self):
+        self._process_reference = psutil.Process()
+        self._start_time = time.process_time_ns()
+
+    def end_profiling(self):
+        if self._process_reference:
+            self._memory_used = self._process_reference.memory_info().rss
+            self._end_time = time.process_time_ns()
 
     def get_result(self):
-        return TestRun(self._test_description, self._action_list, self._test_solved)
-
-
-
-
-
+        if self._end_time:
+            time_elapsed = (self._end_time - self._start_time) / 1000
+        else:
+            time_elapsed = None
+        return TestRun(self._test_description, self._action_list, self._test_solved,
+                       time_elapsed,
+                       self._memory_used / 1024)
