@@ -26,24 +26,28 @@ class Action(object):
 
     @property
     def start_position(self):
-        if self._start_position is None:
-            raise ElementNotAvailableException("This action doesn't have a final position")
+        # if self._start_position is None:
+        #    raise ElementNotAvailableException("This action doesn't have a final position")
 
         return self._start_position
 
     @property
     def end_position(self):
-        if self._end_position is None:
-            raise ElementNotAvailableException("This action doesn't have a final position")
+        # if self._end_position is None:
+        #    raise ElementNotAvailableException("This action doesn't have a final position")
 
         return self._end_position
 
     @property
     def description(self):
         return self._description
-    
+
+    @property
+    def type(self):
+        return self.__class__.__name__
+
     def to_dict(self):
-        dictionary = {"type": self.__class__.__name__,
+        dictionary = {"type": self.type,
                       "timestep": self.timestep,
                       "subject": self.subject}
 
@@ -75,20 +79,20 @@ class Action(object):
 
 
 class MoveAction(Action):
-    def __init__(self, timestep, subject, start_position, end_position, description="Move"):
+    def __init__(self, timestep, subject, start_position, end_position, description=""):
         Action.__init__(self, timestep, subject, start_position, end_position, description)
 
 
 class WaitAction(Action):
-    def __init__(self, timestep, subject, start_position, end_position=None, description="Wait"):
+    def __init__(self, timestep, subject, start_position, end_position=None, description=""):
         Action.__init__(self, timestep, subject, start_position, end_position, description)
 
 
 class AppearAction(Action):
-    def __init__(self, timestep, subject, end_position, start_position=None,  description="Appear"):
+    def __init__(self, timestep, subject, end_position, start_position=None,  description=""):
         Action.__init__(self, timestep, subject, None, end_position, description)
 
 
 class DisappearAction(Action):
-    def __init__(self, timestep, subject, start_position=None, end_position=None, description="Disappear"):
+    def __init__(self, timestep, subject, start_position=None, end_position=None, description=""):
         Action.__init__(self, timestep, subject, None, None, description)

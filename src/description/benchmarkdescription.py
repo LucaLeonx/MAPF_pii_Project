@@ -1,5 +1,5 @@
 from description.entity_description import *
-from description.map.graph import Graph
+from description.map.graph import Graph, GridGraph
 from exceptions import DuplicateElementException, EmptyElementException, InvalidElementException
 
 from typing import Any, List, Dict
@@ -67,7 +67,6 @@ class TestDescription:
         return TestDescription(dictionary["name"],
                                Graph.from_dict(dictionary["graph"]),
                                [EntityDescription.from_dict(entity_dict) for entity_dict in dictionary["entities"]])
-
 
 class BenchmarkDescription:
 

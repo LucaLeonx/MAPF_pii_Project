@@ -183,6 +183,9 @@ class MapRepresentation:
 
         return string
 
+    def to_lines(self):
+        return str(self).splitlines()
+
     @staticmethod
     def _extract_entities(representation) -> list[EntityDescription]:
         rows = len(representation)
