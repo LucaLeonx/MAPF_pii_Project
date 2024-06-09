@@ -80,6 +80,8 @@ class AggregateMetrics:
 
     @staticmethod
     def avg(seq):
+        if len(seq) == 0:
+            return 0
         return sum(seq) / len(seq)
 
     def _get_iterations_num(self):
@@ -100,9 +102,7 @@ class AggregateMetrics:
         return self._success_num() / self.iterations_num
 
     def _avg_time_elapsed(self):
-        return self.avg([metric.to_dict()["Time elapsed"] for metric in self.iterations_metrics
-                         if metric.to_dict()["Time elapsed"] is not None])
+        return self.avg([metric.to_dict()["Time elapsed"] for metric in self.iterations_metrics])
 
     def _avg_mem_usage(self):
-        return self.avg([metric.to_dict()["Memory usage"] for metric in self.iterations_metrics
-                         if metric.to_dict()["Memory usage"] is not None])
+        return self.avg([metric.to_dict()["Memory usage"] for metric in self.iterations_metrics])

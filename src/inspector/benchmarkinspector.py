@@ -33,7 +33,6 @@ class BenchmarkInspector(object):
         response = self._socket.receive_message()
 
         if response.title == "Error":
-            print(response.content)
             raise ElementNotFoundException("The requested test " + name + " is not available")
         else:
             new_recorder = TestInspector(TestDescription.from_dict(response.content))
@@ -43,7 +42,6 @@ class BenchmarkInspector(object):
     def request_random_test(self):
         self._socket.send_message(Message("request_random_test", ""))
         response = self._socket.receive_message()
-        print(response)
         if response.title == "Error":
             raise ElementNotFoundException("No test is not available")
         else:
