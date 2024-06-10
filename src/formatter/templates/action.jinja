@@ -3,8 +3,12 @@
 action: {{action.type}}
 subject: {{ action.subject }}
 timestep: {{ action.timestep }}
+{% if action.start_position %}
 start_position: {{ node_formatter.format(action.start_position, use_coords) }}
+{%- endif -%}
+{% if action.end_position %}
 end_position: {{ node_formatter.format(action.end_position, use_coords) }}
+{%- endif -%}
 {% if action.description %}
 description: {{ action.description }}
 {% endif %}

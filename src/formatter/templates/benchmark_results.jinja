@@ -1,0 +1,29 @@
+{% extends 'benchmark_run.jinja' %}
+{% macro format(conflict, use_coords=False) %}
+type: {{ conflict.collision_type.capitalize() }}
+timestep: {{ conflict.timestep }}
+entity1: {{ conflict.entity1 }}
+entity2: {{ conflict.entity2 }}
+{% endmacro %}
+{% block conflicts %}
+conflicts:
+{% filter indent %}
+    {% for test_aggregate_metrics in benchmark.aggregate_metrics %}
+        {% for test_metric in test_aggregate_metrics.iterations_metrics %}
+            {% if test_metric.conflicts %}
+                test_name: {{ test_metric.testReference.name }}
+                iteration: {{ loop.index }}
+                conflicts:
+                {% filter indent %}
+                {% set use_coords = test_metric.testReference.graph.rows is defined %}
+                {% for conflict in test_metric.conflicts %}
+                    -{% filter indent %}
+                    {{ format(conflict, use_coords) }}
+                    {% endfilter %}
+                {% endfor %}
+                {% endfilter %}
+            {% endif %}
+    {% endfor %}
+    {% endfor %}
+{% endfilter %}
+{% endblock %}

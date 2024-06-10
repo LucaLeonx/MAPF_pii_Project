@@ -6,7 +6,7 @@ from cli.humanreadable import MapRepresentation
 import globals
 
 
-def export_benchmark_to_yaml(benchmark):
+def _setup_environment():
     env = Environment(
         loader=PackageLoader("formatter"),
         autoescape=select_autoescape(),
@@ -15,23 +15,25 @@ def export_benchmark_to_yaml(benchmark):
     )
 
     env.globals["MapRepresentation"] = MapRepresentation
-    template = env.get_template("benchmark.jinja")
+    return env
 
+
+def export_benchmark_to_yaml(benchmark):
+    env = _setup_environment()
+    template = env.get_template("benchmark.jinja")
     return template.render(benchmark=benchmark)
 
 
 def export_benchmark_run_to_yaml(benchmark_run):
-    env = Environment(
-        loader=PackageLoader("formatter"),
-        autoescape=select_autoescape(),
-        trim_blocks=True,
-        lstrip_blocks=False,
-    )
-
-    env.globals["MapRepresentation"] = MapRepresentation
-    template = env.get_template("results.jinja")
-
+    env = _setup_environment()
+    template = env.get_template("benchmark_run.jinja")
     return template.render(benchmark=benchmark_run)
+
+
+def export_benchmark_results_to_yaml(benchmark_results):
+    env = _setup_environment()
+    template = env.get_template("benchmark_results.jinja")
+    return template.render(benchmark=benchmark_results)
 
 
 def export_test_iterations_metrics(benchmark_metrics):

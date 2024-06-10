@@ -15,21 +15,37 @@ from metrics.agentMetrics import AgentMetrics
 
 class Collision:
     def __init__(self, timestep: int, entity1: str, entity2: str, type: str):
-        self.timestep = timestep
-        self.entity1 = entity1
-        self.entity2 = entity2
-        self.collType = type
+        self._timestep = timestep
+        self._entity1 = entity1
+        self._entity2 = entity2
+        self._collType = type
+
+    @property
+    def collision_type(self) -> str:
+        return self._collType
+
+    @property
+    def timestep(self) -> int:
+        return self._timestep
+
+    @property
+    def entity1(self) -> str:
+        return self._entity1
+
+    @property
+    def entity2(self) -> str:
+        return self._entity2
 
     def to_dict(self):
         return {
-            "Collision type": self.collType,
-            "timestep": self.timestep,
-            "Agent 1": self.entity1,
-            "Agent 2": self.entity2
+            "Collision type": self._collType,
+            "timestep": self._timestep,
+            "Agent 1": self._entity1,
+            "Agent 2": self._entity2
         }
 
     def __str__(self) -> str:
-        return "Collision timestep: " + str(self.timestep) + " | between " + self.entity1 + " and " + self.entity2
+        return "Collision timestep: " + str(self._timestep) + " | between " + self._entity1 + " and " + self._entity2
 
 
 class TestMetrics:
@@ -90,6 +106,10 @@ class TestMetrics:
         self.evaluate_make_span()
         self.evaluate_medium_costs()
         self.evaluate_sum_of_costs()
+
+    @property
+    def conflicts(self):
+        return self.collisions
 
     def to_dict(self):
         return {
