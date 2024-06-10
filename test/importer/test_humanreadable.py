@@ -1,6 +1,8 @@
 import yaml
 import pytest
 
+import formatter.formatter
+import globals
 from description.benchmarkdescription import TestDescription, BenchmarkDescription
 from description.map.graph import GridGraph
 from cli import humanreadable
@@ -60,3 +62,15 @@ def pretty_dump_yaml(test):
                           indent=4,
                           sort_keys=False)
     return text
+
+
+def test_import():
+    yaml.SafeDumper.add_representer(MapRepresentation, MapRepresentation.representer)
+    yaml.SafeLoader.add_constructor("!Map", MapRepresentation.constructor)
+
+    # with open("X:\MAPF_pii_Project\src\\2024-06-10_10-14-19_MultiIterationBenchmark.yaml", "r") as file:
+    #    dictionary = yaml.safe_load(file),
+    #    print(dictionary)
+
+    dictionary = yaml.safe_load(formatter.formatter.export_benchmark_to_yaml(globals.benchmark_description()))
+    print(dictionary)

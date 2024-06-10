@@ -68,6 +68,7 @@ class TestDescription:
                                Graph.from_dict(dictionary["graph"]),
                                [EntityDescription.from_dict(entity_dict) for entity_dict in dictionary["entities"]])
 
+
 class BenchmarkDescription:
 
     def __init__(self, name: str, tests: dict[TestDescription, int]):

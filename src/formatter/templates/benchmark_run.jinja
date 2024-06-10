@@ -8,6 +8,7 @@ results:
 - {% filter indent %}
   test: {{ test_name }}
 iteration: {{ loop.index }}
+solved: {{ iteration.is_solved }}
 action_list:
 {% endfilter %}
 {% filter indent %}
