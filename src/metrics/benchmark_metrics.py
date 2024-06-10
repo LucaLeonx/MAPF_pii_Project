@@ -8,7 +8,8 @@ class BenchmarkMetrics(BenchmarkRun):
         super().__init__(benchmark_run.benchmark_description, benchmark_run.results)
         self._aggregate_metrics = []
         for test_name, test_iterations in benchmark_run.results.items():
-            self._aggregate_metrics.append(AggregateMetrics(test_name, test_iterations))
+            if len(test_iterations) > 0:
+                self._aggregate_metrics.append(AggregateMetrics(test_name, test_iterations))
 
     @property
     def aggregate_metrics(self):

@@ -40,6 +40,13 @@ class TestManager:
         chosen_test = random.choice(available_tests)
         return chosen_test.test
 
+    def get_number_of_tests_left(self) -> dict[str, int]:
+        tests_left = {}
+        for record in self._test_records:
+            tests_left.update({record.test_name: record.remaining_occurrences})
+
+        return tests_left
+
     def all_tests_done(self) -> bool:
         return all(test.is_done() for test in self._test_records)
 

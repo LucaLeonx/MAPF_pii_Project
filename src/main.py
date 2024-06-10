@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import yaml
+import asyncio
 
 from cli import cli_commands, humanreadable, cli_interface
 from cli.humanreadable import MapRepresentation
@@ -84,6 +85,7 @@ def _test_run():
                                   {'type': 'MoveAction', 'timestep': 5, 'subject': 'T3', 'start_position': {'index': 8},
                                    'end_position': {'index': 13}, 'description': 'MoveUp'}],
                               'is_solved': False})
+
 
 if __name__ == "__main__":
     cli_interface.mapfbench()

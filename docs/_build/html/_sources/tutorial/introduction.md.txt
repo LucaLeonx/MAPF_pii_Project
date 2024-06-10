@@ -92,7 +92,7 @@ where the parameters are:
   representing the position in which the movement ends
 
 We don't need to register the start position of the agents: 
-the inspector takes already care of that
+the inspector takes already care of that.
 
 Finally, after having registered all actions, we can submit the result
 
@@ -116,12 +116,13 @@ communicates with the BenchmarkInspectors on localhost, port 9361.
 
 Now we can run or MAPF program and wait for the results.
 As soon as the results are received, in the same folder there will be
-two new files:
+three new files:
 - [timestamp]_SampleBenchmark_results.yaml, containing the plans computed by the program
 - [timestamp]_SampleBenchmark_metrics.csv, containing the metrics associated with the plan
+- [timestamp]_SampleBenchmark_metrics_aggregate.csv. This file contain aggregate metrics,
+calculated on multiple test_runs
 
 The benchmark run is now complete
-
 
 
 

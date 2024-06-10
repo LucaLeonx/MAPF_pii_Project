@@ -13,6 +13,7 @@
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Format of the tests" href="test_format.html" />
     <link rel="prev" title="Installation" href="installation.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -113,7 +114,7 @@ In order to register them, we write:</p>
 representing the position in which the movement ends</p></li>
 </ul>
 <p>We don’t need to register the start position of the agents:
-the inspector takes already care of that</p>
+the inspector takes already care of that.</p>
 <p>Finally, after having registered all actions, we can submit the result</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">test</span><span class="o">.</span><span class="n">mark_as_solved</span><span class="p">()</span>
 <span class="n">benchmark_inspector</span><span class="o">.</span><span class="n">submit_result</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
@@ -132,10 +133,12 @@ in the simple_benchmark.yaml file. By default, the BenchmarkRunner
 communicates with the BenchmarkInspectors on localhost, port 9361.</p>
 <p>Now we can run or MAPF program and wait for the results.
 As soon as the results are received, in the same folder there will be
-two new files:</p>
+three new files:</p>
 <ul class="simple">
 <li><p>[timestamp]_SampleBenchmark_results.yaml, containing the plans computed by the program</p></li>
 <li><p>[timestamp]_SampleBenchmark_metrics.csv, containing the metrics associated with the plan</p></li>
+<li><p>[timestamp]_SampleBenchmark_metrics_aggregate.csv. This file contain aggregate metrics,
+calculated on multiple test_runs</p></li>
 </ul>
 <p>The benchmark run is now complete</p>
 </section>
@@ -166,6 +169,8 @@ two new files:</p>
 <li class="toctree-l2"><a class="reference internal" href="#running-the-benchmark">Running the benchmark</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="test_format.html">Format of the tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmark_format.html">Format of the benchmarks</a></li>
 </ul>
 
 <div class="relations">
@@ -173,6 +178,7 @@ two new files:</p>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
       <li>Previous: <a href="installation.html" title="previous chapter">Installation</a></li>
+      <li>Next: <a href="test_format.html" title="next chapter">Format of the tests</a></li>
   </ul></li>
 </ul>
 </div>

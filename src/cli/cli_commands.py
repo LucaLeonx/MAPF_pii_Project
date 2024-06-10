@@ -4,7 +4,7 @@ import datetime
 
 from cli import humanreadable
 from cli.humanreadable import MapRepresentation
-from formatter import formatter
+from formatter import formatter, extractor
 from metrics.benchmark_metrics import BenchmarkMetrics
 from result.testrun import BenchmarkRun
 from runner.benchmarkrunner import BenchmarkRunner
@@ -19,14 +19,12 @@ def load_benchmark(path):
     _setup_yaml()
     with open(path, "r") as bench_file:
         bench_dict = yaml.safe_load(bench_file)
-        benchmark_description = humanreadable.convert_from_human_readable_dict(bench_dict)
+        benchmark_description = extractor.extract_benchmark(bench_dict)
 
     return benchmark_description
 
 
-def execute_benchmark(benchmark_description):
-    benchmark_runner = BenchmarkRunner(benchmark_description)
-
+def execute_benchmark(benchmark_runner):
     try:
         benchmark_runner.start_benchmark()
     except KeyboardInterrupt:
@@ -45,7 +43,7 @@ def export_benchmark_results(benchmark_results, output):
 def import_benchmark_results(path):
     _setup_yaml()
     with open(path, "r") as input_file:
-        benchmark_results = BenchmarkRun.from_dict(yaml.safe_load(input_file))
+        benchmark_results = extractor.extract_benchmark_run(yaml.safe_load(input_file))
 
     return benchmark_results
 
