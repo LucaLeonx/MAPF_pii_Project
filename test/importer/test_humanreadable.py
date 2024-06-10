@@ -7,6 +7,7 @@ from description.benchmarkdescription import TestDescription, BenchmarkDescripti
 from description.map.graph import GridGraph
 from cli import humanreadable
 from cli.humanreadable import MapRepresentation
+from formatter import extractor
 
 
 class TestHumanReadable:
@@ -68,9 +69,14 @@ def test_import():
     yaml.SafeDumper.add_representer(MapRepresentation, MapRepresentation.representer)
     yaml.SafeLoader.add_constructor("!Map", MapRepresentation.constructor)
 
-    # with open("X:\MAPF_pii_Project\src\\2024-06-10_10-14-19_MultiIterationBenchmark.yaml", "r") as file:
-    #    dictionary = yaml.safe_load(file),
-    #    print(dictionary)
+    with open("X:\MAPF_pii_Project\src\\2024-06-10_10-14-19_MultiIterationBenchmark.yaml", "r") as file:
+        dictionary = yaml.safe_load(file)
+        benchmark_run = extractor.extract_benchmark_run(dictionary)
 
-    dictionary = yaml.safe_load(formatter.formatter.export_benchmark_to_yaml(globals.benchmark_description()))
-    print(dictionary)
+        print(benchmark_run.result_list[0].action_list[0])
+
+    # dictionary = yaml.safe_load(formatter.formatter.export_benchmark_to_yaml(globals.benchmark_description()))
+    # benchmark_description = extractor.extract_benchmark(dictionary)
+    # print(benchmark_description.name)
+    # print(benchmark_description.tests[0].graph)
+

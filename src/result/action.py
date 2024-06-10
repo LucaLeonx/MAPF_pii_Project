@@ -14,7 +14,13 @@ class Action(object):
         self._description = description
 
     def __str__(self) -> str:
-        return "timestep: " + str(self.timestep) + " | Entity: " + self.subject + " | Position: " + str(self.start_position) + " | target:  " + str(self.end_position)  
+        string = f"timestep: {self.timestep} | Entity: {self.subject}"
+        if self._start_position is not None:
+            string += " | Start: " + str(self._start_position)
+        if self._end_position is not None:
+            string += " | End: " + str(self._end_position)
+
+        return string
 
     @property
     def timestep(self):

@@ -25,13 +25,14 @@ def extract_benchmark_run(dictionary):
 
     sorted_tests = sorted(dictionary["results"], key=lambda x: x["iteration"])
     for test in sorted_tests:
-        test_description = [description for description in benchmark_description.tests if description.name == test["name"]]
+        test_description = [description for description in benchmark_description.tests
+                            if description.name == test["test"]][0]
         action_list = []
 
         for action in test["action_list"]:
             action_list.append(extract_action(action))
 
-        results[test["name"]].append(TestRun(test_description, action_list, test["solved"]))
+        results[test["test"]].append(TestRun(test_description, action_list, test["solved"]))
 
     return BenchmarkRun(benchmark_description, results)
 
@@ -47,9 +48,15 @@ def extract_test(dictionary) -> TestDescription:
 def extract_graph(dictionary):
     match dictionary["type"]:
         case "DirectedGraph":
-            graph = Graph.from_dict(dictionary["graph"])
+            edges = []
+            for edge in dictionary["edges"]:
+                edges.append(extract_edge(edge))
+            graph = Graph(edges)
         case "UndirectedGraph":
-            graph = UndirectedGraph(dictionary["graph"]["edges"])
+            edges = []
+            for edge in dictionary["edges"]:
+                edges.append(extract_edge(edge))
+            graph = UndirectedGraph(edges)
         case "GridGraph":
             graph = GridGraph(dictionary["rows"], dictionary["cols"])
         case _:
@@ -59,13 +66,15 @@ def extract_graph(dictionary):
 
 
 def extract_edge(tokens: list[str]):
-    string = ''.join(tokens)
-    elements = string.replace('|', ',').split('|')
+    tokens = [str(token) for token in tokens]
+    string = '-'.join(tokens)
+    elements = string.replace('|', "-").split('-')
+
     return Edge(extract_node(elements[0]), extract_node(elements[1]), int(elements[2]))
 
 
 def extract_node(string):
-    string = string.strip()
+    string = str(string).strip()
     if string[0] == '(':
         coordinates = string[1:-1].split(',')
         return Node(int(coordinates[0]), int(coordinates[1]))
@@ -74,8 +83,8 @@ def extract_node(string):
 
 
 def extract_entity_list(dictionary):
-    if "map" in dictionary:
-        return dictionary["map"].entities
+    if "placement" in dictionary:
+        return dictionary["placement"].entities
     else:
         entity_list = []
         for agent in dictionary["agents"]:
@@ -112,5 +121,5 @@ def extract_action(dictionary):
         end_position = extract_node(dictionary["end_position"])
 
     module = importlib.import_module('src.result.action')
-    action_class = getattr(module, dictionary["type"])
-    return action_class(dictionary.get("timestep"), start_position, end_position, dictionary.get("description", ""))
+    action_class = getattr(module, dictionary["action"])
+    return action_class(dictionary.get("timestep"), dictionary["subject"], start_position, end_position, dictionary.get("description", ""))
