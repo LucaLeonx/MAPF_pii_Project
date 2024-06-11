@@ -4,7 +4,7 @@
 from __future__ import annotations
 import importlib
 from math import floor, sqrt
-from typing import Any, Dict, Tuple, Self
+from typing import Any, Dict, Tuple
 
 from exceptions import EmptyElementException, InvalidElementException, ElementNotFoundException
 
