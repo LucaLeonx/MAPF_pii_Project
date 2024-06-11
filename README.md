@@ -25,7 +25,7 @@ iterations of the same test
 - [Installation](docs/tutorial/installation.md)
 - [Quickstart](docs/tutorial/introduction.md)
 - [Example benchmarks](docs/examples)
-- [Full documentation](docs/_build/html/index.html)
+- [Full documentation](https://mapf-pii-project.readthedocs.io/en/latest/)
 - Project report: available soon
 
 ## License
