@@ -8,7 +8,7 @@
     <title>MAPFbench &#8212; MAPFbench documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
-    <script src="_static/documentation_options.js?v=2709fde1"></script>
+    <script src="_static/documentation_options.js?v=61243dd2"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -53,7 +53,7 @@ problem</a>.</p>
 <li class="toctree-l1"><a class="reference internal" href="tutorial/test_format.html">Format of the tests</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="tutorial/test_format.html#the-graph-class">The <em>Graph</em> class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorial/test_format.html#entities">Entities</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial/test_format.html#code-documentations">Code documentations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/test_format.html#code-documentation">Code documentation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial/actions.html">Registering actions</a><ul>
@@ -67,435 +67,431 @@ problem</a>.</p>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial/metrics.html">Metrics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial/results_format.html">Format of results</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/src.html">Code documentation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="source/src.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="source/src.cli.html">src.cli package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="source/src.cli.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="source/src.cli.html#src-cli-cli-commands-module">src.cli.cli_commands module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="source/src.cli.html#module-src.cli.cli_interface">src.cli.cli_interface module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="source/src.cli.html#module-src.cli.humanreadable">src.cli.humanreadable module</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="source/src.cli.html#src.cli.humanreadable.MapRepresentation"><code class="docutils literal notranslate"><span class="pre">MapRepresentation</span></code></a><ul>
-<li class="toctree-l6"><a class="reference internal" href="source/src.cli.html#src.cli.humanreadable.MapRepresentation.cols"><code class="docutils literal notranslate"><span class="pre">MapRepresentation.cols</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.cli.html#src.cli.humanreadable.MapRepresentation.constructor"><code class="docutils literal notranslate"><span class="pre">MapRepresentation.constructor()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.cli.html#src.cli.humanreadable.MapRepresentation.entities"><code class="docutils literal notranslate"><span class="pre">MapRepresentation.entities</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.cli.html#src.cli.humanreadable.MapRepresentation.from_entities"><code class="docutils literal notranslate"><span class="pre">MapRepresentation.from_entities()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.cli.html#src.cli.humanreadable.MapRepresentation.representation"><code class="docutils literal notranslate"><span class="pre">MapRepresentation.representation</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.cli.html#src.cli.humanreadable.MapRepresentation.representer"><code class="docutils literal notranslate"><span class="pre">MapRepresentation.representer()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.cli.html#src.cli.humanreadable.MapRepresentation.rows"><code class="docutils literal notranslate"><span class="pre">MapRepresentation.rows</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.cli.html#src.cli.humanreadable.MapRepresentation.to_lines"><code class="docutils literal notranslate"><span class="pre">MapRepresentation.to_lines()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.cli.html#src.cli.humanreadable.MapRepresentation.validate_map_representation"><code class="docutils literal notranslate"><span class="pre">MapRepresentation.validate_map_representation()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/mapfbench.html">Code documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="source/mapfbench.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="source/mapfbench.cli.html">mapfbench.cli package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.cli.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.cli.html#module-mapfbench.cli.cli_commands">mapfbench.cli.cli_commands module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.cli.html#mapfbench.cli.cli_commands.calculate_metrics"><code class="docutils literal notranslate"><span class="pre">calculate_metrics()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.cli.html#mapfbench.cli.cli_commands.execute_benchmark"><code class="docutils literal notranslate"><span class="pre">execute_benchmark()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.cli.html#mapfbench.cli.cli_commands.export_benchmark_results"><code class="docutils literal notranslate"><span class="pre">export_benchmark_results()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.cli.html#mapfbench.cli.cli_commands.export_metrics_to_csv"><code class="docutils literal notranslate"><span class="pre">export_metrics_to_csv()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.cli.html#mapfbench.cli.cli_commands.import_benchmark_results"><code class="docutils literal notranslate"><span class="pre">import_benchmark_results()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.cli.html#mapfbench.cli.cli_commands.load_benchmark"><code class="docutils literal notranslate"><span class="pre">load_benchmark()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.cli.html#mapfbench.cli.cli_commands.prepend_timestamp"><code class="docutils literal notranslate"><span class="pre">prepend_timestamp()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l5"><a class="reference internal" href="source/src.cli.html#src.cli.humanreadable.convert_from_human_readable_dict"><code class="docutils literal notranslate"><span class="pre">convert_from_human_readable_dict()</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="source/src.cli.html#src.cli.humanreadable.convert_to_human_readable_dict"><code class="docutils literal notranslate"><span class="pre">convert_to_human_readable_dict()</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="source/src.cli.html#src.cli.humanreadable.from_human_readable_dict"><code class="docutils literal notranslate"><span class="pre">from_human_readable_dict()</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="source/src.cli.html#src.cli.humanreadable.to_human_readable_dict"><code class="docutils literal notranslate"><span class="pre">to_human_readable_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.cli.html#module-mapfbench.cli.cli_interface">mapfbench.cli.cli_interface module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.cli.html#module-mapfbench.cli">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="source/src.cli.html#module-src.cli">Module contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="source/mapfbench.connection.html">mapfbench.connection package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.connection.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.connection.html#module-mapfbench.connection.c_socket">mapfbench.connection.c_socket module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.connection.html#mapfbench.connection.c_socket.ClientSocket"><code class="docutils literal notranslate"><span class="pre">ClientSocket</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.connection.html#mapfbench.connection.c_socket.ClientSocket.close"><code class="docutils literal notranslate"><span class="pre">ClientSocket.close()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.connection.html#mapfbench.connection.c_socket.ClientSocket.open"><code class="docutils literal notranslate"><span class="pre">ClientSocket.open()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="source/src.connection.html">src.connection package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="source/src.connection.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="source/src.connection.html#module-src.connection.c_socket">src.connection.c_socket module</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="source/src.connection.html#src.connection.c_socket.ClientSocket"><code class="docutils literal notranslate"><span class="pre">ClientSocket</span></code></a><ul>
-<li class="toctree-l6"><a class="reference internal" href="source/src.connection.html#src.connection.c_socket.ClientSocket.close"><code class="docutils literal notranslate"><span class="pre">ClientSocket.close()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.connection.html#src.connection.c_socket.ClientSocket.open"><code class="docutils literal notranslate"><span class="pre">ClientSocket.open()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.connection.html#mapfbench.connection.c_socket.ServerSocket"><code class="docutils literal notranslate"><span class="pre">ServerSocket</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.connection.html#mapfbench.connection.c_socket.ServerSocket.close"><code class="docutils literal notranslate"><span class="pre">ServerSocket.close()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.connection.html#mapfbench.connection.c_socket.ServerSocket.open"><code class="docutils literal notranslate"><span class="pre">ServerSocket.open()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l5"><a class="reference internal" href="source/src.connection.html#src.connection.c_socket.ServerSocket"><code class="docutils literal notranslate"><span class="pre">ServerSocket</span></code></a><ul>
-<li class="toctree-l6"><a class="reference internal" href="source/src.connection.html#src.connection.c_socket.ServerSocket.close"><code class="docutils literal notranslate"><span class="pre">ServerSocket.close()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.connection.html#src.connection.c_socket.ServerSocket.open"><code class="docutils literal notranslate"><span class="pre">ServerSocket.open()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l5"><a class="reference internal" href="source/src.connection.html#src.connection.c_socket.Socket"><code class="docutils literal notranslate"><span class="pre">Socket</span></code></a><ul>
-<li class="toctree-l6"><a class="reference internal" href="source/src.connection.html#src.connection.c_socket.Socket.close"><code class="docutils literal notranslate"><span class="pre">Socket.close()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.connection.html#src.connection.c_socket.Socket.open"><code class="docutils literal notranslate"><span class="pre">Socket.open()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.connection.html#src.connection.c_socket.Socket.poll"><code class="docutils literal notranslate"><span class="pre">Socket.poll()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.connection.html#src.connection.c_socket.Socket.receive_message"><code class="docutils literal notranslate"><span class="pre">Socket.receive_message()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.connection.html#src.connection.c_socket.Socket.send_message"><code class="docutils literal notranslate"><span class="pre">Socket.send_message()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.connection.html#mapfbench.connection.c_socket.Socket"><code class="docutils literal notranslate"><span class="pre">Socket</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.connection.html#mapfbench.connection.c_socket.Socket.close"><code class="docutils literal notranslate"><span class="pre">Socket.close()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.connection.html#mapfbench.connection.c_socket.Socket.open"><code class="docutils literal notranslate"><span class="pre">Socket.open()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.connection.html#mapfbench.connection.c_socket.Socket.poll"><code class="docutils literal notranslate"><span class="pre">Socket.poll()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.connection.html#mapfbench.connection.c_socket.Socket.receive_message"><code class="docutils literal notranslate"><span class="pre">Socket.receive_message()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.connection.html#mapfbench.connection.c_socket.Socket.send_message"><code class="docutils literal notranslate"><span class="pre">Socket.send_message()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="source/src.connection.html#module-src.connection.connectionconfig">src.connection.connectionconfig module</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="source/src.connection.html#src.connection.connectionconfig.ConnectionConfig"><code class="docutils literal notranslate"><span class="pre">ConnectionConfig</span></code></a><ul>
-<li class="toctree-l6"><a class="reference internal" href="source/src.connection.html#src.connection.connectionconfig.ConnectionConfig.address"><code class="docutils literal notranslate"><span class="pre">ConnectionConfig.address</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.connection.html#module-mapfbench.connection.connectionconfig">mapfbench.connection.connectionconfig module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.connection.html#mapfbench.connection.connectionconfig.ConnectionConfig"><code class="docutils literal notranslate"><span class="pre">ConnectionConfig</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.connection.html#mapfbench.connection.connectionconfig.ConnectionConfig.address"><code class="docutils literal notranslate"><span class="pre">ConnectionConfig.address</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l5"><a class="reference internal" href="source/src.connection.html#src.connection.connectionconfig.TCPConnectionConfig"><code class="docutils literal notranslate"><span class="pre">TCPConnectionConfig</span></code></a><ul>
-<li class="toctree-l6"><a class="reference internal" href="source/src.connection.html#src.connection.connectionconfig.TCPConnectionConfig.address"><code class="docutils literal notranslate"><span class="pre">TCPConnectionConfig.address</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.connection.html#src.connection.connectionconfig.TCPConnectionConfig.host"><code class="docutils literal notranslate"><span class="pre">TCPConnectionConfig.host</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.connection.html#src.connection.connectionconfig.TCPConnectionConfig.port"><code class="docutils literal notranslate"><span class="pre">TCPConnectionConfig.port</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="source/src.connection.html#module-src.connection.message">src.connection.message module</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="source/src.connection.html#src.connection.message.Message"><code class="docutils literal notranslate"><span class="pre">Message</span></code></a><ul>
-<li class="toctree-l6"><a class="reference internal" href="source/src.connection.html#src.connection.message.Message.content"><code class="docutils literal notranslate"><span class="pre">Message.content</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.connection.html#src.connection.message.Message.from_dict"><code class="docutils literal notranslate"><span class="pre">Message.from_dict()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.connection.html#src.connection.message.Message.title"><code class="docutils literal notranslate"><span class="pre">Message.title</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.connection.html#src.connection.message.Message.to_dict"><code class="docutils literal notranslate"><span class="pre">Message.to_dict()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.connection.html#mapfbench.connection.connectionconfig.TCPConnectionConfig"><code class="docutils literal notranslate"><span class="pre">TCPConnectionConfig</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.connection.html#mapfbench.connection.connectionconfig.TCPConnectionConfig.address"><code class="docutils literal notranslate"><span class="pre">TCPConnectionConfig.address</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.connection.html#mapfbench.connection.connectionconfig.TCPConnectionConfig.host"><code class="docutils literal notranslate"><span class="pre">TCPConnectionConfig.host</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.connection.html#mapfbench.connection.connectionconfig.TCPConnectionConfig.port"><code class="docutils literal notranslate"><span class="pre">TCPConnectionConfig.port</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="source/src.connection.html#module-src.connection.socket_tester_client">src.connection.socket_tester_client module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="source/src.connection.html#module-src.connection.socket_tester_server">src.connection.socket_tester_server module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="source/src.connection.html#module-src.connection">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="source/src.description.html">src.description package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="source/src.description.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="source/src.description.map.html">src.description.map package</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="source/src.description.map.html#submodules">Submodules</a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.description.map.html#module-src.description.map.graph">src.description.map.graph module</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="source/src.description.map.html#src.description.map.graph.Edge"><code class="docutils literal notranslate"><span class="pre">Edge</span></code></a><ul>
-<li class="toctree-l8"><a class="reference internal" href="source/src.description.map.html#src.description.map.graph.Edge.end_node"><code class="docutils literal notranslate"><span class="pre">Edge.end_node</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="source/src.description.map.html#src.description.map.graph.Edge.from_dict"><code class="docutils literal notranslate"><span class="pre">Edge.from_dict()</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="source/src.description.map.html#src.description.map.graph.Edge.reversed"><code class="docutils literal notranslate"><span class="pre">Edge.reversed()</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="source/src.description.map.html#src.description.map.graph.Edge.start_node"><code class="docutils literal notranslate"><span class="pre">Edge.start_node</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="source/src.description.map.html#src.description.map.graph.Edge.to_dict"><code class="docutils literal notranslate"><span class="pre">Edge.to_dict()</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="source/src.description.map.html#src.description.map.graph.Edge.weight"><code class="docutils literal notranslate"><span class="pre">Edge.weight</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l7"><a class="reference internal" href="source/src.description.map.html#src.description.map.graph.Graph"><code class="docutils literal notranslate"><span class="pre">Graph</span></code></a><ul>
-<li class="toctree-l8"><a class="reference internal" href="source/src.description.map.html#src.description.map.graph.Graph.edges"><code class="docutils literal notranslate"><span class="pre">Graph.edges</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="source/src.description.map.html#src.description.map.graph.Graph.from_dict"><code class="docutils literal notranslate"><span class="pre">Graph.from_dict()</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="source/src.description.map.html#src.description.map.graph.Graph.get_adjacent_nodes"><code class="docutils literal notranslate"><span class="pre">Graph.get_adjacent_nodes()</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="source/src.description.map.html#src.description.map.graph.Graph.get_edge"><code class="docutils literal notranslate"><span class="pre">Graph.get_edge()</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="source/src.description.map.html#src.description.map.graph.Graph.has_edge"><code class="docutils literal notranslate"><span class="pre">Graph.has_edge()</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="source/src.description.map.html#src.description.map.graph.Graph.has_node"><code class="docutils literal notranslate"><span class="pre">Graph.has_node()</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="source/src.description.map.html#src.description.map.graph.Graph.nodes"><code class="docutils literal notranslate"><span class="pre">Graph.nodes</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="source/src.description.map.html#src.description.map.graph.Graph.to_dict"><code class="docutils literal notranslate"><span class="pre">Graph.to_dict()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l7"><a class="reference internal" href="source/src.description.map.html#src.description.map.graph.GridGraph"><code class="docutils literal notranslate"><span class="pre">GridGraph</span></code></a><ul>
-<li class="toctree-l8"><a class="reference internal" href="source/src.description.map.html#src.description.map.graph.GridGraph.cols"><code class="docutils literal notranslate"><span class="pre">GridGraph.cols</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="source/src.description.map.html#src.description.map.graph.GridGraph.dimensions"><code class="docutils literal notranslate"><span class="pre">GridGraph.dimensions</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="source/src.description.map.html#src.description.map.graph.GridGraph.rows"><code class="docutils literal notranslate"><span class="pre">GridGraph.rows</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="source/src.description.map.html#src.description.map.graph.GridGraph.to_dict"><code class="docutils literal notranslate"><span class="pre">GridGraph.to_dict()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l7"><a class="reference internal" href="source/src.description.map.html#src.description.map.graph.Node"><code class="docutils literal notranslate"><span class="pre">Node</span></code></a><ul>
-<li class="toctree-l8"><a class="reference internal" href="source/src.description.map.html#src.description.map.graph.Node.coords"><code class="docutils literal notranslate"><span class="pre">Node.coords</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="source/src.description.map.html#src.description.map.graph.Node.from_dict"><code class="docutils literal notranslate"><span class="pre">Node.from_dict()</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="source/src.description.map.html#src.description.map.graph.Node.index"><code class="docutils literal notranslate"><span class="pre">Node.index</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="source/src.description.map.html#src.description.map.graph.Node.to_dict"><code class="docutils literal notranslate"><span class="pre">Node.to_dict()</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="source/src.description.map.html#src.description.map.graph.Node.x"><code class="docutils literal notranslate"><span class="pre">Node.x</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="source/src.description.map.html#src.description.map.graph.Node.y"><code class="docutils literal notranslate"><span class="pre">Node.y</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l7"><a class="reference internal" href="source/src.description.map.html#src.description.map.graph.UndirectedGraph"><code class="docutils literal notranslate"><span class="pre">UndirectedGraph</span></code></a><ul>
-<li class="toctree-l8"><a class="reference internal" href="source/src.description.map.html#src.description.map.graph.UndirectedGraph.undirected_edges"><code class="docutils literal notranslate"><span class="pre">UndirectedGraph.undirected_edges</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.connection.html#module-mapfbench.connection.message">mapfbench.connection.message module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.connection.html#mapfbench.connection.message.Message"><code class="docutils literal notranslate"><span class="pre">Message</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.connection.html#mapfbench.connection.message.Message.content"><code class="docutils literal notranslate"><span class="pre">Message.content</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.connection.html#mapfbench.connection.message.Message.from_dict"><code class="docutils literal notranslate"><span class="pre">Message.from_dict()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.connection.html#mapfbench.connection.message.Message.title"><code class="docutils literal notranslate"><span class="pre">Message.title</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.connection.html#mapfbench.connection.message.Message.to_dict"><code class="docutils literal notranslate"><span class="pre">Message.to_dict()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.description.map.html#module-src.description.map">Module contents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.connection.html#module-mapfbench.connection.socket_tester_client">mapfbench.connection.socket_tester_client module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.connection.html#module-mapfbench.connection.socket_tester_server">mapfbench.connection.socket_tester_server module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.connection.html#module-mapfbench.connection">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="source/mapfbench.description.html">mapfbench.description package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.description.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.description.html#module-mapfbench.description.benchmarkdescription">mapfbench.description.benchmarkdescription module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.benchmarkdescription.BenchmarkDescription"><code class="docutils literal notranslate"><span class="pre">BenchmarkDescription</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.benchmarkdescription.BenchmarkDescription.from_dict"><code class="docutils literal notranslate"><span class="pre">BenchmarkDescription.from_dict()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.benchmarkdescription.BenchmarkDescription.get_test_by_name"><code class="docutils literal notranslate"><span class="pre">BenchmarkDescription.get_test_by_name()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.benchmarkdescription.BenchmarkDescription.get_test_occurrences"><code class="docutils literal notranslate"><span class="pre">BenchmarkDescription.get_test_occurrences()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.benchmarkdescription.BenchmarkDescription.name"><code class="docutils literal notranslate"><span class="pre">BenchmarkDescription.name</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.benchmarkdescription.BenchmarkDescription.test_occurrences"><code class="docutils literal notranslate"><span class="pre">BenchmarkDescription.test_occurrences</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.benchmarkdescription.BenchmarkDescription.tests"><code class="docutils literal notranslate"><span class="pre">BenchmarkDescription.tests</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.benchmarkdescription.BenchmarkDescription.to_dict"><code class="docutils literal notranslate"><span class="pre">BenchmarkDescription.to_dict()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.benchmarkdescription.TestDescription"><code class="docutils literal notranslate"><span class="pre">TestDescription</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.benchmarkdescription.TestDescription.agents"><code class="docutils literal notranslate"><span class="pre">TestDescription.agents</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.benchmarkdescription.TestDescription.entities"><code class="docutils literal notranslate"><span class="pre">TestDescription.entities</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.benchmarkdescription.TestDescription.from_dict"><code class="docutils literal notranslate"><span class="pre">TestDescription.from_dict()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.benchmarkdescription.TestDescription.graph"><code class="docutils literal notranslate"><span class="pre">TestDescription.graph</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.benchmarkdescription.TestDescription.name"><code class="docutils literal notranslate"><span class="pre">TestDescription.name</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.benchmarkdescription.TestDescription.objectives"><code class="docutils literal notranslate"><span class="pre">TestDescription.objectives</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.benchmarkdescription.TestDescription.obstacles"><code class="docutils literal notranslate"><span class="pre">TestDescription.obstacles</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.benchmarkdescription.TestDescription.to_dict"><code class="docutils literal notranslate"><span class="pre">TestDescription.to_dict()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="source/src.description.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="source/src.description.html#module-src.description.benchmarkdescription">src.description.benchmarkdescription module</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="source/src.description.html#src.description.benchmarkdescription.BenchmarkDescription"><code class="docutils literal notranslate"><span class="pre">BenchmarkDescription</span></code></a><ul>
-<li class="toctree-l6"><a class="reference internal" href="source/src.description.html#src.description.benchmarkdescription.BenchmarkDescription.from_dict"><code class="docutils literal notranslate"><span class="pre">BenchmarkDescription.from_dict()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.description.html#src.description.benchmarkdescription.BenchmarkDescription.get_test_by_name"><code class="docutils literal notranslate"><span class="pre">BenchmarkDescription.get_test_by_name()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.description.html#src.description.benchmarkdescription.BenchmarkDescription.get_test_occurrences"><code class="docutils literal notranslate"><span class="pre">BenchmarkDescription.get_test_occurrences()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.description.html#src.description.benchmarkdescription.BenchmarkDescription.name"><code class="docutils literal notranslate"><span class="pre">BenchmarkDescription.name</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.description.html#src.description.benchmarkdescription.BenchmarkDescription.test_occurrences"><code class="docutils literal notranslate"><span class="pre">BenchmarkDescription.test_occurrences</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.description.html#src.description.benchmarkdescription.BenchmarkDescription.tests"><code class="docutils literal notranslate"><span class="pre">BenchmarkDescription.tests</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.description.html#src.description.benchmarkdescription.BenchmarkDescription.to_dict"><code class="docutils literal notranslate"><span class="pre">BenchmarkDescription.to_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.description.html#module-mapfbench.description.entity_description">mapfbench.description.entity_description module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.entity_description.AgentDescription"><code class="docutils literal notranslate"><span class="pre">AgentDescription</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.entity_description.AgentDescription.objective_name"><code class="docutils literal notranslate"><span class="pre">AgentDescription.objective_name</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.entity_description.AgentDescription.to_dict"><code class="docutils literal notranslate"><span class="pre">AgentDescription.to_dict()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l5"><a class="reference internal" href="source/src.description.html#src.description.benchmarkdescription.TestDescription"><code class="docutils literal notranslate"><span class="pre">TestDescription</span></code></a><ul>
-<li class="toctree-l6"><a class="reference internal" href="source/src.description.html#src.description.benchmarkdescription.TestDescription.agents"><code class="docutils literal notranslate"><span class="pre">TestDescription.agents</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.description.html#src.description.benchmarkdescription.TestDescription.entities"><code class="docutils literal notranslate"><span class="pre">TestDescription.entities</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.description.html#src.description.benchmarkdescription.TestDescription.from_dict"><code class="docutils literal notranslate"><span class="pre">TestDescription.from_dict()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.description.html#src.description.benchmarkdescription.TestDescription.graph"><code class="docutils literal notranslate"><span class="pre">TestDescription.graph</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.description.html#src.description.benchmarkdescription.TestDescription.name"><code class="docutils literal notranslate"><span class="pre">TestDescription.name</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.description.html#src.description.benchmarkdescription.TestDescription.objectives"><code class="docutils literal notranslate"><span class="pre">TestDescription.objectives</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.description.html#src.description.benchmarkdescription.TestDescription.obstacles"><code class="docutils literal notranslate"><span class="pre">TestDescription.obstacles</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.description.html#src.description.benchmarkdescription.TestDescription.to_dict"><code class="docutils literal notranslate"><span class="pre">TestDescription.to_dict()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.entity_description.EntityDescription"><code class="docutils literal notranslate"><span class="pre">EntityDescription</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.entity_description.EntityDescription.from_dict"><code class="docutils literal notranslate"><span class="pre">EntityDescription.from_dict()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.entity_description.EntityDescription.has_start_position"><code class="docutils literal notranslate"><span class="pre">EntityDescription.has_start_position()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.entity_description.EntityDescription.name"><code class="docutils literal notranslate"><span class="pre">EntityDescription.name</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.entity_description.EntityDescription.start_position"><code class="docutils literal notranslate"><span class="pre">EntityDescription.start_position</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.entity_description.EntityDescription.to_dict"><code class="docutils literal notranslate"><span class="pre">EntityDescription.to_dict()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.entity_description.ObjectiveDescription"><code class="docutils literal notranslate"><span class="pre">ObjectiveDescription</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.entity_description.ObstacleDescription"><code class="docutils literal notranslate"><span class="pre">ObstacleDescription</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="source/src.description.html#module-src.description.entity_description">src.description.entity_description module</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="source/src.description.html#src.description.entity_description.AgentDescription"><code class="docutils literal notranslate"><span class="pre">AgentDescription</span></code></a><ul>
-<li class="toctree-l6"><a class="reference internal" href="source/src.description.html#src.description.entity_description.AgentDescription.objective_name"><code class="docutils literal notranslate"><span class="pre">AgentDescription.objective_name</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.description.html#src.description.entity_description.AgentDescription.to_dict"><code class="docutils literal notranslate"><span class="pre">AgentDescription.to_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.description.html#module-mapfbench.description.graph">mapfbench.description.graph module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.graph.Edge"><code class="docutils literal notranslate"><span class="pre">Edge</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.graph.Edge.end_node"><code class="docutils literal notranslate"><span class="pre">Edge.end_node</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.graph.Edge.from_dict"><code class="docutils literal notranslate"><span class="pre">Edge.from_dict()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.graph.Edge.reversed"><code class="docutils literal notranslate"><span class="pre">Edge.reversed()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.graph.Edge.start_node"><code class="docutils literal notranslate"><span class="pre">Edge.start_node</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.graph.Edge.to_dict"><code class="docutils literal notranslate"><span class="pre">Edge.to_dict()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.graph.Edge.weight"><code class="docutils literal notranslate"><span class="pre">Edge.weight</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l5"><a class="reference internal" href="source/src.description.html#src.description.entity_description.EntityDescription"><code class="docutils literal notranslate"><span class="pre">EntityDescription</span></code></a><ul>
-<li class="toctree-l6"><a class="reference internal" href="source/src.description.html#src.description.entity_description.EntityDescription.from_dict"><code class="docutils literal notranslate"><span class="pre">EntityDescription.from_dict()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.description.html#src.description.entity_description.EntityDescription.has_start_position"><code class="docutils literal notranslate"><span class="pre">EntityDescription.has_start_position()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.description.html#src.description.entity_description.EntityDescription.name"><code class="docutils literal notranslate"><span class="pre">EntityDescription.name</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.description.html#src.description.entity_description.EntityDescription.start_position"><code class="docutils literal notranslate"><span class="pre">EntityDescription.start_position</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.description.html#src.description.entity_description.EntityDescription.to_dict"><code class="docutils literal notranslate"><span class="pre">EntityDescription.to_dict()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.graph.Graph"><code class="docutils literal notranslate"><span class="pre">Graph</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.graph.Graph.edges"><code class="docutils literal notranslate"><span class="pre">Graph.edges</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.graph.Graph.from_dict"><code class="docutils literal notranslate"><span class="pre">Graph.from_dict()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.graph.Graph.get_adjacent_nodes"><code class="docutils literal notranslate"><span class="pre">Graph.get_adjacent_nodes()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.graph.Graph.get_edge"><code class="docutils literal notranslate"><span class="pre">Graph.get_edge()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.graph.Graph.has_edge"><code class="docutils literal notranslate"><span class="pre">Graph.has_edge()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.graph.Graph.has_node"><code class="docutils literal notranslate"><span class="pre">Graph.has_node()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.graph.Graph.nodes"><code class="docutils literal notranslate"><span class="pre">Graph.nodes</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.graph.Graph.to_dict"><code class="docutils literal notranslate"><span class="pre">Graph.to_dict()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l5"><a class="reference internal" href="source/src.description.html#src.description.entity_description.ObjectiveDescription"><code class="docutils literal notranslate"><span class="pre">ObjectiveDescription</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="source/src.description.html#src.description.entity_description.ObstacleDescription"><code class="docutils literal notranslate"><span class="pre">ObstacleDescription</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.graph.GridGraph"><code class="docutils literal notranslate"><span class="pre">GridGraph</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.graph.GridGraph.cols"><code class="docutils literal notranslate"><span class="pre">GridGraph.cols</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.graph.GridGraph.dimensions"><code class="docutils literal notranslate"><span class="pre">GridGraph.dimensions</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.graph.GridGraph.rows"><code class="docutils literal notranslate"><span class="pre">GridGraph.rows</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.graph.GridGraph.to_dict"><code class="docutils literal notranslate"><span class="pre">GridGraph.to_dict()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="source/src.description.html#module-src.description">Module contents</a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.graph.Node"><code class="docutils literal notranslate"><span class="pre">Node</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.graph.Node.coords"><code class="docutils literal notranslate"><span class="pre">Node.coords</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.graph.Node.from_dict"><code class="docutils literal notranslate"><span class="pre">Node.from_dict()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.graph.Node.index"><code class="docutils literal notranslate"><span class="pre">Node.index</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.graph.Node.to_dict"><code class="docutils literal notranslate"><span class="pre">Node.to_dict()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.graph.Node.x"><code class="docutils literal notranslate"><span class="pre">Node.x</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.graph.Node.y"><code class="docutils literal notranslate"><span class="pre">Node.y</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="source/src.formatter.html">src.formatter package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="source/src.formatter.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="source/src.formatter.html#module-src.formatter.extractor">src.formatter.extractor module</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="source/src.formatter.html#src.formatter.extractor.extract_action"><code class="docutils literal notranslate"><span class="pre">extract_action()</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="source/src.formatter.html#src.formatter.extractor.extract_benchmark"><code class="docutils literal notranslate"><span class="pre">extract_benchmark()</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="source/src.formatter.html#src.formatter.extractor.extract_benchmark_run"><code class="docutils literal notranslate"><span class="pre">extract_benchmark_run()</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="source/src.formatter.html#src.formatter.extractor.extract_edge"><code class="docutils literal notranslate"><span class="pre">extract_edge()</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="source/src.formatter.html#src.formatter.extractor.extract_entity_info"><code class="docutils literal notranslate"><span class="pre">extract_entity_info()</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="source/src.formatter.html#src.formatter.extractor.extract_entity_list"><code class="docutils literal notranslate"><span class="pre">extract_entity_list()</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="source/src.formatter.html#src.formatter.extractor.extract_graph"><code class="docutils literal notranslate"><span class="pre">extract_graph()</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="source/src.formatter.html#src.formatter.extractor.extract_node"><code class="docutils literal notranslate"><span class="pre">extract_node()</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="source/src.formatter.html#src.formatter.extractor.extract_test"><code class="docutils literal notranslate"><span class="pre">extract_test()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="source/src.formatter.html#module-src.formatter.formatter">src.formatter.formatter module</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="source/src.formatter.html#src.formatter.formatter.export_aggregate_metrics"><code class="docutils literal notranslate"><span class="pre">export_aggregate_metrics()</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="source/src.formatter.html#src.formatter.formatter.export_benchmark_results_to_yaml"><code class="docutils literal notranslate"><span class="pre">export_benchmark_results_to_yaml()</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="source/src.formatter.html#src.formatter.formatter.export_benchmark_run_to_yaml"><code class="docutils literal notranslate"><span class="pre">export_benchmark_run_to_yaml()</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="source/src.formatter.html#src.formatter.formatter.export_benchmark_to_yaml"><code class="docutils literal notranslate"><span class="pre">export_benchmark_to_yaml()</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="source/src.formatter.html#src.formatter.formatter.export_test_iterations_metrics"><code class="docutils literal notranslate"><span class="pre">export_test_iterations_metrics()</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="source/src.formatter.html#src.formatter.formatter.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="source/src.formatter.html#module-src.formatter">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="source/src.inspector.html">src.inspector package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="source/src.inspector.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="source/src.inspector.html#module-src.inspector.benchmarkinspector">src.inspector.benchmarkinspector module</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="source/src.inspector.html#src.inspector.benchmarkinspector.BenchmarkInspector"><code class="docutils literal notranslate"><span class="pre">BenchmarkInspector</span></code></a><ul>
-<li class="toctree-l6"><a class="reference internal" href="source/src.inspector.html#src.inspector.benchmarkinspector.BenchmarkInspector.get_recorders"><code class="docutils literal notranslate"><span class="pre">BenchmarkInspector.get_recorders()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.inspector.html#src.inspector.benchmarkinspector.BenchmarkInspector.request_random_test"><code class="docutils literal notranslate"><span class="pre">BenchmarkInspector.request_random_test()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.inspector.html#src.inspector.benchmarkinspector.BenchmarkInspector.request_test"><code class="docutils literal notranslate"><span class="pre">BenchmarkInspector.request_test()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.inspector.html#src.inspector.benchmarkinspector.BenchmarkInspector.start"><code class="docutils literal notranslate"><span class="pre">BenchmarkInspector.start()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.inspector.html#src.inspector.benchmarkinspector.BenchmarkInspector.stop"><code class="docutils literal notranslate"><span class="pre">BenchmarkInspector.stop()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.inspector.html#src.inspector.benchmarkinspector.BenchmarkInspector.submit_result"><code class="docutils literal notranslate"><span class="pre">BenchmarkInspector.submit_result()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.graph.UndirectedGraph"><code class="docutils literal notranslate"><span class="pre">UndirectedGraph</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.description.html#mapfbench.description.graph.UndirectedGraph.undirected_edges"><code class="docutils literal notranslate"><span class="pre">UndirectedGraph.undirected_edges</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="source/src.inspector.html#module-src.inspector.testinspector">src.inspector.testinspector module</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="source/src.inspector.html#src.inspector.testinspector.TestInspector"><code class="docutils literal notranslate"><span class="pre">TestInspector</span></code></a><ul>
-<li class="toctree-l6"><a class="reference internal" href="source/src.inspector.html#src.inspector.testinspector.TestInspector.action_list"><code class="docutils literal notranslate"><span class="pre">TestInspector.action_list</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.inspector.html#src.inspector.testinspector.TestInspector.end_profiling"><code class="docutils literal notranslate"><span class="pre">TestInspector.end_profiling()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.inspector.html#src.inspector.testinspector.TestInspector.get_result"><code class="docutils literal notranslate"><span class="pre">TestInspector.get_result()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.inspector.html#src.inspector.testinspector.TestInspector.mark_as_solved"><code class="docutils literal notranslate"><span class="pre">TestInspector.mark_as_solved()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.inspector.html#src.inspector.testinspector.TestInspector.register_action"><code class="docutils literal notranslate"><span class="pre">TestInspector.register_action()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.inspector.html#src.inspector.testinspector.TestInspector.register_appearance"><code class="docutils literal notranslate"><span class="pre">TestInspector.register_appearance()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.inspector.html#src.inspector.testinspector.TestInspector.register_disappearance"><code class="docutils literal notranslate"><span class="pre">TestInspector.register_disappearance()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.inspector.html#src.inspector.testinspector.TestInspector.register_move"><code class="docutils literal notranslate"><span class="pre">TestInspector.register_move()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.inspector.html#src.inspector.testinspector.TestInspector.register_move_down"><code class="docutils literal notranslate"><span class="pre">TestInspector.register_move_down()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.inspector.html#src.inspector.testinspector.TestInspector.register_move_left"><code class="docutils literal notranslate"><span class="pre">TestInspector.register_move_left()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.inspector.html#src.inspector.testinspector.TestInspector.register_move_right"><code class="docutils literal notranslate"><span class="pre">TestInspector.register_move_right()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.inspector.html#src.inspector.testinspector.TestInspector.register_move_up"><code class="docutils literal notranslate"><span class="pre">TestInspector.register_move_up()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.inspector.html#src.inspector.testinspector.TestInspector.register_wait"><code class="docutils literal notranslate"><span class="pre">TestInspector.register_wait()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.inspector.html#src.inspector.testinspector.TestInspector.start_profiling"><code class="docutils literal notranslate"><span class="pre">TestInspector.start_profiling()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.inspector.html#src.inspector.testinspector.TestInspector.test_description"><code class="docutils literal notranslate"><span class="pre">TestInspector.test_description</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.description.html#module-mapfbench.description">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="source/mapfbench.formatter.html">mapfbench.formatter package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.formatter.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.formatter.html#module-mapfbench.formatter.extractor">mapfbench.formatter.extractor module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.formatter.html#mapfbench.formatter.extractor.extract_action"><code class="docutils literal notranslate"><span class="pre">extract_action()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.formatter.html#mapfbench.formatter.extractor.extract_benchmark"><code class="docutils literal notranslate"><span class="pre">extract_benchmark()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.formatter.html#mapfbench.formatter.extractor.extract_benchmark_run"><code class="docutils literal notranslate"><span class="pre">extract_benchmark_run()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.formatter.html#mapfbench.formatter.extractor.extract_edge"><code class="docutils literal notranslate"><span class="pre">extract_edge()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.formatter.html#mapfbench.formatter.extractor.extract_entity_info"><code class="docutils literal notranslate"><span class="pre">extract_entity_info()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.formatter.html#mapfbench.formatter.extractor.extract_entity_list"><code class="docutils literal notranslate"><span class="pre">extract_entity_list()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.formatter.html#mapfbench.formatter.extractor.extract_graph"><code class="docutils literal notranslate"><span class="pre">extract_graph()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.formatter.html#mapfbench.formatter.extractor.extract_node"><code class="docutils literal notranslate"><span class="pre">extract_node()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.formatter.html#mapfbench.formatter.extractor.extract_test"><code class="docutils literal notranslate"><span class="pre">extract_test()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.formatter.html#module-mapfbench.formatter.formatter">mapfbench.formatter.formatter module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.formatter.html#mapfbench.formatter.formatter.export_aggregate_metrics"><code class="docutils literal notranslate"><span class="pre">export_aggregate_metrics()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.formatter.html#mapfbench.formatter.formatter.export_benchmark_results_to_yaml"><code class="docutils literal notranslate"><span class="pre">export_benchmark_results_to_yaml()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.formatter.html#mapfbench.formatter.formatter.export_benchmark_run_to_yaml"><code class="docutils literal notranslate"><span class="pre">export_benchmark_run_to_yaml()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.formatter.html#mapfbench.formatter.formatter.export_benchmark_to_yaml"><code class="docutils literal notranslate"><span class="pre">export_benchmark_to_yaml()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.formatter.html#mapfbench.formatter.formatter.export_test_iterations_metrics"><code class="docutils literal notranslate"><span class="pre">export_test_iterations_metrics()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.formatter.html#module-mapfbench.formatter.maprepresentation">mapfbench.formatter.maprepresentation module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.formatter.html#mapfbench.formatter.maprepresentation.MapRepresentation"><code class="docutils literal notranslate"><span class="pre">MapRepresentation</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.formatter.html#mapfbench.formatter.maprepresentation.MapRepresentation.cols"><code class="docutils literal notranslate"><span class="pre">MapRepresentation.cols</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.formatter.html#mapfbench.formatter.maprepresentation.MapRepresentation.constructor"><code class="docutils literal notranslate"><span class="pre">MapRepresentation.constructor()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.formatter.html#mapfbench.formatter.maprepresentation.MapRepresentation.entities"><code class="docutils literal notranslate"><span class="pre">MapRepresentation.entities</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.formatter.html#mapfbench.formatter.maprepresentation.MapRepresentation.from_entities"><code class="docutils literal notranslate"><span class="pre">MapRepresentation.from_entities()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.formatter.html#mapfbench.formatter.maprepresentation.MapRepresentation.representation"><code class="docutils literal notranslate"><span class="pre">MapRepresentation.representation</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.formatter.html#mapfbench.formatter.maprepresentation.MapRepresentation.representer"><code class="docutils literal notranslate"><span class="pre">MapRepresentation.representer()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.formatter.html#mapfbench.formatter.maprepresentation.MapRepresentation.rows"><code class="docutils literal notranslate"><span class="pre">MapRepresentation.rows</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.formatter.html#mapfbench.formatter.maprepresentation.MapRepresentation.to_lines"><code class="docutils literal notranslate"><span class="pre">MapRepresentation.to_lines()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.formatter.html#mapfbench.formatter.maprepresentation.MapRepresentation.validate_map_representation"><code class="docutils literal notranslate"><span class="pre">MapRepresentation.validate_map_representation()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="source/src.inspector.html#module-src.inspector">Module contents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.formatter.html#module-mapfbench.formatter">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="source/src.metrics.html">src.metrics package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="source/src.metrics.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="source/src.metrics.html#module-src.metrics.agentMetrics">src.metrics.agentMetrics module</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="source/src.metrics.html#src.metrics.agentMetrics.AgentMetrics"><code class="docutils literal notranslate"><span class="pre">AgentMetrics</span></code></a><ul>
-<li class="toctree-l6"><a class="reference internal" href="source/src.metrics.html#src.metrics.agentMetrics.AgentMetrics.evaluate"><code class="docutils literal notranslate"><span class="pre">AgentMetrics.evaluate()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.metrics.html#src.metrics.agentMetrics.AgentMetrics.numberOfMove"><code class="docutils literal notranslate"><span class="pre">AgentMetrics.numberOfMove</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.metrics.html#src.metrics.agentMetrics.AgentMetrics.numberOfWait"><code class="docutils literal notranslate"><span class="pre">AgentMetrics.numberOfWait</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.metrics.html#src.metrics.agentMetrics.AgentMetrics.timeToReachTarget"><code class="docutils literal notranslate"><span class="pre">AgentMetrics.timeToReachTarget</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.metrics.html#src.metrics.agentMetrics.AgentMetrics.to_dict"><code class="docutils literal notranslate"><span class="pre">AgentMetrics.to_dict()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="source/src.metrics.html#module-src.metrics.benchmark_metrics">src.metrics.benchmark_metrics module</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="source/src.metrics.html#src.metrics.benchmark_metrics.AggregateMetrics"><code class="docutils literal notranslate"><span class="pre">AggregateMetrics</span></code></a><ul>
-<li class="toctree-l6"><a class="reference internal" href="source/src.metrics.html#src.metrics.benchmark_metrics.AggregateMetrics.avg"><code class="docutils literal notranslate"><span class="pre">AggregateMetrics.avg()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.metrics.html#src.metrics.benchmark_metrics.AggregateMetrics.evaluate"><code class="docutils literal notranslate"><span class="pre">AggregateMetrics.evaluate()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.metrics.html#src.metrics.benchmark_metrics.AggregateMetrics.iterations"><code class="docutils literal notranslate"><span class="pre">AggregateMetrics.iterations</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.metrics.html#src.metrics.benchmark_metrics.AggregateMetrics.iterations_metrics"><code class="docutils literal notranslate"><span class="pre">AggregateMetrics.iterations_metrics</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.metrics.html#src.metrics.benchmark_metrics.AggregateMetrics.iterations_num"><code class="docutils literal notranslate"><span class="pre">AggregateMetrics.iterations_num</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.metrics.html#src.metrics.benchmark_metrics.AggregateMetrics.test_name"><code class="docutils literal notranslate"><span class="pre">AggregateMetrics.test_name</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.metrics.html#src.metrics.benchmark_metrics.AggregateMetrics.to_dict"><code class="docutils literal notranslate"><span class="pre">AggregateMetrics.to_dict()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l5"><a class="reference internal" href="source/src.metrics.html#src.metrics.benchmark_metrics.BenchmarkMetrics"><code class="docutils literal notranslate"><span class="pre">BenchmarkMetrics</span></code></a><ul>
-<li class="toctree-l6"><a class="reference internal" href="source/src.metrics.html#src.metrics.benchmark_metrics.BenchmarkMetrics.aggregate_metrics"><code class="docutils literal notranslate"><span class="pre">BenchmarkMetrics.aggregate_metrics</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.metrics.html#src.metrics.benchmark_metrics.BenchmarkMetrics.evaluate"><code class="docutils literal notranslate"><span class="pre">BenchmarkMetrics.evaluate()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.metrics.html#src.metrics.benchmark_metrics.BenchmarkMetrics.to_dict"><code class="docutils literal notranslate"><span class="pre">BenchmarkMetrics.to_dict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="source/mapfbench.inspector.html">mapfbench.inspector package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.inspector.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.inspector.html#module-mapfbench.inspector.benchmarkinspector">mapfbench.inspector.benchmarkinspector module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.inspector.html#mapfbench.inspector.benchmarkinspector.BenchmarkInspector"><code class="docutils literal notranslate"><span class="pre">BenchmarkInspector</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.inspector.html#mapfbench.inspector.benchmarkinspector.BenchmarkInspector.get_recorders"><code class="docutils literal notranslate"><span class="pre">BenchmarkInspector.get_recorders()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.inspector.html#mapfbench.inspector.benchmarkinspector.BenchmarkInspector.request_random_test"><code class="docutils literal notranslate"><span class="pre">BenchmarkInspector.request_random_test()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.inspector.html#mapfbench.inspector.benchmarkinspector.BenchmarkInspector.request_test"><code class="docutils literal notranslate"><span class="pre">BenchmarkInspector.request_test()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.inspector.html#mapfbench.inspector.benchmarkinspector.BenchmarkInspector.start"><code class="docutils literal notranslate"><span class="pre">BenchmarkInspector.start()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.inspector.html#mapfbench.inspector.benchmarkinspector.BenchmarkInspector.stop"><code class="docutils literal notranslate"><span class="pre">BenchmarkInspector.stop()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.inspector.html#mapfbench.inspector.benchmarkinspector.BenchmarkInspector.submit_result"><code class="docutils literal notranslate"><span class="pre">BenchmarkInspector.submit_result()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="source/src.metrics.html#module-src.metrics.testMetrics">src.metrics.testMetrics module</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="source/src.metrics.html#src.metrics.testMetrics.Collision"><code class="docutils literal notranslate"><span class="pre">Collision</span></code></a><ul>
-<li class="toctree-l6"><a class="reference internal" href="source/src.metrics.html#src.metrics.testMetrics.Collision.collision_type"><code class="docutils literal notranslate"><span class="pre">Collision.collision_type</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.metrics.html#src.metrics.testMetrics.Collision.entity1"><code class="docutils literal notranslate"><span class="pre">Collision.entity1</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.metrics.html#src.metrics.testMetrics.Collision.entity2"><code class="docutils literal notranslate"><span class="pre">Collision.entity2</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.metrics.html#src.metrics.testMetrics.Collision.timestep"><code class="docutils literal notranslate"><span class="pre">Collision.timestep</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.metrics.html#src.metrics.testMetrics.Collision.to_dict"><code class="docutils literal notranslate"><span class="pre">Collision.to_dict()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l5"><a class="reference internal" href="source/src.metrics.html#src.metrics.testMetrics.TestMetrics"><code class="docutils literal notranslate"><span class="pre">TestMetrics</span></code></a><ul>
-<li class="toctree-l6"><a class="reference internal" href="source/src.metrics.html#src.metrics.testMetrics.TestMetrics.catch_conflicts"><code class="docutils literal notranslate"><span class="pre">TestMetrics.catch_conflicts()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.metrics.html#src.metrics.testMetrics.TestMetrics.check_edge"><code class="docutils literal notranslate"><span class="pre">TestMetrics.check_edge()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.metrics.html#src.metrics.testMetrics.TestMetrics.check_vertex"><code class="docutils literal notranslate"><span class="pre">TestMetrics.check_vertex()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.metrics.html#src.metrics.testMetrics.TestMetrics.conflicts"><code class="docutils literal notranslate"><span class="pre">TestMetrics.conflicts</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.metrics.html#src.metrics.testMetrics.TestMetrics.evaluate"><code class="docutils literal notranslate"><span class="pre">TestMetrics.evaluate()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.metrics.html#src.metrics.testMetrics.TestMetrics.evaluate_make_span"><code class="docutils literal notranslate"><span class="pre">TestMetrics.evaluate_make_span()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.metrics.html#src.metrics.testMetrics.TestMetrics.evaluate_medium_costs"><code class="docutils literal notranslate"><span class="pre">TestMetrics.evaluate_medium_costs()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.metrics.html#src.metrics.testMetrics.TestMetrics.evaluate_sum_of_costs"><code class="docutils literal notranslate"><span class="pre">TestMetrics.evaluate_sum_of_costs()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.metrics.html#src.metrics.testMetrics.TestMetrics.take_actions_by_agent"><code class="docutils literal notranslate"><span class="pre">TestMetrics.take_actions_by_agent()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.metrics.html#src.metrics.testMetrics.TestMetrics.to_dict"><code class="docutils literal notranslate"><span class="pre">TestMetrics.to_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.inspector.html#module-mapfbench.inspector.testinspector">mapfbench.inspector.testinspector module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.inspector.html#mapfbench.inspector.testinspector.TestInspector"><code class="docutils literal notranslate"><span class="pre">TestInspector</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.inspector.html#mapfbench.inspector.testinspector.TestInspector.action_list"><code class="docutils literal notranslate"><span class="pre">TestInspector.action_list</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.inspector.html#mapfbench.inspector.testinspector.TestInspector.end_profiling"><code class="docutils literal notranslate"><span class="pre">TestInspector.end_profiling()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.inspector.html#mapfbench.inspector.testinspector.TestInspector.get_result"><code class="docutils literal notranslate"><span class="pre">TestInspector.get_result()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.inspector.html#mapfbench.inspector.testinspector.TestInspector.mark_as_solved"><code class="docutils literal notranslate"><span class="pre">TestInspector.mark_as_solved()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.inspector.html#mapfbench.inspector.testinspector.TestInspector.register_action"><code class="docutils literal notranslate"><span class="pre">TestInspector.register_action()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.inspector.html#mapfbench.inspector.testinspector.TestInspector.register_appearance"><code class="docutils literal notranslate"><span class="pre">TestInspector.register_appearance()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.inspector.html#mapfbench.inspector.testinspector.TestInspector.register_disappearance"><code class="docutils literal notranslate"><span class="pre">TestInspector.register_disappearance()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.inspector.html#mapfbench.inspector.testinspector.TestInspector.register_move"><code class="docutils literal notranslate"><span class="pre">TestInspector.register_move()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.inspector.html#mapfbench.inspector.testinspector.TestInspector.register_move_down"><code class="docutils literal notranslate"><span class="pre">TestInspector.register_move_down()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.inspector.html#mapfbench.inspector.testinspector.TestInspector.register_move_left"><code class="docutils literal notranslate"><span class="pre">TestInspector.register_move_left()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.inspector.html#mapfbench.inspector.testinspector.TestInspector.register_move_right"><code class="docutils literal notranslate"><span class="pre">TestInspector.register_move_right()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.inspector.html#mapfbench.inspector.testinspector.TestInspector.register_move_up"><code class="docutils literal notranslate"><span class="pre">TestInspector.register_move_up()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.inspector.html#mapfbench.inspector.testinspector.TestInspector.register_wait"><code class="docutils literal notranslate"><span class="pre">TestInspector.register_wait()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.inspector.html#mapfbench.inspector.testinspector.TestInspector.start_profiling"><code class="docutils literal notranslate"><span class="pre">TestInspector.start_profiling()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.inspector.html#mapfbench.inspector.testinspector.TestInspector.test_description"><code class="docutils literal notranslate"><span class="pre">TestInspector.test_description</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="source/src.metrics.html#module-src.metrics">Module contents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.inspector.html#module-mapfbench.inspector">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="source/src.result.html">src.result package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="source/src.result.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="source/src.result.html#module-src.result.action">src.result.action module</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="source/src.result.html#src.result.action.Action"><code class="docutils literal notranslate"><span class="pre">Action</span></code></a><ul>
-<li class="toctree-l6"><a class="reference internal" href="source/src.result.html#src.result.action.Action.description"><code class="docutils literal notranslate"><span class="pre">Action.description</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.result.html#src.result.action.Action.end_position"><code class="docutils literal notranslate"><span class="pre">Action.end_position</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.result.html#src.result.action.Action.from_dict"><code class="docutils literal notranslate"><span class="pre">Action.from_dict()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.result.html#src.result.action.Action.start_position"><code class="docutils literal notranslate"><span class="pre">Action.start_position</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.result.html#src.result.action.Action.subject"><code class="docutils literal notranslate"><span class="pre">Action.subject</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.result.html#src.result.action.Action.timestep"><code class="docutils literal notranslate"><span class="pre">Action.timestep</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.result.html#src.result.action.Action.to_dict"><code class="docutils literal notranslate"><span class="pre">Action.to_dict()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.result.html#src.result.action.Action.type"><code class="docutils literal notranslate"><span class="pre">Action.type</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l5"><a class="reference internal" href="source/src.result.html#src.result.action.AppearAction"><code class="docutils literal notranslate"><span class="pre">AppearAction</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="source/src.result.html#src.result.action.DisappearAction"><code class="docutils literal notranslate"><span class="pre">DisappearAction</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="source/src.result.html#src.result.action.MoveAction"><code class="docutils literal notranslate"><span class="pre">MoveAction</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="source/src.result.html#src.result.action.WaitAction"><code class="docutils literal notranslate"><span class="pre">WaitAction</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="source/src.result.html#module-src.result.testrun">src.result.testrun module</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="source/src.result.html#src.result.testrun.BenchmarkRun"><code class="docutils literal notranslate"><span class="pre">BenchmarkRun</span></code></a><ul>
-<li class="toctree-l6"><a class="reference internal" href="source/src.result.html#src.result.testrun.BenchmarkRun.benchmark_description"><code class="docutils literal notranslate"><span class="pre">BenchmarkRun.benchmark_description</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.result.html#src.result.testrun.BenchmarkRun.from_dict"><code class="docutils literal notranslate"><span class="pre">BenchmarkRun.from_dict()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.result.html#src.result.testrun.BenchmarkRun.result_list"><code class="docutils literal notranslate"><span class="pre">BenchmarkRun.result_list</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.result.html#src.result.testrun.BenchmarkRun.results"><code class="docutils literal notranslate"><span class="pre">BenchmarkRun.results</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.result.html#src.result.testrun.BenchmarkRun.to_dict"><code class="docutils literal notranslate"><span class="pre">BenchmarkRun.to_dict()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l5"><a class="reference internal" href="source/src.result.html#src.result.testrun.TestRun"><code class="docutils literal notranslate"><span class="pre">TestRun</span></code></a><ul>
-<li class="toctree-l6"><a class="reference internal" href="source/src.result.html#src.result.testrun.TestRun.action_list"><code class="docutils literal notranslate"><span class="pre">TestRun.action_list</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.result.html#src.result.testrun.TestRun.from_dict"><code class="docutils literal notranslate"><span class="pre">TestRun.from_dict()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.result.html#src.result.testrun.TestRun.is_solved"><code class="docutils literal notranslate"><span class="pre">TestRun.is_solved</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.result.html#src.result.testrun.TestRun.memory_usage"><code class="docutils literal notranslate"><span class="pre">TestRun.memory_usage</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.result.html#src.result.testrun.TestRun.test_description"><code class="docutils literal notranslate"><span class="pre">TestRun.test_description</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.result.html#src.result.testrun.TestRun.time_elapsed"><code class="docutils literal notranslate"><span class="pre">TestRun.time_elapsed</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.result.html#src.result.testrun.TestRun.to_dict"><code class="docutils literal notranslate"><span class="pre">TestRun.to_dict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="source/mapfbench.metrics.html">mapfbench.metrics package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.metrics.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.metrics.html#module-mapfbench.metrics.agentMetrics">mapfbench.metrics.agentMetrics module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.metrics.html#mapfbench.metrics.agentMetrics.AgentMetrics"><code class="docutils literal notranslate"><span class="pre">AgentMetrics</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.metrics.html#mapfbench.metrics.agentMetrics.AgentMetrics.evaluate"><code class="docutils literal notranslate"><span class="pre">AgentMetrics.evaluate()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.metrics.html#mapfbench.metrics.agentMetrics.AgentMetrics.numberOfMove"><code class="docutils literal notranslate"><span class="pre">AgentMetrics.numberOfMove</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.metrics.html#mapfbench.metrics.agentMetrics.AgentMetrics.numberOfWait"><code class="docutils literal notranslate"><span class="pre">AgentMetrics.numberOfWait</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.metrics.html#mapfbench.metrics.agentMetrics.AgentMetrics.timeToReachTarget"><code class="docutils literal notranslate"><span class="pre">AgentMetrics.timeToReachTarget</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.metrics.html#mapfbench.metrics.agentMetrics.AgentMetrics.to_dict"><code class="docutils literal notranslate"><span class="pre">AgentMetrics.to_dict()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="source/src.result.html#module-src.result">Module contents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.metrics.html#module-mapfbench.metrics.benchmark_metrics">mapfbench.metrics.benchmark_metrics module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.metrics.html#mapfbench.metrics.benchmark_metrics.AggregateMetrics"><code class="docutils literal notranslate"><span class="pre">AggregateMetrics</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.metrics.html#mapfbench.metrics.benchmark_metrics.AggregateMetrics.avg"><code class="docutils literal notranslate"><span class="pre">AggregateMetrics.avg()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.metrics.html#mapfbench.metrics.benchmark_metrics.AggregateMetrics.evaluate"><code class="docutils literal notranslate"><span class="pre">AggregateMetrics.evaluate()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.metrics.html#mapfbench.metrics.benchmark_metrics.AggregateMetrics.iterations"><code class="docutils literal notranslate"><span class="pre">AggregateMetrics.iterations</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.metrics.html#mapfbench.metrics.benchmark_metrics.AggregateMetrics.iterations_metrics"><code class="docutils literal notranslate"><span class="pre">AggregateMetrics.iterations_metrics</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.metrics.html#mapfbench.metrics.benchmark_metrics.AggregateMetrics.iterations_num"><code class="docutils literal notranslate"><span class="pre">AggregateMetrics.iterations_num</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.metrics.html#mapfbench.metrics.benchmark_metrics.AggregateMetrics.test_name"><code class="docutils literal notranslate"><span class="pre">AggregateMetrics.test_name</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.metrics.html#mapfbench.metrics.benchmark_metrics.AggregateMetrics.to_dict"><code class="docutils literal notranslate"><span class="pre">AggregateMetrics.to_dict()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="source/src.runner.html">src.runner package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="source/src.runner.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="source/src.runner.html#module-src.runner.benchmarkrunner">src.runner.benchmarkrunner module</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="source/src.runner.html#src.runner.benchmarkrunner.BenchmarkRunner"><code class="docutils literal notranslate"><span class="pre">BenchmarkRunner</span></code></a><ul>
-<li class="toctree-l6"><a class="reference internal" href="source/src.runner.html#src.runner.benchmarkrunner.BenchmarkRunner.get_benchmark"><code class="docutils literal notranslate"><span class="pre">BenchmarkRunner.get_benchmark()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.runner.html#src.runner.benchmarkrunner.BenchmarkRunner.get_results"><code class="docutils literal notranslate"><span class="pre">BenchmarkRunner.get_results()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.runner.html#src.runner.benchmarkrunner.BenchmarkRunner.get_tests_left"><code class="docutils literal notranslate"><span class="pre">BenchmarkRunner.get_tests_left()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.runner.html#src.runner.benchmarkrunner.BenchmarkRunner.ping"><code class="docutils literal notranslate"><span class="pre">BenchmarkRunner.ping()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.runner.html#src.runner.benchmarkrunner.BenchmarkRunner.request_random_test"><code class="docutils literal notranslate"><span class="pre">BenchmarkRunner.request_random_test()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.runner.html#src.runner.benchmarkrunner.BenchmarkRunner.request_test"><code class="docutils literal notranslate"><span class="pre">BenchmarkRunner.request_test()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.runner.html#src.runner.benchmarkrunner.BenchmarkRunner.start_benchmark"><code class="docutils literal notranslate"><span class="pre">BenchmarkRunner.start_benchmark()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.runner.html#src.runner.benchmarkrunner.BenchmarkRunner.stop_benchmark"><code class="docutils literal notranslate"><span class="pre">BenchmarkRunner.stop_benchmark()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.runner.html#src.runner.benchmarkrunner.BenchmarkRunner.submit_result"><code class="docutils literal notranslate"><span class="pre">BenchmarkRunner.submit_result()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="source/src.runner.html#module-src.runner.testmanager">src.runner.testmanager module</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="source/src.runner.html#src.runner.testmanager.TestManager"><code class="docutils literal notranslate"><span class="pre">TestManager</span></code></a><ul>
-<li class="toctree-l6"><a class="reference internal" href="source/src.runner.html#src.runner.testmanager.TestManager.all_tests_done"><code class="docutils literal notranslate"><span class="pre">TestManager.all_tests_done()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.runner.html#src.runner.testmanager.TestManager.get_number_of_tests_left"><code class="docutils literal notranslate"><span class="pre">TestManager.get_number_of_tests_left()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.runner.html#src.runner.testmanager.TestManager.get_random_unassigned_test"><code class="docutils literal notranslate"><span class="pre">TestManager.get_random_unassigned_test()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.runner.html#src.runner.testmanager.TestManager.get_results"><code class="docutils literal notranslate"><span class="pre">TestManager.get_results()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.runner.html#src.runner.testmanager.TestManager.get_test_record_by_name"><code class="docutils literal notranslate"><span class="pre">TestManager.get_test_record_by_name()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.runner.html#src.runner.testmanager.TestManager.get_test_records"><code class="docutils literal notranslate"><span class="pre">TestManager.get_test_records()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.runner.html#src.runner.testmanager.TestManager.get_test_with_name"><code class="docutils literal notranslate"><span class="pre">TestManager.get_test_with_name()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.runner.html#src.runner.testmanager.TestManager.record_test_result"><code class="docutils literal notranslate"><span class="pre">TestManager.record_test_result()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.metrics.html#mapfbench.metrics.benchmark_metrics.BenchmarkMetrics"><code class="docutils literal notranslate"><span class="pre">BenchmarkMetrics</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.metrics.html#mapfbench.metrics.benchmark_metrics.BenchmarkMetrics.aggregate_metrics"><code class="docutils literal notranslate"><span class="pre">BenchmarkMetrics.aggregate_metrics</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.metrics.html#mapfbench.metrics.benchmark_metrics.BenchmarkMetrics.evaluate"><code class="docutils literal notranslate"><span class="pre">BenchmarkMetrics.evaluate()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.metrics.html#mapfbench.metrics.benchmark_metrics.BenchmarkMetrics.to_dict"><code class="docutils literal notranslate"><span class="pre">BenchmarkMetrics.to_dict()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="source/src.runner.html#module-src.runner.testrecord">src.runner.testrecord module</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="source/src.runner.html#src.runner.testrecord.TestRecord"><code class="docutils literal notranslate"><span class="pre">TestRecord</span></code></a><ul>
-<li class="toctree-l6"><a class="reference internal" href="source/src.runner.html#src.runner.testrecord.TestRecord.all_iterations_assigned"><code class="docutils literal notranslate"><span class="pre">TestRecord.all_iterations_assigned()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.runner.html#src.runner.testrecord.TestRecord.assigned_times"><code class="docutils literal notranslate"><span class="pre">TestRecord.assigned_times</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.runner.html#src.runner.testrecord.TestRecord.get_results"><code class="docutils literal notranslate"><span class="pre">TestRecord.get_results()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.runner.html#src.runner.testrecord.TestRecord.increment_assignment_count"><code class="docutils literal notranslate"><span class="pre">TestRecord.increment_assignment_count()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.runner.html#src.runner.testrecord.TestRecord.is_done"><code class="docutils literal notranslate"><span class="pre">TestRecord.is_done()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.runner.html#src.runner.testrecord.TestRecord.register_result"><code class="docutils literal notranslate"><span class="pre">TestRecord.register_result()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.runner.html#src.runner.testrecord.TestRecord.remaining_occurrences"><code class="docutils literal notranslate"><span class="pre">TestRecord.remaining_occurrences</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.runner.html#src.runner.testrecord.TestRecord.test"><code class="docutils literal notranslate"><span class="pre">TestRecord.test</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="source/src.runner.html#src.runner.testrecord.TestRecord.test_name"><code class="docutils literal notranslate"><span class="pre">TestRecord.test_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.metrics.html#module-mapfbench.metrics.testMetrics">mapfbench.metrics.testMetrics module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.metrics.html#mapfbench.metrics.testMetrics.Collision"><code class="docutils literal notranslate"><span class="pre">Collision</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.metrics.html#mapfbench.metrics.testMetrics.Collision.collision_type"><code class="docutils literal notranslate"><span class="pre">Collision.collision_type</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.metrics.html#mapfbench.metrics.testMetrics.Collision.entity1"><code class="docutils literal notranslate"><span class="pre">Collision.entity1</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.metrics.html#mapfbench.metrics.testMetrics.Collision.entity2"><code class="docutils literal notranslate"><span class="pre">Collision.entity2</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.metrics.html#mapfbench.metrics.testMetrics.Collision.timestep"><code class="docutils literal notranslate"><span class="pre">Collision.timestep</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.metrics.html#mapfbench.metrics.testMetrics.Collision.to_dict"><code class="docutils literal notranslate"><span class="pre">Collision.to_dict()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.metrics.html#mapfbench.metrics.testMetrics.TestMetrics"><code class="docutils literal notranslate"><span class="pre">TestMetrics</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.metrics.html#mapfbench.metrics.testMetrics.TestMetrics.catch_conflicts"><code class="docutils literal notranslate"><span class="pre">TestMetrics.catch_conflicts()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.metrics.html#mapfbench.metrics.testMetrics.TestMetrics.check_edge"><code class="docutils literal notranslate"><span class="pre">TestMetrics.check_edge()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.metrics.html#mapfbench.metrics.testMetrics.TestMetrics.check_vertex"><code class="docutils literal notranslate"><span class="pre">TestMetrics.check_vertex()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.metrics.html#mapfbench.metrics.testMetrics.TestMetrics.conflicts"><code class="docutils literal notranslate"><span class="pre">TestMetrics.conflicts</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.metrics.html#mapfbench.metrics.testMetrics.TestMetrics.evaluate"><code class="docutils literal notranslate"><span class="pre">TestMetrics.evaluate()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.metrics.html#mapfbench.metrics.testMetrics.TestMetrics.evaluate_make_span"><code class="docutils literal notranslate"><span class="pre">TestMetrics.evaluate_make_span()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.metrics.html#mapfbench.metrics.testMetrics.TestMetrics.evaluate_medium_costs"><code class="docutils literal notranslate"><span class="pre">TestMetrics.evaluate_medium_costs()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.metrics.html#mapfbench.metrics.testMetrics.TestMetrics.evaluate_sum_of_costs"><code class="docutils literal notranslate"><span class="pre">TestMetrics.evaluate_sum_of_costs()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.metrics.html#mapfbench.metrics.testMetrics.TestMetrics.take_actions_by_agent"><code class="docutils literal notranslate"><span class="pre">TestMetrics.take_actions_by_agent()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.metrics.html#mapfbench.metrics.testMetrics.TestMetrics.to_dict"><code class="docutils literal notranslate"><span class="pre">TestMetrics.to_dict()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="source/src.runner.html#module-src.runner">Module contents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.metrics.html#module-mapfbench.metrics">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="source/mapfbench.result.html">mapfbench.result package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.result.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.result.html#module-mapfbench.result.action">mapfbench.result.action module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.result.html#mapfbench.result.action.Action"><code class="docutils literal notranslate"><span class="pre">Action</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.result.html#mapfbench.result.action.Action.description"><code class="docutils literal notranslate"><span class="pre">Action.description</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.result.html#mapfbench.result.action.Action.end_position"><code class="docutils literal notranslate"><span class="pre">Action.end_position</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.result.html#mapfbench.result.action.Action.from_dict"><code class="docutils literal notranslate"><span class="pre">Action.from_dict()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.result.html#mapfbench.result.action.Action.start_position"><code class="docutils literal notranslate"><span class="pre">Action.start_position</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.result.html#mapfbench.result.action.Action.subject"><code class="docutils literal notranslate"><span class="pre">Action.subject</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.result.html#mapfbench.result.action.Action.timestep"><code class="docutils literal notranslate"><span class="pre">Action.timestep</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.result.html#mapfbench.result.action.Action.to_dict"><code class="docutils literal notranslate"><span class="pre">Action.to_dict()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.result.html#mapfbench.result.action.Action.type"><code class="docutils literal notranslate"><span class="pre">Action.type</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.result.html#mapfbench.result.action.AppearAction"><code class="docutils literal notranslate"><span class="pre">AppearAction</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.result.html#mapfbench.result.action.DisappearAction"><code class="docutils literal notranslate"><span class="pre">DisappearAction</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.result.html#mapfbench.result.action.MoveAction"><code class="docutils literal notranslate"><span class="pre">MoveAction</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.result.html#mapfbench.result.action.WaitAction"><code class="docutils literal notranslate"><span class="pre">WaitAction</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.result.html#module-mapfbench.result.testrun">mapfbench.result.testrun module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.result.html#mapfbench.result.testrun.BenchmarkRun"><code class="docutils literal notranslate"><span class="pre">BenchmarkRun</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.result.html#mapfbench.result.testrun.BenchmarkRun.benchmark_description"><code class="docutils literal notranslate"><span class="pre">BenchmarkRun.benchmark_description</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.result.html#mapfbench.result.testrun.BenchmarkRun.from_dict"><code class="docutils literal notranslate"><span class="pre">BenchmarkRun.from_dict()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.result.html#mapfbench.result.testrun.BenchmarkRun.result_list"><code class="docutils literal notranslate"><span class="pre">BenchmarkRun.result_list</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.result.html#mapfbench.result.testrun.BenchmarkRun.results"><code class="docutils literal notranslate"><span class="pre">BenchmarkRun.results</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.result.html#mapfbench.result.testrun.BenchmarkRun.to_dict"><code class="docutils literal notranslate"><span class="pre">BenchmarkRun.to_dict()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.result.html#mapfbench.result.testrun.TestRun"><code class="docutils literal notranslate"><span class="pre">TestRun</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.result.html#mapfbench.result.testrun.TestRun.action_list"><code class="docutils literal notranslate"><span class="pre">TestRun.action_list</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.result.html#mapfbench.result.testrun.TestRun.from_dict"><code class="docutils literal notranslate"><span class="pre">TestRun.from_dict()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.result.html#mapfbench.result.testrun.TestRun.is_solved"><code class="docutils literal notranslate"><span class="pre">TestRun.is_solved</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.result.html#mapfbench.result.testrun.TestRun.memory_usage"><code class="docutils literal notranslate"><span class="pre">TestRun.memory_usage</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.result.html#mapfbench.result.testrun.TestRun.test_description"><code class="docutils literal notranslate"><span class="pre">TestRun.test_description</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.result.html#mapfbench.result.testrun.TestRun.time_elapsed"><code class="docutils literal notranslate"><span class="pre">TestRun.time_elapsed</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.result.html#mapfbench.result.testrun.TestRun.to_dict"><code class="docutils literal notranslate"><span class="pre">TestRun.to_dict()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="source/src.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="source/src.html#module-src.benchmarkinspector_test">src.benchmarkinspector_test module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="source/src.html#module-src.benchmarkrunner_test">src.benchmarkrunner_test module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="source/src.html#module-src.commanddispatcher">src.commanddispatcher module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="source/src.html#src.commanddispatcher.CommandDispatcher"><code class="docutils literal notranslate"><span class="pre">CommandDispatcher</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="source/src.html#src.commanddispatcher.CommandDispatcher.execute"><code class="docutils literal notranslate"><span class="pre">CommandDispatcher.execute()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="source/src.html#src.commanddispatcher.CommandDispatcher.function_names"><code class="docutils literal notranslate"><span class="pre">CommandDispatcher.function_names</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.result.html#module-mapfbench.result">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="source/mapfbench.runner.html">mapfbench.runner package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.runner.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.runner.html#module-mapfbench.runner.benchmarkrunner">mapfbench.runner.benchmarkrunner module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.runner.html#mapfbench.runner.benchmarkrunner.BenchmarkRunner"><code class="docutils literal notranslate"><span class="pre">BenchmarkRunner</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.runner.html#mapfbench.runner.benchmarkrunner.BenchmarkRunner.get_benchmark"><code class="docutils literal notranslate"><span class="pre">BenchmarkRunner.get_benchmark()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.runner.html#mapfbench.runner.benchmarkrunner.BenchmarkRunner.get_results"><code class="docutils literal notranslate"><span class="pre">BenchmarkRunner.get_results()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.runner.html#mapfbench.runner.benchmarkrunner.BenchmarkRunner.get_tests_left"><code class="docutils literal notranslate"><span class="pre">BenchmarkRunner.get_tests_left()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.runner.html#mapfbench.runner.benchmarkrunner.BenchmarkRunner.ping"><code class="docutils literal notranslate"><span class="pre">BenchmarkRunner.ping()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.runner.html#mapfbench.runner.benchmarkrunner.BenchmarkRunner.request_random_test"><code class="docutils literal notranslate"><span class="pre">BenchmarkRunner.request_random_test()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.runner.html#mapfbench.runner.benchmarkrunner.BenchmarkRunner.request_test"><code class="docutils literal notranslate"><span class="pre">BenchmarkRunner.request_test()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.runner.html#mapfbench.runner.benchmarkrunner.BenchmarkRunner.start_benchmark"><code class="docutils literal notranslate"><span class="pre">BenchmarkRunner.start_benchmark()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.runner.html#mapfbench.runner.benchmarkrunner.BenchmarkRunner.stop_benchmark"><code class="docutils literal notranslate"><span class="pre">BenchmarkRunner.stop_benchmark()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.runner.html#mapfbench.runner.benchmarkrunner.BenchmarkRunner.submit_result"><code class="docutils literal notranslate"><span class="pre">BenchmarkRunner.submit_result()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="source/src.html#module-src.exceptions">src.exceptions module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="source/src.html#src.exceptions.CustomException"><code class="docutils literal notranslate"><span class="pre">CustomException</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="source/src.html#src.exceptions.DuplicateElementException"><code class="docutils literal notranslate"><span class="pre">DuplicateElementException</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="source/src.html#src.exceptions.ElementNotAvailableException"><code class="docutils literal notranslate"><span class="pre">ElementNotAvailableException</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="source/src.html#src.exceptions.ElementNotFoundException"><code class="docutils literal notranslate"><span class="pre">ElementNotFoundException</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="source/src.html#src.exceptions.EmptyElementException"><code class="docutils literal notranslate"><span class="pre">EmptyElementException</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="source/src.html#src.exceptions.InvalidElementException"><code class="docutils literal notranslate"><span class="pre">InvalidElementException</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="source/src.html#src.exceptions.OperationAlreadyDoneException"><code class="docutils literal notranslate"><span class="pre">OperationAlreadyDoneException</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.runner.html#module-mapfbench.runner.testmanager">mapfbench.runner.testmanager module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.runner.html#mapfbench.runner.testmanager.TestManager"><code class="docutils literal notranslate"><span class="pre">TestManager</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.runner.html#mapfbench.runner.testmanager.TestManager.all_tests_done"><code class="docutils literal notranslate"><span class="pre">TestManager.all_tests_done()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.runner.html#mapfbench.runner.testmanager.TestManager.get_number_of_tests_left"><code class="docutils literal notranslate"><span class="pre">TestManager.get_number_of_tests_left()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.runner.html#mapfbench.runner.testmanager.TestManager.get_random_unassigned_test"><code class="docutils literal notranslate"><span class="pre">TestManager.get_random_unassigned_test()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.runner.html#mapfbench.runner.testmanager.TestManager.get_results"><code class="docutils literal notranslate"><span class="pre">TestManager.get_results()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.runner.html#mapfbench.runner.testmanager.TestManager.get_test_record_by_name"><code class="docutils literal notranslate"><span class="pre">TestManager.get_test_record_by_name()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.runner.html#mapfbench.runner.testmanager.TestManager.get_test_records"><code class="docutils literal notranslate"><span class="pre">TestManager.get_test_records()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.runner.html#mapfbench.runner.testmanager.TestManager.get_test_with_name"><code class="docutils literal notranslate"><span class="pre">TestManager.get_test_with_name()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.runner.html#mapfbench.runner.testmanager.TestManager.record_test_result"><code class="docutils literal notranslate"><span class="pre">TestManager.record_test_result()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="source/src.html#module-src.globals">src.globals module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="source/src.html#src.globals.benchmark_description"><code class="docutils literal notranslate"><span class="pre">benchmark_description()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="source/src.html#src.globals.benchmark_run"><code class="docutils literal notranslate"><span class="pre">benchmark_run()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="source/src.html#src.globals.empty_benchmark"><code class="docutils literal notranslate"><span class="pre">empty_benchmark()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="source/src.html#src.globals.entity_list"><code class="docutils literal notranslate"><span class="pre">entity_list()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="source/src.html#src.globals.generate_default_test"><code class="docutils literal notranslate"><span class="pre">generate_default_test()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="source/src.html#src.globals.graph"><code class="docutils literal notranslate"><span class="pre">graph()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="source/src.html#src.globals.test_description"><code class="docutils literal notranslate"><span class="pre">test_description()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="source/src.html#src.globals.test_run"><code class="docutils literal notranslate"><span class="pre">test_run()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="source/src.html#module-src.main">src.main module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="source/src.html#module-src">Module contents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.runner.html#module-mapfbench.runner.testrecord">mapfbench.runner.testrecord module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/mapfbench.runner.html#mapfbench.runner.testrecord.TestRecord"><code class="docutils literal notranslate"><span class="pre">TestRecord</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.runner.html#mapfbench.runner.testrecord.TestRecord.all_iterations_assigned"><code class="docutils literal notranslate"><span class="pre">TestRecord.all_iterations_assigned()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.runner.html#mapfbench.runner.testrecord.TestRecord.assigned_times"><code class="docutils literal notranslate"><span class="pre">TestRecord.assigned_times</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.runner.html#mapfbench.runner.testrecord.TestRecord.get_results"><code class="docutils literal notranslate"><span class="pre">TestRecord.get_results()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.runner.html#mapfbench.runner.testrecord.TestRecord.increment_assignment_count"><code class="docutils literal notranslate"><span class="pre">TestRecord.increment_assignment_count()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.runner.html#mapfbench.runner.testrecord.TestRecord.is_done"><code class="docutils literal notranslate"><span class="pre">TestRecord.is_done()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.runner.html#mapfbench.runner.testrecord.TestRecord.register_result"><code class="docutils literal notranslate"><span class="pre">TestRecord.register_result()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.runner.html#mapfbench.runner.testrecord.TestRecord.remaining_occurrences"><code class="docutils literal notranslate"><span class="pre">TestRecord.remaining_occurrences</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.runner.html#mapfbench.runner.testrecord.TestRecord.test"><code class="docutils literal notranslate"><span class="pre">TestRecord.test</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="source/mapfbench.runner.html#mapfbench.runner.testrecord.TestRecord.test_name"><code class="docutils literal notranslate"><span class="pre">TestRecord.test_name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.runner.html#module-mapfbench.runner">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="source/mapfbench.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source/mapfbench.html#module-mapfbench.benchmarkinspector_test">mapfbench.benchmarkinspector_test module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source/mapfbench.html#module-mapfbench.benchmarkrunner_test">mapfbench.benchmarkrunner_test module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source/mapfbench.html#module-mapfbench.commanddispatcher">mapfbench.commanddispatcher module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="source/mapfbench.html#mapfbench.commanddispatcher.CommandDispatcher"><code class="docutils literal notranslate"><span class="pre">CommandDispatcher</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.html#mapfbench.commanddispatcher.CommandDispatcher.execute"><code class="docutils literal notranslate"><span class="pre">CommandDispatcher.execute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/mapfbench.html#mapfbench.commanddispatcher.CommandDispatcher.function_names"><code class="docutils literal notranslate"><span class="pre">CommandDispatcher.function_names</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="source/mapfbench.html#module-mapfbench.customexceptions">mapfbench.customexceptions module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="source/mapfbench.html#mapfbench.customexceptions.CustomException"><code class="docutils literal notranslate"><span class="pre">CustomException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="source/mapfbench.html#mapfbench.customexceptions.DuplicateElementException"><code class="docutils literal notranslate"><span class="pre">DuplicateElementException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="source/mapfbench.html#mapfbench.customexceptions.ElementNotAvailableException"><code class="docutils literal notranslate"><span class="pre">ElementNotAvailableException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="source/mapfbench.html#mapfbench.customexceptions.ElementNotFoundException"><code class="docutils literal notranslate"><span class="pre">ElementNotFoundException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="source/mapfbench.html#mapfbench.customexceptions.EmptyElementException"><code class="docutils literal notranslate"><span class="pre">EmptyElementException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="source/mapfbench.html#mapfbench.customexceptions.InvalidElementException"><code class="docutils literal notranslate"><span class="pre">InvalidElementException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="source/mapfbench.html#mapfbench.customexceptions.OperationAlreadyDoneException"><code class="docutils literal notranslate"><span class="pre">OperationAlreadyDoneException</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="source/mapfbench.html#module-mapfbench.globals">mapfbench.globals module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="source/mapfbench.html#mapfbench.globals.benchmark_description"><code class="docutils literal notranslate"><span class="pre">benchmark_description()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="source/mapfbench.html#mapfbench.globals.benchmark_run"><code class="docutils literal notranslate"><span class="pre">benchmark_run()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="source/mapfbench.html#mapfbench.globals.empty_benchmark"><code class="docutils literal notranslate"><span class="pre">empty_benchmark()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="source/mapfbench.html#mapfbench.globals.entity_list"><code class="docutils literal notranslate"><span class="pre">entity_list()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="source/mapfbench.html#mapfbench.globals.generate_default_test"><code class="docutils literal notranslate"><span class="pre">generate_default_test()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="source/mapfbench.html#mapfbench.globals.graph"><code class="docutils literal notranslate"><span class="pre">graph()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="source/mapfbench.html#mapfbench.globals.test_description"><code class="docutils literal notranslate"><span class="pre">test_description()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="source/mapfbench.html#mapfbench.globals.test_run"><code class="docutils literal notranslate"><span class="pre">test_run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="source/mapfbench.html#module-mapfbench.main">mapfbench.main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source/mapfbench.html#module-mapfbench">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -528,7 +524,7 @@ problem</a>.</p>
 <li class="toctree-l1"><a class="reference internal" href="tutorial/benchmark_format.html">Format of the benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial/metrics.html">Metrics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial/results_format.html">Format of results</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/src.html">Code documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/mapfbench.html">Code documentation</a></li>
 </ul>
 
 <div class="relations">

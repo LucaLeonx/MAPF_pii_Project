@@ -8,7 +8,7 @@
     <title>Installation &#8212; MAPFbench documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d1102ebc" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
-    <script src="../_static/documentation_options.js?v=2709fde1"></script>
+    <script src="../_static/documentation_options.js?v=61243dd2"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -34,7 +34,7 @@
             
   <section id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h1>
-<p>It is assumed that <a class="reference external" href="https://www.python.org/">Python 3.8 or above</a> has been installed
+<p>It is assumed that <a class="reference external" href="https://www.python.org/">Python 3.6 or above</a> has been installed
 on the system.</p>
 <section id="create-a-virtual-environment">
 <h2>Create a virtual environment<a class="headerlink" href="#create-a-virtual-environment" title="Link to this heading">¶</a></h2>
@@ -60,7 +60,7 @@ where to install this and other packages:</p>
 <section id="install-the-package">
 <h2>Install the package<a class="headerlink" href="#install-the-package" title="Link to this heading">¶</a></h2>
 <p>Install the package from the corresponding wheel using <code class="docutils literal notranslate"><span class="pre">pip</span></code></p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>mapfbench<span class="w"> </span>@<span class="w"> </span>git+https://github.com/LucaLeonx/MAPF_pii_Project#subdirectory<span class="o">=</span>dist
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>-i<span class="w"> </span>https://test.pypi.org/simple/<span class="w"> </span>mapfbench
 </pre></div>
 </div>
 <p>Check that the command line tools are correctly installing by running:</p>
@@ -91,10 +91,11 @@ manually installed</p>
 </pre></div>
 </div>
 <p>To build the HTML version of the documentation using <a class="reference external" href="https://www.sphinx-doc.org/en/master/index.html">Sphinx</a> run</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sphinx-build<span class="w"> </span>-M<span class="w"> </span>html<span class="w"> </span>./MAPF_pii_Project/docs<span class="w"> </span>./MAPF_pii_Project/docs/_build
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sphinx-apidoc<span class="w"> </span>./MAPF_pii_Project/src<span class="w"> </span>-o<span class="w"> </span>./MAPF_pii_Project/docs/source
+sphinx-build<span class="w"> </span>-M<span class="w"> </span>html<span class="w"> </span>./MAPF_pii_Project/docs<span class="w"> </span>./MAPF_pii_Project/docs/_build
 </pre></div>
 </div>
-<p>The documentation will be available under ./MAPF_pii_Project/docs/_build
+<p>The documentation will be available under ./MAPF_pii_Project/docs/_build/html
 and is written using <a class="reference external" href="https://myst-parser.readthedocs.io/en/latest/">MyST Markdown dialect</a></p>
 </section>
 </section>

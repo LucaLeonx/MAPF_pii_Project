@@ -1,6 +1,6 @@
 import pytest
 
-from description.map.graph import Node
+from description.graph import Node
 from inspector.testinspector import TestInspector
 
 import globals
@@ -55,10 +55,11 @@ class TestTestInspector:
 
         assert len(action_list) == 11  # plus agents appearances (3 actions)
         assert action_list[4].subject == "A2"
-        assert action_list[4].description == "Move"
+        assert action_list[4].description == ""
         assert action_list[4].end_position == Node(3)
         assert action_list[4].__class__.__name__ == "MoveAction"
         assert action_list[6].description == ""
+        assert action_list[8].end_position == Node(coords=(2, 2))
         assert action_list[9].end_position == Node(coords=(1, 2))
         assert action_list[9].description == "MoveLeft"
         assert action_list[10].end_position == Node(coords=(1, 3))

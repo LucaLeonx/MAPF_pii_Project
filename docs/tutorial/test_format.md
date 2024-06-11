@@ -71,8 +71,8 @@ identifies the objective which they must reach
 It is possible to obtain the list of entities of each category 
 using the getters `test.agents`, `test.objectives`, `test.description`
 
-## Code documentations
+## Code documentation
 
 For a more detailed description of the classes used for the description of 
-the tests, see the relevant code documentation.
+the tests, see the relevant [code documentation](../source/mapfbench.description)
 

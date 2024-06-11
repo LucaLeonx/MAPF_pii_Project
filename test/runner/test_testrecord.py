@@ -1,9 +1,9 @@
 import pytest
 
-from description.map.graph import Node
+from description.graph import Node
 from inspector.testinspector import TestInspector
 from result.testrun import TestRun
-from exceptions import OperationAlreadyDoneException, ElementNotAvailableException
+from customexceptions import OperationAlreadyDoneException, ElementNotAvailableException
 from runner.testrecord import TestRecord
 
 import globals

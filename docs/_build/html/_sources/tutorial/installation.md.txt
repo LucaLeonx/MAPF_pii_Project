@@ -1,6 +1,6 @@
 # Installation
 
-It is assumed that [Python 3.8 or above](https://www.python.org/) has been installed
+It is assumed that [Python 3.6 or above](https://www.python.org/) has been installed
 on the system.
 
 ## Create a virtual environment
@@ -31,7 +31,7 @@ $ source .venv/bin/activate
 Install the package from the corresponding wheel using `pip`
 
 ```shell
- pip install -U mapfbench @ git+https://github.com/LucaLeonx/MAPF_pii_Project#subdirectory=dist
+pip install -U -i https://test.pypi.org/simple/ mapfbench
 ```
 Check that the command line tools are correctly installing by running:
 ```shell
@@ -68,10 +68,11 @@ pip install -U ./MAPF_pii_Project/dist/mapfbench-1.0-py3-none-any.whl
 
 To build the HTML version of the documentation using [Sphinx](https://www.sphinx-doc.org/en/master/index.html) run
 ```shell
+sphinx-apidoc ./MAPF_pii_Project/src -o ./MAPF_pii_Project/docs/source
 sphinx-build -M html ./MAPF_pii_Project/docs ./MAPF_pii_Project/docs/_build
 ```
 
-The documentation will be available under ./MAPF_pii_Project/docs/_build
+The documentation will be available under ./MAPF_pii_Project/docs/_build/html
 and is written using [MyST Markdown dialect](https://myst-parser.readthedocs.io/en/latest/)
 
 

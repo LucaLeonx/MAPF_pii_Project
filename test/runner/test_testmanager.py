@@ -3,7 +3,7 @@ import pytest
 from description.benchmarkdescription import TestDescription
 
 import globals
-from exceptions import OperationAlreadyDoneException
+from customexceptions import OperationAlreadyDoneException
 from result.testrun import TestRun
 from runner.testmanager import TestManager
 

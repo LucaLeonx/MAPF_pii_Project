@@ -1,7 +1,7 @@
 import pytest
 
-from description.map.graph import Node
-from exceptions import EmptyElementException, InvalidElementException
+from description.graph import Node
+from customexceptions import EmptyElementException, InvalidElementException
 
 
 class TestNode:

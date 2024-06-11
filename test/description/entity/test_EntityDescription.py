@@ -1,8 +1,8 @@
 import pytest
 
 from description.entity_description import EntityDescription, ObstacleDescription, ObjectiveDescription
-from description.map.graph import Node
-from exceptions import EmptyElementException
+from description.graph import Node
+from customexceptions import EmptyElementException
 
 
 class TestEntityDescription:

@@ -1,6 +1,6 @@
 import globals
 from description.entity_description import AgentDescription
-from description.map.graph import Node
+from description.graph import Node
 from result.action import MoveAction
 
 test_run = globals.test_run()

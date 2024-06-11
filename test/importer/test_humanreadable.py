@@ -4,10 +4,9 @@ import pytest
 import formatter.formatter
 import globals
 from description.benchmarkdescription import TestDescription, BenchmarkDescription
-from description.map.graph import GridGraph
-from cli import humanreadable
-from cli.humanreadable import MapRepresentation
-from formatter import extractor
+from description.graph import GridGraph
+from formatter.maprepresentation import MapRepresentation
+from formatter import extractor, maprepresentation
 
 
 class TestHumanReadable:
@@ -69,7 +68,7 @@ def test_import():
     yaml.SafeDumper.add_representer(MapRepresentation, MapRepresentation.representer)
     yaml.SafeLoader.add_constructor("!Map", MapRepresentation.constructor)
 
-    # with open("X:\MAPF_pii_Project\src\\2024-06-10_10-14-19_MultiIterationBenchmark.yaml", "r") as file:
+    # with open("X:\MAPF_pii_Project\mapfbench\\2024-06-10_10-14-19_MultiIterationBenchmark.yaml", "r") as file:
     #    dictionary = yaml.safe_load(file)
     #    benchmark_run = extractor.extract_benchmark_run(dictionary)
 

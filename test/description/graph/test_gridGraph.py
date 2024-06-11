@@ -1,6 +1,4 @@
-import pytest
-
-from description.map.graph import GridGraph, Edge, Node
+from description.graph import GridGraph, Edge, Node
 
 
 class TestGridGraph(object):
@@ -34,5 +32,8 @@ class TestGridGraph(object):
         print([str(edge) for edge in rect_graph.undirected_edges])
         assert len(rect_graph.nodes) == 6
         assert len(rect_graph.undirected_edges) == 7
+
+        for node in rect_graph.nodes:
+            print(node)
 
 

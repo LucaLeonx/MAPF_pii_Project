@@ -57,9 +57,9 @@ First of all, we need to create a BenchmarkInspector.
 Inside the main code of the program:
 
 ```python
-import mapfbench
+from mapfbench.inspector.benchmarkinspector import BenchmarkInspector
 
-benchmark_inspector = mapfbench.BenchmarkInspector()
+benchmark_inspector = BenchmarkInspector()
 ```
 
 Then, we need to request a test from the BenchmarkRunner.
@@ -71,8 +71,8 @@ test = benchmark_inspector.request_random_test()
 Now we can access the information about the test.
 The MAPFbench library uses its own internal format to
 store test data, so you may need to convert it 
-to the one used by your program. For now, given the 
-simplicity of the test, we will skip this passage.
+to the one used by your program. For this
+example test we will skip this passage.
 
 At this point, we wait for the program compute a plan.
 Now we need to register the computed plan. Each plan is

@@ -2,7 +2,7 @@ import pytest
 
 from description.benchmarkdescription import TestDescription
 from description.entity_description import *
-from description.map.graph import *
+from description.graph import *
 
 
 class TestTestDescription:

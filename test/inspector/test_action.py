@@ -1,7 +1,7 @@
 import pytest
 
-from description.map.graph import Node
-from exceptions import ElementNotAvailableException
+from description.graph import Node
+from customexceptions import ElementNotAvailableException
 from result.action import Action, MoveAction, WaitAction, AppearAction, DisappearAction
 
 action = Action(3, "A1", Node(coords=(1, 0)))

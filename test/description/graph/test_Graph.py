@@ -1,7 +1,7 @@
 import pytest
 
-from description.map.graph import *
-from exceptions import ElementNotFoundException
+from description.graph import *
+from customexceptions import ElementNotFoundException
 
 
 class TestGraph:

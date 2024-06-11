@@ -1,7 +1,7 @@
 import pytest
 
 from description.entity_description import AgentDescription, EntityDescription
-from description.map.graph import Node
+from description.graph import Node
 
 
 class TestAgentDescription:

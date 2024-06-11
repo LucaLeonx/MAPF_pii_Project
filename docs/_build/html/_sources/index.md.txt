@@ -13,6 +13,6 @@ tutorial/profiling.md
 tutorial/benchmark_format.md
 tutorial/metrics.md
 tutorial/results_format.md
-Code documentation <source/src.rst>
+Code documentation <source/mapfbench.rst>
 ```
 

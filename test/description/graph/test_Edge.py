@@ -1,6 +1,6 @@
 import pytest
 
-from description.map.graph import Node, Edge
+from description.graph import Node, Edge
 
 
 class TestEdge:

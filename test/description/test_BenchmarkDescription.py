@@ -1,7 +1,7 @@
 import pytest
 
 from description.benchmarkdescription import BenchmarkDescription
-from exceptions import EmptyElementException, InvalidElementException
+from customexceptions import EmptyElementException, InvalidElementException
 
 import globals
 

@@ -13,13 +13,8 @@ The available actions are of four different kinds:
 - Appear: the entity appears in the specified position
 - Disappear: the entity disappear from its current position
 
-To register an entity action during a test, the following methods are provided:
-
-// Include code documentation
-
-Moreover, only if working with a GridGraph, the following methods can be used
-
-// Include move_left, right, up, down, methods
+To register an entity action during a test, use the methods provided
+by the [TestInspector class](../mapfbench.inspector.rst)
 
 ## Caveats
 - It is not necessary to register the initial position of entities,

@@ -1,6 +1,6 @@
 import pytest
 
-from description.map.graph import UndirectedGraph, Edge, Node
+from description.graph import UndirectedGraph, Edge, Node
 
 
 class TestUndirectedGraph:
