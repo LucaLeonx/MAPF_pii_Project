@@ -2,12 +2,11 @@ import csv
 import yaml
 import datetime
 
-from cli import humanreadable
 from cli.humanreadable import MapRepresentation
 from formatter import formatter, extractor
 from metrics.benchmark_metrics import BenchmarkMetrics
+
 from result.testrun import BenchmarkRun
-from runner.benchmarkrunner import BenchmarkRunner
 
 
 def _setup_yaml():
@@ -17,11 +16,11 @@ def _setup_yaml():
 
 def load_benchmark(path):
     _setup_yaml()
+
     with open(path, "r") as bench_file:
         bench_dict = yaml.safe_load(bench_file)
         benchmark_description = extractor.extract_benchmark(bench_dict)
-
-    return benchmark_description
+        return benchmark_description
 
 
 def execute_benchmark(benchmark_runner):

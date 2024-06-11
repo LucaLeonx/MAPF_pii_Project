@@ -13,7 +13,6 @@ def extract_benchmark(dictionary):
 
     for test_dict in dictionary["tests"]:
         test_list.append(extract_test(test_dict))
-
     test_occurrences = dict([(test, dictionary["test_occurrences"][test.name]) for test in test_list])
     return BenchmarkDescription(name, test_occurrences)
 

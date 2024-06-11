@@ -43,7 +43,10 @@ class BenchmarkInspector(object):
         self._socket.send_message(Message("request_random_test", ""))
         response = self._socket.receive_message()
         if response.title == "Error":
-            raise ElementNotFoundException("No test is not available")
+            if response.content.startswith("All tests have been assigned"):
+                raise ElementNotFoundException("No test is not available")
+            else:
+                raise
         else:
             new_recorder = TestInspector(TestDescription.from_dict(response.content))
             self._test_recorders.append(new_recorder)

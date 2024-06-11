@@ -18,8 +18,6 @@ class BenchmarkRunner(object):
         self._benchmark = benchmark
         self._socket = ServerSocket(connection_config)
         self._test_manager = TestManager(benchmark.test_occurrences)
-        self._is_running = False
-        self._running_condition = threading.Condition()
         self._command_dispatcher = CommandDispatcher(
             {"ping": self.ping,
              "request_test": self.request_test,
@@ -29,13 +27,9 @@ class BenchmarkRunner(object):
     def get_benchmark(self) -> BenchmarkDescription:
         return self._benchmark
 
-    def is_finished(self):
-        return not self._is_running
-
-    async def start_benchmark(self):
+    def start_benchmark(self):
         # signal.signal(signal.SIGTERM, self._shutdown)
         try:
-            self._is_running = True
             self._socket.open()
             print("Benchmark started")
 
@@ -56,20 +50,12 @@ class BenchmarkRunner(object):
 
     def stop_benchmark(self):
         self._socket.close()
-        self._is_running = False
-
-    def _shutdown(self, sig, frame):
-        self.stop_benchmark()
 
     def get_results(self) -> BenchmarkRun:
         return BenchmarkRun(self.get_benchmark(), self._test_manager.get_results())
 
     def get_tests_left(self):
         return self._test_manager.get_number_of_tests_left()
-
-    def wait_to_finish(self):
-        with self._running_condition:
-            self._running_condition.wait(self.is_finished())
 
     @staticmethod
     def ping():
@@ -87,5 +73,3 @@ class BenchmarkRunner(object):
         result = TestRun.from_dict(result_dict)
         self._test_manager.record_test_result(result)
         return ""
-
-

@@ -45,6 +45,7 @@ def export_test_iterations_metrics(benchmark_metrics):
             line.update(test_metric.to_dict())
             del line["Collisions"]
             del line["TestName"]
+            del line["TestRun"]
             lines.append(line)
 
     return lines

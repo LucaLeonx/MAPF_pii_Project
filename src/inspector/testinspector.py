@@ -18,6 +18,7 @@ class TestInspector(object):
         for entity in self._test_description.entities:
             if entity.has_start_position():
                 self.register_appearance(0, entity.name, entity.start_position)
+                print(self._current_position[entity.name])
 
     @property
     def test_description(self):
@@ -61,9 +62,9 @@ class TestInspector(object):
     def register_wait(self, timestep, entity_name):
         self._action_list.append(WaitAction(timestep, entity_name, self._current_position[entity_name]))
 
-    def register_appearance(self, timestep, entity_name, start_position):
-        self._current_position.update({entity_name: start_position})
-        self._action_list.append(AppearAction(timestep, entity_name, start_position))
+    def register_appearance(self, timestep, entity_name, position):
+        self._current_position.update({entity_name: position})
+        self._action_list.append(AppearAction(timestep, entity_name, end_position=position))
 
     def register_disappearance(self, timestep, entity_name):
         self._action_list.append(DisappearAction(timestep,
@@ -89,5 +90,5 @@ class TestInspector(object):
         else:
             time_elapsed = None
         return TestRun(self._test_description, self._action_list, self._test_solved,
-                       time_elapsed,
-                       self._memory_used)
+                       time_elapsed / 1_000_000,
+                       self._memory_used / 1024)

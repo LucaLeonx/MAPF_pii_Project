@@ -8,9 +8,11 @@ problem](https://en.wikipedia.org/wiki/Multi-agent_pathfinding).
 tutorial/installation.md
 tutorial/introduction.md
 tutorial/test_format.md
-tutorial/action.md
+tutorial/actions.md
 tutorial/profiling.md
 tutorial/benchmark_format.md
 tutorial/metrics.md
 tutorial/results_format.md
+Code documentation <source/src.rst>
 ```
+

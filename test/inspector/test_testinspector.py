@@ -39,6 +39,8 @@ class TestTestInspector:
         assert not [action for action in result.action_list if action.subject in not_appeared_names]
 
     def test_action_recording(self, test_inspector):
+        test_inspector.start_profiling()
+        test_inspector.end_profiling()
         test_inspector.register_move(1, "A1", Node(1))  # 3
         test_inspector.register_move(1, "A2", Node(3))  # 4
         test_inspector.register_move(1, "A3", Node(4))  # 5
@@ -56,7 +58,7 @@ class TestTestInspector:
         assert action_list[4].description == "Move"
         assert action_list[4].end_position == Node(3)
         assert action_list[4].__class__.__name__ == "MoveAction"
-        assert action_list[6].description == "Wait"
+        assert action_list[6].description == ""
         assert action_list[9].end_position == Node(coords=(1, 2))
         assert action_list[9].description == "MoveLeft"
         assert action_list[10].end_position == Node(coords=(1, 3))

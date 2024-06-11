@@ -73,9 +73,9 @@ class Action(object):
         end_position = None
 
         if "start_position" in dictionary:
-            start_position = Node.from_dict(dictionary.get("start_position"))
+            start_position = Node.from_dict(dictionary["start_position"])
         if "end_position" in dictionary:
-            end_position = Node.from_dict(dictionary.get("end_position"))
+            end_position = Node.from_dict(dictionary["end_position"])
 
         return action_class(dictionary["timestep"],
                             dictionary["subject"],
