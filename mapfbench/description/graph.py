@@ -6,7 +6,7 @@ import importlib
 from math import floor, sqrt
 from typing import Any, Dict, Tuple, List
 
-from customexceptions import EmptyElementException, InvalidElementException, ElementNotFoundException
+from utilities.customexceptions import EmptyElementException, InvalidElementException, ElementNotFoundException
 
 
 class Graph:

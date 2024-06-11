@@ -5,7 +5,7 @@ from connection.message import Message
 from connection.c_socket import ClientSocket
 from description.benchmarkdescription import TestDescription
 from inspector.testinspector import TestInspector
-from customexceptions import ElementNotFoundException, CustomException
+from utilities.customexceptions import ElementNotFoundException, CustomException
 
 
 class BenchmarkInspector(object):

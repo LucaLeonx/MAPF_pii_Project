@@ -2,7 +2,7 @@ import importlib
 from abc import ABC
 from typing import Optional
 
-from customexceptions import EmptyElementException
+from utilities.customexceptions import EmptyElementException
 from description.graph import Node
 
 

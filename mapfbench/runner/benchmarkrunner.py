@@ -8,7 +8,7 @@ from result.testrun import TestRun, BenchmarkRun
 from commanddispatcher import CommandDispatcher
 from connection.message import Message
 from connection.c_socket import ServerSocket
-from customexceptions import CustomException
+from utilities.customexceptions import CustomException
 from runner.testmanager import TestManager
 
 

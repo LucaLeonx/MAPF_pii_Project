@@ -1,5 +1,5 @@
 from description.benchmarkdescription import TestDescription
-from customexceptions import OperationAlreadyDoneException, ElementNotAvailableException
+from utilities.customexceptions import OperationAlreadyDoneException, ElementNotAvailableException
 from result.testrun import TestRun
 
 

@@ -1,7 +1,7 @@
 from description.entity_description import ObstacleDescription, AgentDescription, ObjectiveDescription, \
     EntityDescription
 
-from customexceptions import InvalidElementException
+from utilities.customexceptions import InvalidElementException
 from description.graph import Node
 
 """

@@ -1,9 +1,10 @@
 import random
 
 from description.benchmarkdescription import TestDescription
-from customexceptions import ElementNotFoundException
+
 from result.testrun import TestRun
 from runner.testrecord import TestRecord
+from utilities.customexceptions import ElementNotFoundException
 
 
 class TestManager:

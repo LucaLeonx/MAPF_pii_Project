@@ -1,6 +1,5 @@
 from result.action import Action
 from result.testrun import TestRun
-from description.entity_description import EntityDescription
 from metrics.agentMetrics import AgentMetrics
 
 

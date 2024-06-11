@@ -4,7 +4,7 @@ from description.benchmarkdescription import BenchmarkDescription, TestDescripti
 from description.entity_description import AgentDescription, ObjectiveDescription, ObstacleDescription
 from result.testrun import TestRun, BenchmarkRun
 
-from customexceptions import InvalidElementException
+from utilities.customexceptions import InvalidElementException
 from description.graph import UndirectedGraph, Graph, GridGraph, Edge, Node
 
 
