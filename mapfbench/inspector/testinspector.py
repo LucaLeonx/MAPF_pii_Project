@@ -1,11 +1,12 @@
+import time
 from typing import List
 
+import psutil
 from description.benchmarkdescription import TestDescription
-from description.graph import Node
 from result.action import WaitAction, MoveAction, AppearAction, DisappearAction, Action
 from result.testrun import TestRun
-import psutil
-import time
+
+from description.graph import Node
 
 
 class TestInspector(object):
@@ -204,7 +205,7 @@ class TestInspector(object):
         """
 
         self._current_position.update({entity_name: position})
-        self._action_list.append(AppearAction(timestep, entity_name, end_position=position))
+        self._action_list.append(AppearAction(timestep, entity_name, start_position=None, end_position=position))
 
     def register_disappearance(self, timestep: int, entity_name: str):
         """
@@ -254,10 +255,13 @@ class TestInspector(object):
             TestRun
                 The registered results of the current test instance
         """
+        time_elapsed = None
+        memory_used = None
         if self._end_time:
-            time_elapsed = (self._end_time - self._start_time)
+            time_elapsed = (self._end_time - self._start_time) / 1_000_000
+            memory_used = self._memory_used / 1024
         else:
             time_elapsed = None
         return TestRun(self._test_description, self._action_list, self._test_solved,
-                       time_elapsed / 1_000_000,
-                       self._memory_used / 1024)
+                       time_elapsed,
+                       memory_used)

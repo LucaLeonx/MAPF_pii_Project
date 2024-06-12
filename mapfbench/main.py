@@ -1,11 +1,10 @@
 #!/usr/bin/python3
 import yaml
 
+from benchformatter.maprepresentation import MapRepresentation
 from cli import cli_interface
-from formatter import maprepresentation
-from formatter.maprepresentation import MapRepresentation
-from result.testrun import TestRun
 from metrics.testMetrics import TestMetrics
+from result.testrun import TestRun
 
 
 # Main file of MAPF Benchmark

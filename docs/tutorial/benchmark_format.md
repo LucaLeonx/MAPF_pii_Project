@@ -43,13 +43,13 @@ on the map. This format can be used only if the map is a GridGraph:
     (e.g., the objective of agent A3 is T3).
   - Obstacles are denoted simply by letter O
   - It is implicitly assumed that the grid is located in the first quadrant of the cartesian plane.
-    However, the format of the axis is peculiar.
+   
     For instance, the coordinates of the cells in this grid would be the following:
     :::{line-block}
-    x
-    0 |     |     |     ||
+    y
+    2 |     |     |     ||
     1 |     |     |  T1 ||
-    2 |  A1 |     |     ||
+    0 |  A1 |     |     ||
          0     1     2      y
     :::
   - It is important to remember the YAML tag `!Map |` at the beginning

@@ -1,8 +1,8 @@
 from typing import List
 
+from connection.c_socket import ClientSocket
 from connection.connectionconfig import TCPConnectionConfig, ConnectionConfig
 from connection.message import Message
-from connection.c_socket import ClientSocket
 from description.benchmarkdescription import TestDescription
 from inspector.testinspector import TestInspector
 from utilities.customexceptions import ElementNotFoundException, CustomException

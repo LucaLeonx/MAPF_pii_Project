@@ -1,6 +1,6 @@
 from typing import List
 
-from description.entity_description import AgentDescription, EntityDescription
+from description.entity_description import AgentDescription
 from result.action import Action
 
 

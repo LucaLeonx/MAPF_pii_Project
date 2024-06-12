@@ -1,11 +1,10 @@
 import csv
-import yaml
 import datetime
 
-from formatter.maprepresentation import MapRepresentation
-from formatter import formatter, extractor
+import yaml
+from benchformatter import formatter, extractor
+from benchformatter.maprepresentation import MapRepresentation
 from metrics.benchmark_metrics import BenchmarkMetrics
-
 from result.testrun import BenchmarkRun
 
 

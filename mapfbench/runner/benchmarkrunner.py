@@ -1,15 +1,13 @@
-import signal
-import threading
-from typing import Dict, List, Any
+from typing import Any
 
+from connection.c_socket import ServerSocket
 from connection.connectionconfig import ConnectionConfig, TCPConnectionConfig
+from connection.message import Message
 from description.benchmarkdescription import BenchmarkDescription
 from result.testrun import TestRun, BenchmarkRun
-from commanddispatcher import CommandDispatcher
-from connection.message import Message
-from connection.c_socket import ServerSocket
-from utilities.customexceptions import CustomException
 from runner.testmanager import TestManager
+from utilities.commanddispatcher import CommandDispatcher
+from utilities.customexceptions import CustomException
 
 
 class BenchmarkRunner(object):
@@ -62,6 +60,7 @@ class BenchmarkRunner(object):
         return "Pong"
 
     def request_test(self, test_name):
+        print("Test requested")
         test_description = self._test_manager.get_test_with_name(test_name)
         return test_description.to_dict()
 
@@ -72,4 +71,10 @@ class BenchmarkRunner(object):
     def submit_result(self, result_dict: dict[str, Any]):
         result = TestRun.from_dict(result_dict)
         self._test_manager.record_test_result(result)
+        print("Result submitted - Tests left")
+        tests_left = self.get_tests_left()
+        max_length = max([len(test) for test in tests_left.keys()])
+        for test, left_iterations in self.get_tests_left().items():
+            print(f"  {test.ljust(max_length +1)} | {left_iterations}")
+        print("\n")
         return ""

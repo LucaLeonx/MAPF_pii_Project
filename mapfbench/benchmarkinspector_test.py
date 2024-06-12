@@ -1,6 +1,6 @@
 from connection.connectionconfig import TCPConnectionConfig
-from inspector.benchmarkinspector import BenchmarkInspector
 from description.graph import Node
+from inspector.benchmarkinspector import BenchmarkInspector
 
 if __name__ == "__main__":
     inspector = BenchmarkInspector(TCPConnectionConfig(host="localhost", port=9361))

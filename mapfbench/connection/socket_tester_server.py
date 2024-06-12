@@ -1,6 +1,6 @@
+from connection.c_socket import ServerSocket
 from connection.connectionconfig import TCPConnectionConfig
 from connection.message import Message
-from connection.c_socket import ServerSocket
 
 if __name__ == '__main__':
     print('Server started', flush=True)

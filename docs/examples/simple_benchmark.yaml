@@ -7,6 +7,7 @@ tests:
         type: GridGraph
         rows: 3
         cols: 3
+    entities:
         placement: !Map |
             |     |     |     ||
             |     |     | T1  ||

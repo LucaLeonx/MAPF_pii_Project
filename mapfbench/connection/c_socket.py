@@ -2,7 +2,6 @@ from abc import ABC, abstractmethod
 
 import zmq
 import zmq.asyncio
-
 from connection.message import Message
 
 

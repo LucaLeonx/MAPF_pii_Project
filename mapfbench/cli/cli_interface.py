@@ -1,6 +1,9 @@
+from datetime import datetime
+
 import click
 from cli.cli_commands import *
-
+from cli.cli_commands import load_benchmark, execute_benchmark, prepend_timestamp, export_benchmark_results, \
+    export_metrics_to_csv, calculate_metrics, import_benchmark_results
 from connection.connectionconfig import TCPConnectionConfig
 from runner.benchmarkrunner import BenchmarkRunner
 
@@ -31,7 +34,8 @@ def collect_data(path, output_iterations="", output_metrics="", host="localhost"
 
     try:
         click.echo("Benchmark running...")
-        benchmark_runner = BenchmarkRunner(benchmark_description, connection_config=TCPConnectionConfig(host=host, port=port))
+        benchmark_runner = BenchmarkRunner(benchmark_description,
+                                           connection_config=TCPConnectionConfig(host=host, port=port))
         partial_result = execute_benchmark(benchmark_runner)
     except KeyboardInterrupt:
         click.echo("Benchmark interrupted by user")
@@ -118,4 +122,4 @@ def measure_metrics(path: str, output=None):
 
 
 def _prepend_timestamp(string: str):
-    return '{date:%Y-%m-%d_%H:%M:%S}_'.format(date=datetime.datetime.now()) + string
+    return '{date:%Y-%m-%d_%H:%M:%S}_'.format(date=datetime.now()) + string

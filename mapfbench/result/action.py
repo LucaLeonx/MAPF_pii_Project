@@ -1,6 +1,6 @@
-from description.graph import Node
-
 import importlib
+
+from description.graph import Node
 
 
 class Action(object):
@@ -78,9 +78,9 @@ class Action(object):
 
         return action_class(dictionary["timestep"],
                             dictionary["subject"],
-                            start_position,
-                            end_position,
-                            dictionary["description"])
+                            start_position=start_position,
+                            end_position=end_position,
+                            description=dictionary["description"])
 
 
 class MoveAction(Action):
@@ -94,8 +94,8 @@ class WaitAction(Action):
 
 
 class AppearAction(Action):
-    def __init__(self, timestep, subject, start_position, end_position,  description=""):
-        Action.__init__(self, timestep, subject, None, end_position, description)
+    def __init__(self, timestep, subject, start_position=None, end_position=None,  description=""):
+        Action.__init__(self, timestep, subject, None, end_position=end_position, description=description)
 
 
 class DisappearAction(Action):

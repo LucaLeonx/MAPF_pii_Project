@@ -1,6 +1,6 @@
-from commanddispatcher import CommandDispatcher
 from metrics.testMetrics import TestMetrics
 from result.testrun import BenchmarkRun
+from utilities.commanddispatcher import CommandDispatcher
 
 
 class BenchmarkMetrics(BenchmarkRun):
@@ -103,7 +103,7 @@ class AggregateMetrics:
         return self._success_num() / self.iterations_num
 
     def _avg_time_elapsed(self):
-        return self.avg([metric.to_dict()["Time elapsed"] for metric in self.iterations_metrics])
+        return self.avg([metric.to_dict()["Time elapsed"] for metric in self.iterations_metrics if metric.to_dict()["Time elapsed"] is not None])
 
     def _avg_mem_usage(self):
-        return self.avg([metric.to_dict()["Memory usage"] for metric in self.iterations_metrics])
+        return self.avg([metric.to_dict()["Memory usage"] for metric in self.iterations_metrics if metric.to_dict()["Memory usage"] is not None])

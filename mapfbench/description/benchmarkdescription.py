@@ -1,6 +1,8 @@
-from description.entity_description import *
 from typing import Any, List, Dict, Optional
+
+from description.entity_description import *
 from utilities.customexceptions import EmptyElementException, InvalidElementException
+
 from description.graph import Graph
 
 

@@ -3,6 +3,7 @@ from abc import ABC
 from typing import Optional
 
 from utilities.customexceptions import EmptyElementException
+
 from description.graph import Node
 
 

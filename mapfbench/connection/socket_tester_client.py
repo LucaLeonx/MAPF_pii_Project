@@ -1,6 +1,6 @@
+from connection.c_socket import ClientSocket
 from connection.connectionconfig import TCPConnectionConfig
 from connection.message import Message
-from connection.c_socket import ClientSocket
 
 if __name__ == "__main__":
     config = TCPConnectionConfig("localhost", 11115)

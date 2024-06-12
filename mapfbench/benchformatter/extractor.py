@@ -3,8 +3,8 @@ import importlib
 from description.benchmarkdescription import BenchmarkDescription, TestDescription
 from description.entity_description import AgentDescription, ObjectiveDescription, ObstacleDescription
 from result.testrun import TestRun, BenchmarkRun
-
 from utilities.customexceptions import InvalidElementException
+
 from description.graph import UndirectedGraph, Graph, GridGraph, Edge, Node
 
 
@@ -120,6 +120,6 @@ def extract_action(dictionary):
     if "end_position" in dictionary:
         end_position = extract_node(dictionary["end_position"])
 
-    module = importlib.import_module('mapfbench.result.action')
+    module = importlib.import_module('result.action')
     action_class = getattr(module, dictionary["action"])
     return action_class(dictionary.get("timestep"), dictionary["subject"], start_position, end_position, dictionary.get("description", ""))

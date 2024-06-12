@@ -3,13 +3,11 @@ import sys
 import yaml
 
 import globals
+from description.benchmarkdescription import BenchmarkDescription
 from runner.benchmarkrunner import BenchmarkRunner
 
 # import globals
-
 # benchmark_description = globals.benchmark_description()
-
-from description.benchmarkdescription import BenchmarkDescription
 
 if __name__ == '__main__':
     benchmark_description = BenchmarkDescription("Benchmark", {globals.generate_default_test("Test1"): 2,

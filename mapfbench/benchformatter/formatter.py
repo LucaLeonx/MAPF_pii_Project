@@ -1,10 +1,12 @@
-from jinja2 import Environment, PackageLoader, select_autoescape
-from formatter.maprepresentation import MapRepresentation
-
+from benchformatter.maprepresentation import MapRepresentation
+from jinja2 import Environment, PackageLoader, ChoiceLoader, FileSystemLoader, select_autoescape
+import os
 
 def _setup_environment():
     env = Environment(
-        loader=PackageLoader("formatter"),
+        loader=ChoiceLoader([
+            FileSystemLoader(os.path.dirname(os.path.realpath(__file__))),
+            PackageLoader("benchformatter")]),
         autoescape=select_autoescape(),
         trim_blocks=True,
         lstrip_blocks=False

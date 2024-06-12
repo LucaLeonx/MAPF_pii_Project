@@ -1,6 +1,6 @@
+from metrics.agentMetrics import AgentMetrics
 from result.action import Action
 from result.testrun import TestRun
-from metrics.agentMetrics import AgentMetrics
 
 
 # TODO

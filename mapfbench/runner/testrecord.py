@@ -1,6 +1,6 @@
 from description.benchmarkdescription import TestDescription
-from utilities.customexceptions import OperationAlreadyDoneException, ElementNotAvailableException
 from result.testrun import TestRun
+from utilities.customexceptions import OperationAlreadyDoneException
 
 
 class TestRecord(object):

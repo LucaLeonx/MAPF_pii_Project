@@ -1,81 +1,8 @@
 from description.entity_description import ObstacleDescription, AgentDescription, ObjectiveDescription, \
     EntityDescription
-
 from utilities.customexceptions import InvalidElementException
+
 from description.graph import Node
-
-"""
-def to_human_readable_dict(test: TestDescription):
-    dictionary = test.to_dict()
-    match test.graph.__class__.__name__:
-        case "Graph":
-            pass
-        case "GridGraph":
-            dictionary["graph"].update({"rows": test.graph.rows,
-                                        "cols": test.graph.cols})
-            try:
-                map_conversion = MapRepresentation.from_entities(test.graph.rows, test.graph.cols, test.entities)
-                dictionary["graph"].update({"map": map_conversion})
-                dictionary.pop("entities")
-            except InvalidElementException:
-                dictionary["entities"] = test.to_dict().get["entities"]
-                for entity_dict in dictionary["entities"].items():
-                    position = entity_dict.get("start_position", None)
-
-                    if position is not None:
-                        node = Node(position["index"])
-                        entity_dict.update({"start_position": {"x": node.x, "y": node.y}})
-
-        case "UndirectedGraph":
-            dictionary["graph"]["edges"] = [Edge.to_dict(edge)
-                                            for edge in test.graph.undirected_edges]
-        case _:
-            raise InvalidElementException(f"Unsupported graph format for test: {test.name}")
-
-    return dictionary
-
-
-def from_human_readable_dict(dictionary: dict) -> TestDescription:
-    test_name = dictionary["name"]
-    entities = []
-
-    match dictionary["graph"]["type"]:
-        case "DirectedGraph":
-            graph = Graph.from_dict(dictionary["graph"])
-        case "UndirectedGraph":
-            graph = UndirectedGraph(dictionary["graph"]["edges"])
-        case "GridGraph":
-            graph = GridGraph(dictionary["graph"]["rows"], dictionary["graph"]["cols"])
-            entities += dictionary["graph"]["map"].entities
-        case _:
-            raise InvalidElementException(f"Error in graph representation in dictionary")
-
-    if "entities" in dictionary:
-        entities = [EntityDescription.from_dict(entity) for entity in dictionary["entities"]]
-
-    return TestDescription(test_name, graph, entities)
-
-
-def convert_to_human_readable_dict(benchmark: BenchmarkDescription) -> dict[str, Any]:
-    dictionary = benchmark.to_dict()
-    converted_tests = []
-    for test in benchmark.tests:
-        converted_tests.append(to_human_readable_dict(test))
-
-    dictionary["tests"] = converted_tests
-
-    return dictionary
-
-
-def convert_from_human_readable_dict(dictionary: dict[str, Any]) -> BenchmarkDescription:
-    test_occurrences = {}
-    for test_dict in dictionary["tests"]:
-        converted_test = from_human_readable_dict(test_dict)
-        test_occurrences.update({converted_test: dictionary["test_occurrences"][converted_test.name]})
-
-    return BenchmarkDescription(dictionary["name"], test_occurrences)
-
-"""
 
 
 class MapRepresentation:
@@ -117,15 +44,14 @@ class MapRepresentation:
 
                 if cell == "":
                     continue
-                match cell[0]:
-                    case "O":
-                        pass
-                    case "A":
-                        MapRepresentation._register_id(agents, cell, x, y, "agent")
-                    case "T":
-                        MapRepresentation._register_id(objectives, cell, x, y, "objective")
-                    case _:
-                        raise InvalidElementException(f"Unrecognized cell content: {cell} at ({x}, {y})")
+                elif cell[0] == "O":
+                    pass
+                elif cell[0] == "A":
+                    MapRepresentation._register_id(agents, cell, x, y, "agent")
+                elif cell[0] == "T":
+                    MapRepresentation._register_id(objectives, cell, x, y, "objective")
+                else:
+                    raise InvalidElementException(f"Unrecognized cell content: {cell} at ({x}, {y})")
 
         if agents != objectives:
             if len(agents) > len(objectives):
@@ -158,13 +84,13 @@ class MapRepresentation:
                 raise InvalidElementException(f"Entity {entity} has no start position")
             if entity.__class__.__name__ == "AgentDescription":
                 position = entity.start_position
-                map_representation[position.x][position.y] = "A" + entity.name[1:].strip()
+                map_representation[rows - 1 - position.y][position.x] = "A" + entity.name[1:].strip()
             elif entity.__class__.__name__ == "ObjectiveDescription":
                 position = entity.start_position
-                map_representation[position.x][position.y] = "T" + entity.name[1:].strip()
+                map_representation[rows - 1 - position.y][position.x] = "T" + entity.name[1:].strip()
             elif entity.__class__.__name__ == "ObstacleDescription":
                 position = entity.start_position
-                map_representation[position.x][position.y] = "O"
+                map_representation[rows - 1 - position.y][position.x] = "O"
             else:
                 raise InvalidElementException(f"Invalid entity found")
 
@@ -204,7 +130,7 @@ class MapRepresentation:
 
                 # Reversal is necessary to make
                 # the matrix position correspond to cartesian coordinates
-                start_position = Node(coords=(x, y))
+                start_position = Node(coords=(y, rows - 1 - x))
 
                 if cell[0] == 'O':
                     obstacles.append(ObstacleDescription("O" + str(len(obstacles)), start_position))
@@ -234,5 +160,3 @@ class MapRepresentation:
             map_representation.append(line.split("|")[1::])
 
         return MapRepresentation(map_representation)
-
-
