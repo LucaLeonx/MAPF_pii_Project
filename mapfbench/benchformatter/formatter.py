@@ -11,6 +11,7 @@ def _setup_environment():
         trim_blocks=True,
         lstrip_blocks=False
     )
+    print(os.path.dirname(os.path.realpath(__file__)))
 
     env.globals["MapRepresentation"] = MapRepresentation
     return env

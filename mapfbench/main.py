@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import yaml
 
+
 from benchformatter.maprepresentation import MapRepresentation
 from cli import cli_interface
 from metrics.testMetrics import TestMetrics

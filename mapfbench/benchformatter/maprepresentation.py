@@ -1,3 +1,5 @@
+from typing import Set, List
+
 from description.entity_description import ObstacleDescription, AgentDescription, ObjectiveDescription, \
     EntityDescription
 from utilities.customexceptions import InvalidElementException
@@ -6,13 +8,13 @@ from description.graph import Node
 
 
 class MapRepresentation:
-    def __init__(self, representation: list[list[str]]):
+    def __init__(self, representation: List[List[str]]):
         MapRepresentation.validate_map_representation(representation)
         self._representation = representation
         self._entities = self._extract_entities(representation)
 
     @property
-    def representation(self) -> list[list[str]]:
+    def representation(self) -> List[List[str]]:
         return self._representation
 
     @property
@@ -24,7 +26,7 @@ class MapRepresentation:
         return len(self._representation[0])
 
     @property
-    def entities(self) -> list[EntityDescription]:
+    def entities(self) -> List[EntityDescription]:
         return self._entities
 
     @staticmethod
@@ -63,7 +65,7 @@ class MapRepresentation:
                                                   f"{list(objectives.difference(agents))}")
 
     @staticmethod
-    def _register_id(id_group: set[int], cell_content: str, x: int, y: int, label: str) -> None:
+    def _register_id(id_group: Set[int], cell_content: str, x: int, y: int, label: str) -> None:
         try:
             entity_id = int(cell_content[1:])
             if entity_id < 0:
@@ -76,7 +78,7 @@ class MapRepresentation:
             raise InvalidElementException(f"Unrecognized cell content: {cell_content} at ({x}, {y})")
 
     @staticmethod
-    def from_entities(rows: int, cols: int, entities: list[EntityDescription]):
+    def from_entities(rows: int, cols: int, entities: List[EntityDescription]):
         map_representation = [[" " for _ in range(cols)] for _ in range(rows)]
 
         for entity in entities:

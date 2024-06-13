@@ -1,4 +1,5 @@
 import importlib
+from typing import List
 
 from description.benchmarkdescription import BenchmarkDescription, TestDescription
 from description.entity_description import AgentDescription, ObjectiveDescription, ObstacleDescription
@@ -46,26 +47,25 @@ def extract_test(dictionary) -> TestDescription:
 
 
 def extract_graph(dictionary):
-    match dictionary["type"]:
-        case "DirectedGraph":
-            edges = []
-            for edge in dictionary["edges"]:
-                edges.append(extract_edge(edge))
-            graph = Graph(edges)
-        case "UndirectedGraph":
-            edges = []
-            for edge in dictionary["edges"]:
-                edges.append(extract_edge(edge))
-            graph = UndirectedGraph(edges)
-        case "GridGraph":
-            graph = GridGraph(dictionary["rows"], dictionary["cols"])
-        case _:
-            raise InvalidElementException(f"Error in graph representation in dictionary")
+    if dictionary["type"] == "DirectedGraph":
+        edges = []
+        for edge in dictionary["edges"]:
+            edges.append(extract_edge(edge))
+        graph = Graph(edges)
+    elif dictionary["type"] == "UndirectedGraph":
+        edges = []
+        for edge in dictionary["edges"]:
+            edges.append(extract_edge(edge))
+        graph = UndirectedGraph(edges)
+    elif dictionary["type"] == "GridGraph":
+        graph = GridGraph(dictionary["rows"], dictionary["cols"])
+    else:
+        raise InvalidElementException(f"Error in graph representation in dictionary")
 
     return graph
 
 
-def extract_edge(tokens: list[str]):
+def extract_edge(tokens: List[str]):
     tokens = [str(token) for token in tokens]
     string = '-'.join(tokens)
     elements = string.replace('|', "-").split('-')
@@ -122,4 +122,5 @@ def extract_action(dictionary):
 
     module = importlib.import_module('result.action')
     action_class = getattr(module, dictionary["action"])
-    return action_class(dictionary.get("timestep"), dictionary["subject"], start_position, end_position, dictionary.get("description", ""))
+    return action_class(dictionary.get("timestep"), dictionary["subject"], start_position, end_position,
+                        dictionary.get("description", ""))
