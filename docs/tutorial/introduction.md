@@ -47,7 +47,8 @@ At the moment, it is possible to instruments scripts in Python only
 :::
 
 In the next section, we will try to make a program run a simple benchmark,
-available in the `/examples/simple_benchmark.txt` folder
+available in the `/examples/simple_benchmark.txt` folder of the
+[project repository](https://github.com/LucaLeonx/MAPF_pii_Project/tree/main/docs/examples)
 
 
 

@@ -31,7 +31,7 @@ $ source .venv/bin/activate
 Install the package from the corresponding wheel using `pip`
 
 ```shell
-pip install -U -i https://test.pypi.org/simple/ mapfbench
+python -m pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple mapfbench
 ```
 Check that the command line tools are correctly installing by running:
 ```shell
