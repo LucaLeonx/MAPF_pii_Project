@@ -1,0 +1,29 @@
+name: MultiIterationBenchmark
+test_occurrences:
+    GridTest: 10
+    NoObstaclesTest: 1
+tests:
+-   name: GridTest
+    graph:
+        type: GridGraph
+        rows: 5
+        cols: 6
+    entities:
+        placement: !Map |
+            |  T1 |  O  |  O  |  O  |  T2 |     ||
+            |     |     |  O  |  O  |  O  |     ||
+            |  A2 |     |     |  O  |     |     ||
+            |     |     |     |     |     |     ||
+            |     |  A1 |     |     |     |     ||
+-   name: NoObstaclesTest
+    graph:
+        type: GridGraph
+        rows: 5
+        cols: 5
+    entities:
+        placement: !Map |
+            |     |     |     |     | T1  ||
+            |     |     |     |     |     ||
+            |  A2 |     |     |     |     ||
+            |     |     |     |     | T2  ||
+            |     |  A1 |     |     |     ||
