@@ -94,7 +94,7 @@ class MapScheme:
 
 
 class Agent:
-    def __init__(self, agent_id: int, start_position: tuple[int, int], objective_position: tuple[int, int]):
+    def __init__(self, agent_id: int, start_position: np.array, objective_position: np.array):
         self._id = agent_id
         self._start_position = start_position
         self._objective_position = objective_position
@@ -104,10 +104,10 @@ class Agent:
         return self._id
 
     @property
-    def start_position(self) -> tuple[int, int]:
+    def start_position(self) -> np.array:
         return self._start_position
 
     @property
-    def objective_position(self) -> tuple[int, int]:
+    def objective_position(self) -> np.array:
         return self._objective_position
 
