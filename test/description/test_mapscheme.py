@@ -43,11 +43,7 @@ class TestMapScheme:
                                [[2, 1]])
                               ])
     def test_getters(self, map_contents, exp_width, exp_height, exp_free_positions, exp_obstacles):
-        # mapscheme = MapScheme(np.array([[0, 0, 0],
-        #                                [-1, 0, -1],
-        #                                [0, -1, 0]]))
-
-        map_scheme = MapScheme(np.array(map_contents))
+        map_scheme = MapScheme(map_contents)
         print(map_scheme.free_positions)
         assert map_scheme.width == exp_width
         assert map_scheme.height == exp_height
@@ -59,6 +55,5 @@ class TestMapScheme:
     def test_init_guards(self, invalid_map_contents):
 
         with pytest.raises(ValueError) as e:
-            invalid_map_scheme = MapScheme(np.array(invalid_map_contents))
-
+            invalid_map_scheme = MapScheme(invalid_map_contents)
         assert str(e.value) == "Invalid map contents supplied: must be a 2-dimensional array"

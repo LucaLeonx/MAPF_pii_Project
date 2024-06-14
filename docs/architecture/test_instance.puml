@@ -17,8 +17,6 @@ class MapScheme {
     + height() : int
     + obstacles() : set
     + free_positions() : set
-    + has_free_position(position : Cell) : bool
-    + has_obstacle_position(position : Cell) : bool
 }
 
 class Scenario {

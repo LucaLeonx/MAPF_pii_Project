@@ -68,7 +68,7 @@ class MapScheme:
             raise ValueError("Invalid map contents supplied: must be a 2-dimensional array")
 
         # Remove unrecognized content
-        self._map_contents = np.clip(map_contents.copy(), MapContent.OBSTACLE, MapContent.FREE + 1)
+        self._map_contents = np.clip(np.array(map_contents).copy(), MapContent.OBSTACLE, MapContent.FREE + 1)
 
         self._width = map_contents.shape[1]
         self._height = map_contents.shape[0]
@@ -92,22 +92,18 @@ class MapScheme:
     def obstacles(self) -> np.array:
         return self._obstacle_positions
 
+    def has_position(self, position: np.array) -> bool:
+        if position.ndim != 2:
+            return False
+        elif position.shape[0] < 0 or position.shape[0] >= self.width:
+            return False
+        elif position.shape[1] < 0 or position.shape[1] >= self.height:
+            return False
 
-class Agent:
-    def __init__(self, agent_id: int, start_position: np.array, objective_position: np.array):
-        self._id = agent_id
-        self._start_position = start_position
-        self._objective_position = objective_position
+        return True
 
-    @property
-    def id(self) -> int:
-        return self._id
+    def __str__(self):
+        return f"MapScheme(width={self._width}, height={self._height})"
 
-    @property
-    def start_position(self) -> np.array:
-        return self._start_position
 
-    @property
-    def objective_position(self) -> np.array:
-        return self._objective_position
 
