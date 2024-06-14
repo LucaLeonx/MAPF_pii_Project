@@ -1,0 +1,90 @@
+@startuml
+
+class Cell {
+    tuple(x: int, y:int )
+    or node
+}
+
+class MapScheme {
+    - width : int
+    - height : int
+    - obstacles : set[Cell]
+    - free_positions : set[Cell]
+    'other sets for water, swamps and other types of content
+
+    + MapScheme(width : int, height : int, obstacles : set[Cell])
+    + width() : int
+    + height() : int
+    + obstacles() : set
+    + free_positions() : set
+    + has_free_position(position : Cell) : bool
+    + has_obstacle_position(position : Cell) : bool
+}
+
+class Scenario {
+    - map_scheme : MapScheme
+    - agents_start_positions: set[Cell]
+    - objectives_positions: set[Cell]
+
+    + Scenario(map_scheme : MapScheme, agents_start_positions: set[Cell], objectives_positions: set[Cell])
+    + Scenario(map_scheme : MapScheme, agent_list: set[Agent]
+    + agents() : set[Agent]
+    + map_scheme() : MapScheme
+    + objectives_positions() : set[Cell]
+    + agents_start_positions() : set[Cell]
+    + get_agent_by_id(id : int) : Agent
+    + is_valid() : bool
+}
+
+class Agent {
+    - id : int
+    - start_position: Cell
+    - objective_position: Cell
+
+    + Agent(id: int, start_position: Cell, objectives_position: Cell)
+    + id() : int
+    + start_position() : int
+    + objective_position() : int
+}
+
+class Plan {
+    - scenario : Scenario
+    - agent_plans : dict[Agent, list[Action]]
+    - is_solved : bool
+    - solver_name : str
+    + solver_name() : str
+    + scenario() : Scenario
+    + agent_plans() : dict[Agent, list[Action]]
+    + get_agent_plan_by_id(id : int) : list[Action]
+    + is_solved() : bool
+    + get_actions() : list[Action]
+}
+
+class Action {
+    - timestep : int
+    - subject : Agent
+    - type : ActionType
+    - start_position : Cell
+    - end_position : Cell
+
+    + timestep() : int
+    + subject() : Agent
+    + type() : ActionType
+    + start_position() : Cell
+    + end_position() : Cell
+}
+
+enum ActionType {
+    MOVE,
+    WAIT
+}
+
+' For the future
+enum CellContent {
+    FREE,
+    OBSTACLE,
+    SWAMP,
+    WATER,
+}
+
+@enduml
