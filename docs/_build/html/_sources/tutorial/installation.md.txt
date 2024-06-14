@@ -1,6 +1,6 @@
 # Installation
 
-It is assumed that [Python 3.6 or above](https://www.python.org/) has been installed
+It is assumed that [Python 3.9 or above](https://www.python.org/) has been installed
 on the system.
 
 ## Create a virtual environment

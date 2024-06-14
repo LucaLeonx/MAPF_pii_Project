@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mapfbench"
+version = "1.4"
+description = "A simple library for benchmarking of MAPF algorithms"
+readme = "README.md"
+requires-python = ">= 3.9"
+authors = [
+    {name = "Stefano Lanza"},
+    {name = "Luca Leonzio"}
+]
+license = {text = "GPL version 3"}
+
+dependencies = [
+    "click",
+    "Jinja2",
+    "psutil",
+    "pyyaml",
+    "pyzmq",
+]
+
+
+
+[project.optional-dependencies]
+build = ["build", "setuptools"]
+test = ["pytest"]
+docs = ["sphinx", "myst-parser", "sphinx-design"]
+
+
+[tool.setuptools.packages.find]
+where = ["mapfbench"]
+#include = ["cli", "connection", "description", "importer", "inspector", "metrics", "result", "runner", 'customexceptions', 'commanddispatcher']
+#exclude = ["test", "docs", "mapf"]
+
+[project.scripts]
+mapfbench = "cli.cli_interface:mapfbench"
