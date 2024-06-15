@@ -1,60 +1,22 @@
-"Module representing a map, with its content"
 from enum import Enum, IntEnum
 import numpy as np
 
-'''
-class Cell:
-    """
-        Represents a single cell in a MapScheme
-    """
-    def __init__(self, x : int, y : int):
-        """
-            Object initialization
-        Parameters
-        ----------
-        x : int
-            x coordinate of the cell
-        y : int
-            y coordinate of the cell
-
-        """
-        self._x = x
-        self._y = y
-
-    @property
-    def x(self) -> int:
-        """
-        Return
-        ------
-            The x coordinate of the cell
-        """
-        return self._x
-
-    @property
-    def y(self) -> int:
-        """
-        Return
-        ------
-            The y coordinate of the cell
-        """
-        return self._y
-
-    @property
-    def coords(self) -> tuple[int, int]:
-        """
-        Return
-        ------
-            The coordinates of the cell
-        """
-        return self._x, self._y
-'''
-
 
 class MapContent(IntEnum):
+    """
+        Enumeration representing the content of a single cell of a map.
+        Each constant has an integer value associated.
+        The logic is:
+        - Free cells are associated to 0
+        - Impediments (trees, water...) are associated to negative numbers
+        - Agents have strictly positive IDs
+    """
     FREE = 0
     OBSTACLE = -1
-    # WATER = -2
-    # SWAMP = -3
+    # For later
+    # SWAMP = -2
+    # WATER = -3
+    # OUT_OF_BOUND = -4
 
 
 class MapScheme:
@@ -62,8 +24,21 @@ class MapScheme:
         Represents a map for a benchmark execution. The name
         is used to avoid conflicts with the map() built-in Python function
     """
-
     def __init__(self, map_contents: np.array):
+        """
+            Object initialization
+
+            Parameters
+            ----------
+            map_contents : list[list[MapContent]]
+                List of the contents of the map
+
+            Raises
+            ------
+            ValueError
+                If the map is not a 2-dimensioal array
+        """
+        map_contents = np.array(map_contents)
         if map_contents.ndim != 2:
             raise ValueError("Invalid map contents supplied: must be a 2-dimensional array")
 
@@ -78,26 +53,57 @@ class MapScheme:
 
     @property
     def width(self) -> int:
+        """
+            The width of the map
+        """
         return self._width
 
     @property
     def height(self) -> int:
+        """
+            The height of the map
+        """
         return self._height
 
     @property
     def free_positions(self) -> np.array:
+        """
+            Returns the free positions of the map, in a 2-dimensional array.
+            These position have content MapContent.FREE
+        """
         return self._free_positions
 
     @property
     def obstacles(self) -> np.array:
+        """
+            Returns the free positions of the map, in a 2-dimensional array.
+            These position have content MapContent.OBSTACLE
+        """
         return self._obstacle_positions
 
-    def has_position(self, position: np.array) -> bool:
-        if position.ndim != 2:
+    def has_position(self, position: tuple[int, int]) -> bool:
+        """
+            Checks if the supplied position is present in the map
+
+            Parameters
+            ----------
+            position : tuple[int, int]
+                The position to check for
+
+            Returns
+            -------
+                True if the supplied position is present in the map, False otherwise
+        """
+
+        position = np.array(position)
+
+        if position is None or np.array_equal(position, np.array(None)):
             return False
-        elif position.shape[0] < 0 or position.shape[0] >= self.width:
+        elif position.ndim != 1 and position.size < 1:
             return False
-        elif position.shape[1] < 0 or position.shape[1] >= self.height:
+        elif position[0] < 0 or position[0] >= self.height:
+            return False
+        elif position[1] < 0 or position[1] >= self.width:
             return False
 
         return True
