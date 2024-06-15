@@ -35,16 +35,14 @@ class TestPlan:
         assert plan.is_solved
         assert plan.solver == "CBS"
 
-        # TODO fix these testes
-        '''
         assert plan.agent_plans == {
             Agent(1, np.array([0, 0]), np.array([0, 0])): [
                 Action(timestep=0, subject_id=1, action_type=ActionType.MOVE, start_position=[0, 1],
                        end_position=[2, 0])],
             Agent(2, [0, 0], [0, 0]): [Action(timestep=1, subject_id=2, action_type=ActionType.WAIT)]
         }
-        '''
 
+        print([str(action) for action in plan.agent_plan_by_id(1)])
         assert plan.agent_plan_by_id(1).tolist() == [
             Action(timestep=0, subject_id=1, action_type=ActionType.MOVE, start_position=[0, 1], end_position=[2, 0])]
         assert plan.agent_plan_by_id(3) is None

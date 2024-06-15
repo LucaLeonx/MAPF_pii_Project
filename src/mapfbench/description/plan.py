@@ -1,4 +1,4 @@
-from enum import IntEnum
+from enum import Enum
 from typing import Optional
 
 import numpy as np
@@ -6,7 +6,7 @@ import numpy as np
 from mapfbench.description.scenario import Scenario, Agent, AgentReference
 
 
-class ActionType(IntEnum):
+class ActionType(Enum):
     WAIT = 0,
     MOVE = 1
 
@@ -45,7 +45,7 @@ class Action:
     def end_position(self) -> Optional[np.array]:
         return self._end_position
 
-    def __eq___(self, other):
+    def __eq__(self, other):
         if isinstance(other, Action):
             return self.timestep == other.timestep and self.subject_id == other.subject_id
 
