@@ -6,7 +6,7 @@ class MapContent(IntEnum):
     """
         Enumeration representing the content of a single cell of a map.
         Each constant has an integer value associated.
-        The logic is:
+        The logic behind is:
         - Free cells are associated to 0
         - Impediments (trees, water...) are associated to negative numbers
         - Agents have strictly positive IDs
@@ -36,7 +36,7 @@ class MapScheme:
             Raises
             ------
             ValueError
-                If the map is not a 2-dimensioal array
+                If the map is not a 2-dimensional array
         """
         map_contents = np.array(map_contents)
         if map_contents.ndim != 2:
@@ -54,14 +54,14 @@ class MapScheme:
     @property
     def width(self) -> int:
         """
-            The width of the map
+            The width of the map, in cells
         """
         return self._width
 
     @property
     def height(self) -> int:
         """
-            The height of the map
+            The height of the map, in cells
         """
         return self._height
 

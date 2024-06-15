@@ -37,6 +37,8 @@ class TestAgent:
         assert agent1 != agent2
         assert agent1 == agent3
 
+    # TODO test from_positions_list with arrays of different length
+
 
 class TestScenario:
     def test_getters(self, generic_scenario):

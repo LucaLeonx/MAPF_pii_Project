@@ -1,3 +1,7 @@
+"""
+    Module for representing a plan to solve a specific test scenario
+"""
+
 from enum import Enum
 from typing import Optional
 
@@ -7,15 +11,42 @@ from mapfbench.description.scenario import Scenario, Agent, AgentReference
 
 
 class ActionType(Enum):
+    """
+        Possible types of actions
+    """
     WAIT = 0,
     MOVE = 1
 
 
 class Action:
-
+    """
+        Represents an action performed by an Agent as part of the plan
+    """
     def __init__(self, timestep: int, subject_id: int, action_type: ActionType,
                  start_position: Optional[np.array] = None,
                  end_position: Optional[np.array] = None):
+        """
+            Object initialization
+
+            Parameters
+            ----------
+            timestep : int
+                The timestep at which the action is performed.
+                Must be non-negative
+            subject_id : int
+                The ID of the Agent performing the action
+            action_type : ActionType
+                The type of action performed
+            start_position: Optional[np.array]
+                The starting position of the agent before the action
+            end_position: Optional[np.array]
+                The end position of the agent after the action
+
+            Raises
+            ------
+            ValueError
+                If the supplied timestep is negative
+        """
         if timestep < 0:
             raise ValueError("Cannot use negative timestep in Action")
 
@@ -27,25 +58,49 @@ class Action:
 
     @property
     def timestep(self) -> int:
+        """
+            The timestep at which the action is performed
+        """
         return self._timestep
 
     @property
     def subject_id(self) -> int:
+        """
+            The ID of the Agent performing the Action
+        """
         return self._subject_id
 
     @property
     def action_type(self) -> ActionType:
+        """
+            The type of action performed by the agent
+        """
         return self._action_type
 
     @property
     def start_position(self) -> Optional[np.array]:
+        """
+            The starting position of the agent before the action
+        """
         return self._start_position
 
     @property
     def end_position(self) -> Optional[np.array]:
+        """
+            The ending position of the agent before the action
+        """
         return self._end_position
 
     def __eq__(self, other):
+        """
+            Equality comparison. Two Actions are equal
+            if and only if they have the same timestep, subject_id and action_type.
+
+            Returns
+            -------
+            bool
+                True if the Action have the same timestep, subject ID dnd type
+        """
         if isinstance(other, Action):
             return self.timestep == other.timestep and self.subject_id == other.subject_id
 
@@ -60,7 +115,33 @@ class Action:
 
 
 class Plan:
+    """
+        Represents a plan to solve a specified Scenario
+        The plan comprises the actions performed by each agent.
+    """
     def __init__(self, scenario: Scenario, actions: list[Action], is_solved: bool, solver: Optional[str] = None):
+        """
+        Parameters
+        ----------
+        scenario : Scenario
+            The scenario solved by the plan
+        actions: List[Action]
+            The actions taken by the agents in the plan
+        is_solved : bool
+            Whether the plan solves the scenario, that is all the agents
+            reach their objective position
+        solver : str, optional
+            The name of the solver used to obtain the plan
+
+        Raises
+        ------
+        ValueError
+            If at least one of the following conditions holds:
+                - One of the actions supplied is performed by an agent
+                not present in the scenario
+                - One of the actions supplied has a start or end position
+                not present in the map of the scenario
+        """
         for action in actions:
             if action.subject_id not in scenario.agent_ids:
                 raise ValueError(f"Agent {action.subject_id} not present in scenario")
@@ -79,23 +160,60 @@ class Plan:
 
     @property
     def scenario(self) -> Scenario:
+        """
+            The scenario solved by the plan
+        """
         return self._scenario
 
     @property
     def actions(self) -> np.array:
+        """
+            The list of the actions taken by the agents as part of the plans
+        """
         return np.concatenate(self._agent_plans.values())
 
     @property
-    def agent_plans(self) -> dict[Agent, np.array]:
+    def agent_plans(self) -> dict[Agent, list[Action]]:
+        """
+            The plans of the agents, taken separately
+
+            Returns
+            -------
+            dict[Agent, list[Action]]
+                A dictionary with the agents on the map as keys
+                and the list of actions they perform as values
+        """
         return self._agent_plans
 
     @property
     def is_solved(self) -> bool:
+        """
+            Whether the plan solves the scenario, that is all the agents
+            reach their objective position
+        """
         return self._is_solved
 
     @property
     def solver(self) -> Optional[str]:
+        """
+            The name of the solver used to find the plan, if present
+        """
         return self._solver
 
     def agent_plan_by_id(self, agent_id: int) -> np.array:
+        """
+            Returns the actions of the agent with the specified ID.
+            If no agent with the given ID exists, None is returned
+
+            Parameters
+            ----------
+            agent_id : int
+                The ID of the agent whose actions are sought
+
+            Returns
+            -------
+            list[Action], optional
+                The list with the actions of the agent, None
+                if the agent with the given ID does not exist
+        """
         return self._agent_plans.get(AgentReference(agent_id), None)
