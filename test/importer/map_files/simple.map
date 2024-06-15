@@ -1,0 +1,12 @@
+type octile
+height 8
+width 6
+map
+TTTTTT
+T....T
+T..G.T
+T....T
+TGGGGT
+T....T
+TT..TT
+TTTTTT
