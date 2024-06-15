@@ -30,22 +30,47 @@ class TestAgent:
         assert np.array_equal(agent.start_position, np.array([0, 4]))
         assert np.array_equal(agent.objective_position, np.array([5, 6]))
 
-
-@pytest.fixture(autouse=True)
-def generic_map_scheme():
-    return MapScheme(np.array([[0, -1, 0],
-                               [0, -1, 0],
-                               [0,  0, 0]]))
+    def test_equality(self):
+        agent1 = Agent(1, (0, 0), (0, 1))
+        agent2 = Agent(2, (0, 0), (0, 1))
+        agent3 = Agent(1, (0, 1), (0, 2))
+        assert agent1 != agent2
+        assert agent1 == agent3
 
 
 class TestScenario:
-    def test_getters(self, generic_map_scheme):
-        scenario = Scenario(generic_map_scheme, [Agent(1, (0, 2), (2, 0)),
-                                                 Agent(2, (1, 0), (0, 1))])
-        scenario = Scenario.from_position_lists(generic_map_scheme, [(0, 2), (2, 1)], [(0, 0), (0, 2)])
+    def test_getters(self, generic_scenario):
+
+        scenario = generic_scenario
+        # We don't care for positions
+        assert scenario.agents == [Agent(1, (0, 0), (0, 0)),
+                                   Agent(2, (0, 0), (0, 0))]
+
+        assert scenario.agent_ids == [1, 2]
+        assert scenario.agents_num == 2
+        assert np.array_equal(scenario.start_positions, np.array([[0, 1], [0, 2]]))
+        assert np.array_equal(scenario.objective_positions, np.array([[1, 0], [2, 0]]))
+        assert np.array_equal(scenario.map.obstacles, np.array([[0, 1], [1, 1]]))
+
+    def test_from_position_lists(self, generic_map_scheme):
+        scenario = Scenario.from_position_lists(generic_map_scheme,
+                                                [(0, 2), (2, 1)],
+                                                [(0, 0), (0, 2)])
         assert scenario.agents == [Agent(1, (0, 1), (1, 0)),
                                    Agent(2, (0, 2), (2, 0))]
-        assert scenario.objective_positions == [(1, 0), (2, 0)]
-        assert scenario.start_positions == [(0, 1), (0, 1)]
-        assert np.array_equal(scenario.map.obstacles, np.array([[0, 1], [1, 0]]))
 
+        assert scenario.start_positions.tolist() == [[0, 2], [2, 1]]
+        assert scenario.objective_positions.tolist() == [[0, 0], [0, 2]]
+
+        assert np.array_equal(scenario.map.obstacles, np.array([[0, 1], [1, 1]]))
+
+    def test_init_guards(self, generic_map_scheme):
+        with pytest.raises(ValueError) as e:
+            scenario = Scenario(generic_map_scheme,
+                                [Agent(1, (11, 11), (0, 0))])
+        assert str(e.value) == "Start position of one of the agents is not present in map"
+
+        with pytest.raises(ValueError) as e:
+            scenario = Scenario(generic_map_scheme,
+                                [Agent(1, (0, 0), (11, 11))])
+        assert str(e.value) == "Objective position of one of the agents is not present in map"

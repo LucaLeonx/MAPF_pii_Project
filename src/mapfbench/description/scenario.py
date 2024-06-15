@@ -32,23 +32,32 @@ class Agent:
         if isinstance(other, Agent):
             return self.id == other.id
 
+    def __hash__(self) -> int:
+        return hash(self.id)
+
     def __str__(self):
         return f"Agent: {self}, start_position: {self.start_position}, objective_position: {self.objective_position}"
+
+
+class AgentReference(Agent):
+    def __init__(self, agent_id: int):
+        super().__init__(agent_id, (0, 0), (0, 0))
 
 
 class Scenario:
     def __init__(self, map_scheme: MapScheme, agents: list[Agent]):
         if any(not map_scheme.has_position(agent.start_position) for agent in agents):
-            raise ValueError(f"Start position of agents is not present in map")
+            raise ValueError(f"Start position of one of the agents is not present in map")
         elif any(not map_scheme.has_position(agent.objective_position) for agent in agents):
-            raise ValueError(f"Objective position of agents is not present in map")
+            raise ValueError(f"Objective position of one of the agents is not present in map")
 
         self._map_scheme = map_scheme
         self._agents = list(agents)
         self._agents.sort(key=lambda agent: agent.id)
 
     @staticmethod
-    def from_position_lists(map_scheme: MapScheme, start_positions: list[tuple[int, int]], objective_positions: list[tuple[int, int]]):
+    def from_position_lists(map_scheme: MapScheme, start_positions: list[tuple[int, int]],
+                            objective_positions: list[tuple[int, int]]):
         agents = []
         next_id = 1
 
@@ -56,15 +65,23 @@ class Scenario:
             agents.append(Agent(next_id, start_position, objective_position))
             next_id += 1
 
-        return Scenario(map_scheme, agents)
+        return Scenario(map_scheme, np.array(agents))
 
     @property
     def map(self) -> MapScheme:
         return self._map_scheme
 
     @property
-    def agents(self) -> list[Agent]:
+    def agents(self) -> np.array:
         return self._agents
+
+    @property
+    def agent_ids(self) -> list[int]:
+        return [agent.id for agent in self._agents]
+
+    @property
+    def agents_num(self) -> int:
+        return len(self._agents)
 
     @property
     def start_positions(self) -> np.array:
@@ -73,8 +90,3 @@ class Scenario:
     @property
     def objective_positions(self) -> np.array:
         return np.array([agent.objective_position for agent in self._agents])
-
-
-
-
-
