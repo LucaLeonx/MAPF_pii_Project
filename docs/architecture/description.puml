@@ -1,18 +1,22 @@
 @startuml
 
-class Cell {
-    tuple(x: int, y:int )
-    or node
+'note: Cell indicates any tuple with length between 1 and 3
+
+enum MapContent {
+    FREE,
+    OBSTACLE,
+    SWAMP,
+    WATER,
 }
 
 class MapScheme {
     - width : int
     - height : int
-    - obstacles : set[Cell]
+    - obstacles : list[Cell]
     - free_positions : set[Cell]
     'other sets for water, swamps and other types of content
 
-    + MapScheme(width : int, height : int, obstacles : set[Cell])
+    + MapScheme(matrix[cell])
     + width() : int
     + height() : int
     + obstacles() : set
@@ -78,11 +82,11 @@ enum ActionType {
 }
 
 ' For the future
-enum CellContent {
-    FREE,
-    OBSTACLE,
-    SWAMP,
-    WATER,
-}
+MapScheme --o MapContent : contains
+Scenario --o MapScheme
+Scenario --o Agent
+Plan --o Scenario
+Plan --* Action
+Action <-- ActionType
 
 @enduml
