@@ -23,6 +23,16 @@ class TestAction:
             action = Action(timestep=-1, subject_id=1, action_type=ActionType.MOVE)
         assert str(e.value) == "Cannot use negative timestep in Action"
 
+    def test_str(self):
+        assert str(Action(1, 2, ActionType.MOVE)) == 't: 1 Agent ID: 2, action: ActionType.MOVE start:None end:None'
+        assert str(Action(1, 2, ActionType.MOVE,
+                          start_position=[1, 0])) == 't: 1 Agent ID: 2, action: ActionType.MOVE start:[1 0] end:None'
+        assert str(Action(1, 2, ActionType.MOVE,
+                          end_position=[0, 1])) == 't: 1 Agent ID: 2, action: ActionType.MOVE start:None end:[0 1]'
+        assert str(Action(1, 2, ActionType.WAIT,
+                          start_position=[1, 0],
+                          end_position=[0, 1])) == 't: 1 Agent ID: 2, action: ActionType.WAIT start:[1 0] end:[0 1]'
+
 
 class TestPlan:
     def test_getters(self, generic_scenario):
@@ -54,11 +64,15 @@ class TestPlan:
         assert str(e.value) == "Agent 3 not present in scenario"
 
         with pytest.raises(ValueError) as e:
-            plan = Plan(generic_scenario, [Action(timestep=0, subject_id=1, action_type=ActionType.MOVE, start_position=[11, 11], end_position=[0, 0])],
+            plan = Plan(generic_scenario, [
+                Action(timestep=0, subject_id=1, action_type=ActionType.MOVE, start_position=[11, 11],
+                       end_position=[0, 0])],
                         is_solved=False)
         assert str(e.value).startswith("Invalid start position for action")
 
         with pytest.raises(ValueError) as e:
-            plan = Plan(generic_scenario, [Action(timestep=0, subject_id=1, action_type=ActionType.MOVE, start_position=[0, 0], end_position=[11, 11])],
+            plan = Plan(generic_scenario, [
+                Action(timestep=0, subject_id=1, action_type=ActionType.MOVE, start_position=[0, 0],
+                       end_position=[11, 11])],
                         is_solved=False)
         assert str(e.value).startswith("Invalid end position for action")

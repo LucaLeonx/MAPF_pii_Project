@@ -12,15 +12,15 @@
 
 ## metrics
 
-Metrics with identifier (str), label (str, human readable),
+Metrics with identifier (str), label (str, human-readable),
 function for calculation
 
 1. [ ] Parallel, Incremental and Full Test
 2. Agent metrics:
-    - Distance (Parallel)
-    - Number of Moves (Full)
-    - Number of Waits (Full)
-    - Time required (Full)
+    - [x] Distance (Parallel)
+    - [ ] Number of Moves (Full)
+    - [ ] Number of Waits (Full)
+    - [x] Time required (Full)
 3. Test metrics
     - Solved
     - Makespan (Parallel)

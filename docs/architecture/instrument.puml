@@ -1,0 +1,17 @@
+@startuml
+
+class PlanRecorder {
+    - scenario : Scenario
+    - action_list : list[Action]
+    - solver : str
+    - is_solved = False
+    - PlanRecorder(scenario : Scenario, solver: str)
+    - mark_as_solved()
+    - plan()
+    - actions() : list[Action]
+    - record_action(action : Action) : str
+    - record_wait(timestep: int, agent_id : int)
+    - record_move(timestep: int, agent_id : int, end_position: np.array)
+}
+
+@enduml

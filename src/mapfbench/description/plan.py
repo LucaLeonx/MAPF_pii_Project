@@ -156,7 +156,7 @@ class Plan:
         self._solver = solver
 
         for agent in scenario.agents:
-            self._agent_plans[agent] = np.array([action for action in actions if action.subject_id == agent.id])
+            self._agent_plans[agent] = list([action for action in actions if action.subject_id == agent.id])
 
     @property
     def scenario(self) -> Scenario:
@@ -170,7 +170,8 @@ class Plan:
         """
             The list of the actions taken by the agents as part of the plans
         """
-        return np.concatenate(self._agent_plans.values())
+        flat_list = [action for action_list in self._agent_plans.values() for action in action_list]
+        return flat_list
 
     @property
     def agent_plans(self) -> dict[Agent, list[Action]]:
