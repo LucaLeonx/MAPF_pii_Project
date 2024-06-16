@@ -1,0 +1,37 @@
+@startuml
+
+abstract class Metric {
+    - identifier : str
+    - label : str
+    - value : Any
+    - payload : Any
+    - innerMetrics : list[Metrics]
+
+    + Metric(identifier : str, label : str, value: Any, payload: Any)
+    + identifier() : str
+    + label() : str
+    + inner_metrics(): list[Metric]
+    + evaluate()  # Single or multiple
+    + get_value()
+    + __dict__() : dict[identifier, metric_value]
+    + to_label_dict() dict[label, metric_value]
+}
+' TODO: share results across metrics; pass parameters across metrics
+
+
+class EuclideanNorm
+class AgentMakeSpan
+class AgentNumOfMoves
+class AgentNumOfWaits
+class AgentTotalDistance
+class AgentMaxType
+class VertexCollisions
+class EdgeCollisions
+class Success
+class Solved
+class Solver
+class IterationNumber
+
+
+
+@enduml

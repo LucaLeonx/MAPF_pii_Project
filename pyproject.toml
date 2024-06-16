@@ -14,7 +14,9 @@ authors = [
 ]
 license = {text = "GPLv3"}
 dependencies = [
-    "numpy"
+    "numpy",
+    "pyyaml",
+    "pyzmq"
 ]
 
 

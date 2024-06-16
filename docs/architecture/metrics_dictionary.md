@@ -1,0 +1,23 @@
+# Structure of dictionary of metrics
+
+- _avg_makespan
+- _avg_sumofcosts
+- _avg_runtime
+- _avg_memory
+- _num_of_tests
+- _num_of_successes
+- _success_rate
+- _tests:
+  - _test1
+    - _makespan
+    - _sum_of_costs
+    - _running_time
+    - _num_of_agents
+    - _vertex_conflicts
+    - _edge_conflicts
+    - _solved
+    - _agents:
+      - _agent1 
+        - _max_time
+        - _distance
+  - _test2
