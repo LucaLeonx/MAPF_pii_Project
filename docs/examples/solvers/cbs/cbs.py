@@ -352,6 +352,7 @@ def main():
     agents = param['agents']
     """
 
+    # Creazione scenario
     map_scheme = import_map("C:\\Users\steve\PycharmProjects\mapfbench\docs\examples\maps\\arena.map")
     agent_positions = [(5, 5), (20, 10), (30, 30), (40, 12)]
     objective_positions = [(7, 20), (10, 10), (40, 35), (10, 12)]
@@ -368,18 +369,19 @@ def main():
 
     # Searching
     cbs = CBS(env)
+    # Instrumentazione e profiling
     recorder = PlanRecorder(scenario)
-    # recorder.start_profiling()
+    recorder.start_profiling()
     solution = cbs.search()
-    # recorder.end_profiling()
+    recorder.end_profiling()
+    # Registrazione piano, azione per azione
     if solution:
         for agent_name, agent_moves in solution.items():
             for move in agent_moves:
-                # The test_inspector takes already care of adding the initial position
-                # of each agent
                 recorder.record_move(move["t"], int(agent_name[-1]), (move["x"], move["y"]))
         recorder.mark_as_solved()
 
+    # Calcolo ed export risultati
     results = MultiplePlansResults(plans=[recorder.plan])
     plan_results = PlanResults(recorder.plan)
     export_results_to_csv(results, "metrics.csv")

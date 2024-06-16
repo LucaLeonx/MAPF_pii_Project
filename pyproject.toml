@@ -15,6 +15,7 @@ authors = [
 license = {text = "GPLv3"}
 dependencies = [
     "numpy",
+    "psutil",
     "pyyaml",
     "pyzmq"
 ]
@@ -24,13 +25,12 @@ dependencies = [
 [project.optional-dependencies]
 build = ["build", "setuptools"]
 test = ["pytest"]
-docs = ["sphinx", "myst-parser", "sphinx-design"]
+docs = ["myst-parser", "sphinx", "sphinx-design"]
 
 
 [tool.setuptools.packages.find]
 where = ["mapfbench"]
-#include = ["cli", "connection", "description", "importer", "inspector", "metrics", "result", "runner", 'customexceptions', 'commanddispatcher']
-#exclude = ["test", "docs", "mapf"]
+exclude = ["test", "docs", "sketch"]
 
 [project.scripts]
 mapfbench = "cli.cli_interface:mapfbench"
