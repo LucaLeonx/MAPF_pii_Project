@@ -1,0 +1,12 @@
+- _avg_makespan: Average Makespan
+- _agent: Agent
+- _test: Test
+- _distance: Total Distance
+- _max_time: Time Taken
+- _sum_of_costs: Sum of costs
+- _makespan: Makespan
+- _num_of_tests: Number of tests
+- _plan: Plan
+- _obstacle_density: Obstacle density
+- _map_dimensions: Map dimensions
+- _num_of_agents: Number of agents
