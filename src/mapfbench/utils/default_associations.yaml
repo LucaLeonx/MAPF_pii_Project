@@ -13,4 +13,5 @@
 - _num_of_conflicts: Number of conflicts
 - _vertex_conflicts: Vertex conflicts
 - _edge_conflicts: Edge conflicts
-
+- _running_time: Running time
+- _memory_usage: Memory usage

@@ -5,7 +5,7 @@ import pathlib
 from mapfbench.description import MapScheme
 from mapfbench.importer import importer
 
-root_path = pathlib.Path().absolute() / 'test/importer'
+root_path = pathlib.Path().absolute() / 'importer'
 
 
 class TestImporter(object):
@@ -26,3 +26,6 @@ class TestImporter(object):
         assert map_scheme.height == expected_map.height
         assert np.array_equal(map_scheme.free_positions, expected_map.free_positions)
         assert np.array_equal(map_scheme.obstacles, expected_map.obstacles)
+
+    def test_scenarios_import(self):
+        importer.import_scenarios(root_path / 'map_files' / 'arena.map.scen')
