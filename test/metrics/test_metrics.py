@@ -1,34 +1,48 @@
+import numpy as np
 import pytest
 
-from mapfbench.description import plan
+from mapfbench.description import Plan, Action, ActionType
+from mapfbench.metrics.metric import NumberOfConflicts
+from mapfbench.metrics.result import PlanResults
+from conftest import generic_scenario
+
 
 # TODO make proper tests later
 
-"""
+
+@pytest.fixture(autouse=True)
+def plans(generic_scenario):
+    return [
+        (Plan(generic_scenario,
+            np.array([
+                Action(0, 1, ActionType.MOVE, [0, 1], [1, 1]),
+                Action(0, 2, ActionType.WAIT, [0, 2], [0, 2]),
+                Action(1, 1, ActionType.MOVE, [1, 1], [2, 1]),
+                Action(1, 2, ActionType.MOVE, [0, 2], [1, 2])
+            ], dtype=Action), True), 1),  # Conflicts number expected
+        (Plan(generic_scenario,
+              np.array([
+                  Action(0, 1, ActionType.MOVE, [0, 1], [1, 2]), # Teleport
+                  Action(0, 2, ActionType.WAIT, [0, 2], [0, 2]),
+                  Action(1, 1, ActionType.MOVE, [1, 2], [0, 2]),
+                  Action(1, 2, ActionType.MOVE, [0, 2], [1, 2])
+              ], dtype=Action), True), 1), # No vertex conflict, at instant[0, 1] the agent moves
+        (Plan(generic_scenario,
+              np.array([
+                  Action(0, 1, ActionType.MOVE, [0, 1], [1, 2]), # Teleport
+                  Action(0, 2, ActionType.MOVE, [0, 2], [1, 2]),
+              ], dtype=Action), True), 1),
+        (Plan(generic_scenario,
+              np.array([
+                  Action(0, 1, ActionType.MOVE, [0, 1], [1, 2]),  # Teleport
+                  Action(0, 2, ActionType.WAIT, [0, 2], [0, 2]),
+              ], dtype=Action), True), 0),
+    ]
+
+
 class TestMetrics(object):
-    def test_results(self):
-
-        result = Result.evaluate(MakeSpan, SumOfCosts, AverageCost, FuelCost(label = "Fuel in Euclidean", distance_metric=euclidean))
-        aggregate_result = Result.evaluate(AverageMakeSpan, AverageSumOfCosts)
-
-        # A unique dictionary of results, passed recursively. Parallel requests are queued to an executor,
-        # which removes duplicate requests
-
-        assert result.data == {"_makespan": 1, "_sum_of_costs": 2, "_average_cost": 0.4, "_fuel_cost": 0.2}
-        assert result.payload.scenario.map.width == plan.scenario.map.width
-        assert result.to_dict(use_labels=True, results_depth=2) == {
-            "Makespan" : 0,
-            "Sum Of Costs" : 1,
-            "Fuel in Euclidean" : 2,
-            "_test_1":
-                "_makespan":
-                "_sum_of_costs":
-                "_average_cost":
-                "_agents":
-                    "_agent_0":
-
-
-        }
-        assert result1.
-        assert result.full_dict()
-"""
+    def test_conflict(self, plans, generic_scenario):
+        for plan, expected_conflict_num in plans:
+            results = PlanResults(plan, [NumberOfConflicts()])
+            #print([str(conflict) for conflict in results.results["Edge conflicts"]])
+            assert results.results["Number of conflicts"] == expected_conflict_num

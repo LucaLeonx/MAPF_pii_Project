@@ -5,8 +5,12 @@
 - _max_time: Time Taken
 - _sum_of_costs: Sum of costs
 - _makespan: Makespan
-- _num_of_tests: Number of tests
+- _num_of_plans: Number of plans
 - _plan: Plan
 - _obstacle_density: Obstacle density
 - _map_dimensions: Map dimensions
 - _num_of_agents: Number of agents
+- _num_of_conflicts: Number of conflicts
+- _vertex_conflicts: Vertex conflicts
+- _edge_conflicts: Edge conflicts
+

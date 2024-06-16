@@ -32,3 +32,4 @@ def generic_plan(generic_scenario):
     recorder.mark_as_solved()
 
     return recorder.plan
+

@@ -4,6 +4,7 @@ from typing import Any, Union
 import numpy as np
 
 from mapfbench.description import Plan, Agent, Action
+from mapfbench.metrics.conflict import VertexConflict, EdgeConflict, ObstacleConflict
 
 
 class Metric(ABC):
@@ -218,8 +219,75 @@ class VertexConflicts(Metric):
 
     def evaluate(self, data: Plan, partial_results: dict[str, Any]):
         super().evaluate(data, partial_results)
+        actions = data.actions
+        timesteps_extractor = np.vectorize(lambda action: action.timestep)
+        timesteps = np.unique(timesteps_extractor(actions))
+
+        conflicts = []
+
+        for action in actions:
+            if action.end_position.tolist() in data.scenario.map.obstacles.tolist():
+                conflicts.append(ObstacleConflict(action.timestep, action.subject_id, action.end_position))
+
+        for timestep in timesteps:
+            actions_performed = np.array([action for action in actions if action.timestep == timestep])
+
+            for i in range(actions_performed.shape[0]):  # Avoid listing a conflict twice
+                for j in range(i, actions_performed.shape[0]):
+                    if np.array_equal(actions_performed[i].end_position, actions_performed[j].end_position) \
+                            and actions_performed[i].subject_id != actions_performed[j].subject_id:
+                        conflicts.append(VertexConflict(timestep,
+                                                        actions_performed[i].subject_id,
+                                                        actions_performed[j].subject_id,
+                                                        actions_performed[i].end_position))
+
+        result = conflicts
+        partial_results.update({self.identifier: result})
+        return result
 
 
-        result =
+class EdgeConflicts(Metric):
+
+    def __init__(self):
+        super().__init__("_edge_conflicts")
+
+    def evaluate(self, data: Plan, partial_results: dict[str, Any]):
+        super().evaluate(data, partial_results)
+        actions = data.actions
+        timesteps_extractor = np.vectorize(lambda action: action.timestep)
+        timesteps = np.unique(timesteps_extractor(actions))
+        conflicts = []
+
+
+        for timestep in timesteps:
+            actions_performed = np.array([action for action in actions if action.timestep == timestep], dtype=Action)
+            for i in range(actions_performed.shape[0]):  # Avoid listing a conflict twice
+                for j in range(i+1, actions_performed.shape[0]):
+
+                    if (actions_performed[i].end_position.tolist() == actions_performed[j].start_position.tolist()
+                            and actions_performed[i].start_position.tolist() == actions_performed[j].end_position.tolist()):
+                        conflicts.append(EdgeConflict(timestep,
+                                                      actions_performed[i].subject_id,
+                                                      actions_performed[j].subject_id,
+                                                      actions_performed[i].start_position,
+                                                      actions_performed[j].start_position))
+
+        result = conflicts
+        partial_results.update({self.identifier: result})
+        return result
+
+
+class NumberOfConflicts(Metric):
+    def __init__(self):
+        super().__init__("_num_of_conflicts")
+
+    def evaluate(self, data: Plan, partial_results: dict[str, Any]):
+        super().evaluate(data, partial_results)
+
+        vertex = VertexConflicts().evaluate(data, partial_results)
+        edge = EdgeConflicts().evaluate(data, partial_results)
+
+        result = len(vertex) + len(edge)
 
         partial_results.update({self.identifier: result})
+        return result

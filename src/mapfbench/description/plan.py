@@ -178,7 +178,7 @@ class Plan:
         """
             The list of the actions taken by the agents as part of the plans
         """
-        return np.concatenate(self._agent_plans.values(), dtype=Action)
+        return np.concatenate(tuple(self._agent_plans.values()), dtype=Action)
 
     @property
     def agent_plans(self) -> dict[Agent, list[Action]]:

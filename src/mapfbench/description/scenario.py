@@ -90,7 +90,10 @@ class Agent:
 
 class AgentReference(Agent):
     """
-        Class that represents a reference to an agent, using its ID only
+        Class that represents a reference to an agent, using its ID only.
+        Use this class only to refer to an Agent used as key in a collection;
+        the getters of start_position and objective_positions are overridden
+        to return None.
     """
     def __init__(self, agent_id: int):
         """
@@ -108,6 +111,13 @@ class AgentReference(Agent):
         """
         super().__init__(agent_id, (0, 0), (0, 0))
 
+    @property
+    def start_position(self) -> None:
+        return None
+
+    @property
+    def end_position(self) -> None:
+        return None
 
 class Scenario:
     """
