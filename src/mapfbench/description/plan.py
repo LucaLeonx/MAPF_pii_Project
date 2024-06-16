@@ -119,7 +119,7 @@ class Plan:
         Represents a plan to solve a specified Scenario
         The plan comprises the actions performed by each agent.
     """
-    def __init__(self, scenario: Scenario, actions: list[Action], is_solved: bool, solver: Optional[str] = None):
+    def __init__(self, scenario: Scenario, actions: list[Action], is_solved: bool, running_time: float, memory_used: float):
         """
         Parameters
         ----------
@@ -153,7 +153,8 @@ class Plan:
         self._scenario = scenario
         self._agent_plans = {}
         self._is_solved = is_solved
-        self._solver = solver
+        self._running_time = running_time
+        self._memory_used = memory_used
 
         for agent in scenario.agents:
             self._agent_plans[agent] = list([action for action in actions if action.subject_id == agent.id])
@@ -195,11 +196,20 @@ class Plan:
         return self._is_solved
 
     @property
-    def solver(self) -> Optional[str]:
+    def running_time(self) -> Optional[float]:
         """
-            The name of the solver used to find the plan, if present
+            The running time in ms of the algorithm which computed the plan,
+            if available
         """
-        return self._solver
+        return self._running_time
+
+    @property
+    def memory_used(self) -> Optional[float]:
+        """
+            The memory usage in KB of the algorithm which computed the plan,
+            if available
+        """
+        return self._memory_used
 
     def agent_plan_by_id(self, agent_id: int) -> np.array:
         """
