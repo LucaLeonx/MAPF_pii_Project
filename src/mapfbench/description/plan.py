@@ -22,6 +22,7 @@ class Action:
     """
         Represents an action performed by an Agent as part of the plan
     """
+
     def __init__(self, timestep: int, subject_id: int, action_type: ActionType,
                  start_position: Optional[np.array] = None,
                  end_position: Optional[np.array] = None):
@@ -119,7 +120,9 @@ class Plan:
         Represents a plan to solve a specified Scenario
         The plan comprises the actions performed by each agent.
     """
-    def __init__(self, scenario: Scenario, actions: list[Action], is_solved: bool, running_time: float, memory_used: float):
+
+    def __init__(self, scenario: Scenario, actions: np.ndarray[Action], is_solved: bool, running_time: float = None,
+                 memory_used: float = None):
         """
         Parameters
         ----------
@@ -130,8 +133,10 @@ class Plan:
         is_solved : bool
             Whether the plan solves the scenario, that is all the agents
             reach their objective position
-        solver : str, optional
-            The name of the solver used to obtain the plan
+        running_time: float, optional
+            The running time in ms of the algorithm which produced the plan, if available
+        memory_used
+            The maximum memory used in Kb by the algorithm which produced the plan, if available
 
         Raises
         ------
@@ -145,9 +150,11 @@ class Plan:
         for action in actions:
             if action.subject_id not in scenario.agent_ids:
                 raise ValueError(f"Agent {action.subject_id} not present in scenario")
-            elif action.start_position is not None and not np.array_equal(action.start_position, np.array(None)) and not scenario.map.has_position(action.start_position):
+            elif action.start_position is not None and not np.array_equal(action.start_position, np.array(
+                    None)) and not scenario.map.has_position(action.start_position):
                 raise ValueError(f"Invalid start position for action {action}")
-            elif action.end_position is not None and not np.array_equal(action.end_position, np.array(None)) and not scenario.map.has_position(action.end_position):
+            elif action.end_position is not None and not np.array_equal(action.end_position, np.array(
+                    None)) and not scenario.map.has_position(action.end_position):
                 raise ValueError(f"Invalid end position for action {action}")
 
         self._scenario = scenario
@@ -157,7 +164,7 @@ class Plan:
         self._memory_used = memory_used
 
         for agent in scenario.agents:
-            self._agent_plans[agent] = list([action for action in actions if action.subject_id == agent.id])
+            self._agent_plans[agent] = np.array([action for action in actions if action.subject_id == agent.id], dtype=Action)
 
     @property
     def scenario(self) -> Scenario:
@@ -171,8 +178,7 @@ class Plan:
         """
             The list of the actions taken by the agents as part of the plans
         """
-        flat_list = [action for action_list in self._agent_plans.values() for action in action_list]
-        return flat_list
+        return np.concatenate(self._agent_plans.values(), dtype=Action)
 
     @property
     def agent_plans(self) -> dict[Agent, list[Action]]:

@@ -210,3 +210,16 @@ class AverageSumOfCosts(AggregatePlanMetric):
         partial_results.update({self.identifier: result})
         return result
 
+
+class VertexConflicts(Metric):
+
+    def __init__(self):
+        super().__init__("_vertex_conflicts")
+
+    def evaluate(self, data: Plan, partial_results: dict[str, Any]):
+        super().evaluate(data, partial_results)
+
+
+        result =
+
+        partial_results.update({self.identifier: result})

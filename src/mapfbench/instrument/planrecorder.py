@@ -34,7 +34,8 @@ class PlanRecorder:
 
     @property
     def plan(self):
-
+        running_time = None
+        memory_used = None
         if self._end_time is not None:
             running_time = (self._end_time - self._start_time) / 1_000_000
             memory_used = self._memory_used / 1024

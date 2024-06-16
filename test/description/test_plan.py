@@ -39,11 +39,10 @@ class TestPlan:
         plan = Plan(generic_scenario, [
             Action(timestep=0, subject_id=1, action_type=ActionType.MOVE, start_position=[0, 1], end_position=[2, 0]),
             Action(timestep=1, subject_id=2, action_type=ActionType.WAIT)],
-                    is_solved=True, solver="CBS")
+                    is_solved=True)
 
         assert [agent.id for agent in plan.scenario.agents] == [1, 2]
         assert plan.is_solved
-        assert plan.solver == "CBS"
 
         assert plan.agent_plans == {
             Agent(1, np.array([0, 0]), np.array([0, 0])): [
