@@ -258,14 +258,14 @@ class EdgeConflicts(Metric):
         timesteps = np.unique(timesteps_extractor(actions))
         conflicts = []
 
-
         for timestep in timesteps:
             actions_performed = np.array([action for action in actions if action.timestep == timestep], dtype=Action)
             for i in range(actions_performed.shape[0]):  # Avoid listing a conflict twice
-                for j in range(i+1, actions_performed.shape[0]):
+                for j in range(i + 1, actions_performed.shape[0]):
 
                     if (actions_performed[i].end_position.tolist() == actions_performed[j].start_position.tolist()
-                            and actions_performed[i].start_position.tolist() == actions_performed[j].end_position.tolist()):
+                            and actions_performed[i].start_position.tolist() == actions_performed[
+                                j].end_position.tolist()):
                         conflicts.append(EdgeConflict(timestep,
                                                       actions_performed[i].subject_id,
                                                       actions_performed[j].subject_id,
@@ -288,6 +288,88 @@ class NumberOfConflicts(Metric):
         edge = EdgeConflicts().evaluate(data, partial_results)
 
         result = len(vertex) + len(edge)
+
+        partial_results.update({self.identifier: result})
+        return result
+
+
+class PlanAverageMetric(AggregatePlanMetric):
+    def __init__(self, identifier, averaged_metric):
+        super().__init__(identifier)
+        self._averaged_metric = averaged_metric
+
+    def evaluate(self, data: list[Plan], partial_results: dict[str, Any]):
+        plans_num = len(data)
+        result = 0
+
+        if plans_num != 0:
+            total = 0
+            for index, plan in enumerate(data, 1):
+                total += self._averaged_metric.evaluate(plan,
+                                                        partial_results["_plans"]["_plan_" + str(index)])
+
+            return total / plans_num
+
+        partial_results.update({self.identifier: result})
+        return result
+
+
+class RunningTime(Metric):
+    def __init__(self):
+        super().__init__("_running_time")
+
+    def evaluate(self, data: Plan, partial_results: dict[str, Any]) -> float:
+        super().evaluate(data, partial_results)
+        result = data.running_time
+        partial_results.update({self.identifier: result})
+        return result
+
+
+class MemoryUsage(Metric):
+    def __init__(self):
+        super().__init__("_memory_usage")
+
+    def evaluate(self, data: Plan, partial_results: dict[str, Any]) -> float:
+        super().evaluate(data, partial_results)
+        result = data.memory_used
+        partial_results.update({self.identifier: result})
+        return result
+
+
+class MetadataGetter(Metric):
+    def __init__(self, identifier: str, get_function):
+        super().__init__(identifier)
+        self._get_function = get_function
+
+    def evaluate(self, data: Any, partial_results: dict[str, Any]):
+        super().evaluate(data, partial_results)
+        if isinstance(self._get_function, property):
+            self._get_function = self._get_function.fget
+
+        result = self._get_function(data)
+        partial_results.update({self.identifier: result})
+        return result
+
+
+class Solved(MetadataGetter):
+    def __init__(self):
+        return super().__init__("_solved", Plan.is_solved)
+
+
+class SuccessesNumber(AggregatePlanMetric):
+    def __init__(self):
+        super().__init__("_avg_sum_of_costs")
+
+    def evaluate(self, data: list[Plan], partial_results: dict[str, Any]) -> float:
+        plans_num = len(data)
+        result = 0
+
+        if plans_num != 0:
+            total_sum_of_costs = 0
+            for index, plan in enumerate(data, 1):
+                total_sum_of_costs += SumOfCosts().evaluate(plan, partial_results["_plans"]["_plan_" + str(index)])
+
+            return total_sum_of_costs / plans_num
 
         partial_results.update({self.identifier: result})
         return result
