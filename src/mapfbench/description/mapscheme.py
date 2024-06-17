@@ -36,7 +36,8 @@ class MapScheme:
             Parameters
             ----------
             map_contents : list[list[MapContent]]
-                List of the contents of the map
+                List of the contents of the map. If any integer not present
+                in MapContents.values is inserted, it is left as it is
 
             Raises
             ------
