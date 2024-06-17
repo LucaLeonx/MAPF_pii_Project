@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 
-from mapfbench.description.mapscheme import MapScheme
+from mapfbench.description.mapscheme import MapScheme, MapContent
 
 
 @pytest.mark.parametrize("map_contents, "
@@ -47,8 +47,17 @@ class TestMapScheme:
         assert map_scheme.width == exp_width
         assert map_scheme.height == exp_height
 
+        unrecognized_content = 0
+
+        for i in range(map_scheme.height):
+            for j in range(map_scheme.width):
+                unrecognized_content += 1 if map_contents[i][j] not in MapContent.values else 0
+
+        assert map_scheme.obstacles.shape[0] + map_scheme.free_positions.shape[0] + unrecognized_content == map_scheme.width * map_scheme.height
+
         assert np.array_equal(map_scheme.free_positions, np.array(exp_free_positions))
         assert np.array_equal(map_scheme.obstacles, np.array(exp_obstacles))
+
 
     def test_has_position(self, map_contents, exp_width, exp_height, exp_free_positions, exp_obstacles):
         map_scheme = MapScheme(map_contents)

@@ -18,6 +18,11 @@ class MapContent(IntEnum):
     # WATER = -3
     # OUT_OF_BOUND = -4
 
+    @classmethod
+    @property
+    def values(self):
+        return [e.value for e in MapContent]
+
 
 class MapScheme:
     """
@@ -39,11 +44,13 @@ class MapScheme:
                 If the map is not a 2-dimensional array
         """
         map_contents = np.array(map_contents)
+
         if map_contents.ndim != 2:
             raise ValueError("Invalid map contents supplied: must be a 2-dimensional array")
 
+        self._map_contents = map_contents
         # Remove unrecognized content
-        self._map_contents = np.clip(np.array(map_contents).copy(), MapContent.OBSTACLE, MapContent.FREE + 1)
+        #self._map_contents = np.clip(map_contents.copy(), MapContent.OBSTACLE, MapContent.FREE)
 
         self._width = map_contents.shape[1]
         self._height = map_contents.shape[0]

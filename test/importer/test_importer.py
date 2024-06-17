@@ -28,4 +28,18 @@ class TestImporter(object):
         assert np.array_equal(map_scheme.obstacles, expected_map.obstacles)
 
     def test_scenarios_import(self):
-        importer.import_scenarios(root_path / 'map_files' / 'arena.map.scen')
+        scenarios = importer.import_scenarios(root_path / 'map_files' / 'arena.map.scen')
+        assert len(scenarios) == 13
+
+        for scenario in scenarios:
+            assert scenario.map.width == 49
+            assert scenario.map.height == 49
+            assert scenario.map.obstacles.shape[0] == 347
+            assert scenario.map.obstacles.shape[0] + scenario.map.free_positions.shape[0] == scenario.map.width * scenario.map.height
+
+        first_scenario = scenarios[0]
+        assert first_scenario.agents_num == 10
+        assert first_scenario.agent_ids == list(range(1, first_scenario.agents_num + 1))
+        assert first_scenario.agents[2].id == 3
+        assert np.array_equal(first_scenario.agents[2].start_position, np.array([31, 23]))
+        assert np.array_equal(first_scenario.agents[2].objective_position, np.array([33, 23]))
