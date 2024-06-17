@@ -16,6 +16,10 @@ class Metric(ABC):
     def identifier(self):
         return self._identifier
 
+    @property
+    def label(self):
+        return "Metric"
+
     @abstractmethod
     def evaluate(self, data, partial_results: dict[str, Any]) -> Any:
         if self.identifier not in partial_results:

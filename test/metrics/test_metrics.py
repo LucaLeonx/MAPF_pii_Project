@@ -2,7 +2,7 @@ import numpy as np
 import pytest
 
 from mapfbench.description import Plan, Action, ActionType
-from mapfbench.metrics.metric import NumberOfConflicts
+from mapfbench.metrics.metric_helpers import NumberOfConflicts
 from mapfbench.metrics.result import PlanResults
 from conftest import generic_scenario
 

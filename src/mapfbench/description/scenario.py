@@ -1,7 +1,7 @@
 """
     Classes used to define a test scenario
 """
-from importlib.metadata import metadata
+
 from typing import Any
 
 import numpy as np
@@ -157,7 +157,7 @@ class Scenario:
         self._map_scheme = map_scheme
         self._agents = list(agents)
         self._agents.sort(key=lambda agent: agent.id)
-        self._metadata = metadata if metadata is not None else {}
+        self._metadata = dict(metadata) if metadata is not None else {}
 
     @staticmethod
     def from_position_lists(map_scheme: MapScheme, start_positions: list[tuple[int, int]],

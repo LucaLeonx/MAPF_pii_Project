@@ -1,6 +1,6 @@
 import pytest
 
-from mapfbench.metrics.metric import Makespan, SumOfCosts
+from mapfbench.metrics.metric_helpers import Makespan, SumOfCosts
 from mapfbench.metrics.result import PlanResults
 
 

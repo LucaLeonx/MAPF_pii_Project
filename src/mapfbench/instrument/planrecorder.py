@@ -40,8 +40,11 @@ class PlanRecorder:
             running_time = (self._end_time - self._start_time) / 1_000_000
             memory_used = self._memory_used / 1024
 
-        return Plan(self._scenario, self._action_list, is_solved=self._is_solved, running_time=running_time,
-                    memory_used=memory_used)
+        plan = Plan(self._scenario, self._action_list)
+        plan.metadata["_running_time"] = running_time
+        plan.metadata["_memory_used"] = memory_used
+
+        return plan
 
     def record(self, action):
         if action.subject_id not in self.scenario.agent_ids:

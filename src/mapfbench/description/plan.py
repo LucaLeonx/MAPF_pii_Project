@@ -3,7 +3,7 @@
 """
 
 from enum import Enum
-from typing import Optional
+from typing import Optional, Any
 
 import numpy as np
 
@@ -121,8 +121,7 @@ class Plan:
         The plan comprises the actions performed by each agent.
     """
 
-    def __init__(self, scenario: Scenario, actions: np.ndarray[Action], is_solved: bool, running_time: float = None,
-                 memory_used: float = None):
+    def __init__(self, scenario: Scenario, actions: np.ndarray[Action], metadata: dict[str, Any] = None):
         """
         Parameters
         ----------
@@ -159,12 +158,16 @@ class Plan:
 
         self._scenario = scenario
         self._agent_plans = {}
-        self._is_solved = is_solved
-        self._running_time = running_time
-        self._memory_used = memory_used
+
+        if metadata is not None:
+            self._metadata = metadata
+        else:
+            self._metadata = dict(scenario.metadata)
+            self._metadata.update({"_solved": False})
 
         for agent in scenario.agents:
-            self._agent_plans[agent] = np.array([action for action in actions if action.subject_id == agent.id], dtype=Action)
+            self._agent_plans[agent] = np.array([action for action in actions if action.subject_id == agent.id],
+                                                dtype=Action)
 
     @property
     def scenario(self) -> Scenario:
@@ -194,12 +197,16 @@ class Plan:
         return self._agent_plans
 
     @property
+    def metadata(self):
+        return self._metadata
+
+    @property
     def is_solved(self) -> bool:
         """
             Whether the plan solves the scenario, that is all the agents
             reach their objective position
         """
-        return self._is_solved
+        return self.metadata.get("solved", False)
 
     @property
     def running_time(self) -> Optional[float]:
@@ -207,7 +214,7 @@ class Plan:
             The running time in ms of the algorithm which computed the plan,
             if available
         """
-        return self._running_time
+        return self.metadata.get("running_time", None)
 
     @property
     def memory_used(self) -> Optional[float]:
@@ -215,7 +222,7 @@ class Plan:
             The memory usage in KB of the algorithm which computed the plan,
             if available
         """
-        return self._memory_used
+        return self.metadata.get("memory_used", None)
 
     def agent_plan_by_id(self, agent_id: int) -> np.array:
         """
