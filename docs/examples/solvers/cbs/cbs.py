@@ -11,7 +11,8 @@ from mapfbench.description import Scenario
 from mapfbench.export.exporter import export_to_csv, export_results_to_csv, export_to_yaml, export_plan_results
 from mapfbench.importer import import_map, import_scenarios
 from mapfbench.instrument.planrecorder import PlanRecorder
-from mapfbench.metrics.result import PlanResults, MultiplePlansResults
+from mapfbench.metrics.metrics import Bucket
+from mapfbench.metrics.new_results import AggregatePlanResults, PlanResults
 
 sys.path.insert(0, '../')
 from math import fabs
@@ -161,6 +162,7 @@ class Environment(object):
         result = Conflict()
         for t in range(max_t):
             for agent_1, agent_2 in combinations(solution.keys(), 2):
+
                 state_1 = self.get_state(agent_1, solution, t)
                 state_2 = self.get_state(agent_2, solution, t)
                 if state_1.is_equal_except_time(state_2):
@@ -364,21 +366,27 @@ def process_scenario(scenario):
     return recorder.plan
 
 
-def main():
+def main(computed_plan=None):
     # Import degli scenari
     scenarios = import_scenarios("../../maps/arena.map.scen")
 
-    scenarios = scenarios[:9] # Gli ultimi scenari creano problemi
+    scenarios = scenarios[:2]  # Gli ultimi scenari creano problemi
     computed_plans = []
     ## Calcolo dei piani
     for scenario in scenarios:
         plan = process_scenario(scenario)
         computed_plans.append(plan)
 
+    #print(computed_plans[0].memory_used)
+
     # Calcolo ed export risultati
-    results = MultiplePlansResults(plans=computed_plans)
+    #results = AggregatePlanResults(computed_plans, metrics=[Bucket()])
+    #results.evaluate()
+    result = PlanResults(computed_plans[0], [Bucket()])
+    result.evaluate()
+    print(result.results)
     # plan_results = PlanResults(recorder.plan)
-    export_results_to_csv(results, "metrics.csv")
+    #export_results_to_csv(results, "metrics.csv")
     # export_plan_results(recorder.plan, "actions.yaml")
 
 

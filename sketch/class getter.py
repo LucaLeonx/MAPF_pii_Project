@@ -8,7 +8,6 @@ class Prova:
         return self._integer
 
 
-
 def main():
     prova = Prova(11)
     funzione = Prova.integer

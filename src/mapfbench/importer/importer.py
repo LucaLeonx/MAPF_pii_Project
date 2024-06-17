@@ -87,7 +87,7 @@ def import_scenarios(filename: str) -> list[Scenario]:
 
     scenarios = []
     for bucket in scenario_agents.keys():
-        scenario = Scenario(scenario_maps[bucket], scenario_agents[bucket])
+        scenario = Scenario(scenario_maps[bucket], scenario_agents[bucket], metadata={"bucket": bucket, "filename": filename})
         scenarios.append(scenario)
 
     return scenarios

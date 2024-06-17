@@ -1,4 +1,6 @@
 from enum import Enum, IntEnum
+from typing import Tuple
+
 import numpy as np
 
 
@@ -72,6 +74,13 @@ class MapScheme:
             The height of the map, in cells
         """
         return self._height
+
+    @property
+    def dimensions(self) -> Tuple[int, int]:
+        """
+            The dimensions (width, height) of the map
+        """
+        return self._width, self._height
 
     @property
     def free_positions(self) -> np.array:

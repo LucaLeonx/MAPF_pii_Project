@@ -163,7 +163,7 @@ class Plan:
             self._metadata = metadata
         else:
             self._metadata = dict(scenario.metadata)
-            self._metadata.update({"_solved": False})
+            self._metadata.update({"solved": False})
 
         for agent in scenario.agents:
             self._agent_plans[agent] = np.array([action for action in actions if action.subject_id == agent.id],

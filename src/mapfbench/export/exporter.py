@@ -5,15 +5,13 @@ from typing import Any
 import yaml
 
 from mapfbench.description import Plan
-from mapfbench.metrics.result import MultiplePlansResults
+from mapfbench.metrics.new_results import AggregatePlanResults
 
 
-def export_results_to_csv(results: MultiplePlansResults, filename: str):
+def export_results_to_csv(results: AggregatePlanResults, filename: str):
     lines = []
-    for plan_result in results.per_plan_results:
-        results = plan_result.results
-        results.pop("Agents")
-        lines.append(results)
+    for plan_result in results.per_plan_results.values():
+        lines.append(plan_result)
 
     export_to_csv(lines, filename)
 

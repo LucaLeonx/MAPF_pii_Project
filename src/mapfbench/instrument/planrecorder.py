@@ -41,8 +41,8 @@ class PlanRecorder:
             memory_used = self._memory_used / 1024
 
         plan = Plan(self._scenario, self._action_list)
-        plan.metadata["_running_time"] = running_time
-        plan.metadata["_memory_used"] = memory_used
+        plan.metadata["running_time"] = running_time
+        plan.metadata["memory_used"] = memory_used
 
         return plan
 

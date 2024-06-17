@@ -14,4 +14,7 @@
 - _vertex_conflicts: Vertex conflicts
 - _edge_conflicts: Edge conflicts
 - _running_time: Running time
-- _memory_usage: Memory usage
+- _memory_used: Memory used
+- _solved: Solved
+- _avg_memory_used: Average Memory Used
+- _bucket: Bucket

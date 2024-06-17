@@ -5,8 +5,9 @@ import numpy as np
 
 from mapfbench.description import Plan, Agent, Action
 from mapfbench.metrics.conflict import VertexConflict, EdgeConflict, ObstacleConflict
+from mapfbench.metrics.new_metrics import euclidean_distance
 
-
+"""
 class Metric(ABC):
 
     def __init__(self, identifier: str):
@@ -26,15 +27,6 @@ class Metric(ABC):
             partial_results.update({self.identifier: None})
         if partial_results[self.identifier] is not None and partial_results[self.identifier] != {}:
             return partial_results[self.identifier]
-
-
-# TODO add manhattan distance and other custom distances
-def euclidean_distance(a: np.array, b: np.array):
-    return np.linalg.norm(a - b)
-
-
-# Just an alias to the function, for convenience
-euclidean = euclidean_distance
 
 
 class AggregateAgentMetric(Metric):
@@ -377,3 +369,5 @@ class SuccessesNumber(AggregatePlanMetric):
 
         partial_results.update({self.identifier: result})
         return result
+
+"""
