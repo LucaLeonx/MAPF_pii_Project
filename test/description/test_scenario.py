@@ -42,7 +42,6 @@ class TestAgent:
 
 class TestScenario:
     def test_getters(self, generic_scenario):
-
         scenario = generic_scenario
         # We don't care for positions
         assert scenario.agents == [Agent(1, (0, 0), (0, 0)),
@@ -76,3 +75,14 @@ class TestScenario:
             scenario = Scenario(generic_map_scheme,
                                 [Agent(1, (0, 0), (11, 11))])
         assert str(e.value) == "Objective position of one of the agents is not present in map"
+
+    def test_metadata(self, generic_map_scheme):
+        scenario = Scenario.from_position_lists(generic_map_scheme,
+                                                [(0, 2), (2, 1)],
+                                                [(0, 0), (0, 2)])
+
+        assert scenario.metadata == {}
+        scenario.metadata["_key"] = 11
+        assert "_key" in scenario.metadata
+        del scenario.metadata["_key"]
+        assert "_key" not in scenario.metadata

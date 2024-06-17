@@ -3,20 +3,38 @@
 abstract class Metric {
     - identifier : str
     - label : str
-    - value : Any
-    - payload : Any
-    - innerMetrics : list[Metrics]
 
-    + Metric(identifier : str, label : str, value: Any, payload: Any)
+    + Metric(identifier : str, label : str)
     + identifier() : str
     + label() : str
-    + inner_metrics(): list[Metric]
-    + evaluate()  # Single or multiple
-    + get_value()
-    + __dict__() : dict[identifier, metric_value]
-    + to_label_dict() dict[label, metric_value]
+    + evaluate(data: Any, results_store: Any)
 }
-' TODO: share results across metrics; pass parameters across metrics
+
+class PlanResults {
+    results : dict[str, Any]
+    labels : dict[str, str]
+    plan: Plan
+    PlanResults(Plan, Metrics, results_dict)
+    results_dict():
+    results()
+    PlanResults.evaluate()
+}
+
+class AgentResults {
+
+}
+
+class AggregatePlanResultsStore {
+    results : dict[str, Any]
+    plans : list[PlanResults]
+    inner_results() : list[PlanResults]
+    evaluate
+}
+
+class AverageMetric
+class MetadataGetterMetric
+class CountMetric
+class SumMetric
 
 
 class EuclideanNorm

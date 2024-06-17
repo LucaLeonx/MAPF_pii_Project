@@ -1,6 +1,8 @@
 """
     Classes used to define a test scenario
 """
+from importlib.metadata import metadata
+from typing import Any
 
 import numpy as np
 
@@ -13,6 +15,7 @@ class Agent:
         Agents are uniquely identified by their IDs,
         so the __eq__ comparison checks only them
     """
+
     def __init__(self, agent_id: int, start_position: tuple[int, int], objective_position: tuple[int, int]):
         """
             Object initialization
@@ -95,6 +98,7 @@ class AgentReference(Agent):
         the getters of start_position and objective_positions are overridden
         to return None.
     """
+
     def __init__(self, agent_id: int):
         """
             Object initializer
@@ -119,11 +123,13 @@ class AgentReference(Agent):
     def end_position(self) -> None:
         return None
 
+
 class Scenario:
     """
         Represents a test scenario, characterized by a map and agents on it
     """
-    def __init__(self, map_scheme: MapScheme, agents: list[Agent]):
+
+    def __init__(self, map_scheme: MapScheme, agents: list[Agent], metadata: dict[str, Any] = None):
         """
             Object initializer
 
@@ -133,6 +139,8 @@ class Scenario:
                 The map to use for the test
             agents: List[Agent]
                 The list of Agents considered in the scenario
+            metadata: dict[str, Any]
+                The metadata associated with the scenario
 
             Raises
             ------
@@ -149,6 +157,7 @@ class Scenario:
         self._map_scheme = map_scheme
         self._agents = list(agents)
         self._agents.sort(key=lambda agent: agent.id)
+        self._metadata = metadata if metadata is not None else {}
 
     @staticmethod
     def from_position_lists(map_scheme: MapScheme, start_positions: list[tuple[int, int]],
@@ -230,3 +239,10 @@ class Scenario:
             The positions of the objectives in the scenario
         """
         return np.array([agent.objective_position for agent in self._agents])
+
+    @property
+    def metadata(self):
+        """
+            The metadata associated with the scenario
+        """
+        return self._metadata

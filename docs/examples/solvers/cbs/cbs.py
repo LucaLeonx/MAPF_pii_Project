@@ -9,7 +9,7 @@ import sys
 
 from mapfbench.description import Scenario
 from mapfbench.export.exporter import export_to_csv, export_results_to_csv, export_to_yaml, export_plan_results
-from mapfbench.importer import import_map
+from mapfbench.importer import import_map, import_scenarios
 from mapfbench.instrument.planrecorder import PlanRecorder
 from mapfbench.metrics.result import PlanResults, MultiplePlansResults
 
@@ -303,7 +303,7 @@ class CBS(object):
             self.env.constraint_dict = P.constraint_dict
             conflict_dict = self.env.get_first_conflict(P.solution)
             if not conflict_dict:
-                print("solution found")
+                print("Solution found")
 
                 return self.generate_plan(P.solution)
 
@@ -333,68 +333,53 @@ class CBS(object):
         return plan
 
 
-def main():
-    """
-    parser = argparse.ArgumentParser()
-    parser.add_argument("param", help="input file containing map and obstacles")
-    parser.add_argument("output", help="output file with the schedule")
-    args = parser.parse_args()
+def process_scenario(scenario):
+    # Preparazione dati istanza di test per il solver
 
-    # Read from input file
-    with open(args.param, 'r') as param_file:
-        try:
-            param = yaml.load(param_file, Loader=yaml.FullLoader)
-        except yaml.YAMLError as exc:
-            print(exc)
-
-    dimension = param["map"]["dimensions"]
-    obstacles = param["map"]["obstacles"]
-    agents = param['agents']
-    """
-
-    # Creazione scenario
-    map_scheme = import_map("C:\\Users\steve\PycharmProjects\mapfbench\docs\examples\maps\\arena.map")
-    agent_positions = [(5, 5), (20, 10), (30, 30), (40, 12)]
-    objective_positions = [(7, 20), (10, 10), (40, 35), (10, 12)]
-    scenario = Scenario.from_position_lists(map_scheme, agent_positions, objective_positions)
-
+    map_scheme = scenario.map
     dimensions = [map_scheme.width, map_scheme.height]
     agents = []
-    for index, positions in enumerate(zip(agent_positions, objective_positions), 1):
-        start_position, objective_position = positions
+    for index, agent in enumerate(scenario.agents, 1):
         agents.append(
-            {"name": "Agent " + str(index), "start": start_position, "goal": objective_position})
+            {"name": str(index), "start": tuple(agent.start_position), "goal": tuple(agent.objective_position)})
     obstacles = [tuple(obstacle) for obstacle in map_scheme.obstacles]
     env = Environment(dimensions, agents, obstacles)
-
-    # Searching
     cbs = CBS(env)
+
     # Instrumentazione e profiling
+
     recorder = PlanRecorder(scenario)
     recorder.start_profiling()
     solution = cbs.search()
     recorder.end_profiling()
+
     # Registrazione piano, azione per azione
+
     if solution:
         for agent_name, agent_moves in solution.items():
             for move in agent_moves:
-                recorder.record_move(move["t"], int(agent_name[-1]), (move["x"], move["y"]))
+                recorder.record_move(move["t"], int(agent_name), (move["x"], move["y"]))
         recorder.mark_as_solved()
 
-    # Calcolo ed export risultati
-    results = MultiplePlansResults(plans=[recorder.plan])
-    plan_results = PlanResults(recorder.plan)
-    export_results_to_csv(results, "metrics.csv")
-    export_plan_results(recorder.plan, "actions.yaml")
+    return recorder.plan
 
-    """
-    # Write to output file
-    output = dict()
-    output["schedule"] = solution
-    output["cost"] = env.compute_solution_cost(solution)
-    with open(args.output, 'w') as output_yaml:
-        yaml.safe_dump(output, output_yaml)
-    """
+
+def main():
+    # Import degli scenari
+    scenarios = import_scenarios("../../maps/arena.map.scen")
+
+    scenarios = scenarios[:9] # Gli ultimi scenari creano problemi
+    computed_plans = []
+    ## Calcolo dei piani
+    for scenario in scenarios:
+        plan = process_scenario(scenario)
+        computed_plans.append(plan)
+
+    # Calcolo ed export risultati
+    results = MultiplePlansResults(plans=computed_plans)
+    # plan_results = PlanResults(recorder.plan)
+    export_results_to_csv(results, "metrics.csv")
+    # export_plan_results(recorder.plan, "actions.yaml")
 
 
 if __name__ == "__main__":
