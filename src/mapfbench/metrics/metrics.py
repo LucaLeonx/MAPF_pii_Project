@@ -79,7 +79,7 @@ class MemoryUsed(mtdef.GetterMetric):
         super().__init__("_memory_used", "Memory Used (Kb)", "memory_used")
 
 
-class Makespan(mtdef.SumMetric):
+class Makespan(mtdef.MaxMetric):
     def __init__(self):
         super().__init__(MaxTime(), "_makespan", "Makespan")
 

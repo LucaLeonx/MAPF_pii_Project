@@ -334,7 +334,7 @@ class CBS(object):
 
 
 def process_scenario(scenario):
-    # Preparazione dati istanza di test per il solver
+    # Convert scenario data in the format accepted by the solver
 
     map_scheme = scenario.map
     dimensions = [map_scheme.width, map_scheme.height]
@@ -346,14 +346,14 @@ def process_scenario(scenario):
     env = Environment(dimensions, agents, obstacles)
     cbs = CBS(env)
 
-    # Instrumentazione e profiling
+    # Profiling
 
     recorder = PlanRecorder(scenario)
     recorder.start_profiling()
     solution = cbs.search()
     recorder.end_profiling()
 
-    # Registrazione piano, azione per azione
+    # Plan recording, action after action
 
     if solution:
         for agent_name, agent_moves in solution.items():
@@ -364,21 +364,21 @@ def process_scenario(scenario):
     return recorder.plan
 
 
-def main(computed_plan=None):
-    # Import degli scenari
+def main(number_of_plans=8):
+    # Scenarios imports
     scenarios = import_scenarios("../../maps/arena.map.scen")
 
-    # Last two scenarios are a bit long to run
-    scenarios = scenarios[:10]
+    # Last scenarios are a bit long to run
+    scenarios = scenarios[:number_of_plans]
     computed_plans = []
-    ## Calcolo dei piani
+
+    ## Scenarios processing
     for scenario in scenarios:
         plan = process_scenario(scenario)
         computed_plans.append(plan)
 
-    # print(computed_plans[0].memory_used)
 
-    # Calcolo ed export risultati
+    # Metrics calculations and results exports
     results = AggregatePlanResults(computed_plans)
     results.evaluate()
     export_results_to_csv(results, "metrics")

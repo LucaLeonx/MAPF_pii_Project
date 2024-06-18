@@ -1,0 +1,3 @@
+# requirements.txt for Read The Docs
+myst-parser
+sphinx-design
