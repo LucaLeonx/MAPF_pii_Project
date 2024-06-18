@@ -13,12 +13,12 @@ class PlanRecorder:
     def __init__(self, scenario: Scenario):
         self._scenario = scenario
         self._action_list = np.empty(0, dtype=Action)
-        self._is_solved = False
         self._agent_positions = dict([(agent.id, agent.start_position) for agent in scenario.agents])
         self._start_time = None,  # In ms
         self._end_time = None
         self._memory_used = None  # In kb
         self._process_reference = None
+        self._is_solved = False
 
     @property
     def scenario(self) -> Scenario:
@@ -43,6 +43,7 @@ class PlanRecorder:
         plan = Plan(self._scenario, self._action_list)
         plan.metadata["running_time"] = running_time
         plan.metadata["memory_used"] = memory_used
+        plan.metadata["solved"] = self._is_solved
 
         return plan
 

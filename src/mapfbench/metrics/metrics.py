@@ -2,105 +2,104 @@ from typing import Any, Optional
 
 import numpy as np
 
-from mapfbench.description import Action, Plan
+from mapfbench.description import Action
 from mapfbench.metrics.conflict import EdgeConflict, ObstacleConflict, VertexConflict
-from mapfbench.metrics.new_metrics import GetterMetric, Metric, euclidean_distance, SumMetric, MaxMetric, AverageMetric, \
-    AggregateMetric
-from mapfbench.metrics.new_results import Results
+import mapfbench.metrics.metrics_generation as mtdef
+import mapfbench.metrics.results as rs
 
 
-class AgentId(Metric):
+class AgentId(mtdef.Metric):
     def __init__(self):
-        super(AgentId, self).__init__("_id", "Id")
+        super().__init__("_id", "Id")
 
-    def _evaluation_function(self, results: Results) -> Optional[int]:
+    def _evaluation_function(self, results: "Results") -> Optional[int]:
         return results.data[0].id
 
 
-class Distance(Metric):
+class Distance(mtdef.Metric):
     def __init__(self):
         super().__init__("_distance", "Distance")
 
-    def _evaluation_function(self, results: Results) -> float:
-        data = results["_data"]
-        return sum([euclidean_distance(action.end_position, action.start_position) for action in data])
+    def _evaluation_function(self, results: "Results") -> float:
+        data = results.data[1]
+        return sum([mtdef.euclidean_distance(action.end_position, action.start_position) for action in data])
 
 
-class MaxTime(Metric):
+class MaxTime(mtdef.Metric):
     def __init__(self):
         super().__init__("_max_time", "Max time")
 
-    def _evaluation_function(self, results: Results) -> int:
-        data = results["_data"]
+    def _evaluation_function(self, results: "Results") -> int:
+        data = results.data[1]
         return max([action.timestep for action in data], default=0)
 
 
-class Bucket(GetterMetric):
+class Bucket(mtdef.GetterMetric):
     def __init__(self):
         super().__init__("_bucket", "Bucket", "bucket")
 
 
-class ScenarioFile(GetterMetric):
+class ScenarioFile(mtdef.GetterMetric):
     def __init__(self):
         super().__init__("_scenario_file", "Scenario File", "filename")
 
 
-class NumberOfAgents(Metric):
+class NumberOfAgents(mtdef.Metric):
     def __init__(self):
         super().__init__("_num_of_agents", "Number of agents")
 
-    def _evaluation_function(self, results: Results) -> int:
-        return results["_data"].scenario.agents_num
+    def _evaluation_function(self, results: "Results") -> int:
+        return results.data.scenario.agents_num
 
 
-class MapDimensions(Metric):
+class MapDimensions(mtdef.Metric):
     def __init__(self):
-        super().__init__("_num_of_agents", "Number of agents")
+        super().__init__("_map_dimensions", "Map dimensions")
 
-    def _evaluation_function(self, results: Results) -> int:
-        return results["_data"].scenario.map.dimensions
+    def _evaluation_function(self, results: "Results") -> int:
+        return results.data.scenario.map.dimensions
 
 
-class ObstacleRate(Metric):
+class ObstacleRate(mtdef.Metric):
     def __init__(self):
-        super().__init__("_num_of_agents", "Number of agents")
+        super().__init__("_obstacle_rate", "Obstacle rate")
 
-    def _evaluation_function(self, results: Results) -> int:
-        map_scheme = results["_data"].scenario.map
+    def _evaluation_function(self, results: "Results") -> int:
+        map_scheme = results.data.scenario.map
         return map_scheme.obstacles.shape[0] / (map_scheme.width * map_scheme.height)
 
 
-class RunningTime(GetterMetric):
+class RunningTime(mtdef.GetterMetric):
     def __init__(self):
-        super().__init__("_running_time", "Running Time", "running_time")
+        super().__init__("_running_time", "Running Time (ms)", "running_time")
 
 
-class MemoryUsed(GetterMetric):
+class MemoryUsed(mtdef.GetterMetric):
     def __init__(self):
-        super().__init__("_memory_used", "Memory Used", "memory_used")
+        super().__init__("_memory_used", "Memory Used (Kb)", "memory_used")
 
 
-class Makespan(MaxMetric):
+class Makespan(mtdef.SumMetric):
     def __init__(self):
-        super().__init__(MaxTime(), "_agents", "_makespan", "Makespan")
+        super().__init__(MaxTime(), "_makespan", "Makespan")
 
 
-class SumOfCosts(SumMetric):
+class SumOfCosts(mtdef.SumMetric):
     def __init__(self):
-        super().__init__(MaxTime(), "_agents", "_sum_of_costs", "Sum of costs")
+        super().__init__(MaxTime(), "_sum_of_costs", "Sum of costs")
 
 
-class FuelConsumed(SumMetric):
+class FuelConsumed(mtdef.SumMetric):
     def __init__(self):
-        super().__init__(Distance(), "_agents", "_fuel_consumed", "Fuel consumed", )
+        super().__init__(Distance(), "_fuel_consumed", "Fuel consumed", )
 
 
-class VertexConflicts(Metric):
+class VertexConflicts(mtdef.Metric):
 
     def __init__(self):
         super().__init__("_vertex_conflicts", "Vertex conflicts")
 
-    def _evaluation_function(self, results: Results):
+    def _evaluation_function(self, results: "Results"):
         data = results.data
         actions = data.actions
 
@@ -128,14 +127,14 @@ class VertexConflicts(Metric):
                                                         actions_performed[j].subject_id,
                                                         actions_performed[i].end_position))
 
-        return conflicts
+        return [str(conflict) for conflict in conflicts]
 
 
-class EdgeConflicts(Metric):
+class EdgeConflicts(mtdef.Metric):
     def __init__(self):
         super().__init__("_edge_conflicts", "Edge conflicts")
 
-    def _evaluation_function(self, results: Results):
+    def _evaluation_function(self, results: "Results"):
         data = results.data
         actions = data.actions
 
@@ -160,56 +159,85 @@ class EdgeConflicts(Metric):
                                                       actions_performed[i].start_position,
                                                       actions_performed[j].start_position))
 
-        return conflicts
+        return [str(conflict) for conflict in conflicts]
 
 
-class Solved(GetterMetric):
+class NumberOfEdgeConflicts(mtdef.Metric):
+
+    def __init__(self):
+        super().__init__("_number_of_edge_conflicts", "Number of edge conflicts")
+
+    def _evaluation_function(self, results: "Results"):
+        conflicts = EdgeConflicts().evaluate(results)
+        return len(conflicts)
+
+
+class NumberOfVertexConflicts(mtdef.Metric):
+    def __init__(self):
+        super().__init__("_number_of_vertex_conflicts", "Number of vertex conflicts")
+
+    def _evaluation_function(self, results: "Results"):
+        conflicts = VertexConflicts().evaluate(results)
+        return len(conflicts)
+
+
+class Solved(mtdef.GetterMetric):
     def __init__(self):
         super().__init__("_solved", "Solved", "solved")
 
 
-class Success(Metric):
+class Success(mtdef.Metric):
 
     def __init__(self):
         super().__init__("_success", "Success")
 
-    def _evaluation_function(self, results: Results) -> Any:
-        conflicts = EdgeConflicts().evaluate(results) + VertexConflicts().evaluate(results)
-        return Solved().evaluate(results) and len(conflicts) == 0
+    def _evaluation_function(self, results: "Results") -> Any:
+        vertex_conflicts = NumberOfVertexConflicts().evaluate(results)
+        edge_conflicts = NumberOfEdgeConflicts().evaluate(results)
+        conflicts_num = vertex_conflicts + edge_conflicts
+        return Solved().evaluate(results) and conflicts_num == 0
 
 
-class AverageRunningTime(AverageMetric):
+class NumberOfScenarios(mtdef.Metric):
     def __init__(self):
-        super().__init__(RunningTime(), "_plans")
+        super().__init__("_number_of_scenarios", "Number of Scenarios")
+
+    def _evaluation_function(self, results: "Results") -> Any:
+        return len(results.data)
 
 
-class AverageMemoryUsed(AverageMetric):
+class AverageRunningTime(mtdef.AverageMetric):
     def __init__(self):
-        super().__init__(MemoryUsed(), "_plans")
+        super().__init__(RunningTime())
 
 
-class AverageMakespan(AverageMetric):
+class AverageMemoryUsed(mtdef.AverageMetric):
     def __init__(self):
-        super().__init__(Makespan(), "_plans")
+        super().__init__(MemoryUsed())
 
 
-class AverageSumOfCosts(AverageMetric):
+class AverageMakespan(mtdef.AverageMetric):
     def __init__(self):
-        super().__init__(SumOfCosts(), "_plans")
+        super().__init__(Makespan())
 
 
-class AverageFuelConsumed(AverageMetric):
+class AverageSumOfCosts(mtdef.AverageMetric):
     def __init__(self):
-        super().__init__(FuelConsumed(), "_plans")
+        super().__init__(SumOfCosts())
 
 
-class NumberOfSuccesses(AggregateMetric):
+class AverageFuelConsumed(mtdef.AverageMetric):
     def __init__(self):
-        super().__init__(Success(), "_plans", lambda data: len(list(filter(None, data))), prefix="_num",
+        super().__init__(FuelConsumed())
+
+
+class NumberOfSuccesses(mtdef.AggregateMetric):
+    def __init__(self):
+        super().__init__(Success(), lambda data: len(list(filter(None, data))), prefix="_num",
                          identifier="_num_successes", label="Number of Successes", anonymous=False)
 
 
-class SuccessRate(Metric):
+class SuccessRate(mtdef.Metric):
     def __init__(self):
         super().__init__("_success_rate", "Success rate")
 
@@ -220,3 +248,12 @@ class SuccessRate(Metric):
             return 0
 
         return NumberOfSuccesses().evaluate(results) / len(data)
+
+
+default_agent_metrics = [AgentId(), MaxTime(), Distance()]
+
+default_plan_metrics = [Bucket(), ScenarioFile(), NumberOfAgents(), MapDimensions(), Makespan(), SumOfCosts(),
+                        RunningTime(), MemoryUsed(), NumberOfVertexConflicts(), NumberOfEdgeConflicts()]
+
+default_aggregate_metrics = [NumberOfScenarios(), AverageMakespan(), AverageSumOfCosts(), NumberOfSuccesses(),
+                             SuccessRate(), AverageRunningTime(), AverageMemoryUsed()]

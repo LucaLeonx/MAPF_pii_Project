@@ -2,7 +2,6 @@
     Module to import maps and scenarios from external files
 """
 import re
-import token
 from pathlib import Path
 
 import numpy as np

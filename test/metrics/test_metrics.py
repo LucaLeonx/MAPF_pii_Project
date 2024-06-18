@@ -2,10 +2,10 @@ import numpy as np
 import pytest
 
 from mapfbench.description import Plan, Action, ActionType
-from mapfbench.metrics.metrics import Makespan, NumberOfAgents, AverageMakespan
+from mapfbench.export import exporter
+from mapfbench.metrics.metrics import Makespan, NumberOfAgents, AverageMakespan, AgentId, SuccessRate
 
-from conftest import generic_scenario
-from mapfbench.metrics.new_results import PlanResults, AggregatePlanResults
+from mapfbench.metrics.results import PlanResults, AggregatePlanResults, AgentResults
 
 
 # TODO make proper tests later
@@ -44,21 +44,17 @@ def plans(generic_scenario):
 class TestMetrics(object):
     def test_conflict(self, plans, generic_scenario):
 
-        results = AggregatePlanResults([plan[0] for plan in plans], [])
-        recursive_dict_print(results.results_dict)
-        results.evaluate()
+        results = AggregatePlanResults([plan[0] for plan in plans])
+        results.evaluate([SuccessRate()])
+        print(results.inner_results[0].results_dict)
+        exporter.export_plans(results, "prova")
+
+
+        plan = plans[0][0]
+
+        #results = AgentResults(list(plan.agent_plans.items())[0])
+        #results.evaluate()
         #print(results.results)
-
-        for plan, expected_conflict_num in plans:
-            results = PlanResults(plan)
-            results.evaluate()
-            #print(results.results)
-
-
-def recursive_dict_print(dictionary):
-    for key, value in dictionary.items():
-        if isinstance(value, dict):
-            print(f'{key}: ')
-            recursive_dict_print(value)
-        else:
-            print(f'{key}: {value}')
+        #results = PlanResults(plan)
+        #results.evaluate()
+        #print(results.results)

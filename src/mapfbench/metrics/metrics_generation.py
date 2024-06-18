@@ -3,7 +3,7 @@ from typing import Any, Tuple, Union, Callable
 
 import numpy as np
 
-from mapfbench.metrics.new_results import Results
+import mapfbench.metrics.results as rs
 
 
 class Metric(ABC):
@@ -20,15 +20,18 @@ class Metric(ABC):
     def label(self):
         return self._label
 
-    def evaluate(self, results: Results) -> Tuple[float, float]:
+    @property
+    def anonymous(self):
+        return self._anonymous
+
+    def evaluate(self, results: "Results"):
         if self.identifier in results.results_dict:
             return results.results_dict[self.identifier]
 
         result = self._evaluation_function(results)
-
         if not self._anonymous:
-            results.add_metric(self)
-            results.results_dict.update({self.identifier: result})
+            results.results_dict.update({self._identifier: result})
+            results.label_associations.update({self._identifier: self._label})
         return result
 
     def __eq__(self, other):
@@ -39,19 +42,20 @@ class Metric(ABC):
         return hash(self.identifier)
 
     @abstractmethod
-    def _evaluation_function(self, results: Results) -> Any:
+    def _evaluation_function(self, results: "Results") -> Any:
         pass
 
 
 class ListMetric(Metric):
-    def __init__(self, metric: Metric, anonymous=True):
-        actual_identifier, actual_label = _use_default_if_none("_list", metric.identifier, metric.label)
+    def __init__(self, metric: Metric, identifier: str = None, label: str = None, anonymous=True):
+        actual_identifier, actual_label = _use_default_if_none("_list", identifier, label, metric)
         super().__init__(actual_identifier, actual_label, anonymous)
         self._metric = metric
 
-    def _evaluation_function(self, results: Results) -> list[Any]:
+    def _evaluation_function(self, results: "Results") -> list[Any]:
         listed_results = []
         for partial_result in results.inner_results:
+            partial_result.evaluate([self._metric])
             listed_results.append(self._metric.evaluate(partial_result))
 
         return listed_results
@@ -59,37 +63,35 @@ class ListMetric(Metric):
 
 class AggregateMetric(Metric):
     def __init__(self, metric: Metric,
-                 data_list: str,
                  aggregation_function: Callable[[Any], Any],
                  prefix: str,
                  identifier: str = None, label: str = None,
                  anonymous: bool = False):
         actual_identifier, actual_label = _use_default_if_none(prefix, identifier, label, metric)
         super().__init__(actual_identifier, actual_label, anonymous)
-        self._data_list = data_list
         self._aggregation_function = aggregation_function
         self._metric = metric
 
-    def _evaluation_function(self, results: Results):
-        values = ListMetric(self._metric).evaluate(partial_results[self._data_list])
+    def _evaluation_function(self, results: "Results"):
+        values = ListMetric(self._metric).evaluate(results)
         return self._aggregation_function(values)
 
 
 class SumMetric(AggregateMetric):
-    def __init__(self, metric: Metric, data_list: str, identifier: str = None, label: str = None):
-        super().__init__(metric, data_list, lambda data: sum(not_none(data)), "_sum",
+    def __init__(self, metric: Metric, identifier: str = None, label: str = None):
+        super().__init__(metric, lambda data: sum(not_none(data)), "_sum",
                          identifier, label)
 
 
 class AverageMetric(AggregateMetric):
-    def __init__(self, metric: Metric, data_list: str, identifier: str = None, label: str = None):
-        super().__init__(metric, data_list, avg, "_avg",
+    def __init__(self, metric: Metric, identifier: str = None, label: str = None):
+        super().__init__(metric, avg, "_average",
                          identifier, label)
 
 
 class MaxMetric(AggregateMetric):
-    def __init__(self, metric: Metric, data_list: str, identifier: str = None, label: str = None):
-        super().__init__(metric, data_list, lambda data: max(not_none(data)), "_max",
+    def __init__(self, metric: Metric, identifier: str = None, label: str = None):
+        super().__init__(metric, lambda data: max(not_none(data)), "_max",
                          identifier, label)
 
 
@@ -98,7 +100,7 @@ class GetterMetric(Metric):
         super().__init__(identifier, label)
         self._name = name
 
-    def _evaluation_function(self, results: Results) -> Any:
+    def _evaluation_function(self, results: "Results") -> Any:
         data = results.data
 
         if isinstance(self._name, str):
