@@ -6,26 +6,23 @@ from mapfbench.description import Action, Plan
 from mapfbench.metrics.conflict import EdgeConflict, ObstacleConflict, VertexConflict
 from mapfbench.metrics.new_metrics import GetterMetric, Metric, euclidean_distance, SumMetric, MaxMetric, AverageMetric, \
     AggregateMetric
+from mapfbench.metrics.new_results import Results
 
 
 class AgentId(Metric):
     def __init__(self):
         super(AgentId, self).__init__("_id", "Id")
 
-    def _evaluation_function(self, partial_results: dict[str, Any]) -> Optional[int]:
-        data = partial_results["_data"]
-        if len(data) == 0:
-            return None
-        else:
-            return data[0].subject_id
+    def _evaluation_function(self, results: Results) -> Optional[int]:
+        return results.data[0].id
 
 
 class Distance(Metric):
     def __init__(self):
         super().__init__("_distance", "Distance")
 
-    def _evaluation_function(self, partial_results: dict[str, Any]) -> float:
-        data = partial_results["_data"]
+    def _evaluation_function(self, results: Results) -> float:
+        data = results["_data"]
         return sum([euclidean_distance(action.end_position, action.start_position) for action in data])
 
 
@@ -33,8 +30,8 @@ class MaxTime(Metric):
     def __init__(self):
         super().__init__("_max_time", "Max time")
 
-    def _evaluation_function(self, partial_results: dict[str, Any]) -> int:
-        data = partial_results["_data"]
+    def _evaluation_function(self, results: Results) -> int:
+        data = results["_data"]
         return max([action.timestep for action in data], default=0)
 
 
@@ -52,24 +49,24 @@ class NumberOfAgents(Metric):
     def __init__(self):
         super().__init__("_num_of_agents", "Number of agents")
 
-    def _evaluation_function(self, partial_results: dict[str, Any]) -> int:
-        return partial_results["_data"].scenario.agents_num
+    def _evaluation_function(self, results: Results) -> int:
+        return results["_data"].scenario.agents_num
 
 
 class MapDimensions(Metric):
     def __init__(self):
         super().__init__("_num_of_agents", "Number of agents")
 
-    def _evaluation_function(self, partial_results: dict[str, Any]) -> int:
-        return partial_results["_data"].scenario.map.dimensions
+    def _evaluation_function(self, results: Results) -> int:
+        return results["_data"].scenario.map.dimensions
 
 
 class ObstacleRate(Metric):
     def __init__(self):
         super().__init__("_num_of_agents", "Number of agents")
 
-    def _evaluation_function(self, partial_results: dict[str, Any]) -> int:
-        map_scheme = partial_results["_data"].scenario.map
+    def _evaluation_function(self, results: Results) -> int:
+        map_scheme = results["_data"].scenario.map
         return map_scheme.obstacles.shape[0] / (map_scheme.width * map_scheme.height)
 
 
@@ -103,8 +100,8 @@ class VertexConflicts(Metric):
     def __init__(self):
         super().__init__("_vertex_conflicts", "Vertex conflicts")
 
-    def _evaluation_function(self, partial_results: dict[str, Any]):
-        data = partial_results["_data"]
+    def _evaluation_function(self, results: Results):
+        data = results.data
         actions = data.actions
 
         if len(actions) == 0:
@@ -138,8 +135,8 @@ class EdgeConflicts(Metric):
     def __init__(self):
         super().__init__("_edge_conflicts", "Edge conflicts")
 
-    def _evaluation_function(self, partial_results: dict[str, Any]):
-        data = partial_results["_data"]
+    def _evaluation_function(self, results: Results):
+        data = results.data
         actions = data.actions
 
         if len(actions) == 0:
@@ -176,9 +173,9 @@ class Success(Metric):
     def __init__(self):
         super().__init__("_success", "Success")
 
-    def _evaluation_function(self, partial_results: dict[str, Any]) -> Any:
-        conflicts = EdgeConflicts().evaluate(partial_results) + VertexConflicts().evaluate(partial_results)
-        return Solved().evaluate(partial_results) and len(conflicts) == 0
+    def _evaluation_function(self, results: Results) -> Any:
+        conflicts = EdgeConflicts().evaluate(results) + VertexConflicts().evaluate(results)
+        return Solved().evaluate(results) and len(conflicts) == 0
 
 
 class AverageRunningTime(AverageMetric):
@@ -216,10 +213,10 @@ class SuccessRate(Metric):
     def __init__(self):
         super().__init__("_success_rate", "Success rate")
 
-    def _evaluation_function(self, partial_results):
-        data = partial_results["_data"]
+    def _evaluation_function(self, results):
+        data = results.data
 
         if len(data) == 0:
             return 0
 
-        return NumberOfSuccesses().evaluate(partial_results) / len(data)
+        return NumberOfSuccesses().evaluate(results) / len(data)

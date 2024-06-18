@@ -3,6 +3,8 @@ from typing import Any, Tuple, Union, Callable
 
 import numpy as np
 
+from mapfbench.metrics.new_results import Results
+
 
 class Metric(ABC):
     def __init__(self, identifier: str, label: str, anonymous: bool = False):
@@ -18,32 +20,41 @@ class Metric(ABC):
     def label(self):
         return self._label
 
-    def evaluate(self, partial_results: dict[str, Any]):
-        if self.identifier in partial_results:
-            return partial_results[self.identifier]
+    def evaluate(self, results: Results) -> Tuple[float, float]:
+        if self.identifier in results.results_dict:
+            return results.results_dict[self.identifier]
 
-        result = self._evaluation_function(partial_results)
+        result = self._evaluation_function(results)
 
         if not self._anonymous:
-            partial_results.update({self.identifier: result})
+            results.add_metric(self)
+            results.results_dict.update({self.identifier: result})
         return result
 
+    def __eq__(self, other):
+        if isinstance(other, Metric):
+            return self.identifier == other.identifier
+
+    def __hash__(self) -> int:
+        return hash(self.identifier)
+
     @abstractmethod
-    def _evaluation_function(self, partial_results: dict[str, Any]) -> Any:
+    def _evaluation_function(self, results: Results) -> Any:
         pass
 
 
 class ListMetric(Metric):
     def __init__(self, metric: Metric, anonymous=True):
-        super().__init__("_list" + metric.identifier, "List " + metric.label, anonymous)
+        actual_identifier, actual_label = _use_default_if_none("_list", metric.identifier, metric.label)
+        super().__init__(actual_identifier, actual_label, anonymous)
         self._metric = metric
 
-    def _evaluation_function(self, partial_results: dict[str]) -> list[Any]:
-        metrics_list = []
-        for inner_dict in partial_results.values():
-            metrics_list.append(self._metric.evaluate(inner_dict))
+    def _evaluation_function(self, results: Results) -> list[Any]:
+        listed_results = []
+        for partial_result in results.inner_results:
+            listed_results.append(self._metric.evaluate(partial_result))
 
-        return metrics_list
+        return listed_results
 
 
 class AggregateMetric(Metric):
@@ -59,7 +70,7 @@ class AggregateMetric(Metric):
         self._aggregation_function = aggregation_function
         self._metric = metric
 
-    def _evaluation_function(self, partial_results: dict[str, Any]):
+    def _evaluation_function(self, results: Results):
         values = ListMetric(self._metric).evaluate(partial_results[self._data_list])
         return self._aggregation_function(values)
 
@@ -87,8 +98,8 @@ class GetterMetric(Metric):
         super().__init__(identifier, label)
         self._name = name
 
-    def _evaluation_function(self, partial_results: dict[str, Any]) -> Any:
-        data = partial_results["_data"]
+    def _evaluation_function(self, results: Results) -> Any:
+        data = results.data
 
         if isinstance(self._name, str):
             return data.metadata.get(self._name, None)
