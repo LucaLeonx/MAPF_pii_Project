@@ -1,0 +1,9 @@
+Bucket,Scenario File,Makespan,Sum of costs,Number of vertex conflicts,Number of edge conflicts,Solved,Success,Running Time (ms),Memory Used (Kb)
+0,../../maps/arena.map.scen,5,34,0,0,True,True,7.7467,39660.0
+1,../../maps/arena.map.scen,0,0,0,0,False,False,19.5109,39752.0
+2,../../maps/arena.map.scen,14,120,0,0,True,True,77.3453,39868.0
+3,../../maps/arena.map.scen,21,166,0,0,True,True,161.6778,40112.0
+4,../../maps/arena.map.scen,27,223,0,0,True,True,1925.3409,40952.0
+5,../../maps/arena.map.scen,31,253,0,0,True,True,2717.3991,41332.0
+6,../../maps/arena.map.scen,35,308,0,0,True,True,4497.1929,41628.0
+7,../../maps/arena.map.scen,42,382,0,0,True,True,4365.2196,41748.0

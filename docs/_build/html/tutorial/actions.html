@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Registering actions &#8212; MAPFbench documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
+    <script src="../_static/documentation_options.js?v=0ed52906"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Profiling" href="profiling.html" />
+    <link rel="prev" title="Format of the tests" href="test_format.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="registering-actions">
+<h1>Registering actions<a class="headerlink" href="#registering-actions" title="Link to this heading">¶</a></h1>
+<p>During the test, it is possible to register various kinds of actions,
+executed by entities. Each action is characterized by:</p>
+<ul class="simple">
+<li><p>The timestep at which it is executed</p></li>
+<li><p>The name of the entity executing it</p></li>
+<li><p>An optional start or end position of the entity executing it</p></li>
+<li><p>An optional additional description of the action</p></li>
+</ul>
+<p>The available actions are of four different kinds:</p>
+<ul class="simple">
+<li><p>Move: the entity moves along one of the edges of the graph</p></li>
+<li><p>Wait: the objective waits, remaining in its current position</p></li>
+<li><p>Appear: the entity appears in the specified position</p></li>
+<li><p>Disappear: the entity disappear from its current position</p></li>
+</ul>
+<p>To register an entity action during a test, use the methods provided
+by the <a class="reference internal" href="#../mapfbench.inspector.rst"><span class="xref myst">TestInspector class</span></a></p>
+<section id="caveats">
+<h2>Caveats<a class="headerlink" href="#caveats" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>It is not necessary to register the initial position of entities,
+as the inspector takes already care of that</p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">MAPFbench</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Your first benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_format.html">Format of the tests</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Registering actions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#caveats">Caveats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="profiling.html">Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmark_format.html">Format of the benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metrics.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="results_format.html">Format of results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/mapfbench.html">Code documentation</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="test_format.html" title="previous chapter">Format of the tests</a></li>
+      <li>Next: <a href="profiling.html" title="next chapter">Profiling</a></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Stefano Lanza, Luca Leonzio.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="../_sources/tutorial/actions.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

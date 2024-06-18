@@ -1,0 +1,15 @@
+numpy
+psutil
+pyyaml
+
+[build]
+build
+setuptools
+
+[docs]
+myst-parser
+sphinx
+sphinx-design
+
+[test]
+pytest

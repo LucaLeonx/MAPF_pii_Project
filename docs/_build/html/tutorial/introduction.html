@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Your first benchmark &#8212; MAPFbench documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
+    <script src="../_static/documentation_options.js?v=c9e14700"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Format of the tests" href="test_format.html" />
+    <link rel="prev" title="Installation" href="installation.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="your-first-benchmark">
+<h1>Your first benchmark<a class="headerlink" href="#your-first-benchmark" title="Link to this heading">¶</a></h1>
+<section id="the-benchmarking-workflow">
+<h2>The benchmarking workflow<a class="headerlink" href="#the-benchmarking-workflow" title="Link to this heading">¶</a></h2>
+<p>Running a benchmark in MAPFbench involves
+the following steps:</p>
+<ol class="arabic">
+<li><p><strong>Importing benchmark files</strong>. MAPFBench can import .map and .scen files
+with the format detailed by <a class="reference external" href="https://movingai.com/benchmarks/formats.html">Nathan Sturtenvant on movingai.com</a></p>
+<p>Each benchmark is composed of several scenarios, distinguished by a
+“bucket” number. A scenario includes a Map,
+and a certain number of agents, along with their starts positions and
+objective positions.</p>
+<p>Sample files can be found under docs\examples\maps in the project repository.</p>
+<p>MAPFBench is able to directly import scenarios with their maps, provided that the
+path listed in the .scen files. Paths are treated as relative to the scenario file</p>
+</li>
+<li><p><strong>Running the benchmark</strong>. After having imported a benchmark, its tests must be
+submitted to the running programs, and their results collected.</p>
+<p>This phase requires the conversion of the scenario data in the format used
+by the solver.</p>
+</li>
+<li><p><strong>Calculating metrics</strong>. After having collected all test
+results, MAPFbench elaborates them, determining
+whether there are conflicts in the submitted plans and
+calculating corresponding metrics (e.g. makespan, sum of costs…)</p></li>
+<li><p><strong>Exporting results</strong>. The computed plans, along with metrics and conflicts,
+can be exported later to a .yaml file. Moreover, numerical indices can be
+exported directly to .csv files</p></li>
+</ol>
+</section>
+<section id="instrumenting-a-program">
+<h2>Instrumenting a program<a class="headerlink" href="#instrumenting-a-program" title="Link to this heading">¶</a></h2>
+<p>In order to make a program able to communicate with the BenchmarkRunner, we
+must instrument it.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>At the moment, it is possible to instruments scripts in Python only
+(or, at least, with python bindings)</p>
+</div>
+<p>In the next section, we will try to make a program run a simple benchmark.
+The code we will use is available in the <code class="docutils literal notranslate"><span class="pre">/examples/solvers/cbs</span></code> folder of the
+<a class="reference external" href="https://github.com/LucaLeonx/MAPF_pii_Project/tree/main/docs/examples">project repository</a></p>
+<p>We recommend to copy the entire <code class="docutils literal notranslate"><span class="pre">examples</span></code> directory to test it.</p>
+<p>Opening the <code class="docutils literal notranslate"><span class="pre">cbs.py</span></code> file, we see the following main() method</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">number_of_plans</span><span class="o">=</span><span class="mi">8</span><span class="p">):</span>
+    <span class="c1"># Scenarios imports</span>
+    <span class="n">scenarios</span> <span class="o">=</span> <span class="n">import_scenarios</span><span class="p">(</span><span class="s2">&quot;../../maps/arena.map.scen&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Last scenarios are a bit long to run</span>
+    <span class="n">scenarios</span> <span class="o">=</span> <span class="n">scenarios</span><span class="p">[:</span><span class="n">number_of_plans</span><span class="p">]</span>
+    <span class="n">computed_plans</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1">## Scenarios processing</span>
+    <span class="k">for</span> <span class="n">scenario</span> <span class="ow">in</span> <span class="n">scenarios</span><span class="p">:</span>
+        <span class="n">plan</span> <span class="o">=</span> <span class="n">process_scenario</span><span class="p">(</span><span class="n">scenario</span><span class="p">)</span>
+        <span class="n">computed_plans</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">plan</span><span class="p">)</span>
+
+
+    <span class="c1"># Metrics calculations and results exports</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">AggregatePlanResults</span><span class="p">(</span><span class="n">computed_plans</span><span class="p">)</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">evaluate</span><span class="p">()</span>
+    <span class="n">export_results_to_csv</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="s2">&quot;metrics&quot;</span><span class="p">)</span>
+    <span class="n">export_plans</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;results&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This method performs the import of scenarios and export of results.
+Let’s see how each scenario is processed in the <code class="docutils literal notranslate"><span class="pre">process_scenario()</span></code> method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">process_scenario</span><span class="p">(</span><span class="n">scenario</span><span class="p">):</span>
+    <span class="c1"># Convert scenario data in the format accepted by the solver</span>
+
+    <span class="n">map_scheme</span> <span class="o">=</span> <span class="n">scenario</span><span class="o">.</span><span class="n">map</span>
+    <span class="n">dimensions</span> <span class="o">=</span> <span class="p">[</span><span class="n">map_scheme</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">map_scheme</span><span class="o">.</span><span class="n">height</span><span class="p">]</span>
+    <span class="n">agents</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">agent</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">scenario</span><span class="o">.</span><span class="n">agents</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">agents</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">index</span><span class="p">),</span> <span class="s2">&quot;start&quot;</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">agent</span><span class="o">.</span><span class="n">start_position</span><span class="p">),</span> <span class="s2">&quot;goal&quot;</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">agent</span><span class="o">.</span><span class="n">objective_position</span><span class="p">)})</span>
+    <span class="n">obstacles</span> <span class="o">=</span> <span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">obstacle</span><span class="p">)</span> <span class="k">for</span> <span class="n">obstacle</span> <span class="ow">in</span> <span class="n">map_scheme</span><span class="o">.</span><span class="n">obstacles</span><span class="p">]</span>
+    <span class="n">env</span> <span class="o">=</span> <span class="n">Environment</span><span class="p">(</span><span class="n">dimensions</span><span class="p">,</span> <span class="n">agents</span><span class="p">,</span> <span class="n">obstacles</span><span class="p">)</span>
+    <span class="n">cbs</span> <span class="o">=</span> <span class="n">CBS</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+
+    <span class="c1"># Profiling and searching solution</span>
+
+    <span class="n">recorder</span> <span class="o">=</span> <span class="n">PlanRecorder</span><span class="p">(</span><span class="n">scenario</span><span class="p">)</span>
+    <span class="n">recorder</span><span class="o">.</span><span class="n">start_profiling</span><span class="p">()</span>
+    <span class="n">solution</span> <span class="o">=</span> <span class="n">cbs</span><span class="o">.</span><span class="n">search</span><span class="p">()</span>
+    <span class="n">recorder</span><span class="o">.</span><span class="n">end_profiling</span><span class="p">()</span>
+
+    <span class="c1"># Plan recording, action after action</span>
+
+    <span class="k">if</span> <span class="n">solution</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">agent_name</span><span class="p">,</span> <span class="n">agent_moves</span> <span class="ow">in</span> <span class="n">solution</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">move</span> <span class="ow">in</span> <span class="n">agent_moves</span><span class="p">:</span>
+                <span class="n">recorder</span><span class="o">.</span><span class="n">record_move</span><span class="p">(</span><span class="n">move</span><span class="p">[</span><span class="s2">&quot;t&quot;</span><span class="p">],</span> <span class="nb">int</span><span class="p">(</span><span class="n">agent_name</span><span class="p">),</span> <span class="p">(</span><span class="n">move</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">],</span> <span class="n">move</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">]))</span>
+        <span class="n">recorder</span><span class="o">.</span><span class="n">mark_as_solved</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">recorder</span><span class="o">.</span><span class="n">plan</span>
+</pre></div>
+</div>
+<p>First of all, the method accesses the scenario information and converts them in the
+format used by the solver.</p>
+<p>At this point, we run the program to compute a plan,
+profiling its performance in the meanwhile. This is done by the
+PlanRecorder instance created from the scenario.</p>
+<p>At the end, we need to record the actions performed as part of the plan
+into the recorder and return back to the main method.</p>
+</section>
+<section id="running-the-benchmark">
+<h2>Running the benchmark<a class="headerlink" href="#running-the-benchmark" title="Link to this heading">¶</a></h2>
+<p>Now we can run or MAPF program and wait for the results.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>cbs.py
+</pre></div>
+</div>
+<p>As soon as the results are received, in the same folder there will be
+three new files:</p>
+<ul class="simple">
+<li><p>results.yaml, containing the plans computed by the algorithm for each scenario</p></li>
+<li><p>metrics_plans.csv, containing the detailed metrics calculated for each plan</p></li>
+<li><p>metrics.csv, containing the aggregate metrics of all plans</p></li>
+</ul>
+<p>The benchmark run is now complete</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">MAPFbench</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Your first benchmark</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-benchmarking-workflow">The benchmarking workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#instrumenting-a-program">Instrumenting a program</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-the-benchmark">Running the benchmark</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="test_format.html">Format of the tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profiling.html">Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metrics.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="results_format.html">Format of results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/mapfbench.html">Code documentation</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="installation.html" title="previous chapter">Installation</a></li>
+      <li>Next: <a href="test_format.html" title="next chapter">Format of the tests</a></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Stefano Lanza, Luca Leonzio.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="../_sources/tutorial/introduction.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

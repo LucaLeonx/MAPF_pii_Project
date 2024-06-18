@@ -23,7 +23,7 @@ sys.path.insert(0, os.path.abspath("..")) # for Readme
 project = 'MAPFbench'
 copyright = '2024, Stefano Lanza, Luca Leonzio'
 author = 'Stefano Lanza, Luca Leonzio'
-release = '2.0a'
+release = '2.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
