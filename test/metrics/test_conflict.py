@@ -21,7 +21,7 @@ class TestConflict:
         assert conflict.timestep == 3
         assert conflict.agent1 == AgentReference(5)
         assert conflict.agent2 == AgentReference(4)
-        assert conflict.agents == np.array([AgentReference(5), AgentReference(4)])
-        assert conflict.agent1_start == np.array([1, 2])
-        assert conflict.agent2_start == np.array([1, 1])
-        assert conflict.edge == np.array([[1, 2], [1, 1]])
+        assert np.array_equal(conflict.agents, np.array([AgentReference(5), AgentReference(4)]))
+        assert np.array_equal(conflict.agent1_start, np.array([1, 2]))
+        assert np.array_equal(conflict.agent2_start, np.array([1, 1]))
+        assert np.array_equal(conflict.edge, np.array([[1, 2], [1, 1]]))
