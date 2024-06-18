@@ -28,7 +28,7 @@ docs = ["myst-parser", "sphinx", "sphinx-design"]
 
 
 [tool.setuptools.packages.find]
-#where = ["src/mapfbench"]
+where = ["src"]
 exclude = ["test", "docs", "sketch", ".readthedocs.yaml", "requirements.txt", ".gitignore", "dist"]
 
 [project.scripts]

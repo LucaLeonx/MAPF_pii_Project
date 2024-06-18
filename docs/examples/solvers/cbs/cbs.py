@@ -9,6 +9,7 @@ import sys
 
 from mapfbench.exporter import export_results_to_csv, export_plans
 from mapfbench.importer import import_scenarios
+from mapfbench.instrument import PlanRecorder
 from mapfbench.metrics import AggregatePlanResults
 
 sys.path.insert(0, '../')
