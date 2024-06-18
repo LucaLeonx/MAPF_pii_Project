@@ -17,13 +17,13 @@ sys.path.insert(0, os.path.abspath("..")) # for Readme
 
 # with pathlib
 # import pathlib
-
-#path = pathlib.Path(__file__).resolve() / '..' / '..' / 'mapfbench'
+# May be needed in future
+# path = pathlib.Path(__file__).resolve() / '..' / '..' / 'mapfbench'
 
 project = 'MAPFbench'
 copyright = '2024, Stefano Lanza, Luca Leonzio'
 author = 'Stefano Lanza, Luca Leonzio'
-release = '1.2'
+release = '1.4'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -32,8 +32,6 @@ extensions = ['myst_parser', 'sphinx.ext.githubpages', 'sphinx.ext.autodoc', 'sp
 myst_enable_extensions = ["colon_fence"]
 templates_path = ['_templates']
 exclude_patterns = ['architecture', 'material', '_build', 'Thumbs.db', '.DS_Store']
-
-
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output

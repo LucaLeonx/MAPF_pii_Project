@@ -4,37 +4,33 @@
 Running a benchmark in MAPFbench involves 
 the following steps:
 
-1. __Importing a benchmark file__. This file is a specially
-   formatted .yaml file containing a collection of tests.
+1. __Importing benchmark files__. MAPFBench can import .map and .scen files
+   with the format detailed by [Nathan Sturtenvant on movingai.com](https://movingai.com/benchmarks/formats.html)
    
-   Each test represents a MAPF problem instance and includes:
-   - A unique, identifying name 
-   - A graph
-   - A list of entities which need to be considered during
-     the benchmark, that is agents, objectives and obstacles
+   Each benchmark is composed of several scenarios, distinguished by a
+   "bucket" number. A scenario includes a Map,
+   and a certain number of agents, along with their starts positions and
+   objective positions. 
 
-   A benchmark may include more iterations of the same test.
+   Sample files can be found under docs\examples\maps in the project repository.
+   
+   MAPFBench is able to directly import scenarios with their maps, provided that the
+   path listed in the .scen files. Paths are treated as relative to the scenario file
 
 2. __Running the benchmark__. After having imported a benchmark, its tests must be
    submitted to the running programs, and their results collected.
 
-   MAPFBench enables this by employing a client-side architectures:
-   there is a central server, the BenchmarkRunner, which
-   communicates with programs using a specific component,
-   called BenchmarkInspector.
-
-   Programs running MAPF solvers can request tests and submit
-   corresponding plans using this object. Moreover, 
-   multiple instances of the same program can be run in 
-   parallel, in order to finish all tests faster
+   This phase requires the conversion of the scenario data in the format used 
+   by the solver. 
 
 3. __Calculating metrics__. After having collected all test
    results, MAPFbench elaborates them, determining
    whether there are conflicts in the submitted plans and
    calculating corresponding metrics (e.g. makespan, sum of costs...)
 
-4. __Exporting results__. Both the generated plans and the corresponding
-   metrics are exported in files: the former in .yaml format, the latter in a .csv table
+4. __Exporting results__. The computed plans, along with metrics and conflicts,
+   can be exported later to a .yaml file. Moreover, numerical indices can be
+   exported directly to .csv files
 
 ## Instrumenting a program
 
@@ -46,82 +42,97 @@ At the moment, it is possible to instruments scripts in Python only
 (or, at least, with python bindings)
 :::
 
-In the next section, we will try to make a program run a simple benchmark,
-available in the `/examples/simple_benchmark.txt` folder of the
+In the next section, we will try to make a program run a simple benchmark.
+The code we will use is available in the `/examples/solvers/cbs` folder of the
 [project repository](https://github.com/LucaLeonx/MAPF_pii_Project/tree/main/docs/examples)
 
+We recommend to copy the entire `examples` directory to test it.
 
-
-where the agent A1 needs to reach the objective T1
-
-First of all, we need to create a BenchmarkInspector.
-Inside the main code of the program:
-
+Opening the `cbs.py` file, we see the following main() method
 ```python
-from mapfbench.inspector.benchmarkinspector import BenchmarkInspector
+def main(number_of_plans=8):
+    # Scenarios imports
+    scenarios = import_scenarios("../../maps/arena.map.scen")
 
-benchmark_inspector = BenchmarkInspector()
+    # Last scenarios are a bit long to run
+    scenarios = scenarios[:number_of_plans]
+    computed_plans = []
+
+    ## Scenarios processing
+    for scenario in scenarios:
+        plan = process_scenario(scenario)
+        computed_plans.append(plan)
+
+
+    # Metrics calculations and results exports
+    results = AggregatePlanResults(computed_plans)
+    results.evaluate()
+    export_results_to_csv(results, "metrics")
+    export_plans(results, filename="results")
 ```
 
-Then, we need to request a test from the BenchmarkRunner.
+This method performs the import of scenarios and export of results.
+Let's see how each scenario is processed in the `process_scenario()` method:
 
 ```python
-test = benchmark_inspector.request_random_test()
+def process_scenario(scenario):
+    # Convert scenario data in the format accepted by the solver
+
+    map_scheme = scenario.map
+    dimensions = [map_scheme.width, map_scheme.height]
+    agents = []
+    for index, agent in enumerate(scenario.agents, 1):
+        agents.append(
+            {"name": str(index), "start": tuple(agent.start_position), "goal": tuple(agent.objective_position)})
+    obstacles = [tuple(obstacle) for obstacle in map_scheme.obstacles]
+    env = Environment(dimensions, agents, obstacles)
+    cbs = CBS(env)
+
+    # Profiling and searching solution
+
+    recorder = PlanRecorder(scenario)
+    recorder.start_profiling()
+    solution = cbs.search()
+    recorder.end_profiling()
+
+    # Plan recording, action after action
+
+    if solution:
+        for agent_name, agent_moves in solution.items():
+            for move in agent_moves:
+                recorder.record_move(move["t"], int(agent_name), (move["x"], move["y"]))
+        recorder.mark_as_solved()
+
+    return recorder.plan
 ```
 
-Now we can access the information about the test.
-The MAPFbench library uses its own internal format to
-store test data, so you may need to convert it 
-to the one used by your program. For this
-example test we will skip this passage.
+First of all, the method accesses the scenario information and converts them in the
+format used by the solver.
 
-At this point, we wait for the program compute a plan.
-Now we need to register the computed plan. Each plan is
-composed of two main kinds actions: move and wait.
-In order to register them, we write:
+At this point, we run the program to compute a plan,
+profiling its performance in the meanwhile. This is done by the
+PlanRecorder instance created from the scenario.
 
-```python
-test.register_move(1, "A1", Node(coords=(1, 0)))
-# or
-test.register_wait(1, "A1")
-```
+At the end, we need to record the actions performed as part of the plan
+into the recorder and return back to the main method.
 
-where the parameters are:
-- timestep at which the action is performed
-- The name of the agent performing it ("A1")
-- In the case of the move action, we add a Node object,
-  representing the position in which the movement ends
-
-We don't need to register the start position of the agents: 
-the inspector takes already care of that.
-
-Finally, after having registered all actions, we can submit the result
-
-```python
-test.mark_as_solved()
-benchmark_inspector.submit_result(test)
-```
 
 ## Running the benchmark
 
-Now we need to run the benchmark. In order to do this,
-we use the library command line utility.
-
-```shell
-mapfbench run simple_benchmark.yaml
-```
-
-This command will start a BenchmarkRunner which will serve the tests
-in the simple_benchmark.yaml file. By default, the BenchmarkRunner 
-communicates with the BenchmarkInspectors on localhost, port 9361.
 
 Now we can run or MAPF program and wait for the results.
+
+```shell
+
+python cbs.py
+
+```
+
 As soon as the results are received, in the same folder there will be
 three new files:
-- [timestamp]_SampleBenchmark_results.yaml, containing the plans computed by the program
-- [timestamp]_SampleBenchmark_metrics.csv, containing the metrics associated with the plan
-- [timestamp]_SampleBenchmark_metrics_aggregate.csv. This file contain aggregate metrics,
-calculated on multiple test_runs
+- results.yaml, containing the plans computed by the algorithm for each scenario
+- metrics_plans.csv, containing the detailed metrics calculated for each plan
+- metrics.csv, containing the aggregate metrics of all plans
 
 The benchmark run is now complete
 

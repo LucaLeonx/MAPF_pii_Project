@@ -28,14 +28,10 @@ $ source .venv/bin/activate
 
 ## Install the package
 
-Install the package from the corresponding wheel using `pip`
+Install the package from (Test)PyPI using `pip`
 
 ```shell
 python -m pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple mapfbench
-```
-Check that the command line tools are correctly installing by running:
-```shell
- mapfbench --help
 ```
 to show the default help message
 
@@ -49,7 +45,7 @@ Clone the project repository
 
 Install dependencies, including optional ones
 ```shell
- cd Mapf_pii_Project
+ cd MAPF_pii_Project
  pip install -U .[build, test, docs]
 ```
 

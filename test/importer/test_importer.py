@@ -5,7 +5,7 @@ import pathlib
 from mapfbench.description import MapScheme
 from mapfbench.importer import importer
 
-root_path = pathlib.Path().absolute() / 'importer'
+root_path = pathlib.Path().absolute() / 'test' /'importer'
 
 
 class TestImporter(object):

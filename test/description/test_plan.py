@@ -38,11 +38,9 @@ class TestPlan:
     def test_getters(self, generic_scenario):
         plan = Plan(generic_scenario, [
             Action(timestep=0, subject_id=1, action_type=ActionType.MOVE, start_position=[0, 1], end_position=[2, 0]),
-            Action(timestep=1, subject_id=2, action_type=ActionType.WAIT)],
-                    is_solved=True)
+            Action(timestep=1, subject_id=2, action_type=ActionType.WAIT)])
 
         assert [agent.id for agent in plan.scenario.agents] == [1, 2]
-        assert plan.is_solved
 
         assert plan.agent_plans == {
             Agent(1, np.array([0, 0]), np.array([0, 0])): [
@@ -58,22 +56,19 @@ class TestPlan:
 
     def test_init_guards(self, generic_scenario):
         with pytest.raises(ValueError) as e:
-            plan = Plan(generic_scenario, [Action(timestep=0, subject_id=3, action_type=ActionType.MOVE)],
-                        is_solved=False)
+            plan = Plan(generic_scenario, [Action(timestep=0, subject_id=3, action_type=ActionType.MOVE)])
         assert str(e.value) == "Agent 3 not present in scenario"
 
         with pytest.raises(ValueError) as e:
             plan = Plan(generic_scenario, [
                 Action(timestep=0, subject_id=1, action_type=ActionType.MOVE, start_position=[11, 11],
-                       end_position=[0, 0])],
-                        is_solved=False)
+                       end_position=[0, 0])])
         assert str(e.value).startswith("Invalid start position for action")
 
         with pytest.raises(ValueError) as e:
             plan = Plan(generic_scenario, [
                 Action(timestep=0, subject_id=1, action_type=ActionType.MOVE, start_position=[0, 0],
-                       end_position=[11, 11])],
-                        is_solved=False)
+                       end_position=[11, 11])])
         assert str(e.value).startswith("Invalid end position for action")
 
 

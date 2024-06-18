@@ -17,7 +17,7 @@ The metrics recorded during profiling are:
 To profile the code, simply wrap the relevant part of the algorithm with
 
 ```python
-test.start_profiling()
+recorder.start_profiling()
     # Find plan
-test.end_profiling()    
+recorder.end_profiling()    
 ```
