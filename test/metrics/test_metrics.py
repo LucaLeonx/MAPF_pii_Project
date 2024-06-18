@@ -2,7 +2,7 @@ import numpy as np
 import pytest
 
 from mapfbench.description import Plan, Action, ActionType
-from mapfbench.export import exporter
+from mapfbench.exporter import exporter
 from mapfbench.metrics.metrics import Makespan, NumberOfAgents, AverageMakespan, AgentId, SuccessRate
 
 from mapfbench.metrics.results import PlanResults, AggregatePlanResults, AgentResults

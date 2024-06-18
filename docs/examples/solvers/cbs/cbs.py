@@ -7,11 +7,9 @@ author: Ashwin Bose (@atb033)
 """
 import sys
 
-from mapfbench.export.exporter import export_results_to_csv, export_plan_results, export_plans
+from mapfbench.exporter import export_results_to_csv, export_plans
 from mapfbench.importer import import_scenarios
-from mapfbench.instrument.planrecorder import PlanRecorder
-from mapfbench.metrics import AverageMakespan, AverageSumOfCosts
-from mapfbench.metrics.results import AggregatePlanResults, PlanResults
+from mapfbench.metrics import AggregatePlanResults
 
 sys.path.insert(0, '../')
 from math import fabs
