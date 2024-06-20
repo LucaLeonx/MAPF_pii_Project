@@ -198,6 +198,9 @@ class Plan:
 
     @property
     def metadata(self):
+        """
+            The metadata associated with the plan
+        """
         return self._metadata
 
     @property

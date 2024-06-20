@@ -1,5 +1,5 @@
-from enum import Enum, IntEnum
-from typing import Tuple
+from enum import IntEnum
+from typing import Tuple, Any
 
 import numpy as np
 
@@ -37,7 +37,7 @@ class MapScheme:
 
             Parameters
             ----------
-            map_contents : list[list[MapContent]]
+            map_contents : array_like[2, 2]
                 List of the contents of the map. If any integer not present
                 in MapContents.values is inserted, it is left as it is
 
@@ -98,6 +98,13 @@ class MapScheme:
         """
         return self._obstacle_positions
 
+    @property
+    def max_contents(self) -> np.array:
+        """
+            Returns the contents of the map, as a matrix
+        """
+        return np.copy(self._map_contents)
+
     def has_position(self, position: tuple[int, int]) -> bool:
         """
             Checks if the supplied position is present in the map
@@ -128,5 +135,9 @@ class MapScheme:
     def __str__(self):
         return f"MapScheme(width={self._width}, height={self._height})"
 
+    def encode(self) -> dict[str, Any]:
+        return {"type": "MapScheme", "contents": self._map_contents.tolist()}
 
-
+    @staticmethod
+    def decode(dictionary: dict[str, Any]) -> "MapScheme":
+        return MapScheme(dictionary["contents"])

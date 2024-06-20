@@ -14,9 +14,11 @@ authors = [
 ]
 license = {text = "GPLv3"}
 dependencies = [
+    "msgpack",
     "numpy",
     "psutil",
     "pyyaml",
+    "pyzmq"
 ]
 
 
@@ -31,8 +33,8 @@ docs = ["myst-parser", "sphinx", "sphinx-design"]
 where = ["src"]
 exclude = ["test", "docs", "sketch", ".readthedocs.yaml", "requirements.txt", ".gitignore", "dist"]
 
-[project.scripts]
-mapfbench = "cli.cli_interface:mapfbench"
+#[project.scripts]
+#mapfbench = "cli.cli_interface:mapfbench"
 
 
 [tool.pytest.ini_options]

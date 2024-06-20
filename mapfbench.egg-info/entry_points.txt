@@ -1,2 +1,0 @@
-[console_scripts]
-mapfbench = cli.cli_interface:mapfbench
