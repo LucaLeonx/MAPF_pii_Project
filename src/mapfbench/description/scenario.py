@@ -90,6 +90,14 @@ class Agent:
     def __str__(self):
         return f"Agent: {self}, start_position: {self.start_position}, objective_position: {self.objective_position}"
 
+    def encode(self) -> dict[str, Any]:
+        return {"type": "Agent", "id": self._id, "start": self._start_position.tolist(),
+                "objective": self._objective_position.tolist()}
+
+    @staticmethod
+    def decode(dictionary: dict[str, Any]) -> "Agent":
+        return Agent(dictionary["id"], dictionary["start"], dictionary["objective"])
+
 
 class AgentReference(Agent):
     """
@@ -246,3 +254,13 @@ class Scenario:
             The metadata associated with the scenario
         """
         return self._metadata
+
+    def encode(self) -> dict[str, Any]:
+        return {"type": "Scenario", "map_scheme": self._map_scheme.encode(), "agents": [agent.encode() for agent in self._agents],
+                "metadata": self._metadata}
+
+    @staticmethod
+    def decode(dictionary: dict[str, Any]) -> "Scenario":
+        map_scheme = MapScheme.decode(dictionary["map_scheme"])
+        agents = [Agent.decode(entry) for entry in dictionary["agents"]]
+        return Scenario(map_scheme, agents, metadata= dictionary["metadata"])

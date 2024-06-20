@@ -7,6 +7,7 @@ from typing import Optional, Any
 
 import numpy as np
 
+from mapfbench.description import MapScheme
 from mapfbench.description.scenario import Scenario, Agent, AgentReference
 
 
@@ -114,6 +115,18 @@ class Action:
         string += f" end:{self.end_position}" if self.end_position is not None else ""
         return string
 
+    def encode(self) -> dict[str, Any]:
+        return {"type": "Action",
+                "timestep": self._timestep,
+                "subject_id": self.subject_id,
+                "action_type": self._action_type,
+                "start_position": self.start_position.tolist(),
+                "end_position": self.end_position.tolist()}
+
+    @staticmethod
+    def decode(dictionary: dict[str, Any]) -> "Action":
+        return Action(dictionary["timestep"], dictionary["subject_id"], dictionary["action_type"], dictionary["start_position"], dictionary["end_position"])
+
 
 class Plan:
     """
@@ -129,13 +142,6 @@ class Plan:
             The scenario solved by the plan
         actions: List[Action]
             The actions taken by the agents in the plan
-        is_solved : bool
-            Whether the plan solves the scenario, that is all the agents
-            reach their objective position
-        running_time: float, optional
-            The running time in ms of the algorithm which produced the plan, if available
-        memory_used
-            The maximum memory used in Kb by the algorithm which produced the plan, if available
 
         Raises
         ------
@@ -244,3 +250,15 @@ class Plan:
                 if the agent with the given ID does not exist
         """
         return self._agent_plans.get(AgentReference(agent_id), None)
+
+    def encode(self) -> dict[str, Any]:
+        return {"type": "Plan", "scenario": self._scenario.encode(),
+                "actions": [action.encode() for action in self.actions],
+                "metadata": self._metadata}
+
+    @staticmethod
+    def decode(dictionary: dict[str, Any]) -> "Plan":
+        scenario = Scenario.decode(dictionary["scenario"])
+        actions = [Action.decode(action) for action in dictionary['actions']]
+        return Plan(scenario, actions, metadata=dictionary["metadata"])
+

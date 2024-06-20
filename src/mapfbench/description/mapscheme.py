@@ -141,3 +141,4 @@ class MapScheme:
     @staticmethod
     def decode(dictionary: dict[str, Any]) -> "MapScheme":
         return MapScheme(dictionary["contents"])
+
