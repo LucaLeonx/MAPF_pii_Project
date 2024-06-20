@@ -1,9 +1,10 @@
 import asyncio
 
+import msgpack
 import zmq
 import zmq.asyncio
 
-from mapfbench.description import Scenario
+from mapfbench.description import Scenario, Plan
 
 
 class BenchmarkServer:
@@ -41,9 +42,9 @@ class BenchmarkServer:
                 else:
                     scenario = self._scenarios.pop()
                     self._assigned_scenarios.append(scenario)
-                    reply = self._socket.send_multipart(scenario, copy=False)
+                    reply = self._socket.send_multipart(msgpack.dumps(scenario.encode()), copy=False)
             elif request_type == "result":
-                self._plans.append(request[1])
+                self._plans.append(Plan.decode(msgpack.loads(request[1])))
                 if len(self._plans) == self._scenarios_num:
                     self._stop = True
                     break

@@ -2,7 +2,7 @@
     Module for representing a plan to solve a specific test scenario
 """
 
-from enum import Enum
+from enum import Enum, IntEnum
 from typing import Optional, Any
 
 import numpy as np
@@ -11,7 +11,7 @@ from mapfbench.description import MapScheme
 from mapfbench.description.scenario import Scenario, Agent, AgentReference
 
 
-class ActionType(Enum):
+class ActionType(IntEnum):
     """
         Possible types of actions
     """
@@ -119,7 +119,7 @@ class Action:
         return {"type": "Action",
                 "timestep": self._timestep,
                 "subject_id": self.subject_id,
-                "action_type": self._action_type,
+                "action_type": self._action_type.value,
                 "start_position": self.start_position.tolist(),
                 "end_position": self.end_position.tolist()}
 

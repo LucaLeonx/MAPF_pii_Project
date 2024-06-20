@@ -99,7 +99,7 @@ class MapScheme:
         return self._obstacle_positions
 
     @property
-    def max_contents(self) -> np.array:
+    def contents(self) -> np.array:
         """
             Returns the contents of the map, as a matrix
         """
