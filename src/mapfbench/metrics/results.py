@@ -78,7 +78,7 @@ class AggregatePlanResults(Results):
         inner_results = []
         for plan in plans:
             plan_results = PlanResults(plan)
-            plan_results.evaluate([mt.Bucket(), mt.ScenarioFile()])
+            plan_results.evaluate([mt.Bucket(), mt.ScenarioFile(), mt.NumberOfAgents()])
             inner_results.append(plan_results)
 
         super().__init__(plans, inner_results)

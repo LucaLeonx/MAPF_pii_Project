@@ -4,9 +4,10 @@ from mapfbench.description import Scenario, Plan
 from mapfbench.instrument import PlanRecorder
 from mapfbench.instrument.connection import ClientSocket, ServerSocket
 
+_default_address = "tcp://localhost:9361"
 
 class BenchmarkServer:
-    def __init__(self, scenarios: list[Scenario], connection_address: str):
+    def __init__(self, scenarios: list[Scenario], connection_address: str = _default_address):
         self._connection_address = connection_address
         self._socket = ServerSocket(connection_address)
         self._scenarios = list(scenarios)
@@ -66,7 +67,7 @@ class BenchmarkServer:
 
 
 class BenchmarkClient:
-    def __init__(self, connection_address: str):
+    def __init__(self, connection_address: str = _default_address):
         self._connection_address = connection_address
         self._socket = ClientSocket(connection_address)
         self._requested_scenarios = []

@@ -4,7 +4,7 @@ from typing import Any
 
 import yaml
 
-from mapfbench.description import Plan, Action
+from mapfbench.description import Plan, Action, ActionType
 from mapfbench.metrics.results import AggregatePlanResults, Results, PlanResults
 
 
@@ -64,7 +64,7 @@ def convert_actions_to_dict(actions: list[Action]):
     action_list = []
     for action in actions:
         action_list.append({'Timestep': action.timestep, 'Agent': action.subject_id,
-                            'Type': str(action.action_type),
+                            'Type': ActionType(action.action_type).name,
                             'Start position': str(action.start_position.tolist()),
                             'End position': str(action.end_position.tolist())})
 
