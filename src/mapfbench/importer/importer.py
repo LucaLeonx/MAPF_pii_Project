@@ -6,10 +6,10 @@ from pathlib import Path
 
 import numpy as np
 
-from mapfbench.description import MapScheme, MapContent, Scenario, Agent
+from mapfbench.description import MapContent, Scenario, Agent, GridMap
 
 
-def import_map(path: str) -> MapScheme:
+def import_map(path: str) -> GridMap:
     with open(path, "r") as file:
         map_type = file.readline()  # Skip heading 'type octile'
         map_height = _find_integer(file.readline())
@@ -27,7 +27,7 @@ def import_map(path: str) -> MapScheme:
             line = file.readline()
             row += 1
 
-        return MapScheme(map_matrix)
+        return GridMap(map_matrix)
 
 
 def _find_integer(string: str) -> int:

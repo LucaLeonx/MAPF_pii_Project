@@ -6,7 +6,7 @@ from typing import Any
 
 import numpy as np
 
-from mapfbench.description.mapscheme import MapScheme
+from mapfbench.description import MapScheme, GridMap
 
 
 class Agent:

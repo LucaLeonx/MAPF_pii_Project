@@ -27,12 +27,11 @@ class GridMap(MapScheme):
                 If the map is not a 2-dimensional array
         """
         super().__init__(map_contents)
-        if map_contents.ndim != 2:
+        if self._map_contents.ndim != 2:
             raise ValueError("Invalid map contents supplied: must be a 2-dimensional array")
 
-        self._map_contents = map_contents
-        self._width = map_contents.shape[1]
-        self._height = map_contents.shape[0]
+        self._width = self._map_contents.shape[1]
+        self._height = self._map_contents.shape[0]
 
         self._free_positions = np.transpose(np.nonzero(self._map_contents == MapContent.FREE))
         self._obstacle_positions = np.transpose(np.nonzero(self._map_contents == MapContent.OBSTACLE))
@@ -112,13 +111,6 @@ class GridMap(MapScheme):
 
     def __str__(self):
         return f"GridMap(width={self._width}, height={self._height})"
-
-    def encode(self) -> dict[str, Any]:
-        return {"type": "GridMap", "contents": self._map_contents.tolist()}
-
-    @staticmethod
-    def decode(dictionary: dict[str, Any]) -> "GridMap":
-        return GridMap(dictionary["contents"])
 
 
 class VoxelGridMap(MapScheme):

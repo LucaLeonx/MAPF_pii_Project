@@ -1,6 +1,7 @@
+import importlib
 from abc import abstractmethod, ABC
 from enum import IntEnum
-from typing import Tuple, Any
+from typing import Any
 
 import numpy as np
 
@@ -59,9 +60,9 @@ class MapScheme(ABC):
         self._free_positions = np.transpose(np.nonzero(self._map_contents == MapContent.FREE))
         self._obstacle_positions = np.transpose(np.nonzero(self._map_contents == MapContent.OBSTACLE))
 
-    @abstractmethod
     @property
-    def dimensions(self) -> Tuple[int]:
+    @abstractmethod
+    def dimensions(self) -> tuple[int, ...]:
         """
             The dimensions  of the map
         """
@@ -83,8 +84,8 @@ class MapScheme(ABC):
         """
         return self._obstacle_positions
 
-    @abstractmethod
     @property
+    @abstractmethod
     def contents(self) -> np.array:
         """
             Returns the contents of the map. The format depends on the
@@ -123,8 +124,10 @@ class MapScheme(ABC):
         return f"MapScheme"
 
     def encode(self) -> dict[str, Any]:
-        return {"type": "MapScheme", "contents": self._map_contents.tolist()}
+        return {"type": str(self.__class__.__name__), "contents": self._map_contents.tolist()}
 
     @staticmethod
     def decode(dictionary: dict[str, Any]) -> "MapScheme":
-        return MapScheme(dictionary["contents"])
+        map_types = importlib.import_module("mapfbench.description.maps.maptypes")
+        map_class = getattr(map_types, dictionary["type"])
+        return map_class(dictionary["contents"])

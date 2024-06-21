@@ -37,7 +37,7 @@ class BenchmarkServer:
                 self._plans.append(Plan.decode(request["content"]))
 
                 if len(self._plans) == self._scenarios_num:
-                    self._stop = False
+                    self._stop = True
                     reply_message = "finished"
                 else:
                     reply_message = "done"
