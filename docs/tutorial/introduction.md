@@ -124,7 +124,7 @@ Now we can run or MAPF program and wait for the results.
 
 ```shell
 
-python cbs.py
+python parallel_cbs.py
 
 ```
 

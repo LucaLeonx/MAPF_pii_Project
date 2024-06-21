@@ -1,23 +1,26 @@
 from multiprocessing import Pool
 from typing import Callable
 
-from mapfbench.description import Scenario
-from mapfbench.instrument import PlanRecorder
+from mapfbench.description import Scenario, Plan
 from mapfbench.metrics import AggregatePlanResults
 
 
 class Parallelizer:
 
-    def __init__(self, solver_function: Callable[[Scenario], PlanRecorder], processes: int = 4):
+    def __init__(self, solver_function: Callable[[Scenario], Plan], processes: int = 4):
         self._processes = processes
         self._solver_function = solver_function
 
     def run_tests(self, scenarios: list[Scenario]) -> AggregatePlanResults:
-        recorders = []
-        with Pool(self._processes) as pool:
-            recorders = pool.map(self._solver_function, scenarios)
+        plans = []
+        try:
+            with Pool(self._processes) as pool:
+                plans = pool.map(self._solver_function, scenarios)
+        except KeyboardInterrupt:
+            pool.terminate()
+            pool.join()
+            raise KeyboardInterrupt()
 
-        plans = [recorder.plan for recorder in recorders]
         return AggregatePlanResults(plans)
 
 

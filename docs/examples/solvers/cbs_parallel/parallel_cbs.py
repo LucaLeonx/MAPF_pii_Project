@@ -10,6 +10,7 @@ import sys
 from mapfbench.exporter import export_results_to_csv, export_plans
 from mapfbench.importer import import_scenarios
 from mapfbench.instrument import PlanRecorder
+from mapfbench.instrument.parallelizer import Parallelizer
 from mapfbench.metrics import AggregatePlanResults
 
 sys.path.insert(0, '../')
@@ -366,19 +367,9 @@ def process_scenario(scenario):
 def main(number_of_plans=8):
     # Scenarios imports
     scenarios = import_scenarios("../../maps/arena.map.scen")
+    parallel = Parallelizer(process_scenario)
 
-    # Last scenarios are a bit long to run
-    scenarios = scenarios[:number_of_plans]
-    computed_plans = []
-
-    ## Scenarios processing
-    for scenario in scenarios:
-        plan = process_scenario(scenario)
-        computed_plans.append(plan)
-
-
-    # Metrics calculations and results exports
-    results = AggregatePlanResults(computed_plans)
+    results = parallel.run_tests(scenarios[:number_of_plans])
     results.evaluate()
     export_results_to_csv(results, "metrics")
     export_plans(results, filename="results")
