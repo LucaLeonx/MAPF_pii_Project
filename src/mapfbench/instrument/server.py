@@ -1,20 +1,19 @@
 import asyncio
+from abc import ABC
+from asyncio import WindowsSelectorEventLoopPolicy
 
 import msgpack
 import zmq
-import zmq.asyncio
 
 from mapfbench.description import Scenario, Plan
-
-
-class BenchmarkServer:
-    pass
+from mapfbench.instrument import PlanRecorder
 
 
 class BenchmarkServer:
     def __init__(self, scenarios: list[Scenario], connection_address: str):
         self._connection_address = connection_address
-        self._socket = zmq.asyncio.Socket(zmq.REP)
+        self._context = zmq.asyncio.Context()
+        self._socket = self._context.socket(zmq.REP)
         self._scenarios = list(scenarios)
         self._scenarios_num = len(self._scenarios)
         self._assigned_scenarios = []
@@ -22,19 +21,17 @@ class BenchmarkServer:
         self._stop = True
 
     async def start(self):
+        asyncio.set_event_loop_policy(WindowsSelectorEventLoopPolicy()) # Avoid warnings
         self._stop = False
         self._socket.bind(self._connection_address)
 
         while not self._stop:
             # This allows the server to check for stop in case messages do not arrive
             # Timeout in seconds
-            try:
-                async with asyncio.timeout(1):
-                    request = await self._socket.recv_multipart(copy=False)
-            except TimeoutError:
-                continue
 
-            request_type = request[0]["type"]
+            request = await self._socket.recv_multipart(copy=False)
+
+            request_type = request[0]
 
             if request_type == "random_scenario":
                 if len(self._scenarios) == 0:
@@ -42,14 +39,14 @@ class BenchmarkServer:
                 else:
                     scenario = self._scenarios.pop()
                     self._assigned_scenarios.append(scenario)
-                    reply = self._socket.send_multipart(msgpack.dumps(scenario.encode()), copy=False)
+                    reply = await self._socket.send_multipart(msgpack.dumps(scenario.encode()), copy=False)
             elif request_type == "result":
                 self._plans.append(Plan.decode(msgpack.loads(request[1])))
                 if len(self._plans) == self._scenarios_num:
                     self._stop = True
                     break
             else:
-                reply = self._socket.send_multipart("error", copy=False)
+                reply = await self._socket.send_multipart("error", copy=False)
 
         return self._plans
 
@@ -66,4 +63,48 @@ class BenchmarkServer:
                 "Assigned": len(self._assigned_scenarios), "Done": len(self._plans)}
 
 
+class BenchmarkClient:
+    def __init__(self, connection_address: str):
+        self._connection_address = connection_address
+        self._context = zmq.asyncio.Context()
+        self._socket = self._context.socket(zmq.REQ)
+        self._requested_scenarios = []
+
+    def start(self):
+        self._socket.connect(self._connection_address)
+
+    async def request_scenario(self, max_timeout: int = 10) -> PlanRecorder:
+        asyncio.set_event_loop_policy(WindowsSelectorEventLoopPolicy())  # Avoid warnings
+        reply = None
+        try:
+            request = self._socket.send_multipart("random_scenario", copy=False)
+            fut = self._socket.recv_multipart(copy=False)
+            reply = await asyncio.wait_for(fut, timeout=max_timeout)
+        except TimeoutError:
+            raise TimeoutError("Request timed out")
+
+        if reply[0] == "finished":
+            raise TestsFinishedException("All tests have been assigned")
+        else:
+            scenario = Scenario.decode(msgpack.loads(reply[1]))
+            self._requested_scenarios.append(scenario)
+            return PlanRecorder(scenario)
+
+    async def submit_plan(self, recorder: PlanRecorder, timeout: int = 10):
+        try:
+            async with asyncio.timeout(timeout):
+                request = await self._socket.send_multipart(msgpack.dumps(recorder.plan.encode()), copy=False)
+        except TimeoutError:
+            raise TimeoutError("Request timed out")
+
+    @property
+    def requested_scenarios(self) -> list[Scenario]:
+        return self._requested_scenarios
+
+
+
+
+
+class TestsFinishedException(Exception):
+    pass
 
