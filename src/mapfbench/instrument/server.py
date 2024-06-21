@@ -68,7 +68,7 @@ class BenchmarkServer:
 
     def _pretty_print_status(self):
         status_dict = self.status
-        print("Tests | Assigned: {:3d}/{:<3d} | Completed {:3d}/{:<3d}".format(
+        print("Tests | Assigned: {:3d}/{:<3d} | Completed: {:3d}/{:<3d}".format(
               len(self._assigned_scenarios), self._scenarios_num, len(self._plans), self._scenarios_num))
 
 

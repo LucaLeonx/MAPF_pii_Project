@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 
-from mapfbench.description.mapscheme import MapScheme, MapContent
+from mapfbench.description import MapContent, GridMap
 
 
 @pytest.mark.parametrize("map_contents, "
@@ -43,7 +43,7 @@ from mapfbench.description.mapscheme import MapScheme, MapContent
 class TestMapScheme:
 
     def test_getters(self, map_contents, exp_width, exp_height, exp_free_positions, exp_obstacles):
-        map_scheme = MapScheme(map_contents)
+        map_scheme = GridMap(map_contents)
         assert map_scheme.width == exp_width
         assert map_scheme.height == exp_height
 
@@ -60,7 +60,7 @@ class TestMapScheme:
 
 
     def test_has_position(self, map_contents, exp_width, exp_height, exp_free_positions, exp_obstacles):
-        map_scheme = MapScheme(map_contents)
+        map_scheme = GridMap(map_contents)
         assert map_scheme.has_position([0, 0])
         assert not map_scheme.has_position(np.array([10, 1]))
         assert not map_scheme.has_position((-1, 0))
@@ -77,5 +77,5 @@ class TestMapScheme:
 @pytest.mark.parametrize("invalid_map_contents", [([0, 0, 0]), ([[[-1, 0], [-1, 0]], [[0, 0], [0, -1]]])])
 def test_init_guards(invalid_map_contents):
     with pytest.raises(ValueError) as e:
-        invalid_map_scheme = MapScheme(invalid_map_contents)
+        invalid_map_scheme = GridMap(invalid_map_contents)
     assert str(e.value) == "Invalid map contents supplied: must be a 2-dimensional array"

@@ -24,14 +24,14 @@ class TestAction:
         assert str(e.value) == "Cannot use negative timestep in Action"
 
     def test_str(self):
-        assert str(Action(1, 2, ActionType.MOVE)) == 't: 1 Agent ID: 2, action: ActionType.MOVE start:None end:None'
+        assert str(Action(1, 2, ActionType.MOVE)) == 't: 1 Agent ID: 2, action: MOVE start:None end:None'
         assert str(Action(1, 2, ActionType.MOVE,
-                          start_position=[1, 0])) == 't: 1 Agent ID: 2, action: ActionType.MOVE start:[1 0] end:None'
+                          start_position=[1, 0])) == 't: 1 Agent ID: 2, action: MOVE start:[1 0] end:None'
         assert str(Action(1, 2, ActionType.MOVE,
-                          end_position=[0, 1])) == 't: 1 Agent ID: 2, action: ActionType.MOVE start:None end:[0 1]'
+                          end_position=[0, 1])) == 't: 1 Agent ID: 2, action: MOVE start:None end:[0 1]'
         assert str(Action(1, 2, ActionType.WAIT,
                           start_position=[1, 0],
-                          end_position=[0, 1])) == 't: 1 Agent ID: 2, action: ActionType.WAIT start:[1 0] end:[0 1]'
+                          end_position=[0, 1])) == 't: 1 Agent ID: 2, action: WAIT start:[1 0] end:[0 1]'
 
 
 class TestPlan:

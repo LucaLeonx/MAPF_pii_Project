@@ -3,6 +3,7 @@ Success rate: 0.0
 Plans:
 -   Bucket: null
     Scenario File: null
+    Number of agents: 2
     Vertex conflicts:
     - 'VertexConflict(t: 0, agent1: 1, agent2: obstacle, position: [1 1]'
     Number of vertex conflicts: 1
@@ -13,26 +14,27 @@ Plans:
     Actions:
     -   Timestep: 0
         Agent: 1
-        Type: ActionType.MOVE
+        Type: MOVE
         Start position: '[0, 1]'
         End position: '[1, 1]'
     -   Timestep: 1
         Agent: 1
-        Type: ActionType.MOVE
+        Type: MOVE
         Start position: '[1, 1]'
         End position: '[2, 1]'
     -   Timestep: 0
         Agent: 2
-        Type: ActionType.WAIT
+        Type: WAIT
         Start position: '[0, 2]'
         End position: '[0, 2]'
     -   Timestep: 1
         Agent: 2
-        Type: ActionType.MOVE
+        Type: MOVE
         Start position: '[0, 2]'
         End position: '[1, 2]'
 -   Bucket: null
     Scenario File: null
+    Number of agents: 2
     Vertex conflicts: []
     Number of vertex conflicts: 0
     Edge conflicts:
@@ -43,26 +45,27 @@ Plans:
     Actions:
     -   Timestep: 0
         Agent: 1
-        Type: ActionType.MOVE
+        Type: MOVE
         Start position: '[0, 1]'
         End position: '[1, 2]'
     -   Timestep: 1
         Agent: 1
-        Type: ActionType.MOVE
+        Type: MOVE
         Start position: '[1, 2]'
         End position: '[0, 2]'
     -   Timestep: 0
         Agent: 2
-        Type: ActionType.WAIT
+        Type: WAIT
         Start position: '[0, 2]'
         End position: '[0, 2]'
     -   Timestep: 1
         Agent: 2
-        Type: ActionType.MOVE
+        Type: MOVE
         Start position: '[0, 2]'
         End position: '[1, 2]'
 -   Bucket: null
     Scenario File: null
+    Number of agents: 2
     Vertex conflicts:
     - 'VertexConflict(t: 0, agent1: 1, agent2: 2, position: [1 2]'
     Number of vertex conflicts: 1
@@ -73,16 +76,17 @@ Plans:
     Actions:
     -   Timestep: 0
         Agent: 1
-        Type: ActionType.MOVE
+        Type: MOVE
         Start position: '[0, 1]'
         End position: '[1, 2]'
     -   Timestep: 0
         Agent: 2
-        Type: ActionType.MOVE
+        Type: MOVE
         Start position: '[0, 2]'
         End position: '[1, 2]'
 -   Bucket: null
     Scenario File: null
+    Number of agents: 2
     Vertex conflicts: []
     Number of vertex conflicts: 0
     Edge conflicts: []
@@ -92,11 +96,11 @@ Plans:
     Actions:
     -   Timestep: 0
         Agent: 1
-        Type: ActionType.MOVE
+        Type: MOVE
         Start position: '[0, 1]'
         End position: '[1, 2]'
     -   Timestep: 0
         Agent: 2
-        Type: ActionType.WAIT
+        Type: WAIT
         Start position: '[0, 2]'
         End position: '[0, 2]'

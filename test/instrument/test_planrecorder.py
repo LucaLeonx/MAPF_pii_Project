@@ -27,10 +27,10 @@ class TestPlanRecorder:
 
         print([str(action) + '\n' for action in recorder.actions])
         assert [str(action) for action in recorder.actions] == [
-            't: 1 Agent ID: 1, action: ActionType.MOVE start:None end:[2 0]',
-            't: 2 Agent ID: 1, action: ActionType.MOVE start:[2 0] end:[1 1]',
-            't: 3 Agent ID: 1, action: ActionType.MOVE start:[1 1] end:[2 1]',
-            't: 10 Agent ID: 2, action: ActionType.WAIT start:[0 2] end:[0 2]']
+            't: 1 Agent ID: 1, action: MOVE start:None end:[2 0]',
+            't: 2 Agent ID: 1, action: MOVE start:[2 0] end:[1 1]',
+            't: 3 Agent ID: 1, action: MOVE start:[1 1] end:[2 1]',
+            't: 10 Agent ID: 2, action: WAIT start:[0 2] end:[0 2]']
 
         recorder.mark_as_solved()
         assert recorder.is_solved

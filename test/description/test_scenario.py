@@ -1,7 +1,6 @@
 import pytest
 import numpy as np
 
-from mapfbench.description.mapscheme import MapScheme
 from mapfbench.description.scenario import Agent, Scenario
 
 

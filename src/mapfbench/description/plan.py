@@ -110,7 +110,7 @@ class Action:
         return hash((self.timestep, self.subject_id))
 
     def __str__(self):
-        string = f"t: {self.timestep} Agent ID: {self.subject_id}, action: {self.action_type}"
+        string = f"t: {self.timestep} Agent ID: {self.subject_id}, action: {ActionType(self.action_type).name}"
         string += f" start:{self.start_position}" if self.start_position is not None else ""
         string += f" end:{self.end_position}" if self.end_position is not None else ""
         return string

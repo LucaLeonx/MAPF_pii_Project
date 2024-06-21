@@ -8,7 +8,7 @@ from mapfbench.description import MapScheme, scenario, Scenario, Plan, ActionTyp
 def test_mapscheme_encoding(generic_map_scheme):
     dictionary = generic_map_scheme.encode()
     assert list(dictionary.keys()) == ["type", "contents"]
-    assert dictionary["type"] == "MapScheme"
+    assert dictionary["type"] == "GridMap"
     assert dictionary["contents"] == [[0, -1, 0],
                                       [0, -1, 0],
                                       [0, 0, 0]]

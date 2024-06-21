@@ -1,14 +1,14 @@
 import pytest
 import numpy as np
 
-from mapfbench.description.mapscheme import MapScheme
+from mapfbench.description import MapScheme, GridMap
 from mapfbench.description.scenario import Scenario, Agent
 from mapfbench.instrument.planrecorder import PlanRecorder
 
 
 @pytest.fixture(autouse=True)
 def generic_map_scheme():
-    return MapScheme(np.array([[0, -1, 0],
+    return GridMap(np.array([[0, -1, 0],
                                [0, -1, 0],
                                [0, 0, 0]]))
 
