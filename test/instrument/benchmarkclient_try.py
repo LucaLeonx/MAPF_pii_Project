@@ -7,8 +7,7 @@ def start_client():
     client = BenchmarkClient(connection_address="tcp://localhost:9365")
     client.start()
     try:
-        i = 0
-        while i != 12:
+        while True:
             recorder = client.request_scenario()
             recorder.record_move(1, 1, end_position=[10, 10])
             client.submit_plan(recorder)

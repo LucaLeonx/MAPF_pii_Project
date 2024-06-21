@@ -35,10 +35,14 @@ class BenchmarkServer:
                     reply = self._socket.send_message("scenario", scenario.encode())
             elif request_type == "result":
                 self._plans.append(Plan.decode(request["content"]))
-                reply = self._socket.send_message("done", scenario.encode())
-                if len(self._plans) == self._scenarios_num:
 
-                    break
+                if len(self._plans) == self._scenarios_num:
+                    self._stop = False
+                    reply_message = "finished"
+                else:
+                    reply_message = "done"
+
+                reply = self._socket.send_message(reply_message, scenario.encode())
             else:
                 reply = self._socket.send_message("error")
 
@@ -87,6 +91,8 @@ class BenchmarkClient:
     def submit_plan(self, recorder: PlanRecorder):
         request = self._socket.send_message("result", recorder.plan.encode())
         reply = self._socket.receive_message()
+        if reply["label"] == "finished":
+            raise TestsFinishedException("All tests have been finished")
 
     @property
     def requested_scenarios(self) -> list[Scenario]:
@@ -94,6 +100,7 @@ class BenchmarkClient:
 
     def stop(self):
         self._socket.stop()
+
 
 class TestsFinishedException(Exception):
     pass

@@ -1,3 +1,3 @@
-from .mapscheme import *
+from .maps import *
 from .scenario import *
 from .plan import *
