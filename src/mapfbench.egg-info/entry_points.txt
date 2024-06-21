@@ -1,2 +1,2 @@
 [console_scripts]
-mapfbench-run = mapfbench.cli:__main__
+mapfbench-run = mapfbench.cli.cli:cli

@@ -1,6 +1,5 @@
 msgpack
 numpy
-tornado
 psutil
 pyyaml
 pyzmq
