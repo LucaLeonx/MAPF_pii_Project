@@ -23,7 +23,7 @@ class BenchmarkServer:
             # This allows the server to check for stop in case messages do not arrive
             # Timeout in seconds
 
-            request = await self._socket.recv_multipart(copy=False)
+            request =
 
             request_type = request[0]
 

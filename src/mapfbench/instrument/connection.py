@@ -11,10 +11,14 @@ class Socket(ABC):
         self._context = zmq.Context()
         self._address = address
         self._socket = None
+        self._stop = True
 
     @abstractmethod
     def start(self):
         pass
+
+    def stop(self):
+        self._stop = True
 
     def send_message(self, label: str, content: Any):
         message = {"label": label, "content": msgpack.dumps(content)}
@@ -25,7 +29,8 @@ class Socket(ABC):
         # making possible to stop it (otherwise, it may get stuck in the C code
         # of the ZMQ library
         while not self._socket.poll(timeout=1000):
-            continue
+            if self._stop:
+                break
 
         received = self._socket.recv_json()
         received.update({"content": msgpack.loads(received["content"])})
