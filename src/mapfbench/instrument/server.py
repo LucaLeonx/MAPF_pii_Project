@@ -6,6 +6,7 @@ from mapfbench.instrument.connection import ClientSocket, ServerSocket
 
 _default_address = "tcp://localhost:9361"
 
+
 class BenchmarkServer:
     def __init__(self, scenarios: list[Scenario], connection_address: str = _default_address):
         self._connection_address = connection_address
@@ -43,11 +44,11 @@ class BenchmarkServer:
                 else:
                     reply_message = "done"
 
-                reply = self._socket.send_message(reply_message, scenario.encode())
+                reply = self._socket.send_message(reply_message)
             else:
                 reply = self._socket.send_message("error")
 
-            print(self.status)
+            self._pretty_print_status()
 
         self.stop()
         return self._plans
@@ -64,6 +65,11 @@ class BenchmarkServer:
     def status(self) -> dict[str, int]:
         return {"Running": not self._stop, "Number of scenarios": self._scenarios_num,
                 "Assigned": len(self._assigned_scenarios), "Done": len(self._plans)}
+
+    def _pretty_print_status(self):
+        status_dict = self.status
+        print("Tests | Assigned: {:3d}/{:<3d} | Completed {:3d}/{:<3d}".format(
+              len(self._assigned_scenarios), self._scenarios_num, len(self._plans), self._scenarios_num))
 
 
 class BenchmarkClient:

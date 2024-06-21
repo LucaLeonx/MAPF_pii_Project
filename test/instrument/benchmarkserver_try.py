@@ -13,7 +13,7 @@ from mapfbench.metrics import AggregatePlanResults
 def start_server():
 
     scenarios = import_scenarios(str(Path(__file__).parent.parent / 'importer' / 'map_files' / 'arena.map.scen'))
-    server = BenchmarkServer(scenarios[:11])
+    server = BenchmarkServer(scenarios[:6])
 
     try:
         print("Server started")
