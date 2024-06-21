@@ -34,8 +34,8 @@ docs = ["myst-parser", "sphinx", "sphinx-design"]
 where = ["src"]
 exclude = ["test", "docs", "sketch", ".readthedocs.yaml", "requirements.txt", ".gitignore", "dist"]
 
-#[project.scripts]
-#mapfbench = "cli.cli_interface:mapfbench"
+[project.scripts]
+mapfbench-run = "mapfbench.cli:__main__"
 
 
 [tool.pytest.ini_options]
