@@ -4,14 +4,19 @@ from mapfbench.instrument.server import BenchmarkClient, TestsFinishedException
 
 
 def start_client():
-    client = BenchmarkClient(connection_address="tcp://localhost:9362")
+    client = BenchmarkClient(connection_address="tcp://localhost:9365")
     client.start()
     try:
-        while True:
-            recorder = asyncio.run(client.request_scenario())
+        i = 0
+        while i != 12:
+            recorder = client.request_scenario()
             recorder.record_move(1, 1, end_position=[10, 10])
+            client.submit_plan(recorder)
+            i += 1
     except TestsFinishedException:
         print("Test finished successfully")
+    finally:
+        client.stop()
 
 
 if __name__ == "__main__":

@@ -11,13 +11,16 @@ from mapfbench.instrument.server import BenchmarkServer
 def start_server():
 
     scenarios = import_scenarios(str(Path(__file__).parent.parent / 'importer' / 'map_files' / 'arena.map.scen'))
-    server = BenchmarkServer(scenarios, "tcp://localhost:9362")
+    server = BenchmarkServer(scenarios[1:], "tcp://localhost:9365")
 
     try:
-        asyncio.run(server.start())
+        print("Server started")
+        server.start()
         while True:
             sleep(1)
-            print(server.status)  # Show assigned scenarios, number of iterations, completed
+            # print(server.status)  # Show assigned scenarios, number of iterations, completed
+            if not server.status["Running"]:
+                break
     except KeyboardInterrupt:
         print("Server stopped")
         server.stop()  # Stop the server

@@ -2,20 +2,20 @@ import zmq
 
 from mapfbench.description import Scenario, Plan
 from mapfbench.instrument import PlanRecorder
-from mapfbench.instrument.connection import Socket
+from mapfbench.instrument.connection import ClientSocket, ServerSocket
 
 
 class BenchmarkServer:
     def __init__(self, scenarios: list[Scenario], connection_address: str):
         self._connection_address = connection_address
-        self._socket = Socket(connection_address)
+        self._socket = ServerSocket(connection_address)
         self._scenarios = list(scenarios)
         self._scenarios_num = len(self._scenarios)
         self._assigned_scenarios = []
         self._plans = []
         self._stop = True
 
-    async def start(self):
+    def start(self):
         self._stop = False
         self._socket.start()
 
@@ -23,29 +23,33 @@ class BenchmarkServer:
             # This allows the server to check for stop in case messages do not arrive
             # Timeout in seconds
 
-            request =
-
-            request_type = request[0]
+            request = self._socket.receive_message()
+            request_type = request["label"]
 
             if request_type == "random_scenario":
                 if len(self._scenarios) == 0:
-                    reply = self._socket.send_multipart("finished", copy=False)
+                    reply = self._socket.send_message("finished")
                 else:
                     scenario = self._scenarios.pop()
                     self._assigned_scenarios.append(scenario)
-                    reply = await self._socket.send_multipart(msgpack.dumps(scenario.encode()), copy=False)
+                    reply = self._socket.send_message("scenario", scenario.encode())
             elif request_type == "result":
-                self._plans.append(Plan.decode(msgpack.loads(request[1])))
+                self._plans.append(Plan.decode(request["content"]))
+                reply = self._socket.send_message("done", scenario.encode())
                 if len(self._plans) == self._scenarios_num:
-                    self._stop = True
+
                     break
             else:
-                reply = await self._socket.send_multipart("error", copy=False)
+                reply = self._socket.send_message("error")
 
+            print(self.status)
+
+        self.stop()
         return self._plans
 
     def stop(self):
         self._stop = True
+        self._socket.stop()
 
     @property
     def plans(self):
@@ -60,45 +64,40 @@ class BenchmarkServer:
 class BenchmarkClient:
     def __init__(self, connection_address: str):
         self._connection_address = connection_address
-        self._context = zmq.asyncio.Context()
-        self._socket = self._context.socket(zmq.REQ)
+        self._socket = ClientSocket(connection_address)
         self._requested_scenarios = []
 
     def start(self):
-        self._socket.connect(self._connection_address)
+        self._socket.start()
 
-    async def request_scenario(self, max_timeout: int = 10) -> PlanRecorder:
-        asyncio.set_event_loop_policy(WindowsSelectorEventLoopPolicy())  # Avoid warnings
-        reply = None
-        try:
-            request = self._socket.send_multipart("random_scenario", copy=False)
-            fut = self._socket.recv_multipart(copy=False)
-            reply = await asyncio.wait_for(fut, timeout=max_timeout)
-        except TimeoutError:
-            raise TimeoutError("Request timed out")
+    def request_scenario(self) -> PlanRecorder:
+        request = self._socket.send_message("random_scenario")
+        reply = self._socket.receive_message()
 
-        if reply[0] == "finished":
+        if reply["label"] == "finished":
             raise TestsFinishedException("All tests have been assigned")
-        else:
-            scenario = Scenario.decode(msgpack.loads(reply[1]))
+        elif reply["label"] == "scenario":
+            scenario = Scenario.decode(reply["content"])
             self._requested_scenarios.append(scenario)
             return PlanRecorder(scenario)
+        else:
+            raise InvalidMessageException("Invalid message received. label: {}, content: {}".format(reply["label"],
+                                                                                                    reply["content"]))
 
-    async def submit_plan(self, recorder: PlanRecorder, timeout: int = 10):
-        try:
-            async with asyncio.timeout(timeout):
-                request = await self._socket.send_multipart(msgpack.dumps(recorder.plan.encode()), copy=False)
-        except TimeoutError:
-            raise TimeoutError("Request timed out")
+    def submit_plan(self, recorder: PlanRecorder):
+        request = self._socket.send_message("result", recorder.plan.encode())
+        reply = self._socket.receive_message()
 
     @property
     def requested_scenarios(self) -> list[Scenario]:
         return self._requested_scenarios
 
-
-
-
+    def stop(self):
+        self._socket.stop()
 
 class TestsFinishedException(Exception):
     pass
 
+
+class InvalidMessageException(Exception):
+    pass

@@ -8,7 +8,7 @@ import zmq
 class Socket(ABC):
 
     def __init__(self, address: str):
-        self._context = zmq.Context()
+        self._context = zmq.Context.instance()
         self._address = address
         self._socket = None
         self._stop = True
@@ -19,10 +19,11 @@ class Socket(ABC):
 
     def stop(self):
         self._stop = True
+        self._socket.close()
 
-    def send_message(self, label: str, content: Any):
-        message = {"label": label, "content": msgpack.dumps(content)}
-        self._socket.send_json(message)
+    def send_message(self, label: str, content: Any = ""):
+        message = {"label": label, "content": content}
+        self._socket.send(msgpack.dumps(message))
 
     def receive_message(self) -> dict[str, Any]:
         # This gives back command to the Python interpreter after each timeout,
@@ -32,8 +33,7 @@ class Socket(ABC):
             if self._stop:
                 break
 
-        received = self._socket.recv_json()
-        received.update({"content": msgpack.loads(received["content"])})
+        received = msgpack.loads(self._socket.recv())
         return received
 
 
