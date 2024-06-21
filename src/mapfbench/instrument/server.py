@@ -1,19 +1,14 @@
-import asyncio
-from abc import ABC
-from asyncio import WindowsSelectorEventLoopPolicy
-
-import msgpack
 import zmq
 
 from mapfbench.description import Scenario, Plan
 from mapfbench.instrument import PlanRecorder
+from mapfbench.instrument.connection import Socket
 
 
 class BenchmarkServer:
     def __init__(self, scenarios: list[Scenario], connection_address: str):
         self._connection_address = connection_address
-        self._context = zmq.asyncio.Context()
-        self._socket = self._context.socket(zmq.REP)
+        self._socket = Socket(connection_address)
         self._scenarios = list(scenarios)
         self._scenarios_num = len(self._scenarios)
         self._assigned_scenarios = []
@@ -21,9 +16,8 @@ class BenchmarkServer:
         self._stop = True
 
     async def start(self):
-        asyncio.set_event_loop_policy(WindowsSelectorEventLoopPolicy()) # Avoid warnings
         self._stop = False
-        self._socket.bind(self._connection_address)
+        self._socket.start()
 
         while not self._stop:
             # This allows the server to check for stop in case messages do not arrive

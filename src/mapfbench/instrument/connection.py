@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Any
 
+import msgpack
 import zmq
 
 
@@ -16,7 +17,7 @@ class Socket(ABC):
         pass
 
     def send_message(self, label: str, content: Any):
-        message = {"label": label, "content": content}
+        message = {"label": label, "content": msgpack.dumps(content)}
         self._socket.send_json(message)
 
     def receive_message(self) -> dict[str, Any]:
@@ -27,6 +28,7 @@ class Socket(ABC):
             continue
 
         received = self._socket.recv_json()
+        received.update({"content": msgpack.loads(received["content"])})
         return received
 
 
