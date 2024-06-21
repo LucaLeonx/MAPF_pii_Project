@@ -7,9 +7,12 @@ License: GPLv3
 Requires-Python: >=3.9
 Description-Content-Type: text/markdown
 License-File: LICENSE.txt
+Requires-Dist: msgpack
 Requires-Dist: numpy
+Requires-Dist: tornado
 Requires-Dist: psutil
 Requires-Dist: pyyaml
+Requires-Dist: pyzmq
 Provides-Extra: build
 Requires-Dist: build; extra == "build"
 Requires-Dist: setuptools; extra == "build"

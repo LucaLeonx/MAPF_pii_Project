@@ -16,7 +16,6 @@ license = {text = "GPLv3"}
 dependencies = [
     "msgpack",
     "numpy",
-    "tornado",
     "psutil",
     "pyyaml",
     "pyzmq"

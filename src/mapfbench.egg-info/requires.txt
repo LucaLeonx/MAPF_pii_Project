@@ -1,6 +1,9 @@
+msgpack
 numpy
+tornado
 psutil
 pyyaml
+pyzmq
 
 [build]
 build
