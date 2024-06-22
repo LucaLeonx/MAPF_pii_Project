@@ -8,7 +8,7 @@
     <title>mapfbench.description package &#8212; MAPFbench documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d1102ebc" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
-    <script src="../_static/documentation_options.js?v=c9e14700"></script>
+    <script src="../_static/documentation_options.js?v=60dbed4a"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -37,17 +37,321 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
 </section>
-<section id="mapfbench-description-mapscheme-module">
-<h2>mapfbench.description.mapscheme module<a class="headerlink" href="#mapfbench-description-mapscheme-module" title="Link to this heading">¶</a></h2>
+<section id="module-mapfbench.description.mapscheme">
+<span id="mapfbench-description-mapscheme-module"></span><h2>mapfbench.description.mapscheme module<a class="headerlink" href="#module-mapfbench.description.mapscheme" title="Link to this heading">¶</a></h2>
 </section>
-<section id="mapfbench-description-plan-module">
-<h2>mapfbench.description.plan module<a class="headerlink" href="#mapfbench-description-plan-module" title="Link to this heading">¶</a></h2>
+<section id="module-mapfbench.description.plan">
+<span id="mapfbench-description-plan-module"></span><h2>mapfbench.description.plan module<a class="headerlink" href="#module-mapfbench.description.plan" title="Link to this heading">¶</a></h2>
+<p>Module for representing a plan to solve a specific test scenario</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="mapfbench.description.plan.Action">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mapfbench.description.plan.</span></span><span class="sig-name descname"><span class="pre">Action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subject_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">action_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#mapfbench.description.plan.ActionType" title="mapfbench.description.plan.ActionType"><span class="pre">ActionType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mapfbench/description/plan.html#Action"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mapfbench.description.plan.Action" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents an action performed by an Agent as part of the plan</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mapfbench.description.plan.Action.action_type">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">action_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#mapfbench.description.plan.ActionType" title="mapfbench.description.plan.ActionType"><span class="pre">ActionType</span></a></em><a class="headerlink" href="#mapfbench.description.plan.Action.action_type" title="Link to this definition">¶</a></dt>
+<dd><p>The type of action performed by the agent</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mapfbench.description.plan.Action.decode">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#mapfbench.description.plan.Action" title="mapfbench.description.plan.Action"><span class="pre">Action</span></a></span></span><a class="reference internal" href="../_modules/mapfbench/description/plan.html#Action.decode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mapfbench.description.plan.Action.decode" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mapfbench.description.plan.Action.encode">
+<span class="sig-name descname"><span class="pre">encode</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/mapfbench/description/plan.html#Action.encode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mapfbench.description.plan.Action.encode" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mapfbench.description.plan.Action.end_position">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">end_position</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">array</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#mapfbench.description.plan.Action.end_position" title="Link to this definition">¶</a></dt>
+<dd><p>The ending position of the agent before the action</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mapfbench.description.plan.Action.start_position">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">start_position</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">array</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#mapfbench.description.plan.Action.start_position" title="Link to this definition">¶</a></dt>
+<dd><p>The starting position of the agent before the action</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mapfbench.description.plan.Action.subject_id">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">subject_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#mapfbench.description.plan.Action.subject_id" title="Link to this definition">¶</a></dt>
+<dd><p>The ID of the Agent performing the Action</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mapfbench.description.plan.Action.timestep">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">timestep</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#mapfbench.description.plan.Action.timestep" title="Link to this definition">¶</a></dt>
+<dd><p>The timestep at which the action is performed</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mapfbench.description.plan.ActionType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mapfbench.description.plan.</span></span><span class="sig-name descname"><span class="pre">ActionType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mapfbench/description/plan.html#ActionType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mapfbench.description.plan.ActionType" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<p>Possible types of actions</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="mapfbench.description.plan.ActionType.MOVE">
+<span class="sig-name descname"><span class="pre">MOVE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#mapfbench.description.plan.ActionType.MOVE" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="mapfbench.description.plan.ActionType.WAIT">
+<span class="sig-name descname"><span class="pre">WAIT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#mapfbench.description.plan.ActionType.WAIT" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mapfbench.description.plan.Plan">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mapfbench.description.plan.</span></span><span class="sig-name descname"><span class="pre">Plan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scenario</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#mapfbench.description.scenario.Scenario" title="mapfbench.description.scenario.Scenario"><span class="pre">Scenario</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">actions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#mapfbench.description.plan.Action" title="mapfbench.description.plan.Action"><span class="pre">Action</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mapfbench/description/plan.html#Plan"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mapfbench.description.plan.Plan" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents a plan to solve a specified Scenario
+The plan comprises the actions performed by each agent.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mapfbench.description.plan.Plan.actions">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">actions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">array</span></em><a class="headerlink" href="#mapfbench.description.plan.Plan.actions" title="Link to this definition">¶</a></dt>
+<dd><p>The list of the actions taken by the agents as part of the plans</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mapfbench.description.plan.Plan.agent_plan_by_id">
+<span class="sig-name descname"><span class="pre">agent_plan_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">agent_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">array</span></span></span><a class="reference internal" href="../_modules/mapfbench/description/plan.html#Plan.agent_plan_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mapfbench.description.plan.Plan.agent_plan_by_id" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the actions of the agent with the specified ID.
+If no agent with the given ID exists, None is returned</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>agent_id</strong> (<em>int</em>) – The ID of the agent whose actions are sought</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The list with the actions of the agent, None
+if the agent with the given ID does not exist</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[<a class="reference internal" href="#mapfbench.description.plan.Action" title="mapfbench.description.plan.Action">Action</a>], optional</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mapfbench.description.plan.Plan.agent_plans">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">agent_plans</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#mapfbench.description.scenario.Agent" title="mapfbench.description.scenario.Agent"><span class="pre">Agent</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#mapfbench.description.plan.Action" title="mapfbench.description.plan.Action"><span class="pre">Action</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#mapfbench.description.plan.Plan.agent_plans" title="Link to this definition">¶</a></dt>
+<dd><p>The plans of the agents, taken separately</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A dictionary with the agents on the map as keys
+and the list of actions they perform as values</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict[<a class="reference internal" href="#mapfbench.description.scenario.Agent" title="mapfbench.description.scenario.Agent">Agent</a>, list[<a class="reference internal" href="#mapfbench.description.plan.Action" title="mapfbench.description.plan.Action">Action</a>]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mapfbench.description.plan.Plan.decode">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#mapfbench.description.plan.Plan" title="mapfbench.description.plan.Plan"><span class="pre">Plan</span></a></span></span><a class="reference internal" href="../_modules/mapfbench/description/plan.html#Plan.decode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mapfbench.description.plan.Plan.decode" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mapfbench.description.plan.Plan.encode">
+<span class="sig-name descname"><span class="pre">encode</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/mapfbench/description/plan.html#Plan.encode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mapfbench.description.plan.Plan.encode" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mapfbench.description.plan.Plan.is_solved">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_solved</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#mapfbench.description.plan.Plan.is_solved" title="Link to this definition">¶</a></dt>
+<dd><p>Whether the plan solves the scenario, that is all the agents
+reach their objective position</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mapfbench.description.plan.Plan.memory_used">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">memory_used</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#mapfbench.description.plan.Plan.memory_used" title="Link to this definition">¶</a></dt>
+<dd><p>The memory usage in KB of the algorithm which computed the plan,
+if available</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mapfbench.description.plan.Plan.metadata">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">metadata</span></span><a class="headerlink" href="#mapfbench.description.plan.Plan.metadata" title="Link to this definition">¶</a></dt>
+<dd><p>The metadata associated with the plan</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mapfbench.description.plan.Plan.running_time">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">running_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#mapfbench.description.plan.Plan.running_time" title="Link to this definition">¶</a></dt>
+<dd><p>The running time in ms of the algorithm which computed the plan,
+if available</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mapfbench.description.plan.Plan.scenario">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">scenario</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#mapfbench.description.scenario.Scenario" title="mapfbench.description.scenario.Scenario"><span class="pre">Scenario</span></a></em><a class="headerlink" href="#mapfbench.description.plan.Plan.scenario" title="Link to this definition">¶</a></dt>
+<dd><p>The scenario solved by the plan</p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="mapfbench-description-scenario-module">
-<h2>mapfbench.description.scenario module<a class="headerlink" href="#mapfbench-description-scenario-module" title="Link to this heading">¶</a></h2>
+<section id="module-mapfbench.description.scenario">
+<span id="mapfbench-description-scenario-module"></span><h2>mapfbench.description.scenario module<a class="headerlink" href="#module-mapfbench.description.scenario" title="Link to this heading">¶</a></h2>
+<p>Classes used to define a test scenario</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="mapfbench.description.scenario.Agent">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mapfbench.description.scenario.</span></span><span class="sig-name descname"><span class="pre">Agent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">agent_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objective_position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mapfbench/description/scenario.html#Agent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mapfbench.description.scenario.Agent" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents a single agent on the map
+Agents are uniquely identified by their IDs,
+so the __eq__ comparison checks only them</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="mapfbench.description.scenario.Agent.decode">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#mapfbench.description.scenario.Agent" title="mapfbench.description.scenario.Agent"><span class="pre">Agent</span></a></span></span><a class="reference internal" href="../_modules/mapfbench/description/scenario.html#Agent.decode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mapfbench.description.scenario.Agent.decode" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mapfbench.description.scenario.Agent.encode">
+<span class="sig-name descname"><span class="pre">encode</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/mapfbench/description/scenario.html#Agent.encode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mapfbench.description.scenario.Agent.encode" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mapfbench.description.scenario.Agent.id">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#mapfbench.description.scenario.Agent.id" title="Link to this definition">¶</a></dt>
+<dd><p>The identifying number of the agent</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mapfbench.description.scenario.Agent.objective_position">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">objective_position</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">array</span></em><a class="headerlink" href="#mapfbench.description.scenario.Agent.objective_position" title="Link to this definition">¶</a></dt>
+<dd><p>The objective position of the agent on the map</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mapfbench.description.scenario.Agent.start_position">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">start_position</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">array</span></em><a class="headerlink" href="#mapfbench.description.scenario.Agent.start_position" title="Link to this definition">¶</a></dt>
+<dd><p>The initial position of the agent on the map</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mapfbench.description.scenario.AgentReference">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mapfbench.description.scenario.</span></span><span class="sig-name descname"><span class="pre">AgentReference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">agent_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mapfbench/description/scenario.html#AgentReference"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mapfbench.description.scenario.AgentReference" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#mapfbench.description.scenario.Agent" title="mapfbench.description.scenario.Agent"><code class="xref py py-class docutils literal notranslate"><span class="pre">Agent</span></code></a></p>
+<p>Class that represents a reference to an agent, using its ID only.
+Use this class only to refer to an Agent used as key in a collection;
+the getters of start_position and objective_positions are overridden
+to return None.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mapfbench.description.scenario.AgentReference.end_position">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">end_position</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#mapfbench.description.scenario.AgentReference.end_position" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mapfbench.description.scenario.AgentReference.start_position">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">start_position</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#mapfbench.description.scenario.AgentReference.start_position" title="Link to this definition">¶</a></dt>
+<dd><p>The initial position of the agent on the map</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mapfbench.description.scenario.Scenario">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mapfbench.description.scenario.</span></span><span class="sig-name descname"><span class="pre">Scenario</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">map_scheme</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="mapfbench.description.maps.html#mapfbench.description.maps.mapscheme.MapScheme" title="mapfbench.description.maps.mapscheme.MapScheme"><span class="pre">MapScheme</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">agents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#mapfbench.description.scenario.Agent" title="mapfbench.description.scenario.Agent"><span class="pre">Agent</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mapfbench/description/scenario.html#Scenario"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mapfbench.description.scenario.Scenario" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents a test scenario, characterized by a map and agents on it</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mapfbench.description.scenario.Scenario.agent_ids">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">agent_ids</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#mapfbench.description.scenario.Scenario.agent_ids" title="Link to this definition">¶</a></dt>
+<dd><p>The ids of the agents associated with the scenario</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mapfbench.description.scenario.Scenario.agents">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">agents</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">array</span></em><a class="headerlink" href="#mapfbench.description.scenario.Scenario.agents" title="Link to this definition">¶</a></dt>
+<dd><p>A list of the agents associated with the scenario</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mapfbench.description.scenario.Scenario.agents_num">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">agents_num</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#mapfbench.description.scenario.Scenario.agents_num" title="Link to this definition">¶</a></dt>
+<dd><p>The number of agents associated with the scenario</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mapfbench.description.scenario.Scenario.decode">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#mapfbench.description.scenario.Scenario" title="mapfbench.description.scenario.Scenario"><span class="pre">Scenario</span></a></span></span><a class="reference internal" href="../_modules/mapfbench/description/scenario.html#Scenario.decode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mapfbench.description.scenario.Scenario.decode" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mapfbench.description.scenario.Scenario.encode">
+<span class="sig-name descname"><span class="pre">encode</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/mapfbench/description/scenario.html#Scenario.encode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mapfbench.description.scenario.Scenario.encode" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mapfbench.description.scenario.Scenario.from_position_lists">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_position_lists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">map_scheme</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="mapfbench.description.maps.html#mapfbench.description.maps.mapscheme.MapScheme" title="mapfbench.description.maps.mapscheme.MapScheme"><span class="pre">MapScheme</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_positions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objective_positions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mapfbench/description/scenario.html#Scenario.from_position_lists"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mapfbench.description.scenario.Scenario.from_position_lists" title="Link to this definition">¶</a></dt>
+<dd><p>Generates a scenario from a list of starting positions and objectives.
+The start and objective positions with the same index i in the lists are
+associated to the Agent with ID i+1.
+If the lists have different length, they are truncated at the shortest length</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>map_scheme</strong> (<a class="reference internal" href="mapfbench.description.maps.html#mapfbench.description.maps.mapscheme.MapScheme" title="mapfbench.description.maps.mapscheme.MapScheme"><em>MapScheme</em></a>) – The map used for the scenario</p></li>
+<li><p><strong>start_positions</strong> (<em>list</em><em>[</em><em>np.array</em><em>]</em>) – The starting positions of the agents</p></li>
+<li><p><strong>objective_positions</strong> (<em>list</em><em>[</em><em>np.array</em><em>]</em>) – The objectives positions of the agents</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>A Scenario instance, where the map is the provided one</em></p></li>
+<li><p><em>and the Agents have start position and objectives positions</em></p></li>
+<li><p><em>associated based on their index in the lists</em></p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If one of the lists contains an invalid position,
+    no present in the map</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mapfbench.description.scenario.Scenario.map">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">map</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="mapfbench.description.maps.html#mapfbench.description.maps.mapscheme.MapScheme" title="mapfbench.description.maps.mapscheme.MapScheme"><span class="pre">MapScheme</span></a></em><a class="headerlink" href="#mapfbench.description.scenario.Scenario.map" title="Link to this definition">¶</a></dt>
+<dd><p>The map used for the scenario</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mapfbench.description.scenario.Scenario.metadata">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">metadata</span></span><a class="headerlink" href="#mapfbench.description.scenario.Scenario.metadata" title="Link to this definition">¶</a></dt>
+<dd><p>The metadata associated with the scenario</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mapfbench.description.scenario.Scenario.objective_positions">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">objective_positions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">array</span></em><a class="headerlink" href="#mapfbench.description.scenario.Scenario.objective_positions" title="Link to this definition">¶</a></dt>
+<dd><p>The positions of the objectives in the scenario</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mapfbench.description.scenario.Scenario.start_positions">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">start_positions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">array</span></em><a class="headerlink" href="#mapfbench.description.scenario.Scenario.start_positions" title="Link to this definition">¶</a></dt>
+<dd><p>The start positions of the agents in the scenario</p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
+<section id="module-mapfbench.description">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-mapfbench.description" title="Link to this heading">¶</a></h2>
 </section>
 </section>
 
@@ -75,24 +379,86 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/profiling.html">Profiling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/metrics.html">Metrics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/results_format.html">Format of results</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="mapfbench.html">Code documentation</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="mapfbench.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">mapfbench.description package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#mapfbench-description-mapscheme-module">mapfbench.description.mapscheme module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#mapfbench-description-plan-module">mapfbench.description.plan module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#mapfbench-description-scenario-module">mapfbench.description.scenario module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-contents">Module contents</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Code documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="main.html">main module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="mapfbench.html">mapfbench package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="mapfbench.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">mapfbench.description package</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-mapfbench.description.mapscheme">mapfbench.description.mapscheme module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-mapfbench.description.plan">mapfbench.description.plan module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#mapfbench.description.plan.Action"><code class="docutils literal notranslate"><span class="pre">Action</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.description.plan.Action.action_type"><code class="docutils literal notranslate"><span class="pre">Action.action_type</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.description.plan.Action.decode"><code class="docutils literal notranslate"><span class="pre">Action.decode()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.description.plan.Action.encode"><code class="docutils literal notranslate"><span class="pre">Action.encode()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.description.plan.Action.end_position"><code class="docutils literal notranslate"><span class="pre">Action.end_position</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.description.plan.Action.start_position"><code class="docutils literal notranslate"><span class="pre">Action.start_position</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.description.plan.Action.subject_id"><code class="docutils literal notranslate"><span class="pre">Action.subject_id</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.description.plan.Action.timestep"><code class="docutils literal notranslate"><span class="pre">Action.timestep</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="mapfbench.export.html">mapfbench.export package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mapfbench.importer.html">mapfbench.importer package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mapfbench.instrument.html">mapfbench.instrument package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html">mapfbench.metrics package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mapfbench.utils.html">mapfbench.utils package</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#mapfbench.description.plan.ActionType"><code class="docutils literal notranslate"><span class="pre">ActionType</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.description.plan.ActionType.MOVE"><code class="docutils literal notranslate"><span class="pre">ActionType.MOVE</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.description.plan.ActionType.WAIT"><code class="docutils literal notranslate"><span class="pre">ActionType.WAIT</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="mapfbench.html#module-contents">Module contents</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#mapfbench.description.plan.Plan"><code class="docutils literal notranslate"><span class="pre">Plan</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.description.plan.Plan.actions"><code class="docutils literal notranslate"><span class="pre">Plan.actions</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.description.plan.Plan.agent_plan_by_id"><code class="docutils literal notranslate"><span class="pre">Plan.agent_plan_by_id()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.description.plan.Plan.agent_plans"><code class="docutils literal notranslate"><span class="pre">Plan.agent_plans</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.description.plan.Plan.decode"><code class="docutils literal notranslate"><span class="pre">Plan.decode()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.description.plan.Plan.encode"><code class="docutils literal notranslate"><span class="pre">Plan.encode()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.description.plan.Plan.is_solved"><code class="docutils literal notranslate"><span class="pre">Plan.is_solved</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.description.plan.Plan.memory_used"><code class="docutils literal notranslate"><span class="pre">Plan.memory_used</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.description.plan.Plan.metadata"><code class="docutils literal notranslate"><span class="pre">Plan.metadata</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.description.plan.Plan.running_time"><code class="docutils literal notranslate"><span class="pre">Plan.running_time</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.description.plan.Plan.scenario"><code class="docutils literal notranslate"><span class="pre">Plan.scenario</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#module-mapfbench.description.scenario">mapfbench.description.scenario module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#mapfbench.description.scenario.Agent"><code class="docutils literal notranslate"><span class="pre">Agent</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.description.scenario.Agent.decode"><code class="docutils literal notranslate"><span class="pre">Agent.decode()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.description.scenario.Agent.encode"><code class="docutils literal notranslate"><span class="pre">Agent.encode()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.description.scenario.Agent.id"><code class="docutils literal notranslate"><span class="pre">Agent.id</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.description.scenario.Agent.objective_position"><code class="docutils literal notranslate"><span class="pre">Agent.objective_position</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.description.scenario.Agent.start_position"><code class="docutils literal notranslate"><span class="pre">Agent.start_position</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#mapfbench.description.scenario.AgentReference"><code class="docutils literal notranslate"><span class="pre">AgentReference</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.description.scenario.AgentReference.end_position"><code class="docutils literal notranslate"><span class="pre">AgentReference.end_position</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.description.scenario.AgentReference.start_position"><code class="docutils literal notranslate"><span class="pre">AgentReference.start_position</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#mapfbench.description.scenario.Scenario"><code class="docutils literal notranslate"><span class="pre">Scenario</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.description.scenario.Scenario.agent_ids"><code class="docutils literal notranslate"><span class="pre">Scenario.agent_ids</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.description.scenario.Scenario.agents"><code class="docutils literal notranslate"><span class="pre">Scenario.agents</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.description.scenario.Scenario.agents_num"><code class="docutils literal notranslate"><span class="pre">Scenario.agents_num</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.description.scenario.Scenario.decode"><code class="docutils literal notranslate"><span class="pre">Scenario.decode()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.description.scenario.Scenario.encode"><code class="docutils literal notranslate"><span class="pre">Scenario.encode()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.description.scenario.Scenario.from_position_lists"><code class="docutils literal notranslate"><span class="pre">Scenario.from_position_lists()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.description.scenario.Scenario.map"><code class="docutils literal notranslate"><span class="pre">Scenario.map</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.description.scenario.Scenario.metadata"><code class="docutils literal notranslate"><span class="pre">Scenario.metadata</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.description.scenario.Scenario.objective_positions"><code class="docutils literal notranslate"><span class="pre">Scenario.objective_positions</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.description.scenario.Scenario.start_positions"><code class="docutils literal notranslate"><span class="pre">Scenario.start_positions</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#module-mapfbench.description">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.export.html">mapfbench.export package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.importer.html">mapfbench.importer package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.instrument.html">mapfbench.instrument package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.metrics.html">mapfbench.metrics package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.utils.html">mapfbench.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.html#module-mapfbench">Module contents</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -101,9 +467,11 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">src</a><ul>
   <li><a href="mapfbench.html">mapfbench package</a><ul>
       <li>Previous: <a href="mapfbench.html" title="previous chapter">mapfbench package</a></li>
       <li>Next: <a href="mapfbench.export.html" title="next chapter">mapfbench.export package</a></li>
+  </ul></li>
   </ul></li>
   </ul></li>
 </ul>

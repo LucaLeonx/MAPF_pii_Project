@@ -8,7 +8,7 @@
     <title>Installation &#8212; MAPFbench documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d1102ebc" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
-    <script src="../_static/documentation_options.js?v=c9e14700"></script>
+    <script src="../_static/documentation_options.js?v=60dbed4a"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -73,7 +73,9 @@ where to install this and other packages:</p>
 </div>
 <p>Install dependencies, including optional ones</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>MAPF_pii_Project
-<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>.<span class="o">[</span>build,<span class="w"> </span>test,<span class="w"> </span>docs<span class="o">]</span>
+<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>.<span class="o">[</span>build<span class="o">]</span><span class="w"> </span>
+<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>.<span class="o">[</span>test<span class="o">]</span>
+<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>.<span class="o">[</span>docs<span class="o">]</span>
 </pre></div>
 </div>
 <p>This project is packaged using <a class="reference external" href="https://pypi.org/project/setuptools/">setuptools</a>
@@ -83,7 +85,7 @@ To generate the packages, from outside the project directory</p>
 </div>
 <p>Now the packaged wheel is available under MAPF_pii_Project/dist and can be
 manually installed</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>./MAPF_pii_Project/dist/mapfbench-1.0-py3-none-any.whl
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>./MAPF_pii_Project/dist/mapfbench-2.0-py3-none-any.whl
 </pre></div>
 </div>
 <p>To build the HTML version of the documentation using <a class="reference external" href="https://www.sphinx-doc.org/en/master/index.html">Sphinx</a> run</p>
@@ -125,7 +127,7 @@ and is written using <a class="reference external" href="https://myst-parser.rea
 <li class="toctree-l1"><a class="reference internal" href="profiling.html">Profiling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="metrics.html">Metrics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="results_format.html">Format of results</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../source/mapfbench.html">Code documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/modules.html">Code documentation</a></li>
 </ul>
 
 <div class="relations">

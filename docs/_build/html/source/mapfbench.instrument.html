@@ -8,7 +8,7 @@
     <title>mapfbench.instrument package &#8212; MAPFbench documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d1102ebc" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
-    <script src="../_static/documentation_options.js?v=c9e14700"></script>
+    <script src="../_static/documentation_options.js?v=60dbed4a"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -37,11 +37,67 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
 </section>
-<section id="mapfbench-instrument-planrecorder-module">
-<h2>mapfbench.instrument.planrecorder module<a class="headerlink" href="#mapfbench-instrument-planrecorder-module" title="Link to this heading">¶</a></h2>
+<section id="module-mapfbench.instrument.planrecorder">
+<span id="mapfbench-instrument-planrecorder-module"></span><h2>mapfbench.instrument.planrecorder module<a class="headerlink" href="#module-mapfbench.instrument.planrecorder" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="mapfbench.instrument.planrecorder.PlanRecorder">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mapfbench.instrument.planrecorder.</span></span><span class="sig-name descname"><span class="pre">PlanRecorder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scenario</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.scenario.Scenario" title="mapfbench.description.scenario.Scenario"><span class="pre">Scenario</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mapfbench/instrument/planrecorder.html#PlanRecorder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mapfbench.instrument.planrecorder.PlanRecorder" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py property">
+<dt class="sig sig-object py" id="mapfbench.instrument.planrecorder.PlanRecorder.actions">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">actions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">array</span></em><a class="headerlink" href="#mapfbench.instrument.planrecorder.PlanRecorder.actions" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mapfbench.instrument.planrecorder.PlanRecorder.end_profiling">
+<span class="sig-name descname"><span class="pre">end_profiling</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mapfbench/instrument/planrecorder.html#PlanRecorder.end_profiling"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mapfbench.instrument.planrecorder.PlanRecorder.end_profiling" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mapfbench.instrument.planrecorder.PlanRecorder.is_solved">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_solved</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#mapfbench.instrument.planrecorder.PlanRecorder.is_solved" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mapfbench.instrument.planrecorder.PlanRecorder.mark_as_solved">
+<span class="sig-name descname"><span class="pre">mark_as_solved</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mapfbench/instrument/planrecorder.html#PlanRecorder.mark_as_solved"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mapfbench.instrument.planrecorder.PlanRecorder.mark_as_solved" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mapfbench.instrument.planrecorder.PlanRecorder.plan">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">plan</span></span><a class="headerlink" href="#mapfbench.instrument.planrecorder.PlanRecorder.plan" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mapfbench.instrument.planrecorder.PlanRecorder.record">
+<span class="sig-name descname"><span class="pre">record</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mapfbench/instrument/planrecorder.html#PlanRecorder.record"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mapfbench.instrument.planrecorder.PlanRecorder.record" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mapfbench.instrument.planrecorder.PlanRecorder.record_move">
+<span class="sig-name descname"><span class="pre">record_move</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">agent_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mapfbench/instrument/planrecorder.html#PlanRecorder.record_move"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mapfbench.instrument.planrecorder.PlanRecorder.record_move" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mapfbench.instrument.planrecorder.PlanRecorder.record_wait">
+<span class="sig-name descname"><span class="pre">record_wait</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">agent_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mapfbench/instrument/planrecorder.html#PlanRecorder.record_wait"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mapfbench.instrument.planrecorder.PlanRecorder.record_wait" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="mapfbench.instrument.planrecorder.PlanRecorder.scenario">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">scenario</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="mapfbench.description.html#mapfbench.description.scenario.Scenario" title="mapfbench.description.scenario.Scenario"><span class="pre">Scenario</span></a></em><a class="headerlink" href="#mapfbench.instrument.planrecorder.PlanRecorder.scenario" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mapfbench.instrument.planrecorder.PlanRecorder.start_profiling">
+<span class="sig-name descname"><span class="pre">start_profiling</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mapfbench/instrument/planrecorder.html#PlanRecorder.start_profiling"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mapfbench.instrument.planrecorder.PlanRecorder.start_profiling" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
+<section id="module-mapfbench.instrument">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-mapfbench.instrument" title="Link to this heading">¶</a></h2>
 </section>
 </section>
 
@@ -69,22 +125,41 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/profiling.html">Profiling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/metrics.html">Metrics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/results_format.html">Format of results</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="mapfbench.html">Code documentation</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="mapfbench.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="mapfbench.description.html">mapfbench.description package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mapfbench.export.html">mapfbench.export package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mapfbench.importer.html">mapfbench.importer package</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">mapfbench.instrument package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#mapfbench-instrument-planrecorder-module">mapfbench.instrument.planrecorder module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-contents">Module contents</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Code documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="main.html">main module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="mapfbench.html">mapfbench package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="mapfbench.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html">mapfbench.description package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.export.html">mapfbench.export package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.importer.html">mapfbench.importer package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">mapfbench.instrument package</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-mapfbench.instrument.planrecorder">mapfbench.instrument.planrecorder module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#mapfbench.instrument.planrecorder.PlanRecorder"><code class="docutils literal notranslate"><span class="pre">PlanRecorder</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.instrument.planrecorder.PlanRecorder.actions"><code class="docutils literal notranslate"><span class="pre">PlanRecorder.actions</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.instrument.planrecorder.PlanRecorder.end_profiling"><code class="docutils literal notranslate"><span class="pre">PlanRecorder.end_profiling()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.instrument.planrecorder.PlanRecorder.is_solved"><code class="docutils literal notranslate"><span class="pre">PlanRecorder.is_solved</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.instrument.planrecorder.PlanRecorder.mark_as_solved"><code class="docutils literal notranslate"><span class="pre">PlanRecorder.mark_as_solved()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.instrument.planrecorder.PlanRecorder.plan"><code class="docutils literal notranslate"><span class="pre">PlanRecorder.plan</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.instrument.planrecorder.PlanRecorder.record"><code class="docutils literal notranslate"><span class="pre">PlanRecorder.record()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.instrument.planrecorder.PlanRecorder.record_move"><code class="docutils literal notranslate"><span class="pre">PlanRecorder.record_move()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.instrument.planrecorder.PlanRecorder.record_wait"><code class="docutils literal notranslate"><span class="pre">PlanRecorder.record_wait()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.instrument.planrecorder.PlanRecorder.scenario"><code class="docutils literal notranslate"><span class="pre">PlanRecorder.scenario</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mapfbench.instrument.planrecorder.PlanRecorder.start_profiling"><code class="docutils literal notranslate"><span class="pre">PlanRecorder.start_profiling()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html">mapfbench.metrics package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mapfbench.utils.html">mapfbench.utils package</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="mapfbench.html#module-contents">Module contents</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-mapfbench.instrument">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.metrics.html">mapfbench.metrics package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.utils.html">mapfbench.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.html#module-mapfbench">Module contents</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -93,9 +168,11 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">src</a><ul>
   <li><a href="mapfbench.html">mapfbench package</a><ul>
       <li>Previous: <a href="mapfbench.importer.html" title="previous chapter">mapfbench.importer package</a></li>
       <li>Next: <a href="mapfbench.metrics.html" title="next chapter">mapfbench.metrics package</a></li>
+  </ul></li>
   </ul></li>
   </ul></li>
 </ul>

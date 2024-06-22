@@ -46,7 +46,9 @@ Clone the project repository
 Install dependencies, including optional ones
 ```shell
  cd MAPF_pii_Project
- pip install -U .[build, test, docs]
+ pip install -U .[build] 
+ pip install -U .[test]
+ pip install -U .[docs]
 ```
 
 This project is packaged using [setuptools](https://pypi.org/project/setuptools/)

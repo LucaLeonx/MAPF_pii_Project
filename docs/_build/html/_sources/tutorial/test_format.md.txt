@@ -1,78 +1,89 @@
 # Format of the tests
 
-MAPFBench stores the information about a single test 
-in the class TestDescription. After retrieving a test
-from a BenchmarkInspector, it is possible to retrieve 
-the corresponding description with:
+Internally, MAPDbench uses its own formats to store the test instances.
+It is based on the following core components
 
-```{python}
-test = benchmark_inspector.request_random_test()
-test.test_description   # TestDescription 
+## GridMap
+
+This class represents a 2D Map. Its contents are either free cells or obstacle cells.
+
+The dimensions of the grid can be obtained with:
+
+```python
+grid.width, grid.height
 ```
-This class is characterized by the following properties:
 
-- A unique name for identification: `test.name`
-- A `Graph`, representing the map used for the benchmark: `test.graph`
-- A list of entities, representing the elements involved in the benchmark: agents, objectives, and obstacles: `test.entities`
+It is possible to get the list of free and occupied positions on the map as
 
-Always keep in mind that all the attributes describing
-the tests or the benchmarks are read_only
 
-## The _Graph_ class
+```python
+grid.free_positions
+grid.obstacles
+```
 
-The `Graph` class represents a graph with directed, weighted graph.
-Its `Node`s are uniquely identified by a non-negative integer index.
+These positions are provided as a NumPy matrix, with rows representing the positions (length 2 arrays:
+the first element is the x of the position, the second the y). The way to access position is similar to using
+a Python native list of lists.
+The coordinates follow the conventions of the .map file format. The upper-left corner is at coordinates
+(0, 0); the x increases horizontally, from left to right; the y increases vertically, from top to bottom.
 
-They are accessible with the property `graph.nodes`;
-To access the index of a node you can use `node.index`.
+## Agent
 
-The `Edge`s of the graph can be retrieved with `graph.edges`
-Edges attributes are:
-- The starting node: `edge.start_node`
-- The ending node: `edge.end_node`
-- The weight: `edge.weight`
+An Agent is identified by its id, start position and objective positions.
 
-It is possible to retrieve the nodes adjacent to one of the graph
-using the method `get_adjacent_nodes()`
+To access the properties of an agent
 
-There are other useful subclasses of Graph:
-- `UndirectedGraph`, representing an undirected graph. 
-It provides the property `graph.undirected_edges` to retrieve only
-undirected edges (without listing an edge twice)
-- `GridGraph`, an undirected graph where the nodes are arranged 
-to form a grid, and the weight of each edge is 1.
+```python
 
-An important property of `GridGraph`s is that nodes can be referenced
-using cartesian coordinates as well[^cantor]. The coordinates must be non-negative
-integers.
+agent.id
+agent.start_position
+agent.objective_position
+```
 
-For instance, the cell in the following grid corresponds to `Node(coords=(2, 3))`
-It is possible to access the coordinates corresponding to a node with
-`node.x` and `node.y`.
+Positions are supplied as NumPy arrays also in this case
 
-Moreover, the dimensions of the grid can be retrieved using `grid.rows` and `grid.cols`
+## Scenario
 
-[^cantor] Actually, every `Node` instance, regardless of the kind of graph used,
-is associated to a cartesian point. The implementation uses the [Cantor pairing function](https://en.wikipedia.org/wiki/Pairing_function#Cantor_pairing_function)
+A Scenario represents a MAPF problem instance to solve.
+It is characterized by a map and a list of agents in it.
 
-## Entities
+The following can be accessed as:
 
-In MAPFbench, an _entity_ is any object which occupies a node on the map
-The attributes common to any _entity_ are:
-- Its name, which identifies an entity within a test: `entity.name`
-- An optional `Node` reference for the starting position: `entity.start_position`
+```python
+scenario.map
+scenario.agents
+```
+Additional information about the agents can be obtained as well:
 
-The entities available in a test can be of three kinds:
-- Agents, which have an additional, required attribute `objective_name`, which
-identifies the objective which they must reach
-- Objectives
-- Obstacles
+```python
+scenario.agents_num
+scenario.agents_ids
+```
 
-It is possible to obtain the list of entities of each category 
-using the getters `test.agents`, `test.objectives`, `test.description`
+## Plan 
+
+A Plan represents a solution to a MAPF problem instance. It is characterized by the initial scenario
+and the actions performed by the agents. 
+
+```python
+plan.scenario
+plan.actions
+```
+
+It is possible to get also the plans for each agent, as a dictionary where
+agents are the keys and the values are the lists of actions performed by 
+each agent
+
+```python
+plan.agent_plans
+```
+
+However, it is better to use the other facilities of the library to register the actions in a plan
+and calculate the related metrics.
+
 
 ## Code documentation
 
 For a more detailed description of the classes used for the description of 
-the tests, see the relevant [code documentation](../source/mapfbench.description)
+the tests, see the relevant [code documentation](../source/mapfbench)
 

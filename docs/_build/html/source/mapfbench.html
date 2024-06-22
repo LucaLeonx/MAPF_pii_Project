@@ -8,13 +8,13 @@
     <title>mapfbench package &#8212; MAPFbench documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d1102ebc" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
-    <script src="../_static/documentation_options.js?v=c9e14700"></script>
+    <script src="../_static/documentation_options.js?v=60dbed4a"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="mapfbench.description package" href="mapfbench.description.html" />
-    <link rel="prev" title="Format of results" href="../tutorial/results_format.html" />
+    <link rel="prev" title="main module" href="main.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -40,10 +40,68 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="mapfbench.description.html">mapfbench.description package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="mapfbench.description.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mapfbench.description.html#mapfbench-description-mapscheme-module">mapfbench.description.mapscheme module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mapfbench.description.html#mapfbench-description-plan-module">mapfbench.description.plan module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mapfbench.description.html#mapfbench-description-scenario-module">mapfbench.description.scenario module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mapfbench.description.html#module-contents">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapfbench.description.html#module-mapfbench.description.mapscheme">mapfbench.description.mapscheme module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapfbench.description.html#module-mapfbench.description.plan">mapfbench.description.plan module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.plan.Action"><code class="docutils literal notranslate"><span class="pre">Action</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.plan.Action.action_type"><code class="docutils literal notranslate"><span class="pre">Action.action_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.plan.Action.decode"><code class="docutils literal notranslate"><span class="pre">Action.decode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.plan.Action.encode"><code class="docutils literal notranslate"><span class="pre">Action.encode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.plan.Action.end_position"><code class="docutils literal notranslate"><span class="pre">Action.end_position</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.plan.Action.start_position"><code class="docutils literal notranslate"><span class="pre">Action.start_position</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.plan.Action.subject_id"><code class="docutils literal notranslate"><span class="pre">Action.subject_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.plan.Action.timestep"><code class="docutils literal notranslate"><span class="pre">Action.timestep</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.plan.ActionType"><code class="docutils literal notranslate"><span class="pre">ActionType</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.plan.ActionType.MOVE"><code class="docutils literal notranslate"><span class="pre">ActionType.MOVE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.plan.ActionType.WAIT"><code class="docutils literal notranslate"><span class="pre">ActionType.WAIT</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.plan.Plan"><code class="docutils literal notranslate"><span class="pre">Plan</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.plan.Plan.actions"><code class="docutils literal notranslate"><span class="pre">Plan.actions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.plan.Plan.agent_plan_by_id"><code class="docutils literal notranslate"><span class="pre">Plan.agent_plan_by_id()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.plan.Plan.agent_plans"><code class="docutils literal notranslate"><span class="pre">Plan.agent_plans</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.plan.Plan.decode"><code class="docutils literal notranslate"><span class="pre">Plan.decode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.plan.Plan.encode"><code class="docutils literal notranslate"><span class="pre">Plan.encode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.plan.Plan.is_solved"><code class="docutils literal notranslate"><span class="pre">Plan.is_solved</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.plan.Plan.memory_used"><code class="docutils literal notranslate"><span class="pre">Plan.memory_used</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.plan.Plan.metadata"><code class="docutils literal notranslate"><span class="pre">Plan.metadata</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.plan.Plan.running_time"><code class="docutils literal notranslate"><span class="pre">Plan.running_time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.plan.Plan.scenario"><code class="docutils literal notranslate"><span class="pre">Plan.scenario</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mapfbench.description.html#module-mapfbench.description.scenario">mapfbench.description.scenario module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.scenario.Agent"><code class="docutils literal notranslate"><span class="pre">Agent</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.scenario.Agent.decode"><code class="docutils literal notranslate"><span class="pre">Agent.decode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.scenario.Agent.encode"><code class="docutils literal notranslate"><span class="pre">Agent.encode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.scenario.Agent.id"><code class="docutils literal notranslate"><span class="pre">Agent.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.scenario.Agent.objective_position"><code class="docutils literal notranslate"><span class="pre">Agent.objective_position</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.scenario.Agent.start_position"><code class="docutils literal notranslate"><span class="pre">Agent.start_position</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.scenario.AgentReference"><code class="docutils literal notranslate"><span class="pre">AgentReference</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.scenario.AgentReference.end_position"><code class="docutils literal notranslate"><span class="pre">AgentReference.end_position</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.scenario.AgentReference.start_position"><code class="docutils literal notranslate"><span class="pre">AgentReference.start_position</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.scenario.Scenario"><code class="docutils literal notranslate"><span class="pre">Scenario</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.scenario.Scenario.agent_ids"><code class="docutils literal notranslate"><span class="pre">Scenario.agent_ids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.scenario.Scenario.agents"><code class="docutils literal notranslate"><span class="pre">Scenario.agents</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.scenario.Scenario.agents_num"><code class="docutils literal notranslate"><span class="pre">Scenario.agents_num</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.scenario.Scenario.decode"><code class="docutils literal notranslate"><span class="pre">Scenario.decode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.scenario.Scenario.encode"><code class="docutils literal notranslate"><span class="pre">Scenario.encode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.scenario.Scenario.from_position_lists"><code class="docutils literal notranslate"><span class="pre">Scenario.from_position_lists()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.scenario.Scenario.map"><code class="docutils literal notranslate"><span class="pre">Scenario.map</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.scenario.Scenario.metadata"><code class="docutils literal notranslate"><span class="pre">Scenario.metadata</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.scenario.Scenario.objective_positions"><code class="docutils literal notranslate"><span class="pre">Scenario.objective_positions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html#mapfbench.description.scenario.Scenario.start_positions"><code class="docutils literal notranslate"><span class="pre">Scenario.start_positions</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mapfbench.description.html#module-mapfbench.description">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="mapfbench.export.html">mapfbench.export package</a><ul>
@@ -54,37 +112,158 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="mapfbench.importer.html">mapfbench.importer package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="mapfbench.importer.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mapfbench.importer.html#mapfbench-importer-importer-module">mapfbench.importer.importer module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mapfbench.importer.html#module-contents">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapfbench.importer.html#module-mapfbench.importer.importer">mapfbench.importer.importer module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.importer.html#mapfbench.importer.importer.import_map"><code class="docutils literal notranslate"><span class="pre">import_map()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.importer.html#mapfbench.importer.importer.import_scenarios"><code class="docutils literal notranslate"><span class="pre">import_scenarios()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mapfbench.importer.html#module-mapfbench.importer">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="mapfbench.instrument.html">mapfbench.instrument package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="mapfbench.instrument.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mapfbench.instrument.html#mapfbench-instrument-planrecorder-module">mapfbench.instrument.planrecorder module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mapfbench.instrument.html#module-contents">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapfbench.instrument.html#module-mapfbench.instrument.planrecorder">mapfbench.instrument.planrecorder module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.instrument.html#mapfbench.instrument.planrecorder.PlanRecorder"><code class="docutils literal notranslate"><span class="pre">PlanRecorder</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.instrument.html#mapfbench.instrument.planrecorder.PlanRecorder.actions"><code class="docutils literal notranslate"><span class="pre">PlanRecorder.actions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.instrument.html#mapfbench.instrument.planrecorder.PlanRecorder.end_profiling"><code class="docutils literal notranslate"><span class="pre">PlanRecorder.end_profiling()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.instrument.html#mapfbench.instrument.planrecorder.PlanRecorder.is_solved"><code class="docutils literal notranslate"><span class="pre">PlanRecorder.is_solved</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.instrument.html#mapfbench.instrument.planrecorder.PlanRecorder.mark_as_solved"><code class="docutils literal notranslate"><span class="pre">PlanRecorder.mark_as_solved()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.instrument.html#mapfbench.instrument.planrecorder.PlanRecorder.plan"><code class="docutils literal notranslate"><span class="pre">PlanRecorder.plan</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.instrument.html#mapfbench.instrument.planrecorder.PlanRecorder.record"><code class="docutils literal notranslate"><span class="pre">PlanRecorder.record()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.instrument.html#mapfbench.instrument.planrecorder.PlanRecorder.record_move"><code class="docutils literal notranslate"><span class="pre">PlanRecorder.record_move()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.instrument.html#mapfbench.instrument.planrecorder.PlanRecorder.record_wait"><code class="docutils literal notranslate"><span class="pre">PlanRecorder.record_wait()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.instrument.html#mapfbench.instrument.planrecorder.PlanRecorder.scenario"><code class="docutils literal notranslate"><span class="pre">PlanRecorder.scenario</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.instrument.html#mapfbench.instrument.planrecorder.PlanRecorder.start_profiling"><code class="docutils literal notranslate"><span class="pre">PlanRecorder.start_profiling()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mapfbench.instrument.html#module-mapfbench.instrument">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="mapfbench.metrics.html">mapfbench.metrics package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="mapfbench.metrics.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mapfbench.metrics.html#mapfbench-metrics-conflict-module">mapfbench.metrics.conflict module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mapfbench.metrics.html#mapfbench-metrics-metrics-module">mapfbench.metrics.metrics module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mapfbench.metrics.html#mapfbench-metrics-metrics-generation-module">mapfbench.metrics.metrics_generation module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mapfbench.metrics.html#mapfbench-metrics-results-module">mapfbench.metrics.results module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mapfbench.metrics.html#module-contents">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapfbench.metrics.html#module-mapfbench.metrics.conflict">mapfbench.metrics.conflict module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.conflict.Conflict"><code class="docutils literal notranslate"><span class="pre">Conflict</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.conflict.Conflict.agent1"><code class="docutils literal notranslate"><span class="pre">Conflict.agent1</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.conflict.Conflict.agent2"><code class="docutils literal notranslate"><span class="pre">Conflict.agent2</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.conflict.Conflict.agents"><code class="docutils literal notranslate"><span class="pre">Conflict.agents</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.conflict.Conflict.timestep"><code class="docutils literal notranslate"><span class="pre">Conflict.timestep</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.conflict.EdgeConflict"><code class="docutils literal notranslate"><span class="pre">EdgeConflict</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.conflict.EdgeConflict.agent1_start"><code class="docutils literal notranslate"><span class="pre">EdgeConflict.agent1_start</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.conflict.EdgeConflict.agent2_start"><code class="docutils literal notranslate"><span class="pre">EdgeConflict.agent2_start</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.conflict.EdgeConflict.edge"><code class="docutils literal notranslate"><span class="pre">EdgeConflict.edge</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.conflict.ObstacleConflict"><code class="docutils literal notranslate"><span class="pre">ObstacleConflict</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.conflict.VertexConflict"><code class="docutils literal notranslate"><span class="pre">VertexConflict</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.conflict.VertexConflict.position"><code class="docutils literal notranslate"><span class="pre">VertexConflict.position</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mapfbench.metrics.html#module-mapfbench.metrics.metrics">mapfbench.metrics.metrics module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics.AgentId"><code class="docutils literal notranslate"><span class="pre">AgentId</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics.AverageFuelConsumed"><code class="docutils literal notranslate"><span class="pre">AverageFuelConsumed</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics.AverageMakespan"><code class="docutils literal notranslate"><span class="pre">AverageMakespan</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics.AverageMemoryUsed"><code class="docutils literal notranslate"><span class="pre">AverageMemoryUsed</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics.AverageRunningTime"><code class="docutils literal notranslate"><span class="pre">AverageRunningTime</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics.AverageSumOfCosts"><code class="docutils literal notranslate"><span class="pre">AverageSumOfCosts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics.Bucket"><code class="docutils literal notranslate"><span class="pre">Bucket</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics.Distance"><code class="docutils literal notranslate"><span class="pre">Distance</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics.EdgeConflicts"><code class="docutils literal notranslate"><span class="pre">EdgeConflicts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics.FuelConsumed"><code class="docutils literal notranslate"><span class="pre">FuelConsumed</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics.Makespan"><code class="docutils literal notranslate"><span class="pre">Makespan</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics.MapDimensions"><code class="docutils literal notranslate"><span class="pre">MapDimensions</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics.MaxTime"><code class="docutils literal notranslate"><span class="pre">MaxTime</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics.MemoryUsed"><code class="docutils literal notranslate"><span class="pre">MemoryUsed</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics.NumberOfAgents"><code class="docutils literal notranslate"><span class="pre">NumberOfAgents</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics.NumberOfEdgeConflicts"><code class="docutils literal notranslate"><span class="pre">NumberOfEdgeConflicts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics.NumberOfScenarios"><code class="docutils literal notranslate"><span class="pre">NumberOfScenarios</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics.NumberOfSuccesses"><code class="docutils literal notranslate"><span class="pre">NumberOfSuccesses</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics.NumberOfVertexConflicts"><code class="docutils literal notranslate"><span class="pre">NumberOfVertexConflicts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics.ObstacleRate"><code class="docutils literal notranslate"><span class="pre">ObstacleRate</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics.RunningTime"><code class="docutils literal notranslate"><span class="pre">RunningTime</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics.ScenarioFile"><code class="docutils literal notranslate"><span class="pre">ScenarioFile</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics.Solved"><code class="docutils literal notranslate"><span class="pre">Solved</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics.Success"><code class="docutils literal notranslate"><span class="pre">Success</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics.SuccessRate"><code class="docutils literal notranslate"><span class="pre">SuccessRate</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics.SumOfCosts"><code class="docutils literal notranslate"><span class="pre">SumOfCosts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics.VertexConflicts"><code class="docutils literal notranslate"><span class="pre">VertexConflicts</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mapfbench.metrics.html#module-mapfbench.metrics.metrics_generation">mapfbench.metrics.metrics_generation module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics_generation.AggregateMetric"><code class="docutils literal notranslate"><span class="pre">AggregateMetric</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics_generation.AverageMetric"><code class="docutils literal notranslate"><span class="pre">AverageMetric</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics_generation.GetterMetric"><code class="docutils literal notranslate"><span class="pre">GetterMetric</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics_generation.ListMetric"><code class="docutils literal notranslate"><span class="pre">ListMetric</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics_generation.MaxMetric"><code class="docutils literal notranslate"><span class="pre">MaxMetric</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics_generation.Metric"><code class="docutils literal notranslate"><span class="pre">Metric</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics_generation.Metric.anonymous"><code class="docutils literal notranslate"><span class="pre">Metric.anonymous</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics_generation.Metric.evaluate"><code class="docutils literal notranslate"><span class="pre">Metric.evaluate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics_generation.Metric.identifier"><code class="docutils literal notranslate"><span class="pre">Metric.identifier</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics_generation.Metric.label"><code class="docutils literal notranslate"><span class="pre">Metric.label</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics_generation.SumMetric"><code class="docutils literal notranslate"><span class="pre">SumMetric</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics_generation.avg"><code class="docutils literal notranslate"><span class="pre">avg()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics_generation.euclidean"><code class="docutils literal notranslate"><span class="pre">euclidean()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics_generation.euclidean_distance"><code class="docutils literal notranslate"><span class="pre">euclidean_distance()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.metrics_generation.not_none"><code class="docutils literal notranslate"><span class="pre">not_none()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mapfbench.metrics.html#module-mapfbench.metrics.results">mapfbench.metrics.results module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.results.AgentResults"><code class="docutils literal notranslate"><span class="pre">AgentResults</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.results.AgentResults.evaluate"><code class="docutils literal notranslate"><span class="pre">AgentResults.evaluate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.results.AggregatePlanResults"><code class="docutils literal notranslate"><span class="pre">AggregatePlanResults</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.results.AggregatePlanResults.evaluate"><code class="docutils literal notranslate"><span class="pre">AggregatePlanResults.evaluate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.results.PlanResults"><code class="docutils literal notranslate"><span class="pre">PlanResults</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.results.PlanResults.evaluate"><code class="docutils literal notranslate"><span class="pre">PlanResults.evaluate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.results.Results"><code class="docutils literal notranslate"><span class="pre">Results</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.results.Results.data"><code class="docutils literal notranslate"><span class="pre">Results.data</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.results.Results.evaluate"><code class="docutils literal notranslate"><span class="pre">Results.evaluate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.results.Results.inner_results"><code class="docutils literal notranslate"><span class="pre">Results.inner_results</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.results.Results.label_associations"><code class="docutils literal notranslate"><span class="pre">Results.label_associations</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.results.Results.results"><code class="docutils literal notranslate"><span class="pre">Results.results</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.metrics.html#mapfbench.metrics.results.Results.results_dict"><code class="docutils literal notranslate"><span class="pre">Results.results_dict</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mapfbench.metrics.html#module-mapfbench.metrics">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="mapfbench.utils.html">mapfbench.utils package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="mapfbench.utils.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mapfbench.utils.html#mapfbench-utils-dict-manipulations-module">mapfbench.utils.dict_manipulations module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mapfbench.utils.html#mapfbench-utils-utils-module">mapfbench.utils.utils module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mapfbench.utils.html#module-contents">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapfbench.utils.html#module-mapfbench.utils.dict_manipulations">mapfbench.utils.dict_manipulations module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.utils.html#mapfbench.utils.dict_manipulations.get_associations"><code class="docutils literal notranslate"><span class="pre">get_associations()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.utils.html#mapfbench.utils.dict_manipulations.recursive_replace_from_prefixes"><code class="docutils literal notranslate"><span class="pre">recursive_replace_from_prefixes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.utils.html#mapfbench.utils.dict_manipulations.replace_from_association"><code class="docutils literal notranslate"><span class="pre">replace_from_association()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.utils.html#mapfbench.utils.dict_manipulations.replace_from_prefixes"><code class="docutils literal notranslate"><span class="pre">replace_from_prefixes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.utils.html#mapfbench.utils.dict_manipulations.replace_key"><code class="docutils literal notranslate"><span class="pre">replace_key()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.utils.html#mapfbench.utils.dict_manipulations.use_readable_prefixes"><code class="docutils literal notranslate"><span class="pre">use_readable_prefixes()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mapfbench.utils.html#module-mapfbench.utils.utils">mapfbench.utils.utils module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mapfbench.utils.html#mapfbench.utils.utils.position_not_null"><code class="docutils literal notranslate"><span class="pre">position_not_null()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mapfbench.utils.html#module-mapfbench.utils">Module contents</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </section>
-<section id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
+<section id="module-mapfbench">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-mapfbench" title="Link to this heading">¶</a></h2>
 </section>
 </section>
 
@@ -112,17 +291,21 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/profiling.html">Profiling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/metrics.html">Metrics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/results_format.html">Format of results</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Code documentation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="mapfbench.description.html">mapfbench.description package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mapfbench.export.html">mapfbench.export package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mapfbench.importer.html">mapfbench.importer package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mapfbench.instrument.html">mapfbench.instrument package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mapfbench.metrics.html">mapfbench.metrics package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mapfbench.utils.html">mapfbench.utils package</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Code documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="main.html">main module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">mapfbench package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.description.html">mapfbench.description package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.export.html">mapfbench.export package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.importer.html">mapfbench.importer package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.instrument.html">mapfbench.instrument package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.metrics.html">mapfbench.metrics package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapfbench.utils.html">mapfbench.utils package</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-contents">Module contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-mapfbench">Module contents</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -131,8 +314,10 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="../tutorial/results_format.html" title="previous chapter">Format of results</a></li>
+  <li><a href="modules.html">src</a><ul>
+      <li>Previous: <a href="main.html" title="previous chapter">main module</a></li>
       <li>Next: <a href="mapfbench.description.html" title="next chapter">mapfbench.description package</a></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>

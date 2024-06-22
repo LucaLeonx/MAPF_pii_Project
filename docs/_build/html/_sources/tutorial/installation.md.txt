@@ -46,7 +46,9 @@ Clone the project repository
 Install dependencies, including optional ones
 ```shell
  cd MAPF_pii_Project
- pip install -U .[build, test, docs]
+ pip install -U .[build] 
+ pip install -U .[test]
+ pip install -U .[docs]
 ```
 
 This project is packaged using [setuptools](https://pypi.org/project/setuptools/)
@@ -59,7 +61,7 @@ Now the packaged wheel is available under MAPF_pii_Project/dist and can be
 manually installed
 
 ```shell
-pip install -U ./MAPF_pii_Project/dist/mapfbench-1.0-py3-none-any.whl
+pip install -U ./MAPF_pii_Project/dist/mapfbench-2.0-py3-none-any.whl
 ```
 
 To build the HTML version of the documentation using [Sphinx](https://www.sphinx-doc.org/en/master/index.html) run

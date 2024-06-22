@@ -11,6 +11,6 @@ tutorial/test_format.md
 tutorial/profiling.md
 tutorial/metrics.md
 tutorial/results_format.md
-Code documentation <source/mapfbench.rst>
+Code documentation <source/modules.rst>
 ```
 

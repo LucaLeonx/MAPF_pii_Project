@@ -46,7 +46,7 @@ In the next section, we will try to make a program run a simple benchmark.
 The code we will use is available in the `/examples/solvers/cbs` folder of the
 [project repository](https://github.com/LucaLeonx/MAPF_pii_Project/tree/main/docs/examples)
 
-We recommend to copy the entire `examples` directory to test it.
+We recommend to download the entire `examples.zip` directory to test it.
 
 Opening the `cbs.py` file, we see the following main() method
 ```python
@@ -124,7 +124,7 @@ Now we can run or MAPF program and wait for the results.
 
 ```shell
 
-python cbs_parallel.py
+python cbs.py
 
 ```
 
