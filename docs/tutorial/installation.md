@@ -13,6 +13,8 @@ where to install this and other packages:
 python -m venv .venv
 ```
 
+On MacOS, you may need to substitute `python`
+
 Then activate it. In Windows Powershell:
 ```powershell
 PS C:\> .venv/bin/Activate.ps1
