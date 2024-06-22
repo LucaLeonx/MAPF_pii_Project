@@ -44,7 +44,7 @@ At the moment, it is possible to instruments scripts in Python only
 
 In the next section, we will try to make a program run a simple benchmark.
 The code we will use is available in the `/examples/solvers/cbs` folder of the
-[project repository](https://github.com/LucaLeonx/MAPF_pii_Project/tree/main/docs/examples)
+[project repository](https://github.com/LucaLeonx/MAPF_pii_Project/tree/main/docs/)
 
 We recommend to download the entire `examples.zip` directory to test it.
 
