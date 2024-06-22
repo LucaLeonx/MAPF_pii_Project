@@ -10,6 +10,7 @@ tutorial/introduction.md
 tutorial/test_format.md
 tutorial/profiling.md
 tutorial/metrics.md
+tutorial/parallel.md
 tutorial/results_format.md
 Code documentation <source/modules.rst>
 ```
